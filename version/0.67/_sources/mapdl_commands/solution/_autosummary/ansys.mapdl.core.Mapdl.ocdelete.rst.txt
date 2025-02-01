@@ -1,0 +1,6 @@
+﻿ocdelete
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ocdelete

@@ -1,0 +1,6 @@
+﻿ocdata
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ocdata

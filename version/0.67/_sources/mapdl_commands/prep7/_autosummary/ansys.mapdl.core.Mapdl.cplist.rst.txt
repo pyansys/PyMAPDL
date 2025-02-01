@@ -1,0 +1,6 @@
+﻿cplist
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.cplist

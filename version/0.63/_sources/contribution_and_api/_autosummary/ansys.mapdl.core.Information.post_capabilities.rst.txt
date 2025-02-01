@@ -1,0 +1,6 @@
+post\_capabilities
+==================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Information.post_capabilities

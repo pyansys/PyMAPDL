@@ -1,0 +1,6 @@
+﻿spgraph
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.spgraph

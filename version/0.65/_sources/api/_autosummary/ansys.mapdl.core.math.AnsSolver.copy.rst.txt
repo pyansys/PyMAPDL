@@ -1,0 +1,6 @@
+copy
+====
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. automethod:: AnsSolver.copy

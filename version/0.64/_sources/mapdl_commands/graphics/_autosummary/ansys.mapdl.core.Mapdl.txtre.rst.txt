@@ -1,0 +1,6 @@
+﻿txtre
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.txtre

@@ -1,0 +1,6 @@
+﻿info
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.info

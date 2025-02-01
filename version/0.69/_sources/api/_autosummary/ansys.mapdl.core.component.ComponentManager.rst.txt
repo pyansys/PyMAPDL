@@ -1,0 +1,39 @@
+﻿ComponentManager
+================
+
+.. currentmodule:: ansys.mapdl.core.component
+
+.. autoclass:: ComponentManager
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ComponentManager.items
+      
+      
+      ComponentManager.select
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      ComponentManager.default_entity
+      ComponentManager.default_entity_warning
+      ComponentManager.logger
+      ComponentManager.names
+      ComponentManager.types
+   
+   

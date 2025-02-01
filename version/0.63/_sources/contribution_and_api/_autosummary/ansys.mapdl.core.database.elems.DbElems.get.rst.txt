@@ -1,0 +1,6 @@
+get
+===
+
+.. currentmodule:: ansys.mapdl.core.database.elems
+
+.. automethod:: DbElems.get

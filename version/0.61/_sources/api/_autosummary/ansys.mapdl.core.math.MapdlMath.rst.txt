@@ -1,0 +1,94 @@
+﻿MapdlMath
+=========
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. autoclass:: MapdlMath
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      MapdlMath.add
+      
+      
+      MapdlMath.damp
+      
+      
+      MapdlMath.dot
+      
+      
+      MapdlMath.eigs
+      
+      
+      MapdlMath.factorize
+      
+      
+      MapdlMath.free
+      
+      
+      MapdlMath.get_vec
+      
+      
+      MapdlMath.load_matrix_from_file
+      
+      
+      MapdlMath.mass
+      
+      
+      MapdlMath.mat
+      
+      
+      MapdlMath.matrix
+      
+      
+      MapdlMath.mgs
+      
+      
+      MapdlMath.norm
+      
+      
+      MapdlMath.ones
+      
+      
+      MapdlMath.rand
+      
+      
+      MapdlMath.rhs
+      
+      
+      MapdlMath.set_vec
+      
+      
+      MapdlMath.sparse
+      
+      
+      MapdlMath.status
+      
+      
+      MapdlMath.stiff
+      
+      
+      MapdlMath.subtract
+      
+      
+      MapdlMath.svd
+      
+      
+      MapdlMath.vec
+      
+      
+      MapdlMath.zeros
+      
+   
+   
+
+   
+   
+   

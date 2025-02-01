@@ -1,0 +1,6 @@
+﻿target
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.target

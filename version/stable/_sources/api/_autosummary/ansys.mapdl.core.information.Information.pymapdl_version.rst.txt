@@ -1,0 +1,6 @@
+﻿pymapdl\_version
+================
+
+.. currentmodule:: ansys.mapdl.core.information
+
+.. autoproperty:: Information.pymapdl_version

@@ -1,0 +1,6 @@
+scratch\_memory\_status
+=======================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Information.scratch_memory_status

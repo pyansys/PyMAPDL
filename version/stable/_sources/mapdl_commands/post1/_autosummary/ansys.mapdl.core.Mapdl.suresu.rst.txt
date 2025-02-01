@@ -1,0 +1,6 @@
+﻿suresu
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.suresu

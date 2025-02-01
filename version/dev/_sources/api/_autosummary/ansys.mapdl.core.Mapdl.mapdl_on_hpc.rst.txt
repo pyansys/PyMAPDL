@@ -1,0 +1,6 @@
+﻿mapdl\_on\_hpc
+==============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.mapdl_on_hpc

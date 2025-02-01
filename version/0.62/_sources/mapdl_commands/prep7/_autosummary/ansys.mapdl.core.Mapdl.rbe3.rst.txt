@@ -1,0 +1,6 @@
+﻿rbe3
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.rbe3

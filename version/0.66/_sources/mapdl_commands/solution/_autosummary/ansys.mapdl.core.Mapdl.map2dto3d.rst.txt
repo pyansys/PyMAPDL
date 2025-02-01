@@ -1,0 +1,6 @@
+﻿map2dto3d
+=========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.map2dto3d

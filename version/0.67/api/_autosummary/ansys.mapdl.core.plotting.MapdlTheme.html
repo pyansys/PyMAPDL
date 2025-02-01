@@ -1,0 +1,986 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MapdlTheme &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=18fd1f76" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+ 
+<link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../../_static/documentation_options.js?v=1511083c"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/_autosummary/ansys.mapdl.core.plotting.MapdlTheme';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.67';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="from_dict" href="ansys.mapdl.core.plotting.MapdlTheme.from_dict.html" />
+    <link rel="prev" title="general_plotter" href="ansys.mapdl.core.plotting.general_plotter.html" />
+<link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/api/_autosummary/ansys.mapdl.core.plotting.MapdlTheme.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+ 
+<!-- Include the MeiliSearch CSS stylesheet only if theme present -->
+<link href="../../_static/css/meilisearch.css" rel="stylesheet" />
+
+<!-- Create a search bar form with a text input and a dropdown selector for the search index -->
+<form
+  class="bd-search d-flex align-items-center"
+  action="../../search.html"
+  method="get"
+>
+  <input
+    type="search"
+    placeholder="Search"
+    class="form-control"
+    id="search-bar-input"
+    autofocus
+  />
+  <span class="search-button__kbd-shortcut"
+    ><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span
+  >
+  <style>
+    .bd-search .search-button__kbd-shortcut {
+      right: 33%;
+    }
+  </style>
+  
+  <select id="indexUidSelector" class="index-select">
+    
+    <option value="pymapdl-v0-67">PyMAPDL</option>
+    
+  </select>
+  
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <!-- Include the MeiliSearch JavaScript library for the search bar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    
+  <script>
+    var HOST_URL = "https://backend.search.pyansys.com/";
+    var API_KEY = "9fbccc76c147935ce2b562a9ee0c6669276987572dc1f22491cea72e9e99f35d";
+    var indexUid = "pymapdl-v0-67";
+  </script>
+
+  <script src="../../_static/js/meilisearch_theme_wrap.js"></script>
+</form>
+</div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">Commands output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helper.html">Helper functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inline.html">Inline functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../krylov.html"><code class="docutils literal notranslate"><span class="pre">KrylovSolver</span></code> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launcher.html">Launcher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mapdl.html"><code class="docutils literal notranslate"><span class="pre">Mapdl</span></code> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mesh.html">Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters.html">Parameters</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../plotting.html">Plotting</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.plotting.general_plotter.html">general_plotter</a></li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">MapdlTheme</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.from_dict.html">from_dict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.load_theme.html">load_theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.restore_defaults.html">restore_defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.save.html">save</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.to_dict.html">to_dict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.above_range_color.html">above_range_color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.anti_aliasing.html">anti_aliasing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.auto_close.html">auto_close</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.axes.html">axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.background.html">background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.before_close_callback.html">before_close_callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.below_range_color.html">below_range_color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.camera.html">camera</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.cmap.html">cmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.color.html">color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.color_cycler.html">color_cycler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.colorbar_horizontal.html">colorbar_horizontal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.colorbar_orientation.html">colorbar_orientation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.colorbar_vertical.html">colorbar_vertical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.depth_peeling.html">depth_peeling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.edge_color.html">edge_color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.enable_camera_orientation_widget.html">enable_camera_orientation_widget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.floor_color.html">floor_color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.font.html">font</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.full_screen.html">full_screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.hidden_line_removal.html">hidden_line_removal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.image_scale.html">image_scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.interactive.html">interactive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.interpolate_before_map.html">interpolate_before_map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.jupyter_backend.html">jupyter_backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.lighting.html">lighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.lighting_params.html">lighting_params</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.line_width.html">line_width</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.multi_rendering_splitting_position.html">multi_rendering_splitting_position</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.multi_samples.html">multi_samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.name.html">name</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.nan_color.html">nan_color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.notebook.html">notebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.opacity.html">opacity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.outline_color.html">outline_color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.point_size.html">point_size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.render_lines_as_tubes.html">render_lines_as_tubes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.render_points_as_spheres.html">render_points_as_spheres</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.return_cpos.html">return_cpos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.sharp_edges_feature_angle.html">sharp_edges_feature_angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.show_edges.html">show_edges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.show_scalar_bar.html">show_scalar_bar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.show_vertices.html">show_vertices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.silhouette.html">silhouette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.slider_styles.html">slider_styles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.smooth_shading.html">smooth_shading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.split_sharp_edges.html">split_sharp_edges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.title.html">title</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.trame.html">trame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.transparent_background.html">transparent_background</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.volume_mapper.html">volume_mapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.window_size.html">window_size</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.aplot.html">aplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.eplot.html">eplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.kplot.html">kplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.lplot.html">lplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.nplot.html">nplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.vplot.html">vplot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pool.html">Local MAPDL pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post.html"><code class="docutils literal notranslate"><span class="pre">PostProcessing</span></code> class</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://math.docs.pyansys.com/version/stable/">Pyansys Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution.html">Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xpl.html">Database explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../building_example.html">Building an example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unit_testing.html">Unit Testing</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+      
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+      
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i
+      ></a>
+    </li> 
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">API reference</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../plotting.html" class="nav-link">Plotting</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">MapdlTheme</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="mapdltheme">
+<h1>MapdlTheme<a class="headerlink" href="#mapdltheme" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ansys.mapdl.core.plotting.MapdlTheme">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.mapdl.core.plotting.</span></span><span class="sig-name descname"><span class="pre">MapdlTheme</span></span><a class="reference external" href="http://github.com/ansys/pymapdl/blob/main/src/ansys/mapdl/core/theme.py#L56-L112"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ansys.mapdl.core.plotting.MapdlTheme" title="Link to this definition">#</a></dt>
+<dd><p>PyMAPDL-specific theme for pyvista.</p>
+<p>Theme includes the following defaults:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'jet'</span></code> (rainbow) colormap</p></li>
+<li><p>Interactive plots</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'Courier'</span></code> for the font family</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'PyMAPDL'</span></code> as the plot title</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<p>Create a custom theme with unique parameters from the base MapdlTheme.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.mapdl</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">pymapdl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_theme</span> <span class="o">=</span> <span class="n">pymapdl</span><span class="o">.</span><span class="n">MapdlTheme</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_theme</span><span class="o">.</span><span class="n">background</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_theme</span><span class="o">.</span><span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;jet&#39;</span>  <span class="c1"># colormap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_theme</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_theme</span><span class="o">.</span><span class="n">show_scalar_bar</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+<p>Apply this theme to element plotting.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span><span class="n">theme</span><span class="o">=</span><span class="n">theme</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Apply this theme to area plotting.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">aplot</span><span class="p">(</span><span class="n">theme</span><span class="o">=</span><span class="n">theme</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.from_dict.html#ansys.mapdl.core.plotting.MapdlTheme.from_dict" title="ansys.mapdl.core.plotting.MapdlTheme.from_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.from_dict</span></code></a>(dict_)</p></td>
+<td><p>Create from a dictionary.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.load_theme.html#ansys.mapdl.core.plotting.MapdlTheme.load_theme" title="ansys.mapdl.core.plotting.MapdlTheme.load_theme"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.load_theme</span></code></a>(theme)</p></td>
+<td><p>Overwrite the current theme with a theme.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.restore_defaults.html#ansys.mapdl.core.plotting.MapdlTheme.restore_defaults" title="ansys.mapdl.core.plotting.MapdlTheme.restore_defaults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.restore_defaults</span></code></a>()</p></td>
+<td><p>Restore the theme defaults.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.save.html#ansys.mapdl.core.plotting.MapdlTheme.save" title="ansys.mapdl.core.plotting.MapdlTheme.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.save</span></code></a>(filename)</p></td>
+<td><p>Serialize this theme to a json file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.to_dict.html#ansys.mapdl.core.plotting.MapdlTheme.to_dict" title="ansys.mapdl.core.plotting.MapdlTheme.to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.to_dict</span></code></a>()</p></td>
+<td><p>Return theme config parameters as a dictionary.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.above_range_color.html#ansys.mapdl.core.plotting.MapdlTheme.above_range_color" title="ansys.mapdl.core.plotting.MapdlTheme.above_range_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.above_range_color</span></code></a></p></td>
+<td><p>Return or set the default above range color.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.anti_aliasing.html#ansys.mapdl.core.plotting.MapdlTheme.anti_aliasing" title="ansys.mapdl.core.plotting.MapdlTheme.anti_aliasing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.anti_aliasing</span></code></a></p></td>
+<td><p>Enable or disable anti-aliasing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.auto_close.html#ansys.mapdl.core.plotting.MapdlTheme.auto_close" title="ansys.mapdl.core.plotting.MapdlTheme.auto_close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.auto_close</span></code></a></p></td>
+<td><p>Automatically close the figures when finished plotting.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.axes.html#ansys.mapdl.core.plotting.MapdlTheme.axes" title="ansys.mapdl.core.plotting.MapdlTheme.axes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.axes</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">axes</span></code> configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.background.html#ansys.mapdl.core.plotting.MapdlTheme.background" title="ansys.mapdl.core.plotting.MapdlTheme.background"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.background</span></code></a></p></td>
+<td><p>Return or set the default background color of pyvista plots.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.before_close_callback.html#ansys.mapdl.core.plotting.MapdlTheme.before_close_callback" title="ansys.mapdl.core.plotting.MapdlTheme.before_close_callback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.before_close_callback</span></code></a></p></td>
+<td><p>Return the default before_close_callback function for Plotter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.below_range_color.html#ansys.mapdl.core.plotting.MapdlTheme.below_range_color" title="ansys.mapdl.core.plotting.MapdlTheme.below_range_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.below_range_color</span></code></a></p></td>
+<td><p>Return or set the default below range color.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.camera.html#ansys.mapdl.core.plotting.MapdlTheme.camera" title="ansys.mapdl.core.plotting.MapdlTheme.camera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.camera</span></code></a></p></td>
+<td><p>Return or set the default camera position.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.cmap.html#ansys.mapdl.core.plotting.MapdlTheme.cmap" title="ansys.mapdl.core.plotting.MapdlTheme.cmap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.cmap</span></code></a></p></td>
+<td><p>Return or set the default colormap of pyvista.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.color.html#ansys.mapdl.core.plotting.MapdlTheme.color" title="ansys.mapdl.core.plotting.MapdlTheme.color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.color</span></code></a></p></td>
+<td><p>Return or set the default color of meshes in pyvista.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.color_cycler.html#ansys.mapdl.core.plotting.MapdlTheme.color_cycler" title="ansys.mapdl.core.plotting.MapdlTheme.color_cycler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.color_cycler</span></code></a></p></td>
+<td><p>Return or set the default color cycler used to color meshes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.colorbar_horizontal.html#ansys.mapdl.core.plotting.MapdlTheme.colorbar_horizontal" title="ansys.mapdl.core.plotting.MapdlTheme.colorbar_horizontal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.colorbar_horizontal</span></code></a></p></td>
+<td><p>Return or set the default parameters of a horizontal colorbar.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.colorbar_orientation.html#ansys.mapdl.core.plotting.MapdlTheme.colorbar_orientation" title="ansys.mapdl.core.plotting.MapdlTheme.colorbar_orientation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.colorbar_orientation</span></code></a></p></td>
+<td><p>Return or set the default colorbar orientation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.colorbar_vertical.html#ansys.mapdl.core.plotting.MapdlTheme.colorbar_vertical" title="ansys.mapdl.core.plotting.MapdlTheme.colorbar_vertical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.colorbar_vertical</span></code></a></p></td>
+<td><p>Return or set the default parameters of a vertical colorbar.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.depth_peeling.html#ansys.mapdl.core.plotting.MapdlTheme.depth_peeling" title="ansys.mapdl.core.plotting.MapdlTheme.depth_peeling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.depth_peeling</span></code></a></p></td>
+<td><p>Return or set the default depth peeling parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.edge_color.html#ansys.mapdl.core.plotting.MapdlTheme.edge_color" title="ansys.mapdl.core.plotting.MapdlTheme.edge_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.edge_color</span></code></a></p></td>
+<td><p>Return or set the default edge color.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.enable_camera_orientation_widget.html#ansys.mapdl.core.plotting.MapdlTheme.enable_camera_orientation_widget" title="ansys.mapdl.core.plotting.MapdlTheme.enable_camera_orientation_widget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.enable_camera_orientation_widget</span></code></a></p></td>
+<td><p>Enable the camera orientation widget in all plotters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.floor_color.html#ansys.mapdl.core.plotting.MapdlTheme.floor_color" title="ansys.mapdl.core.plotting.MapdlTheme.floor_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.floor_color</span></code></a></p></td>
+<td><p>Return or set the default floor color.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.font.html#ansys.mapdl.core.plotting.MapdlTheme.font" title="ansys.mapdl.core.plotting.MapdlTheme.font"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.font</span></code></a></p></td>
+<td><p>Return or set the default font size, family, and/or color.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.full_screen.html#ansys.mapdl.core.plotting.MapdlTheme.full_screen" title="ansys.mapdl.core.plotting.MapdlTheme.full_screen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.full_screen</span></code></a></p></td>
+<td><p>Return if figures are shown in full screen.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.hidden_line_removal.html#ansys.mapdl.core.plotting.MapdlTheme.hidden_line_removal" title="ansys.mapdl.core.plotting.MapdlTheme.hidden_line_removal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.hidden_line_removal</span></code></a></p></td>
+<td><p>Return or set hidden line removal.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.image_scale.html#ansys.mapdl.core.plotting.MapdlTheme.image_scale" title="ansys.mapdl.core.plotting.MapdlTheme.image_scale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.image_scale</span></code></a></p></td>
+<td><p>Return or set the default image scale factor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.interactive.html#ansys.mapdl.core.plotting.MapdlTheme.interactive" title="ansys.mapdl.core.plotting.MapdlTheme.interactive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.interactive</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">interactive</span></code> parameter.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.interpolate_before_map.html#ansys.mapdl.core.plotting.MapdlTheme.interpolate_before_map" title="ansys.mapdl.core.plotting.MapdlTheme.interpolate_before_map"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.interpolate_before_map</span></code></a></p></td>
+<td><p>Return or set whether to interpolate colors before mapping.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.jupyter_backend.html#ansys.mapdl.core.plotting.MapdlTheme.jupyter_backend" title="ansys.mapdl.core.plotting.MapdlTheme.jupyter_backend"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.jupyter_backend</span></code></a></p></td>
+<td><p>Return or set the jupyter notebook plotting backend.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.lighting.html#ansys.mapdl.core.plotting.MapdlTheme.lighting" title="ansys.mapdl.core.plotting.MapdlTheme.lighting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.lighting</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">lighting</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.lighting_params.html#ansys.mapdl.core.plotting.MapdlTheme.lighting_params" title="ansys.mapdl.core.plotting.MapdlTheme.lighting_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.lighting_params</span></code></a></p></td>
+<td><p>Return or set the default lighting configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.line_width.html#ansys.mapdl.core.plotting.MapdlTheme.line_width" title="ansys.mapdl.core.plotting.MapdlTheme.line_width"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.line_width</span></code></a></p></td>
+<td><p>Return or set the default line width.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.multi_rendering_splitting_position.html#ansys.mapdl.core.plotting.MapdlTheme.multi_rendering_splitting_position" title="ansys.mapdl.core.plotting.MapdlTheme.multi_rendering_splitting_position"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.multi_rendering_splitting_position</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">multi_rendering_splitting_position</span></code> parameter.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.multi_samples.html#ansys.mapdl.core.plotting.MapdlTheme.multi_samples" title="ansys.mapdl.core.plotting.MapdlTheme.multi_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.multi_samples</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">multi_samples</span></code> parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.name.html#ansys.mapdl.core.plotting.MapdlTheme.name" title="ansys.mapdl.core.plotting.MapdlTheme.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.name</span></code></a></p></td>
+<td><p>Return or set the name of the theme.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.nan_color.html#ansys.mapdl.core.plotting.MapdlTheme.nan_color" title="ansys.mapdl.core.plotting.MapdlTheme.nan_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.nan_color</span></code></a></p></td>
+<td><p>Return or set the default NaN color.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.notebook.html#ansys.mapdl.core.plotting.MapdlTheme.notebook" title="ansys.mapdl.core.plotting.MapdlTheme.notebook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.notebook</span></code></a></p></td>
+<td><p>Return or set the state of notebook plotting.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.opacity.html#ansys.mapdl.core.plotting.MapdlTheme.opacity" title="ansys.mapdl.core.plotting.MapdlTheme.opacity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.opacity</span></code></a></p></td>
+<td><p>Return or set the opacity.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.outline_color.html#ansys.mapdl.core.plotting.MapdlTheme.outline_color" title="ansys.mapdl.core.plotting.MapdlTheme.outline_color"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.outline_color</span></code></a></p></td>
+<td><p>Return or set the default outline color.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.point_size.html#ansys.mapdl.core.plotting.MapdlTheme.point_size" title="ansys.mapdl.core.plotting.MapdlTheme.point_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.point_size</span></code></a></p></td>
+<td><p>Return or set the default point size.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.render_lines_as_tubes.html#ansys.mapdl.core.plotting.MapdlTheme.render_lines_as_tubes" title="ansys.mapdl.core.plotting.MapdlTheme.render_lines_as_tubes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.render_lines_as_tubes</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">render_lines_as_tubes</span></code> parameter.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.render_points_as_spheres.html#ansys.mapdl.core.plotting.MapdlTheme.render_points_as_spheres" title="ansys.mapdl.core.plotting.MapdlTheme.render_points_as_spheres"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.render_points_as_spheres</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">render_points_as_spheres</span></code> parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.return_cpos.html#ansys.mapdl.core.plotting.MapdlTheme.return_cpos" title="ansys.mapdl.core.plotting.MapdlTheme.return_cpos"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.return_cpos</span></code></a></p></td>
+<td><p>Return or set the default behavior of returning the camera position.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.sharp_edges_feature_angle.html#ansys.mapdl.core.plotting.MapdlTheme.sharp_edges_feature_angle" title="ansys.mapdl.core.plotting.MapdlTheme.sharp_edges_feature_angle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.sharp_edges_feature_angle</span></code></a></p></td>
+<td><p>Set or return the angle of the sharp edges feature angle.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.show_edges.html#ansys.mapdl.core.plotting.MapdlTheme.show_edges" title="ansys.mapdl.core.plotting.MapdlTheme.show_edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.show_edges</span></code></a></p></td>
+<td><p>Return or set the default edge visibility.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.show_scalar_bar.html#ansys.mapdl.core.plotting.MapdlTheme.show_scalar_bar" title="ansys.mapdl.core.plotting.MapdlTheme.show_scalar_bar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.show_scalar_bar</span></code></a></p></td>
+<td><p>Return or set the default color bar visibility.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.show_vertices.html#ansys.mapdl.core.plotting.MapdlTheme.show_vertices" title="ansys.mapdl.core.plotting.MapdlTheme.show_vertices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.show_vertices</span></code></a></p></td>
+<td><p>Return or set the default vertex visibility.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.silhouette.html#ansys.mapdl.core.plotting.MapdlTheme.silhouette" title="ansys.mapdl.core.plotting.MapdlTheme.silhouette"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.silhouette</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">silhouette</span></code> configuration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.slider_styles.html#ansys.mapdl.core.plotting.MapdlTheme.slider_styles" title="ansys.mapdl.core.plotting.MapdlTheme.slider_styles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.slider_styles</span></code></a></p></td>
+<td><p>Return the default slider style configurations.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.smooth_shading.html#ansys.mapdl.core.plotting.MapdlTheme.smooth_shading" title="ansys.mapdl.core.plotting.MapdlTheme.smooth_shading"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.smooth_shading</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">smooth_shading</span></code> parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.split_sharp_edges.html#ansys.mapdl.core.plotting.MapdlTheme.split_sharp_edges" title="ansys.mapdl.core.plotting.MapdlTheme.split_sharp_edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.split_sharp_edges</span></code></a></p></td>
+<td><p>Set or return splitting sharp edges.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.title.html#ansys.mapdl.core.plotting.MapdlTheme.title" title="ansys.mapdl.core.plotting.MapdlTheme.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.title</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">title</span></code> parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.trame.html#ansys.mapdl.core.plotting.MapdlTheme.trame" title="ansys.mapdl.core.plotting.MapdlTheme.trame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.trame</span></code></a></p></td>
+<td><p>Return or set the default trame parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.transparent_background.html#ansys.mapdl.core.plotting.MapdlTheme.transparent_background" title="ansys.mapdl.core.plotting.MapdlTheme.transparent_background"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.transparent_background</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">transparent_background</span></code> parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.volume_mapper.html#ansys.mapdl.core.plotting.MapdlTheme.volume_mapper" title="ansys.mapdl.core.plotting.MapdlTheme.volume_mapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.volume_mapper</span></code></a></p></td>
+<td><p>Return or set the default <code class="docutils literal notranslate"><span class="pre">volume_mapper</span></code> parameter.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.plotting.MapdlTheme.window_size.html#ansys.mapdl.core.plotting.MapdlTheme.window_size" title="ansys.mapdl.core.plotting.MapdlTheme.window_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapdlTheme.window_size</span></code></a></p></td>
+<td><p>Return or set the default render window size.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ansys.mapdl.core.plotting.MapdlTheme"><code class="docutils literal notranslate"><span class="pre">MapdlTheme</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="http://github.com/ansys/pymapdl/edit/main/src/ansys/mapdl/core/theme.py">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.12.2. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

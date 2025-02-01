@@ -1,0 +1,6 @@
+﻿detab
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.detab

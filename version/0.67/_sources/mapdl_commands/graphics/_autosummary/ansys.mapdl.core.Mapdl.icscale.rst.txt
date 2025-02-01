@@ -1,0 +1,6 @@
+﻿icscale
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.icscale

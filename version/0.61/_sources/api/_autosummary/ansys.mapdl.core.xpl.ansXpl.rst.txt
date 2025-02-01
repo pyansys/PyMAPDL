@@ -1,0 +1,70 @@
+﻿ansXpl
+======
+
+.. currentmodule:: ansys.mapdl.core.xpl
+
+.. autoclass:: ansXpl
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      ansXpl.close
+      
+      
+      ansXpl.copy
+      
+      
+      ansXpl.extract
+      
+      
+      ansXpl.goto
+      
+      
+      ansXpl.help
+      
+      
+      ansXpl.info
+      
+      
+      ansXpl.json
+      
+      
+      ansXpl.list
+      
+      
+      ansXpl.open
+      
+      
+      ansXpl.print
+      
+      
+      ansXpl.read
+      
+      
+      ansXpl.save
+      
+      
+      ansXpl.step
+      
+      
+      ansXpl.up
+      
+      
+      ansXpl.where
+      
+      
+      ansXpl.write
+      
+   
+   
+
+   
+   
+   

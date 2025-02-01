@@ -1,0 +1,6 @@
+﻿merge
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.merge

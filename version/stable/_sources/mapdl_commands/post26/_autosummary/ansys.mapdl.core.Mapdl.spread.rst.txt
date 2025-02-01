@@ -1,0 +1,6 @@
+﻿spread
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.spread

@@ -1,0 +1,6 @@
+plot\_nodal\_contact\_friction\_stress
+======================================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.plot_nodal_contact_friction_stress

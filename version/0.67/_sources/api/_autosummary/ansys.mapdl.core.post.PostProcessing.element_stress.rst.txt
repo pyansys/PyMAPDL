@@ -1,0 +1,6 @@
+element\_stress
+===============
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.element_stress

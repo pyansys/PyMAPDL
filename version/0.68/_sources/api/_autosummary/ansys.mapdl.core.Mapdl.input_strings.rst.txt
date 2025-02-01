@@ -1,0 +1,6 @@
+﻿input\_strings
+==============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.input_strings

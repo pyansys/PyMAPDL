@@ -1,0 +1,6 @@
+﻿edrst
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edrst

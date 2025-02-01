@@ -1,0 +1,6 @@
+transparent\_background
+=======================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.transparent_background

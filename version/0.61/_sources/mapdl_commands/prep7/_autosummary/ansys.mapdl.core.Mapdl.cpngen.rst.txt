@@ -1,0 +1,6 @@
+﻿cpngen
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.cpngen

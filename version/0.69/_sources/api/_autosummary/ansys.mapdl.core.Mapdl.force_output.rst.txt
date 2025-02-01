@@ -1,0 +1,6 @@
+﻿force\_output
+=============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.force_output

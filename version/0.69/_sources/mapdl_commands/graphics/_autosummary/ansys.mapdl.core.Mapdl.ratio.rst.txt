@@ -1,0 +1,6 @@
+﻿ratio
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ratio

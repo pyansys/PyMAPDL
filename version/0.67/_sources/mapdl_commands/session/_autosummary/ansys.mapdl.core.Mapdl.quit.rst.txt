@@ -1,0 +1,6 @@
+﻿quit
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.quit

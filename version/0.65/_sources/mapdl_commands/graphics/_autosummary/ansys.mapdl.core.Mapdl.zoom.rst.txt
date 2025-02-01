@@ -1,0 +1,6 @@
+﻿zoom
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.zoom

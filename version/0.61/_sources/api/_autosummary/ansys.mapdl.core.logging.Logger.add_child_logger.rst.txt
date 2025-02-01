@@ -1,0 +1,6 @@
+add\_child\_logger
+==================
+
+.. currentmodule:: ansys.mapdl.core.logging
+
+.. automethod:: Logger.add_child_logger

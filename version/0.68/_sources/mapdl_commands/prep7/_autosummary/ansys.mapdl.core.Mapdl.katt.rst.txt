@@ -1,0 +1,6 @@
+﻿katt
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.katt

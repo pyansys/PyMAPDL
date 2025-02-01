@@ -1,0 +1,46 @@
+﻿MapdlDb
+=======
+
+.. currentmodule:: ansys.mapdl.core.database
+
+.. autoclass:: MapdlDb
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      MapdlDb.clear
+      
+      
+      MapdlDb.load
+      
+      
+      MapdlDb.save
+      
+      
+      MapdlDb.start
+      
+      
+      MapdlDb.stop
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      MapdlDb.active
+      MapdlDb.elems
+      MapdlDb.nodes
+   
+   

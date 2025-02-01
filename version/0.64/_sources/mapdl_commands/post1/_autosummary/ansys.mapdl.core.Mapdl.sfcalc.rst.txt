@@ -1,0 +1,6 @@
+﻿sfcalc
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sfcalc

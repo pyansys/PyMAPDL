@@ -1,0 +1,6 @@
+﻿arclen
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.arclen

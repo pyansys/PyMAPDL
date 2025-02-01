@@ -1,0 +1,6 @@
+﻿irlist
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.irlist

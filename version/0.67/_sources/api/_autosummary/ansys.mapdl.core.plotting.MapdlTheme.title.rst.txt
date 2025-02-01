@@ -1,0 +1,6 @@
+title
+=====
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.title

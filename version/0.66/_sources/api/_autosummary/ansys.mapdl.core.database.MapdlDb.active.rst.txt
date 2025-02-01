@@ -1,0 +1,6 @@
+active
+======
+
+.. currentmodule:: ansys.mapdl.core.database
+
+.. autoproperty:: MapdlDb.active

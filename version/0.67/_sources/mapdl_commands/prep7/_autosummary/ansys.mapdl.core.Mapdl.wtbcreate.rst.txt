@@ -1,0 +1,6 @@
+﻿wtbcreate
+=========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.wtbcreate

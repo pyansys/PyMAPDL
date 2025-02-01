@@ -1,0 +1,6 @@
+﻿mprint
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.mprint

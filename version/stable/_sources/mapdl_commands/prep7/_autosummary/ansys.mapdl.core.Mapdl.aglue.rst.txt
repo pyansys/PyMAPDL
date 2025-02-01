@@ -1,0 +1,6 @@
+﻿aglue
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.aglue

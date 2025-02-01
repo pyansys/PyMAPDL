@@ -1,0 +1,6 @@
+﻿aux2
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.aux2

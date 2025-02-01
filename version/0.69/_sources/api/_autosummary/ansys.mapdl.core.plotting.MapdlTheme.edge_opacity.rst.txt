@@ -1,0 +1,6 @@
+edge\_opacity
+=============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.edge_opacity

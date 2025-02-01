@@ -1,0 +1,870 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Running an input file - spotweld SHELL181 example &#8212; PyMAPDL</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css?v=e7c4c341" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=91007d66" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="../../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../../_static/documentation_options.js?v=a98ddb9b"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/00-mapdl-examples/spotweld';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.68';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Torsional load on a bar using SURF154 elements" href="torsional_load.html" />
+    <link rel="prev" title="CFX pressure data mapping to structural blade" href="slashmap_cfx_mapping.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/gallery_examples/00-mapdl-examples/spotweld.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyMAPDL - Home"/>
+    <script>document.write(`<img src="../../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark" alt="PyMAPDL - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Release notes
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Full examples using PyMAPDL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2d_magnetostatic_solenoid-BodyFlux_Averaging.html">Analysis of a 2D magnetostatic solenoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2d_plate_with_a_hole.html">MAPDL 2D Plane Stress Concentration Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2d_pressure_vessel.html">2D Pressure Vessel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with PyMAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acoustic_analysis.html">3D Acoustic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_dpf_example.html">Basic DPF-Core Usage with PyMAPDL</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="bracket_static.html">Static analysis of a corner bracket</a></li>
+<li class="toctree-l2"><a class="reference internal" href="composite_dcb.html">Static simulation of double cantilever beam test via cohesive elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contact_elements.html">Contact Element Example</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cyclic_analysis.html">Cyclic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cyclic_static.html">Static Cyclic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exhaust_manifold_thermal_stress.html">Thermal-structural analysis of exhaust manifold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">Plotting and Mesh Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lathe_cutter.html">Structural Analysis of a Lathe Cutter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modal_beam.html">MAPDL modal beam analysis example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_operations.html">Path Operations within PyMAPDL and MAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pressure_vessel.html">Pressure Vessel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slashmap_cfx_mapping.html">CFX pressure data mapping to structural blade</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Running an input file - spotweld SHELL181 example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="torsional_load.html">Torsional load on a bar using SURF154 elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-geometry/index.html">Geometry examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-tips-n-tricks/index.html">Miscellaneous examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-general-fea/index.html">Academic finite element examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/index.html">Extended examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devportal.html">PyMAPDL Developer Portal articles</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/verif-manual/index.html">Verification Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/technology_showcase_examples/index.html">Technology Showcases</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../../index.html" class="nav-link">Examples</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">Full examples using PyMAPDL</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Running an input file - spotweld SHELL181 example</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-gallery-examples-00-mapdl-examples-spotweld-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="running-an-input-file-spotweld-shell181-example">
+<span id="ref-spotweld"></span><span id="sphx-glr-examples-gallery-examples-00-mapdl-examples-spotweld-py"></span><h1>Running an input file - spotweld SHELL181 example<a class="headerlink" href="#running-an-input-file-spotweld-shell181-example" title="Link to this heading">#</a></h1>
+<p>This MAPDL example demonstrates how to model spot welding on three
+thin sheets of metal. Here, the full input file is simply run using
+the PyMAPDL interface.</p>
+<p>Using the following commands, you can directly use an APDL
+script within a PyMAPDL session with the following
+commands:</p>
+<section id="script-initialization">
+<h2>Script initialization<a class="headerlink" href="#script-initialization" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core.examples.downloads</span> <span class="kn">import</span> <span class="n">download_example_data</span>
+
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="download-and-run-an-mapdl-script">
+<h2>Download and run an MAPDL script<a class="headerlink" href="#download-and-run-an-mapdl-script" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">spotweld_data</span></a> <span class="o">=</span> <span class="n">download_example_data</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;spotweld.inp&quot;</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="s2">&quot;pymapdl/spotweld&quot;</span>
+<span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">spotweld_data</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;\n /INPUT FILE=    LINE=       0\n   *****MAPDL VERIFICATION RUN ONLY*****\n     DO NOT USE RESULTS FOR PRODUCTION\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n NUMBER KEY SET TO  0  -1=NONE  0=BOTH  1=COLOR  2=NUMBER\n\n AREA NUMBERING KEY =  1\n\n KEYPOINT        1                  X,Y,Z=   2.00000       10.0000       0.00000      IN CSYS=        0\n\n KEYPOINT        2                  X,Y,Z=   10.0000       10.0000       0.00000      IN CSYS=        0\n\n KEYPOINT        3                  X,Y,Z=   10.0000      0.150000       0.00000      IN CSYS=        0\n\n KEYPOINT        4                  X,Y,Z=   14.0000      0.150000       0.00000      IN CSYS=        0\n\n LINE CONNECTS KEYPOINTS      1     2\n  LINE NO.=     1  KP1=      1  TAN1=   -1.0000   0.0000   0.0000\n                   KP2=      2  TAN2=    1.0000   0.0000   0.0000\n\n LINE CONNECTS KEYPOINTS      2     3\n  LINE NO.=     2  KP1=      2  TAN1=    0.0000   1.0000   0.0000\n                   KP2=      3  TAN2=    0.0000  -1.0000   0.0000\n\n LINE CONNECTS KEYPOINTS      3     4\n  LINE NO.=     3  KP1=      3  TAN1=   -1.0000   0.0000   0.0000\n                   KP2=      4  TAN2=    1.0000   0.0000   0.0000\n\n FILLET BETWEEN LINES      1     2  RADIUS=   3.0000    \n  CENTER KEYPOINT=      0\n  LINE NO.=     4  KP1=      5  TAN1=   -1.0000   0.0000   0.0000\n                   KP2=      6  TAN2=    0.0000  -1.0000   0.0000\n\n FILLET BETWEEN LINES      2     3  RADIUS=   2.0000    \n  CENTER KEYPOINT=      0\n  LINE NO.=     5  KP1=      7  TAN1=    0.0000   1.0000   0.0000\n                   KP2=      8  TAN2=    1.0000   0.0000   0.0000\n\n KEYPOINT        9                  X,Y,Z=   0.00000       0.00000       0.00000      IN CSYS=        0\n\n KEYPOINT       10                  X,Y,Z=   11.0000       0.00000       0.00000      IN CSYS=        0\n\n KEYPOINT       11                  X,Y,Z=   15.0000       0.00000       0.00000      IN CSYS=        0\n\n LINE CONNECTS KEYPOINTS      9    10\n  LINE NO.=     6  KP1=      9  TAN1=   -1.0000   0.0000   0.0000\n                   KP2=     10  TAN2=    1.0000   0.0000   0.0000\n\n LINE CONNECTS KEYPOINTS     10    11\n  LINE NO.=     7  KP1=     10  TAN1=   -1.0000   0.0000   0.0000\n                   KP2=     11  TAN2=    1.0000   0.0000   0.0000\n\n KEYPOINT       12                  X,Y,Z=   0.00000       10.0000       0.00000      IN CSYS=        0\n\n SELECT       FOR ITEM=LINE COMPONENT=    \n  IN RANGE         6 TO          7 STEP          1\n\n        2  LINES (OF        7  DEFINED) SELECTED BY LSEL  COMMAND.\n\n ROTATE LINES      6,     7,\n      ABOUT THE AXIS DEFINED BY KEYPOINTS      9    12\n     DEGREES OF ARC=    12.00   NUMBER OF SEGMENTS=   1\n\n SELECT       FOR ITEM=LINE COMPONENT=    \n  IN RANGE         1 TO          5 STEP          1\n\n        5  LINES (OF       11  DEFINED) SELECTED BY LSEL  COMMAND.\n\n ROTATE LINES      1,     2,     3,     4,     5,\n      ABOUT THE AXIS DEFINED BY KEYPOINTS      9    12\n     DEGREES OF ARC=    12.00   NUMBER OF SEGMENTS=   1\n\n REVERSE THE NORMAL DIRECTION OF AREA(S)       1\n      AND MAKE ANY AREA ELEMENTS CONSISTENT WITH THE NEW NORMAL DIRECTION(S).\n\n REVERSE THE NORMAL DIRECTION OF AREA(S)       2\n      AND MAKE ANY AREA ELEMENTS CONSISTENT WITH THE NEW NORMAL DIRECTION(S).\n\n SELECT       FOR ITEM=AREA COMPONENT=    \n  IN RANGE         3 TO          7 STEP          1\n\n        5  AREAS (OF        7  DEFINED) SELECTED BY  ASEL  COMMAND.\n\n SYMMETRY TRANSFORMATION OF AREAS         USING COMPONENT  Y  \n   SET IS ALL SELECTED AREAS        \n\n SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW\n\n GENERATE HARD POINT ON AREA      7 WITH X,Y,Z=   12.9000      0.150000      -1.36000      IN CSYS=  0\n ASSIGN TO HARD POINT     33\n\n HARDPOINT    33   X,Y,Z=   12.9000      0.150000      -1.36000      IN CSYS=  0\n\n view point for window  1    1.0000      1.0000      1.0000    \n\n PLOT AREAS FROM     1  TO    12  BY      1\n\n CUMULATIVE DISPLAY NUMBER   1 WRITTEN TO FILE                   - RASTER MODE.\n DISPLAY TITLE= \n                                                                         \n\n PLOT LINES FROM     1  TO    38  BY    1\n\n CUMULATIVE DISPLAY NUMBER   1 WRITTEN TO FILE                   - RASTER MODE.\n DISPLAY TITLE= \n                                                                         \n\n PLOT KEY POINTS FROM       1 TO      33 BY      1\n\n CUMULATIVE DISPLAY NUMBER   1 WRITTEN TO FILE                   - RASTER MODE.\n DISPLAY TITLE= \n                                                                         \n\n ELEMENT TYPE          1 IS SHELL181     4-NODE SHELL                \n  KEYOPT( 1- 6)=        0      0      0        0      0      0\n  KEYOPT( 7-12)=        0      0      0        0      0      0\n  KEYOPT(13-18)=        0      0      0        0      0      0\n\n CURRENT NODAL DOF SET IS  UX    UY    UZ    ROTX  ROTY  ROTZ\n  THREE-DIMENSIONAL MODEL\n\n REAL CONSTANT SET          1  ITEMS   1 TO   6\n   0.15000       0.0000       0.0000       0.0000       0.0000       0.0000    \n\n REAL CONSTANT SET          2  ITEMS   1 TO   6\n   0.10000       0.0000       0.0000       0.0000       0.0000       0.0000    \n\n MATERIAL          1     EX   =  0.3000000E+08  \n\n MATERIAL          1     PRXY =  0.3000000      \n\n DEFAULT ELEMENT DIVISIONS PER LINE BASED ON ELEMENT SIZE =  0.250    \n\n REAL CONSTANT NUMBER=        1\n\n GENERATE NODES AND ELEMENTS\n       IN AREAS         1  TO      1  IN STEPS OF      1\n    ** AREA     1 MESHED WITH      192 QUADRILATERALS,        2 TRIANGLES **\n\n NUMBER OF AREAS MESHED     =          1\n MAXIMUM NODE NUMBER        =        243\n MAXIMUM ELEMENT NUMBER     =        194\n\n GENERATE NODES AND ELEMENTS\n       IN AREAS         2  TO      2  IN STEPS OF      1\n    ** AREA     2 MESHED WITH      177 QUADRILATERALS,        1 TRIANGLES **\n\n NUMBER OF AREAS MESHED     =          1\n MAXIMUM NODE NUMBER        =        438\n MAXIMUM ELEMENT NUMBER     =        372\n\n REAL CONSTANT NUMBER=        2\n\n SELECT       FOR ITEM=AREA COMPONENT=    \n  IN RANGE         3 TO         12 STEP          1\n\n       10  AREAS (OF       12  DEFINED) SELECTED BY  ASEL  COMMAND.\n\n GENERATE NODES AND ELEMENTS   IN  ALL  SELECTED AREAS    \n    ** AREA     4 MESHED WITH      123 QUADRILATERALS,        1 TRIANGLES **\n    ** AREA     7 MESHED WITH     100 QUADRILATERALS,        1 TRIANGLES **\n    ** AREA     9 MESHED WITH      121 QUADRILATERALS,        1 TRIANGLES **\n    ** AREA    12 MESHED WITH       91 QUADRILATERALS,        1 TRIANGLES **\n\n NUMBER OF AREAS MESHED     =         10\n MAXIMUM NODE NUMBER        =       1963\n MAXIMUM ELEMENT NUMBER     =       1723\n\n SELECT       FOR ITEM=LINE COMPONENT=    \n  IN RANGE         1 TO          9 STEP          1\n\n        9  LINES (OF       38  DEFINED) SELECTED BY LSEL  COMMAND.\n\n ALSO SELECT  FOR ITEM=LINE COMPONENT=    \n  IN RANGE        12 TO         17 STEP          1\n\n       15  LINES (OF       38  DEFINED) SELECTED BY LSEL COMMAND.\n\n ALSO SELECT  FOR ITEM=LINE COMPONENT=    \n  IN RANGE        26 TO         38 STEP          3\n\n       20  LINES (OF       38  DEFINED) SELECTED BY LSEL COMMAND.\n\n ALSO SELECT  FOR ITEM=LINE COMPONENT=    \n  IN RANGE        24 TO         36 STEP          3\n\n       25  LINES (OF       38  DEFINED) SELECTED BY LSEL COMMAND.\n\n SELECT      ALL NODES (INTERIOR TO LINE, AND AT KEYPOINTS)\n        RELATED TO SELECTED LINE SET.\n\n        446  NODES (OF       1963  DEFINED) SELECTED FROM \n       25 SELECTED LINES BY NSLL COMMAND.\n\n SET SNAP FOR WORKING PLANE TO     0.50000E-01\n\n SET GRID SPACING FOR WORKING PLANE TO     0.10000    \n\n SET WP COORDINATE SYSTEM TYPE TO CARTESIAN.\n\n TURN WORKING PLANE GRID AND TRIAD ON.\n\n SET SNAP ANGLE FOR WORKING PLANE TO      5.0000    \n\n SET WORKING PLANE&#39;S TOLERANCE TO     0.30000E-02\n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n The Working Plane cannot be displayed in NON-UI mode.                   \n  Command Ignored.                                                       \n\n ROTATE WORKING PLANE \n      0.0000     DEGREES ABOUT WORKING PLANE&#39;S Z AXIS (X TOWARDS Y)\n     -90.000     DEGREES ABOUT WORKING PLANE&#39;S X AXIS (Y TOWARDS Z)\n      0.0000     DEGREES ABOUT WORKING PLANE&#39;S Y AXIS (Z TOWARDS X)\n\n ACTIVE COORDINATE SYSTEM SET TO        11  (CYLINDRICAL)\n     WITH PARAMETERS    1.000     AND    1.000    \n\n ACTIVE COORDINATE SYSTEM SET TO         11  (CYLINDRICAL)\n\n IN COORDINATE SYSTEM 11, ROTATE ALL SELECTED NODES.\n\n SPECIFIED CONSTRAINT UY   FOR SELECTED NODES            1 TO        1963 BY           1\n REAL=  0.00000000       IMAG=  0.00000000    \n\n SPECIFIED CONSTRAINT ROTX FOR SELECTED NODES            1 TO        1963 BY           1\n REAL=  0.00000000       IMAG=  0.00000000    \n\n ACTIVE COORDINATE SYSTEM SET TO          0  (CARTESIAN)  \n\n SELECT       FOR ITEM=LINE COMPONENT=    \n  IN RANGE        23 TO         23 STEP          1\n\n        1  LINES (OF       38  DEFINED) SELECTED BY LSEL  COMMAND.\n\n SELECT      ALL NODES (INTERIOR TO LINE, AND AT KEYPOINTS)\n        RELATED TO SELECTED LINE SET.\n\n          3  NODES (OF       1963  DEFINED) SELECTED FROM \n        1 SELECTED LINES BY NSLL COMMAND.\n\n SPECIFIED CONSTRAINT UZ   FOR SELECTED NODES            1 TO        1963 BY           1\n REAL=  0.00000000       IMAG=  0.00000000    \n\n SELECT       FOR ITEM=LINE COMPONENT=    \n  IN RANGE        17 TO         17 STEP          1\n\n        1  LINES (OF       38  DEFINED) SELECTED BY LSEL  COMMAND.\n\n SELECT      ALL NODES (INTERIOR TO LINE, AND AT KEYPOINTS)\n        RELATED TO SELECTED LINE SET.\n\n          3  NODES (OF       1963  DEFINED) SELECTED FROM \n        1 SELECTED LINES BY NSLL COMMAND.\n\n SPECIFIED CONSTRAINT UZ   FOR SELECTED NODES            1 TO        1963 BY           1\n REAL=  4.00000000       IMAG=  0.00000000    \n\n SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW\n\n view point for window  1    1.0000      1.0000      1.0000    \n\n ELEMENT DISPLAYS USING REAL CONSTANT OR SECTION DATA WITH FACTOR     1.00\n\n SELECT       FOR ITEM=KP   COMPONENT=    \n  IN RANGE        33 TO         33 STEP          1\n\n        1  KEYPOINTS (OF       33  DEFINED) SELECTED BY  KSEL  COMMAND.\n\n SELECT      NODES ASSOCIATED WITH SELECTED KEYPOINTS\n\n          1  NODES (OF       1963  DEFINED) SELECTED FROM\n        1 SELECTED KEYPOINTS BY  NSLK  COMMAND.\n\n *GET  SW_NODE   FROM  NODE  ITEM=NUM  MAX   VALUE=  1199.00000     \n\n\n ***** ROUTINE COMPLETED *****  CP =         0.000\n\n\n\n *****  MAPDL SOLUTION ROUTINE  *****\n\n SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW\n\n LARGE DEFORMATION ANALYSIS\n\n TIME=  4.0000    \n\n USE      10 SUBSTEPS INITIALLY THIS LOAD STEP FOR ALL  DEGREES OF FREEDOM\n FOR AUTOMATIC TIME STEPPING:\n   USE     25 SUBSTEPS AS A MAXIMUM\n   USE      5 SUBSTEPS AS A MINIMUM\n\n WRITE ALL  ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.000\n\n\n\n SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW\n   *****MAPDL VERIFICATION RUN ONLY*****\n     DO NOT USE RESULTS FOR PRODUCTION\n\n          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****\n\n MATERIAL          2     EX   =  0.2800000E+08  \n\n MATERIAL          2     PRXY =  0.3000000      \n                                   \n   INPUT SECTION ID NUMBER                  2\n   INPUT SECTION TYPE                 BEAM\n   INPUT BEAM SECTION SUBTYPE         Circular Solid  \n   INPUT BEAM SECTION NAME                    \n                     \n   SECTION ID NUMBER IS:            2\n   BEAM SECTION TYPE IS:     Circular Solid  \n   BEAM SECTION NAME IS:             \n   COMPUTED BEAM SECTION DATA SUMMARY:\n    Area                 = 0.19620    \n    Iyy                  = 0.30616E-02\n    Iyz                  =-0.67763E-20\n    Izz                  = 0.30616E-02\n    Warping Constant     = 0.66667E-36\n    Torsion Constant     = 0.61233E-02\n    Centroid Y           =-0.52498E-17\n    Centroid Z           = 0.11328E-16\n    Shear Center Y       = 0.18601E-17\n    Shear Center Z       = 0.66798E-17\n    Shear Correction-xy  = 0.85691    \n    Shear Correction-yz  = 0.12526E-14\n    Shear Correction-xz  = 0.85691    \n                 \n    Beam Section is offset to CENTROID of cross section\n\n ELEMENT TYPE          2 IS BEAM188      3-D 2-NODE BEAM             \n  KEYOPT( 1- 6)=        0      0      0        0      0      0\n  KEYOPT( 7-12)=        0      0      0        0      0      0\n  KEYOPT(13-18)=        0      0      0        0      0      0\n\n CURRENT NODAL DOF SET IS  UX    UY    UZ    ROTX  ROTY  ROTZ\n  THREE-DIMENSIONAL MODEL\n\n ELEMENT TYPE SET TO         2\n\n MATERIAL NUMBER SET TO         2\n\n SECTION ID NUMBER=        2\n\n ****************************************\n *****CREATE NEW SPOT WELD SET: SWELD1  \n GENERATE SPOT WELD BETWEEN SURFACE (7       ) AND SURFACE (2       ).\n      THE FIRST SPOT WELD NODE =     1199\n      THE SECOND SPOT WELD NODE WILL BE CREATED\n      SPOTWELD RADIUS= 0.50000    \n      SEARCHING DISTANCE=  2.0000    \n      DEFORMABLE SPOT WELD WILL BE GENERATED. \n CREATED ELEMENT TYPE       3 AS TARGE170\n CREATED ELEMENT TYPE       4 AS CONTA174\n\n REAL CONSTANT SETS       3 AND       4 ARE CREATED\n     WITH INFLUENCE RADIUS =    0.50000     AND PINBALL RANGE=    0.50000    \n\n      NUMBER OF CONTACT ELEMENTS FOR BOTH SURFACES    GENERATED=     275\n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n Rotational degrees of freedom ROTX+ROTY+ROTZ have been activated for    \n pilot node 1964.                                                        \n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n Rotational degrees of freedom ROTX+ROTY+ROTZ have been activated for    \n pilot node 1966.                                                        \n      NEW ELEMENTS     278 ARE CREATED FOR SPOTWELD\n *******END OF SPOT WELD CREATION********\n\n ****************************************\n *****ADD MORE SPOT WELD SURFACES TO SET: SWELD1  \n      SEARCHING DISTANCE=  2.0000    ,\n ADD NEW SPOT WELD SURFACE: 12      \n\n      NUMBER OF CONTACT ELEMENTS FOR BOTH SURFACES    GENERATED=      92\n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n Rotational degrees of freedom ROTX+ROTY+ROTZ have been activated for    \n pilot node 1967.                                                        \n\n\n ***** ROUTINE COMPLETED *****  CP =         0.000\n\n\n\n *****  MAPDL SOLUTION ROUTINE  *****\n\n SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW\n\n LARGE DEFORMATION ANALYSIS\n\n TIME=  4.0000    \n\n USE      10 SUBSTEPS INITIALLY THIS LOAD STEP FOR ALL  DEGREES OF FREEDOM\n FOR AUTOMATIC TIME STEPPING:\n   USE     25 SUBSTEPS AS A MAXIMUM\n   USE      5 SUBSTEPS AS A MINIMUM\n\n WRITE ALL  ITEMS TO THE DATABASE WITH A FREQUENCY OF ALL \n   FOR ALL APPLICABLE ENTITIES\n\n *****  MAPDL SOLVE    COMMAND  *****\n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n There is no title defined for this analysis.                            \n\n *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***\n                ---GIVE SUGGESTIONS ONLY---\n\n ELEMENT TYPE         1 IS SHELL181. IT IS ASSOCIATED WITH ELASTOPLASTIC \n MATERIALS ONLY. KEYOPT(8)=2 IS SUGGESTED AND KEYOPT(3)=2 IS SUGGESTED FOR\n HIGHER ACCURACY OF MEMBRANE STRESSES; OTHERWISE, KEYOPT(3)=0 IS SUGGESTED.\n\n ELEMENT TYPE         2 IS BEAM188 . KEYOPT(3)=2 IS ALWAYS SUGGESTED.\n\n ELEMENT TYPE         2 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.\n\n\n   *****MAPDL VERIFICATION RUN ONLY*****\n     DO NOT USE RESULTS FOR PRODUCTION\n\n                       S O L U T I O N   O P T I O N S\n\n   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D                  \n   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ\n   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)\n   NONLINEAR GEOMETRIC EFFECTS . . . . . . . . . .ON\n   NEWTON-RAPHSON OPTION . . . . . . . . . . . . .PROGRAM CHOSEN   \n   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  \n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n SHELL181 and SHELL281 will not support real constant input at a future  \n release.  Please move to section input.                                 \n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n This nonlinear analysis defaults to using the full Newton-Raphson       \n solution procedure.  This can be modified using the NROPT command.      \n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n The conditions for direct assembly have been met.  No .emat or .erot    \n files will be produced.                                                 \n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n Internal nodes from 1968 to 1970 are created.                           \n 3 internal nodes are used for handling degrees of freedom on pilot      \n nodes of rigid target surfaces.                                         \n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n Internal nodes from 1968 to 1970 are created.                           \n 3 internal nodes are used for handling degrees of freedom on pilot      \n nodes of rigid target surfaces.                                         \n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n Force-distributed-surface identified by real constant set 3 and         \n contact element type 4 has been set up.  The pilot node 1964 is used    \n to apply the force which connects to other element 2095.  Internal MPC  \n will be built.                                                          \n The used degrees of freedom set is  UX   UY   UZ   ROTX ROTY ROTZ\n User defined influence range PINB            0.50000    \n ****************************************\n  \n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n Force-distributed-surface identified by real constant set 4 and         \n contact element type 4 has been set up.  The pilot node 1966 is used    \n to apply the force which connects to other element 2001.  Internal MPC  \n will be built.                                                          \n The used degrees of freedom set is  UX   UY   UZ   ROTX ROTY ROTZ\n User defined influence range PINB            0.50000    \n ****************************************\n  \n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n Force-distributed-surface identified by real constant set 5 and         \n contact element type 4 has been set up.  The pilot node 1967 is used    \n to apply the force which connects to other element 2001.  Internal MPC  \n will be built.                                                          \n The used degrees of freedom set is  UX   UY   UZ   ROTX ROTY ROTZ\n User defined influence range PINB            0.50000    \n ****************************************\n  \n  \n  \n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n Internal nodes from 1968 to 1970 are created.                           \n 3 internal nodes are used for handling degrees of freedom on pilot      \n nodes of rigid target surfaces.                                         \n\n  \n  \n     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R\n  \n  ...Number of elements: 2095\n  ...Number of nodes:    1970\n  ...Decompose to 0 CPU domains\n  ...Element load balance ratio =     0.000\n\n\n                      L O A D   S T E P   O P T I O N S\n\n   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1\n   TIME AT END OF THE LOAD STEP. . . . . . . . . .  4.0000    \n   AUTOMATIC TIME STEPPING . . . . . . . . . . . .    ON\n      INITIAL NUMBER OF SUBSTEPS . . . . . . . . .    10\n      MAXIMUM NUMBER OF SUBSTEPS . . . . . . . . .    25\n      MINIMUM NUMBER OF SUBSTEPS . . . . . . . . .     5\n   MAXIMUM NUMBER OF EQUILIBRIUM ITERATIONS. . . .    15\n   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO\n   STRESS-STIFFENING . . . . . . . . . . . . . . .    ON\n   TERMINATE ANALYSIS IF NOT CONVERGED . . . . . .YES (EXIT)  \n   CONVERGENCE CONTROLS. . . . . . . . . . . . . .USE DEFAULTS\n   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT\n   DATABASE OUTPUT CONTROLS\n      ITEM     FREQUENCY   COMPONENT\n       ALL        ALL               \n\n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n Force-distributed-surface identified by real constant set 3 and         \n contact element type 4 has been set up.  The pilot node 1964 is used    \n to apply the force which connects to other element 2095.  Internal MPC  \n will be built.                                                          \n The used degrees of freedom set is  UX   UY   UZ   ROTX ROTY ROTZ\n User defined influence range PINB            0.50000    \n ****************************************\n  \n\n *** NOTE ***                            CP =       0.000   TIME= 00:00:00\n Predictor is ON by default for structural elements with rotational      \n degrees of freedom.  Use the PRED,OFF command to turn the predictor     \n OFF if it adversely affects the convergence.                            \n\n\n Range of element maximum matrix coefficients in global coordinates\n Maximum = 36623388.3 at element 0.                                      \n Minimum = 1024152.32 at element 0.                                      \n\n   *** ELEMENT MATRIX FORMULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1      1723  SHELL181      0.000   0.000000\n        2         2  BEAM188       0.000   0.000000\n        3         3  TARGE170      0.000   0.000000\n        4       367  CONTA174      0.000   0.000000\n Time at end of element matrix formulation CP = 0.                       \n\n ALL CURRENT MAPDL DATA WRITTEN TO FILE NAME= \n  FOR POSSIBLE RESUME FROM THIS POINT\n     FORCE CONVERGENCE VALUE  =  0.3958E+06  CRITERION=   1979.    \n     MOMENT CONVERGENCE VALUE =  0.6913E+05  CRITERION=   345.6    \n\n DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.\n  Number of equations =       10880,    Maximum wavefront =      0\n  Memory available (MB) =    0.0    ,  Memory required (MB) =    0.0    \n\n Distributed sparse solver maximum pivot= 0 at node 0 .                  \n Distributed sparse solver minimum pivot= 0 at node 0 .                  \n Distributed sparse solver minimum pivot in absolute value= 0 at node 0  \n .                                                                       \n     DISP CONVERGENCE VALUE   =  0.4000      CRITERION=  0.2000E-01\n    EQUIL ITER   1 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.4000    \n     DISP CONVERGENCE VALUE   =  0.4000      CRITERION=  0.2000E-01\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC =  0.4000    \n     FORCE CONVERGENCE VALUE  =   1964.      CRITERION=   11.71    \n     MOMENT CONVERGENCE VALUE =   11.84      CRITERION=  0.3208    \n    EQUIL ITER   2 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC= -0.9830E-02\n     DISP CONVERGENCE VALUE   =  0.2164E-02  CRITERION=  0.2000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =  0.9997     SCALED MAX DOF INC = -0.9827E-02\n     FORCE CONVERGENCE VALUE  =   8.931      CRITERION=   11.46     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =  0.3297      CRITERION=  0.2967    \n    EQUIL ITER   3 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.8728E-03\n     DISP CONVERGENCE VALUE   =  0.8011E-03  CRITERION=  0.2000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC =  0.8728E-03\n     FORCE CONVERGENCE VALUE  =  0.3489      CRITERION=   11.43     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =  0.2506E-01  CRITERION=  0.2967     &lt;&lt;&lt; CONVERGED\n    &gt;&gt;&gt; SOLUTION CONVERGED AFTER EQUILIBRIUM ITERATION   3\n\n   *** ELEMENT RESULT CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1      1723  SHELL181      0.000   0.000000\n        2         2  BEAM188       0.000   0.000000\n        4       367  CONTA174      0.000   0.000000\n\n   *** NODAL LOAD CALCULATION TIMES\n     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP\n\n        1      1723  SHELL181      0.000   0.000000\n        2         2  BEAM188       0.000   0.000000\n        4       367  CONTA174      0.000   0.000000\n *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      3\n *** TIME =  0.400000         TIME INC =  0.400000    \n *** AUTO STEP TIME:  NEXT TIME INC = 0.40000      UNCHANGED\n\n     FORCE CONVERGENCE VALUE  =   4120.      CRITERION=   38.59    \n     MOMENT CONVERGENCE VALUE =   39.51      CRITERION=  0.9015    \n     DISP CONVERGENCE VALUE   =  0.1057E-01  CRITERION=  0.2000E-01 &lt;&lt;&lt; CONVERGED\n    EQUIL ITER   1 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.1268E-01\n     DISP CONVERGENCE VALUE   =  0.1057E-01  CRITERION=  0.2000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC =  0.1268E-01\n     FORCE CONVERGENCE VALUE  =   38.62      CRITERION=   41.26     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =   2.326      CRITERION=  0.9637    \n    EQUIL ITER   2 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC= -0.4855E-02\n     DISP CONVERGENCE VALUE   =  0.4855E-02  CRITERION=  0.2000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC = -0.4855E-02\n     FORCE CONVERGENCE VALUE  =   4.813      CRITERION=   40.60     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =  0.1836      CRITERION=  0.9483     &lt;&lt;&lt; CONVERGED\n\n *** WARNING ***                         CP =       0.000   TIME= 00:00:00\n A reference moment value times the tolerance is used by the             \n Newton-Raphson method for checking convergence.  The calculated         \n reference MOMENT CONVERGENCE VALUE = 99.5782756 is less than a          \n threshold.  This threshold is internally calculated.  You can           \n overwrite it by specifying MINREF on the CNVTOL command.  Check         \n results carefully.                                                      \n    &gt;&gt;&gt; SOLUTION CONVERGED AFTER EQUILIBRIUM ITERATION   2\n *** LOAD STEP     1   SUBSTEP     2  COMPLETED.    CUM ITER =      5\n *** TIME =  0.800000         TIME INC =  0.400000    \n *** AUTO TIME STEP:  NEXT TIME INC = 0.60000      INCREASED (FACTOR = 1.5000)\n\n     FORCE CONVERGENCE VALUE  =   8045.      CRITERION=   108.1    \n     MOMENT CONVERGENCE VALUE =   98.29      CRITERION=   2.526    \n     DISP CONVERGENCE VALUE   =  0.2578E-01  CRITERION=  0.3000E-01 &lt;&lt;&lt; CONVERGED\n    EQUIL ITER   1 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC= -0.2578E-01\n     DISP CONVERGENCE VALUE   =  0.2578E-01  CRITERION=  0.3000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC = -0.2578E-01\n     FORCE CONVERGENCE VALUE  =   199.4      CRITERION=   110.2    \n     MOMENT CONVERGENCE VALUE =   6.204      CRITERION=   2.575    \n    EQUIL ITER   2 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC= -0.6270E-01\n     DISP CONVERGENCE VALUE   =  0.5964E-01  CRITERION=  0.3000E-01\n     LINE SEARCH PARAMETER =  0.9513     SCALED MAX DOF INC = -0.5964E-01\n     FORCE CONVERGENCE VALUE  =   27.27      CRITERION=   109.0     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =  0.6795      CRITERION=   2.545     &lt;&lt;&lt; CONVERGED\n    EQUIL ITER   3 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.8559E-02\n     DISP CONVERGENCE VALUE   =  0.8559E-02  CRITERION=  0.3000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC =  0.8559E-02\n     FORCE CONVERGENCE VALUE  =  0.6910      CRITERION=   108.9     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =  0.4567E-01  CRITERION=   2.544     &lt;&lt;&lt; CONVERGED\n    &gt;&gt;&gt; SOLUTION CONVERGED AFTER EQUILIBRIUM ITERATION   3\n *** LOAD STEP     1   SUBSTEP     3  COMPLETED.    CUM ITER =      8\n *** TIME =   1.40000         TIME INC =  0.600000    \n *** AUTO TIME STEP:  NEXT TIME INC = 0.80000      INCREASED (FACTOR = 1.3333)\n\n     FORCE CONVERGENCE VALUE  =  0.1682E+05  CRITERION=   241.8    \n     MOMENT CONVERGENCE VALUE =   225.9      CRITERION=   5.648    \n     DISP CONVERGENCE VALUE   =  0.2336      CRITERION=  0.4000E-01\n    EQUIL ITER   1 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC= -0.2336    \n     DISP CONVERGENCE VALUE   =  0.2317      CRITERION=  0.4000E-01\n     LINE SEARCH PARAMETER =  0.9920     SCALED MAX DOF INC = -0.2317    \n     FORCE CONVERGENCE VALUE  =   672.5      CRITERION=   236.0    \n     MOMENT CONVERGENCE VALUE =   15.88      CRITERION=   5.512    \n    EQUIL ITER   2 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.3782E-01\n     DISP CONVERGENCE VALUE   =  0.3782E-01  CRITERION=  0.4000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC =  0.3782E-01\n     FORCE CONVERGENCE VALUE  =   36.62      CRITERION=   233.9     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =   1.442      CRITERION=   5.464     &lt;&lt;&lt; CONVERGED\n    &gt;&gt;&gt; SOLUTION CONVERGED AFTER EQUILIBRIUM ITERATION   2\n *** LOAD STEP     1   SUBSTEP     4  COMPLETED.    CUM ITER =     10\n *** TIME =   2.20000         TIME INC =  0.800000    \n *** AUTO STEP TIME:  NEXT TIME INC = 0.80000      UNCHANGED\n\n     FORCE CONVERGENCE VALUE  =  0.2084E+05  CRITERION=   402.7    \n     MOMENT CONVERGENCE VALUE =   274.8      CRITERION=   9.407    \n     DISP CONVERGENCE VALUE   =  0.7088E-01  CRITERION=  0.4000E-01\n    EQUIL ITER   1 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.7088E-01\n     DISP CONVERGENCE VALUE   =  0.7088E-01  CRITERION=  0.4000E-01\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC =  0.7088E-01\n     FORCE CONVERGENCE VALUE  =   443.6      CRITERION=   394.6    \n     MOMENT CONVERGENCE VALUE =   17.17      CRITERION=   9.217    \n    EQUIL ITER   2 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.2122E-01\n     DISP CONVERGENCE VALUE   =  0.2122E-01  CRITERION=  0.4000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC =  0.2122E-01\n     FORCE CONVERGENCE VALUE  =   76.59      CRITERION=   392.1     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =   1.390      CRITERION=   9.160     &lt;&lt;&lt; CONVERGED\n    &gt;&gt;&gt; SOLUTION CONVERGED AFTER EQUILIBRIUM ITERATION   2\n *** LOAD STEP     1   SUBSTEP     5  COMPLETED.    CUM ITER =     12\n *** TIME =   3.00000         TIME INC =  0.800000    \n *** AUTO TIME STEP:  NEXT TIME INC = 0.50000      DECREASED (FACTOR = 0.6250)\n\n     FORCE CONVERGENCE VALUE  =  0.1149E+05  CRITERION=   509.9    \n     MOMENT CONVERGENCE VALUE =   132.1      CRITERION=   11.91    \n     DISP CONVERGENCE VALUE   =  0.1893E-01  CRITERION=  0.4000E-01 &lt;&lt;&lt; CONVERGED\n    EQUIL ITER   1 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.1072    \n     DISP CONVERGENCE VALUE   =  0.1858E-01  CRITERION=  0.4000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =  0.9816     SCALED MAX DOF INC =  0.1052    \n     FORCE CONVERGENCE VALUE  =   2226.      CRITERION=   499.3    \n     MOMENT CONVERGENCE VALUE =   163.4      CRITERION=   11.66    \n    EQUIL ITER   2 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.2193E-01\n     DISP CONVERGENCE VALUE   =  0.8492E-02  CRITERION=  0.4000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC =  0.2193E-01\n     FORCE CONVERGENCE VALUE  =   147.2      CRITERION=   499.2     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =   11.69      CRITERION=   11.66    \n    EQUIL ITER   3 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.1789E-01\n     DISP CONVERGENCE VALUE   =  0.5174E-02  CRITERION=  0.4000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC =  0.1789E-01\n     FORCE CONVERGENCE VALUE  =   62.35      CRITERION=   497.8     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =   3.995      CRITERION=   11.63     &lt;&lt;&lt; CONVERGED\n    &gt;&gt;&gt; SOLUTION CONVERGED AFTER EQUILIBRIUM ITERATION   3\n *** LOAD STEP     1   SUBSTEP     6  COMPLETED.    CUM ITER =     15\n *** TIME =   3.50000         TIME INC =  0.500000    \n *** AUTO STEP TIME:  NEXT TIME INC = 0.50000      UNCHANGED\n\n     FORCE CONVERGENCE VALUE  =  0.1383E+05  CRITERION=   594.2    \n     MOMENT CONVERGENCE VALUE =   752.6      CRITERION=   13.88    \n     DISP CONVERGENCE VALUE   =  0.4343E-01  CRITERION=  0.4000E-01\n    EQUIL ITER   1 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.1093    \n     DISP CONVERGENCE VALUE   =  0.4343E-01  CRITERION=  0.4000E-01\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC =  0.1093    \n     FORCE CONVERGENCE VALUE  =   3728.      CRITERION=   580.8    \n     MOMENT CONVERGENCE VALUE =   185.4      CRITERION=   13.57    \n    EQUIL ITER   2 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC= -0.1024    \n     DISP CONVERGENCE VALUE   =  0.4721E-01  CRITERION=  0.4000E-01\n     LINE SEARCH PARAMETER =  0.9642     SCALED MAX DOF INC = -0.9876E-01\n     FORCE CONVERGENCE VALUE  =   2626.      CRITERION=   566.6    \n     MOMENT CONVERGENCE VALUE =   145.9      CRITERION=   13.23    \n    EQUIL ITER   3 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC=  0.2631E-01\n     DISP CONVERGENCE VALUE   =  0.1379E-01  CRITERION=  0.4000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC =  0.2631E-01\n     FORCE CONVERGENCE VALUE  =   382.2      CRITERION=   564.7     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =   34.38      CRITERION=   13.19    \n    EQUIL ITER   4 COMPLETED.  NEW TRIANG MATRIX.  MAX DOF INC= -0.6483E-02\n     DISP CONVERGENCE VALUE   =  0.2828E-02  CRITERION=  0.4000E-01 &lt;&lt;&lt; CONVERGED\n     LINE SEARCH PARAMETER =   1.000     SCALED MAX DOF INC = -0.6483E-02\n     FORCE CONVERGENCE VALUE  =   53.20      CRITERION=   563.8     &lt;&lt;&lt; CONVERGED\n     MOMENT CONVERGENCE VALUE =   6.234      CRITERION=   13.17     &lt;&lt;&lt; CONVERGED\n    &gt;&gt;&gt; SOLUTION CONVERGED AFTER EQUILIBRIUM ITERATION   4\n *** LOAD STEP     1   SUBSTEP     7  COMPLETED.    CUM ITER =     19\n *** TIME =   4.00000         TIME INC =  0.500000    \n\n FINISH SOLUTION PROCESSING\n\n\n ***** ROUTINE COMPLETED *****  CP =         0.000\n\n\n&quot;
+</pre></div>
+</div>
+</section>
+<section id="displacements">
+<h2>Displacements<a class="headerlink" href="#displacements" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter post-processor</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+
+<span class="c1"># Plot the time step 1.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot the time step 3.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="sphx-glr-horizontal">
+<li><img src="../../../_images/sphx_glr_spotweld_001.png" srcset="../../../_images/sphx_glr_spotweld_001.png" alt="spotweld" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../../_images/sphx_glr_spotweld_002.png" srcset="../../../_images/sphx_glr_spotweld_002.png" alt="spotweld" class = "sphx-glr-multi-img"/></li>
+</ul>
+</section>
+<section id="stress">
+<h2>Stress<a class="headerlink" href="#stress" title="Link to this heading">#</a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the nodal and element component stress at time step 1.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nodal_stress</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">nodal_stress_intensity</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nodal stress : &quot;</span><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nodal_stress</span></a><span class="p">)</span>
+
+<span class="c1"># Plot the element stress.</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">element_stress</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">element_stress</span></a><span class="p">(</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Element stress : &quot;</span><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">element_stress</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Nodal stress :  [335.86245248 277.6295366  333.90655287 ...   0.           0.
+   0.        ]
+Element stress :  [276.42970658 276.32777842 276.15848866 ...   0.           0.
+   0.        ]
+</pre></div>
+</div>
+<p>The stress at the contact element simulating the spot weld.</p>
+<p>Plot the nodal stress in the Z direction.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_nodal_component_stress</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_spotweld_003.png" srcset="../../../_images/sphx_glr_spotweld_003.png" alt="spotweld" class = "sphx-glr-single-img"/><p>Get the cumulative equivalent stress and plot the von Mises stress.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">eqv_stress</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">nodal_eqv_stress</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cumulative equivalent stress : &quot;</span><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">eqv_stress</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_nodal_eqv_stress</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_spotweld_004.png" srcset="../../../_images/sphx_glr_spotweld_004.png" alt="spotweld" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Cumulative equivalent stress :  [335.63284607 273.11461916 294.37895538 ...   0.           0.
+   0.        ]
+</pre></div>
+</div>
+<p>Stop MAPDL</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 16.678 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-00-mapdl-examples-spotweld-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/09c1c7eef03c8c364655bfb51ca9fc8b/spotweld.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">spotweld.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/bf18113d005484084f2a0635930271c3/spotweld.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">spotweld.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/4a4448f4f1030348f035d9f6b15e8b34/spotweld.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">spotweld.zip</span></code></a></p>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#script-initialization">Script initialization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-and-run-an-mapdl-script">Download and run an MAPDL script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#displacements">Displacements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stress">Stress</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/examples/gallery_examples/00-mapdl-examples/spotweld.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="../../../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+
+
+
+
+
+
+
+<script>
+var theme_static_search = JSON.parse('{"ignoreLocation": "False", "keys": ["title", "text"], "shouldSort": "True", "threshold": 0.5, "useExtendedSearch": "True"}');
+var theme_limit = "10";
+var min_chars_for_search = "1";
+var searchPath = "../../../_static/search.json";
+
+</script>
+
+<script src="../../../_static/js/fuse_search.js"></script>
+<script src="../../../_static/js/fuse_extension.js"></script>
+<footer class="bd-footer" font-size="4px">
+  <div class="bd-footer__inner bd-page-width">
+    <div class="footer-items__start">
+      <div class="footer-item">
+        <p class="copyright">
+          PyMAPDL 0.68.6 © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+          <br>
+        </p>
+      </div>
+    </div>
+    <div class="footer-items__end">
+      <div class="footer-item">
+        <p class="theme-version">
+          Built with the
+          <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a>
+          1.1.2. and
+           <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.0.
+          on <span id="date"></span>
+        </p>
+        <script>
+          var options = { day: "numeric", month: "long", year: "numeric" };
+          var lastModifiedDate = new Date(document.lastModified);
+          var date = lastModifiedDate.toLocaleDateString("en-US", options);
+          document.getElementById("date").innerHTML = date;
+        </script>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

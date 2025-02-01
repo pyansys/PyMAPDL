@@ -1,0 +1,48 @@
+﻿Logger
+======
+
+.. currentmodule:: ansys.mapdl.core.logging
+
+.. autoclass:: Logger
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Logger.add_child_logger
+      
+      
+      Logger.add_handling_uncaught_expections
+      
+      
+      Logger.add_instance_logger
+      
+      
+      Logger.log_to_file
+      
+      
+      Logger.log_to_stdout
+      
+      
+      Logger.setLevel
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Logger.file_handler
+      Logger.std_out_handler
+   
+   

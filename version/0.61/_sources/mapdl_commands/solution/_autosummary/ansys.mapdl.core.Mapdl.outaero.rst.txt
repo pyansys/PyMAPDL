@@ -1,0 +1,6 @@
+﻿outaero
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.outaero

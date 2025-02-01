@@ -1,0 +1,6 @@
+﻿get\_available\_ansys\_installations
+====================================
+
+.. currentmodule:: ansys.mapdl.core.launcher
+
+.. autofunction:: get_available_ansys_installations

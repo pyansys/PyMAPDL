@@ -1,0 +1,6 @@
+﻿rstoff
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.rstoff

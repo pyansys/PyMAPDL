@@ -1,0 +1,6 @@
+﻿close\_all\_local\_instances
+============================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autofunction:: close_all_local_instances

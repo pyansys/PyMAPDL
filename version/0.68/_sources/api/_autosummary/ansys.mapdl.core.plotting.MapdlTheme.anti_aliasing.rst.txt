@@ -1,0 +1,6 @@
+anti\_aliasing
+==============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.anti_aliasing

@@ -1,0 +1,6 @@
+﻿anim
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.anim

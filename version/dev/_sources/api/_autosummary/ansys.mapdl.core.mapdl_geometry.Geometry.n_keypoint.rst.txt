@@ -1,0 +1,6 @@
+n\_keypoint
+===========
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. autoproperty:: Geometry.n_keypoint

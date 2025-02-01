@@ -1,0 +1,6 @@
+﻿vfun
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.vfun

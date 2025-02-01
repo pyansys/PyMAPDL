@@ -1,0 +1,1111 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PyAnsys Libraries on a Windows Subsystem for Linux and Docker &#8212; PyMAPDL</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    
+        <link href="../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/wsl';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.61';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="User Guide" href="../user_guide/index.html" />
+    <link rel="prev" title="Frequently Asked Questions" href="faq.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="None">
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/getting_started/wsl.html" />
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      <!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+    
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.61  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../index.html">PyMAPDL</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Getting Started</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">PyAnsys Libraries on a Windows Subsystem for Linux and Docker</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.61  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="running_mapdl.html">Using PyMAPDL from the Standard Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versioning.html">Versioning and Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Using MAPDL Through Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_julia.html">Using PyMAPDL in Julia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyAnsys Libraries on a Windows Subsystem for Linux and Docker</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <blockquote>
+<div></div></blockquote>
+<section id="pyansys-libraries-on-a-windows-subsystem-for-linux-and-docker">
+<span id="ref-guide-wsl"></span><h1>PyAnsys Libraries on a Windows Subsystem for Linux and Docker<a class="headerlink" href="#pyansys-libraries-on-a-windows-subsystem-for-linux-and-docker" title="Permalink to this headline">#</a></h1>
+<p>This section shows you how to use a PyAnsys library, more specifically PyMAPDL,
+in the Windows Subsystem for Linux (WSL).  WSL is a compatibility layer for
+running Linux binary executables natively on Windows 10, Windows 11, and
+Windows Server 2019. For more information, see <a class="reference external" href="https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux">Wikipedia-WSL</a>.</p>
+<p>This section walks you through the installation of WSL on Windows and then
+shows how to use it together with MAPDL, PyMAPDL, and Docker.</p>
+<p>For more information about WSL, see <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/about">What is the Windows Subsystem for Linux?</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This guide hasn’t been fully tested with a VPN connection. If you
+experience any problems to connect WSL to internet, try to
+disconnect from the VPN.</p>
+</div>
+<section id="running-pymapdl-on-wsl">
+<h2>Running PyMAPDL on WSL<a class="headerlink" href="#running-pymapdl-on-wsl" title="Permalink to this headline">#</a></h2>
+<section id="install-wsl">
+<h3>Install WSL<a class="headerlink" href="#install-wsl" title="Permalink to this headline">#</a></h3>
+<p>Install WSL by following Microsoft’s directions at <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install/">Install WSL</a>.</p>
+<p>Currently there are two versions of WSL. The oldest is WSL1, whereas WSL2 is
+the latest and include many improvements over WSL1.  It is highly recommended
+you upgrade and use WSL2 over WSL1.</p>
+</section>
+<section id="install-centos7-wsl-distribution">
+<h3>Install CentOS7 WSL Distribution<a class="headerlink" href="#install-centos7-wsl-distribution" title="Permalink to this headline">#</a></h3>
+<p>We recommend that you use the CentOS7 WSL distribution for working with PyAnsys
+libraries.</p>
+<p>You can install it using an unofficial WSL distribution from
+<a class="github reference external" href="https://github.com/wsldl-pg/CentWSL/">wsldl-pg/CentWSL</a> or
+<a class="github reference external" href="https://github.com/mishamosher/CentOS-WSL/">mishamosher/CentOS-WSL</a> .</p>
+<p>Optionally, you can also try Ubuntu, but it has not been tested yet in the context of WSL.</p>
+</section>
+<section id="install-ansys-products-in-wsl-centos7">
+<h3>Install Ansys Products in WSL CentOS7<a class="headerlink" href="#install-ansys-products-in-wsl-centos7" title="Permalink to this headline">#</a></h3>
+<section id="prerequisites">
+<h4>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h4>
+<p>If you are using CentOS 7, before installing MAPDL, you need to install some
+required libraries:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>yum<span class="w"> </span>install<span class="w"> </span>openssl<span class="w"> </span>openssh-clients<span class="w"> </span>mesa-libGL<span class="w"> </span>mesa-libGLU<span class="w"> </span>motif<span class="w"> </span>libgfortran
+</pre></div>
+</div>
+<p>If using Ubuntu, follow the instructions in <a class="reference external" href="https://mapdldocs.pyansys.com/getting_started/running_mapdl.html#ubuntu/">Running MAPDL: Ubuntu</a> .</p>
+</section>
+<section id="install-ansys-products">
+<h4>Install Ansys Products<a class="headerlink" href="#install-ansys-products" title="Permalink to this headline">#</a></h4>
+<p>To install ANSYS products in WSL Linux:</p>
+<ol class="arabic">
+<li><p>Download the Ansys Structures image from the customer portal (<a class="reference external" href="https://download.ansys.com/Current%20Release">Current
+Release</a>).  If you are
+downloading the image on a Windows machine, you can later copy from it to
+WSL (recommended).</p></li>
+<li><p>Decompress the source code file (tar.gz) with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>xvzf<span class="w"> </span>STRUCTURES_2021R2_LINX64.tgz
+</pre></div>
+</div>
+</li>
+<li><p>To install MAPDL, go into the uncompressed folder and type:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./INSTALL<span class="w"> </span>-silent<span class="w"> </span>-install_dir<span class="w"> </span>/usr/ansys_inc/<span class="w"> </span>-mechapdl
+</pre></div>
+</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-silent</span></code> : Initiates a silent installation (No GUI).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-install_dir</span> <span class="pre">/path/</span></code> : Specifies the directory to which the product or
+license manager is to be installed.  If you want to install to the default
+location, you can omit the <code class="docutils literal notranslate"><span class="pre">-install_dir</span></code> argument.  The default
+location is <code class="docutils literal notranslate"><span class="pre">/ansys_inc</span></code> if the symbolic link is set. Otherwise, it will
+default to <code class="docutils literal notranslate"><span class="pre">/usr/ansys_inc</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-&lt;product_flag&gt;</span></code> : Specifies one or more specific products to install.
+If you omit the -product_flag argument, all products will be installed.
+See the list of valid product_flags in Chapter 6 of the <em>ANSYS
+Inc. Installation Guides</em> PDF.  In this case, only MAPDL (<cite>-mechapdl</cite>) is
+needed.</p></li>
+</ul>
+</li>
+</ol>
+<p>After installing MAPDL directly in <code class="docutils literal notranslate"><span class="pre">/ansys_inc</span></code> or in <code class="docutils literal notranslate"><span class="pre">/usr/ansys_inc</span></code>,
+create a symbolic link with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln<span class="w"> </span>-s<span class="w"> </span>/usr/ansys_inc<span class="w"> </span>/ansys_inc
+</pre></div>
+</div>
+<p>By default, PyMAPDL expects the MAPDL executable to be in
+<code class="docutils literal notranslate"><span class="pre">/usr/ansys_inc</span></code>. Whether you install it there or not, we recommend that you
+link that directory, using a symbolic link, to your Ansys installation
+directory (<code class="docutils literal notranslate"><span class="pre">/*/ansys_inc</span></code>).</p>
+</section>
+</section>
+<section id="post-installation-setup">
+<h3>Post-installation Setup<a class="headerlink" href="#post-installation-setup" title="Permalink to this headline">#</a></h3>
+<section id="opening-ports">
+<h4>Opening Ports<a class="headerlink" href="#opening-ports" title="Permalink to this headline">#</a></h4>
+<p><strong>Theory:</strong>
+You should open the ports <code class="docutils literal notranslate"><span class="pre">1055</span></code> and <code class="docutils literal notranslate"><span class="pre">2325</span></code> for the license server
+communication in <em>Windows Firewall Advanced</em>.  You can see the steps in <a class="reference external" href="https://answers.microsoft.com/en-us/windows/forum/all/how-to-open-port-in-windows-10-firewall/f38f67c8-23e8-459d-9552-c1b94cca579a/">How to
+open port in Windows 10 Firewall</a>
+.</p>
+<p><strong>Reality:</strong>
+This works if you want to run a Docker image using WSL Linux image to host that
+docker image.  The docker image will successfully communicate with the Windows
+License Server using these ports if you use the <code class="docutils literal notranslate"><span class="pre">'-p'</span></code> flag when running the
+Docker image and these ports are open.  See <a class="reference internal" href="#running-mapdl-on-a-local-docker-image">Running MAPDL on a Local Docker
+Image</a> .</p>
+<p>If you want to run MAPDL in the CentOS7 image and use the Windows License
+Server, opening the ports might not work properly because the Windows firewall
+seems to block all traffic coming from WSL.  For security purposes, we
+recommend that you still try to open ports <code class="docutils literal notranslate"><span class="pre">1055</span></code> and <code class="docutils literal notranslate"><span class="pre">2325</span></code> in the
+firewall and check if your MAPDL installation can communicate with the Windows
+Hosts.  If you are having problems after setting the firewall rules, you might
+have to disable Windows Firewall for the WSL ethernet virtual interface.  This
+might pose some unknown side effects and security risk so use it with caution.
+See <a class="reference internal" href="#disabling-firewall-on-wsl-ethernet">Disabling Firewall on WSL Ethernet</a></p>
+</section>
+<section id="setting-up-an-environmental-variable-in-wsl-that-points-to-windows-host-license-server">
+<h4>Setting Up an Environmental Variable in WSL that Points to Windows Host License Server<a class="headerlink" href="#setting-up-an-environmental-variable-in-wsl-that-points-to-windows-host-license-server" title="Permalink to this headline">#</a></h4>
+<p>Windows host IP is given in the WSL file <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> before the name
+<code class="docutils literal notranslate"><span class="pre">host.docker.internal</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This <code class="docutils literal notranslate"><span class="pre">host.docker.internal</span></code> definition might not be available if Docker is
+not installed.</p>
+</div>
+<p><strong>Example /etc/hosts/ file</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># This file was automatically generated by WSL.</span>
+<span class="c1"># To stop automatic generation of this file, add the following entry to /etc/wsl.conf:</span>
+<span class="c1"># [network]</span>
+<span class="c1"># generateHosts = false</span>
+<span class="m">127</span>.0.0.1<span class="w">       </span>localhost
+<span class="m">127</span>.0.1.1<span class="w">       </span>AAPDDqVK5WqNLve.win.ansys.com<span class="w">   </span>AAPDDqVK5WqNLve
+<span class="hll">
+</span><span class="m">192</span>.168.0.12<span class="w">    </span>host.docker.internal
+<span class="m">192</span>.168.0.12<span class="w">    </span>gateway.docker.internal
+<span class="m">127</span>.0.0.1<span class="w">       </span>kubernetes.docker.internal
+
+<span class="c1"># The following lines are desirable for IPv6 capable hosts</span>
+::1<span class="w">     </span>ip6-localhost<span class="w"> </span>ip6-loopback
+fe00::0<span class="w"> </span>ip6-localnet
+ff00::0<span class="w"> </span>ip6-mcastprefix
+ff02::1<span class="w"> </span>ip6-allnodes
+ff02::2<span class="w"> </span>ip6-allrouters
+</pre></div>
+</div>
+<p>You can add the next lines to your WSL <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> file to create an
+environment variable with that IP:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">winhostIP</span><span class="o">=</span><span class="k">$(</span>grep<span class="w"> </span>-m<span class="w"> </span><span class="m">1</span><span class="w"> </span>host.docker.internal<span class="w"> </span>/etc/hosts<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="k">)</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ANSYSLMD_LICENSE_FILE</span><span class="o">=</span><span class="m">1055</span>@<span class="nv">$winhostIP</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="running-mapdl-on-a-local-docker-image">
+<h2>Running MAPDL on a Local Docker Image<a class="headerlink" href="#running-mapdl-on-a-local-docker-image" title="Permalink to this headline">#</a></h2>
+<p>To run a Docker image, you must follow all steps in <a class="reference internal" href="#running-pymapdl-on-wsl">Running PyMAPDL on WSL</a> .</p>
+<p>Additionally, you run a Docker image of PyMAPDL with:</p>
+<div class="highlight-pwsh notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="n">-e</span> <span class="n">ANSYSLMD_LICENSE_FILE</span><span class="p">=</span><span class="n">1055</span><span class="nv">@host</span><span class="p">.</span><span class="n">docker</span><span class="p">.</span><span class="n">internal</span> <span class="p">-</span><span class="n">-restart</span> <span class="n">always</span> <span class="p">-</span><span class="n">-name</span> <span class="n">mapdl</span> <span class="n">-p</span> <span class="n">50053</span><span class="p">:</span><span class="n">50052</span> <span class="n">docker</span><span class="p">.</span><span class="n">pkg</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">pyansys</span><span class="p">/</span><span class="n">pymapdl</span><span class="p">/</span><span class="n">mapdl</span> <span class="n">-smp</span> <span class="p">&gt;</span> <span class="n">log</span><span class="p">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Successive runs should restart the container or just delete it and rerun it using:</p>
+<div class="highlight-pwsh notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">stop</span> <span class="n">mapdl</span>
+<span class="n">docker</span> <span class="n">container</span> <span class="n">prune</span>
+
+<span class="n">docker</span> <span class="n">run</span> <span class="n">-e</span> <span class="n">ANSYSLMD_LICENSE_FILE</span><span class="p">=</span><span class="n">1055</span><span class="nv">@host</span><span class="p">.</span><span class="n">docker</span><span class="p">.</span><span class="n">internal</span> <span class="p">-</span><span class="n">-restart</span> <span class="n">always</span> <span class="p">-</span><span class="n">-name</span> <span class="n">mapdl</span> <span class="n">-p</span> <span class="n">50053</span><span class="p">:</span><span class="n">50052</span> <span class="n">docker</span><span class="p">.</span><span class="n">pkg</span><span class="p">.</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">pyansys</span><span class="p">/</span><span class="n">pymapdl</span><span class="p">/</span><span class="n">mapdl</span> <span class="n">-smp</span> <span class="p">&gt;</span> <span class="n">log</span><span class="p">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>This will create a log file (<code class="docutils literal notranslate"><span class="pre">log.txt</span></code>) in your current directory location.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ensure that your port <code class="docutils literal notranslate"><span class="pre">50053</span></code> is open in your firewall.</p>
+</div>
+<p>We recommended that you use a script (batch <code class="docutils literal notranslate"><span class="pre">'.bat'</span></code> or powershell <code class="docutils literal notranslate"><span class="pre">'.ps'</span></code>
+file) to run the above commands all at once.</p>
+<p>Notice that we are mapping the WSL internal gRPC port (<code class="docutils literal notranslate"><span class="pre">50052</span></code>) to a
+different Windows host port (<code class="docutils literal notranslate"><span class="pre">50053</span></code>) to avoid ports conflicts.</p>
+<p>This image is ready to be connected to from WSL or Windows Host but the port
+and IP should be specified as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">50053</span><span class="p">,</span> <span class="n">start_instance</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">Mapdl</span>
+
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">Mapdl</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">50053</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also specify them using environment variables that are read when
+launching the MAPDL instance.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PYMAPDL_START_INSTANCE</span><span class="o">=</span>False
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYMAPDL_PORT</span><span class="o">=</span><span class="m">50053</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PYMAPDL_IP</span><span class="o">=</span><span class="m">127</span>.0.0.1
+</pre></div>
+</div>
+<section id="launch-docker-with-upf-capabilities">
+<h3>Launch Docker with UPF Capabilities<a class="headerlink" href="#launch-docker-with-upf-capabilities" title="Permalink to this headline">#</a></h3>
+<p>If you want to specify a custom Python UPF routine, you must have the
+environment variables <code class="docutils literal notranslate"><span class="pre">ANS_USER_PATH</span></code> and <code class="docutils literal notranslate"><span class="pre">ANS_USE_UPF</span></code> defined.  The
+former should be equal to the path where the UPF routines are located, and the
+latter should be equal to <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>.</p>
+<p>In WSL, you can do this using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ANS_USER_PATH</span><span class="o">=</span>/home/user/UPFs<span class="w"> </span><span class="c1"># Use your own path to your UPF files.</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ANS_USE_UPF</span><span class="o">=</span>TRUE
+</pre></div>
+</div>
+<p>You can then run the Docker image with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">ANSYSLMD_LICENSE_FILE</span><span class="o">=</span><span class="m">1055</span>@host.docker.internal<span class="w"> </span>-e<span class="w"> </span><span class="nv">ANS_USER_PATH</span><span class="o">=</span><span class="s1">&#39;/ansys_jobs/upf&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="nv">ANS_USE_UPF</span><span class="o">=</span><span class="s1">&#39;TRUE&#39;</span><span class="w"> </span>--restart<span class="w"> </span>always<span class="w"> </span>--name<span class="w"> </span>mapdl<span class="w"> </span>-p<span class="w"> </span><span class="m">50053</span>:50052<span class="w"> </span>docker.pkg.github.com/pyansys/pymapdl/mapdl<span class="w"> </span>-smp<span class="w">  </span><span class="m">1</span>&gt;log.txt
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The use of UPFs with Docker images or PyMAPDL is still in the Alpha state.</p>
+</div>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">#</a></h3>
+<p>The specified IP <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> in <a class="reference internal" href="#running-mapdl-on-a-local-docker-image">Running MAPDL on a Local Docker Image</a> is
+the IP of WSL CentOS from the WSL perspective, whereas the Windows host IP is
+normally <code class="docutils literal notranslate"><span class="pre">127.0.1.1</span></code>.  Docker builds the PyMAPDL images using the WSL
+distribution as the base.  Hence, PyMAPDL is running on a Linux WSL
+distribution, which is running on a Windows host.  Because the Docker image
+shares resources with WSL, it also shares the internal IP with the WSL
+distribution.</p>
+</section>
+</section>
+<section id="additional-notes">
+<h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Permalink to this headline">#</a></h2>
+<section id="other-ansys-installation-flags">
+<h3>Other Ansys Installation Flags<a class="headerlink" href="#other-ansys-installation-flags" title="Permalink to this headline">#</a></h3>
+<p>You can obtain license server information with one of the following, inspecting
+the last lines of the <code class="docutils literal notranslate"><span class="pre">INSTALL</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./INSTALL<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>Or:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>./INSTALL
+</pre></div>
+</div>
+<section id="licserverinfo">
+<h4><code class="docutils literal notranslate"><span class="pre">-licserverinfo</span></code><a class="headerlink" href="#licserverinfo" title="Permalink to this headline">#</a></h4>
+<p>Specifies information to be used by the client for the license server.
+Valid only in conjunction with a silent installation (INSTALL).</p>
+<p>The format for a <strong>single license server</strong> is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-licserverinfo<span class="w"> </span>LI_port_number:FLEXlm_port_number:hostname
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./INSTALL<span class="w"> </span>-silent<span class="w"> </span>-install_dir<span class="w"> </span>/ansys_inc/<span class="w"> </span>-mechapdl<span class="w"> </span>-licserverinfo<span class="w"> </span><span class="m">2325</span>:1055:winhostIP
+</pre></div>
+</div>
+<p>The format for <strong>three license servers</strong> is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-licserverinfo<span class="w"> </span>LI_port_number:FLEXlm_port_number:hostname1,hostname2,hostname3
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./INSTALL<span class="w"> </span>-silent<span class="w"> </span>-install_dir<span class="w"> </span>/ansys_inc/<span class="w"> </span>-mechapdl<span class="w"> </span>-licserverinfo<span class="w"> </span><span class="m">2325</span>:1055:abc,def,xyz
+</pre></div>
+</div>
+</section>
+<section id="lang">
+<h4><code class="docutils literal notranslate"><span class="pre">-lang</span></code><a class="headerlink" href="#lang" title="Permalink to this headline">#</a></h4>
+<p>Specifies a language to use for the installation of the product.</p>
+</section>
+<section id="productfile">
+<h4><code class="docutils literal notranslate"><span class="pre">-productfile</span></code><a class="headerlink" href="#productfile" title="Permalink to this headline">#</a></h4>
+<p>You can specify an <cite>options</cite> file that lists the products that you want to
+install.  To do so, you must provide a full path to the file containing the
+products to install.</p>
+</section>
+</section>
+<section id="regarding-ips-in-wsl-and-windows-host">
+<h3>Regarding IPs in WSL and Windows Host<a class="headerlink" href="#regarding-ips-in-wsl-and-windows-host" title="Permalink to this headline">#</a></h3>
+<section id="theory">
+<h4>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">#</a></h4>
+<p>You should be able to access Windows host using IP specified in <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code>
+which normally is <code class="docutils literal notranslate"><span class="pre">127.0.1.1</span></code>. This means that the local WSL IP is
+<code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code>.</p>
+</section>
+<section id="reality">
+<h4>Reality<a class="headerlink" href="#reality" title="Permalink to this headline">#</a></h4>
+<p>It is almost impossible to use <code class="docutils literal notranslate"><span class="pre">127.0.1.1</span></code> for connecting to the Windows
+host. However, it is possible to use <code class="docutils literal notranslate"><span class="pre">host.docker.internal</span></code> hostname in the
+same file (<code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code>).  This is an IP that is randomly allocated, which is
+an issue when you define the license server. However, if you update <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code>
+as mentioned before, this issue is solved.</p>
+</section>
+</section>
+<section id="disabling-firewall-on-wsl-ethernet">
+<h3>Disabling Firewall on WSL Ethernet<a class="headerlink" href="#disabling-firewall-on-wsl-ethernet" title="Permalink to this headline">#</a></h3>
+<p>This method will show a notification:
+.. code:: pwsh</p>
+<blockquote>
+<div><p>Set-NetFirewallProfile -DisabledInterfaceAliases “vEthernet (WSL)”</p>
+</div></blockquote>
+<p>This method will not show a notification:</p>
+<div class="highlight-pwsh notranslate"><div class="highlight"><pre><span></span><span class="n">powershell</span><span class="p">.</span><span class="n">exe</span> <span class="n">-Command</span> <span class="s2">&quot;Set-NetFirewallProfile -DisabledInterfaceAliases \&quot;</span><span class="n">vEthernet</span> <span class="p">(</span><span class="n">WSL</span><span class="p">)\</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Link: <a class="github reference external" href="https://github.com/cascadium/wsl-windows-toolbar-launcher#firewall-rules/">cascadium/wsl-windows-toolbar-launcher</a></p>
+</section>
+<section id="windows-10-port-forwarding">
+<h3>Windows 10 Port Forwarding<a class="headerlink" href="#windows-10-port-forwarding" title="Permalink to this headline">#</a></h3>
+<section id="link-ports-between-wsl-and-windows">
+<h4>Link Ports Between WSL and Windows<a class="headerlink" href="#link-ports-between-wsl-and-windows" title="Permalink to this headline">#</a></h4>
+<div class="highlight-pwsh notranslate"><div class="highlight"><pre><span></span><span class="n">netsh</span> <span class="n">interface</span> <span class="n">portproxy</span> <span class="n">add</span> <span class="n">v4tov4</span> <span class="n">listenport</span><span class="p">=</span><span class="n">1055</span> <span class="n">listenaddress</span><span class="p">=</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span> <span class="n">connectport</span><span class="p">=</span><span class="n">1055</span> <span class="n">connectaddress</span><span class="p">=</span><span class="n">XXX</span><span class="p">.</span><span class="n">XX</span><span class="p">.</span><span class="n">XX</span><span class="p">.</span><span class="n">XX</span>
+</pre></div>
+</div>
+</section>
+<section id="powershell-command-to-view-all-forwards">
+<h4>PowerShell Command to View all Forwards<a class="headerlink" href="#powershell-command-to-view-all-forwards" title="Permalink to this headline">#</a></h4>
+<div class="highlight-pwsh notranslate"><div class="highlight"><pre><span></span><span class="n">netsh</span> <span class="n">interface</span> <span class="n">portproxy</span> <span class="n">show</span> <span class="n">v4tov4</span>
+</pre></div>
+</div>
+</section>
+<section id="delete-port-forwarding">
+<h4>Delete Port Forwarding<a class="headerlink" href="#delete-port-forwarding" title="Permalink to this headline">#</a></h4>
+<div class="highlight-pwsh notranslate"><div class="highlight"><pre><span></span><span class="n">netsh</span> <span class="n">interface</span> <span class="n">portproxy</span> <span class="n">delete</span> <span class="n">v4tov4</span> <span class="n">listenport</span><span class="p">=</span><span class="n">1055</span> <span class="n">listenaddres</span><span class="p">=</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span> <span class="n">protocol</span><span class="p">=</span><span class="n">tcp</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="reset-windows-network-adapters">
+<h3>Reset Windows Network Adapters<a class="headerlink" href="#reset-windows-network-adapters" title="Permalink to this headline">#</a></h3>
+<div class="highlight-pwsh notranslate"><div class="highlight"><pre><span></span><span class="n">netsh</span> <span class="n">int</span> <span class="n">ip</span> <span class="n">reset</span> <span class="n">all</span>
+<span class="n">netsh</span> <span class="n">winhttp</span> <span class="n">reset</span> <span class="n">proxy</span>
+<span class="n">ipconfig</span> <span class="p">/</span><span class="n">flushdns</span>
+<span class="n">netsh</span> <span class="n">winsock</span> <span class="n">reset</span>
+</pre></div>
+</div>
+</section>
+<section id="restart-wsl-service">
+<h3>Restart WSL service<a class="headerlink" href="#restart-wsl-service" title="Permalink to this headline">#</a></h3>
+<div class="highlight-pwsh notranslate"><div class="highlight"><pre><span></span><span class="nb">Get-Service</span> <span class="n">LxssManager</span> <span class="p">|</span> <span class="nb">Restart-Service</span>
+</pre></div>
+</div>
+</section>
+<section id="kill-all-processes-with-a-given-name">
+<h3>Kill All Processes with a Given Name<a class="headerlink" href="#kill-all-processes-with-a-given-name" title="Permalink to this headline">#</a></h3>
+<div class="highlight-pwsh notranslate"><div class="highlight"><pre><span></span><span class="nb">Get-Process</span> <span class="s2">&quot;ANSYS212&quot;</span> <span class="p">|</span> <span class="nb">Stop-Process</span>
+</pre></div>
+</div>
+</section>
+<section id="install-xvfb-in-centos7">
+<h3>Install xvfb in CentOS7<a class="headerlink" href="#install-xvfb-in-centos7" title="Permalink to this headline">#</a></h3>
+<p>If you want to replicate the CI/CD behavior, <code class="docutils literal notranslate"><span class="pre">xvfb</span></code> is needed. For more
+information, see <code class="docutils literal notranslate"><span class="pre">.ci</span></code> folder.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>yum<span class="w"> </span>install<span class="w"> </span>xorg-x11-server-Xvfb
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id2">
+<h2>Notes<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>PyMAPDL only works for shared-memory parallel (SMP) when running on WSL. This
+is why the flag <code class="docutils literal notranslate"><span class="pre">-smp</span></code> should be included.</p></li>
+<li><p>Because there are some incompatibilities between VPN and INTEL MPI, use the
+flag <code class="docutils literal notranslate"><span class="pre">-mpi</span> <span class="pre">msmpi</span></code> when calling MAPDL.</p></li>
+</ul>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-pymapdl-on-wsl">
+   Running PyMAPDL on WSL
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-wsl">
+     Install WSL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-centos7-wsl-distribution">
+     Install CentOS7 WSL Distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-ansys-products-in-wsl-centos7">
+     Install Ansys Products in WSL CentOS7
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#prerequisites">
+       Prerequisites
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#install-ansys-products">
+       Install Ansys Products
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#post-installation-setup">
+     Post-installation Setup
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#opening-ports">
+       Opening Ports
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#setting-up-an-environmental-variable-in-wsl-that-points-to-windows-host-license-server">
+       Setting Up an Environmental Variable in WSL that Points to Windows Host License Server
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-mapdl-on-a-local-docker-image">
+   Running MAPDL on a Local Docker Image
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#launch-docker-with-upf-capabilities">
+     Launch Docker with UPF Capabilities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#notes">
+     Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-notes">
+   Additional Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-ansys-installation-flags">
+     Other Ansys Installation Flags
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#licserverinfo">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         -licserverinfo
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#lang">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         -lang
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#productfile">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         -productfile
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regarding-ips-in-wsl-and-windows-host">
+     Regarding IPs in WSL and Windows Host
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#theory">
+       Theory
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reality">
+       Reality
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disabling-firewall-on-wsl-ethernet">
+     Disabling Firewall on WSL Ethernet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#windows-10-port-forwarding">
+     Windows 10 Port Forwarding
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#link-ports-between-wsl-and-windows">
+       Link Ports Between WSL and Windows
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#powershell-command-to-view-all-forwards">
+       PowerShell Command to View all Forwards
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#delete-port-forwarding">
+       Delete Port Forwarding
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reset-windows-network-adapters">
+     Reset Windows Network Adapters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#restart-wsl-service">
+     Restart WSL service
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#kill-all-processes-with-a-given-name">
+     Kill All Processes with a Given Name
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-xvfb-in-centos7">
+     Install xvfb in CentOS7
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   Notes
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/getting_started/wsl.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

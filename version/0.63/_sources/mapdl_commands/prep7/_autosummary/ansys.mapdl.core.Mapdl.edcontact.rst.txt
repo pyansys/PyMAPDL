@@ -1,0 +1,6 @@
+﻿edcontact
+=========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edcontact

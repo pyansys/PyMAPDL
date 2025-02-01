@@ -1,0 +1,6 @@
+rand
+====
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. automethod:: MapdlMath.rand

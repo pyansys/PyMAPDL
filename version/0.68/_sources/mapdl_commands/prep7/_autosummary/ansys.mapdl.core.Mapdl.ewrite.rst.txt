@@ -1,0 +1,6 @@
+﻿ewrite
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ewrite

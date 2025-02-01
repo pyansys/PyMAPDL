@@ -1,0 +1,6 @@
+list
+====
+
+.. currentmodule:: ansys.mapdl.core.component
+
+.. automethod:: ComponentManager.list

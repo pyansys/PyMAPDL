@@ -1,0 +1,6 @@
+﻿ftype
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ftype

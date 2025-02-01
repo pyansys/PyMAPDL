@@ -1,0 +1,6 @@
+﻿pletab
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.pletab

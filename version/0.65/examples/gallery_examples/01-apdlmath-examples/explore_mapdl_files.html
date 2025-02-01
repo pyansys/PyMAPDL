@@ -1,0 +1,1223 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Binary MAPDL File Explorer &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css?v=068850c2" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+ 
+<link href="../../../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=77059071"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/01-apdlmath-examples/explore_mapdl_files';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.65';
+        </script>
+    <link rel="icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Compute Eigenvalues using MAPDL or SciPy" href="mapdl_vs_scipy.html" />
+    <link rel="prev" title="Using APDLMath to solve Eigenproblems" href="eigen_solve.html" />
+<link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/gallery_examples/01-apdlmath-examples/explore_mapdl_files.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+
+<!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.65  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>   <div class="container-xl">
+  <div class="row">
+    <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+    <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul> 
+<li class="nav-item nav-item-additional-breadcrumb">
+  <a href="https://docs.pyansys.com/">PyAnsys</a> » 
+</li>
+ 
+<li class="nav-item nav-item-0">
+  <a href="../../../index.html">PyMAPDL</a> » 
+</li>
+ 
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Examples</a> » </li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">PyMAPDL math examples</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Binary MAPDL File Explorer</a></li> 
+      </ul>
+    </div></div>
+  </div>
+</div>
+ 
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.65  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/index.html">Full examples using PyMAPDL</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">PyMAPDL math examples</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic_operations.html">PyMAPDL APDLMath Basic Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eigen_solve.html">Using APDLMath to solve Eigenproblems</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Binary MAPDL File Explorer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl_vs_scipy.html">Compute Eigenvalues using MAPDL or SciPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scipy_sparse_matrix.html">APDLMath Sparse Matrices and SciPy Sparse Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solve_dense_matrix.html">Use APDLMath to Solve a Dense Matrix Linear System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solve_sparse_matrix.html">Performing Sparse Factorization and Solve Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="use_numpy_arrays.html">Manipulate APDLMath vectors or dense matrices as NumPy Arrays</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../02-geometry/index.html">Geometry examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-tips-n-tricks/index.html">Miscellaneous examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-general-fea/index.html">Academic finite element examples</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/verif-manual/index.html">Verification Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/technology_showcase_examples/index.html">Technology Showcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/index.html">Extended examples</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-gallery-examples-01-apdlmath-examples-explore-mapdl-files-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="binary-mapdl-file-explorer">
+<span id="ref-xpl-example"></span><span id="sphx-glr-examples-gallery-examples-01-apdlmath-examples-explore-mapdl-files-py"></span><h1>Binary MAPDL File Explorer<a class="headerlink" href="#binary-mapdl-file-explorer" title="Permalink to this heading">#</a></h1>
+<p>This tutorial will demonstrate how to explore the content of binary
+files generated by a MAPDL Session and extract pertinent records.</p>
+<p>These files include most of the binary files generated by APDL
+(e.g. <cite>.RST</cite>, <cite>.FULL</cite>, etc.).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+
+<span class="c1"># Start MAPDL as a service and disable all but error messages.</span>
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core.examples</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">vmfiles</span></a>
+
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+
+<span class="c1"># A specific property under the mapdl class is dedicated for XPL. It&#39;s</span>
+<span class="c1"># based on the APDLMath `*XPL` command.</span>
+<span class="n">xpl</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">xpl</span>
+
+<span class="c1"># Many commands are directly accessible through the xpl class:</span>
+<span class="n">help</span><span class="p">(</span><span class="n">xpl</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Help on ansXpl in module ansys.mapdl.core.xpl object:
+
+class ansXpl(builtins.object)
+ |  ansXpl(mapdl)
+ |
+ |  ANSYS database explorer.
+ |
+ |  Examples
+ |  --------
+ |  &gt;&gt;&gt; from ansys.mapdl.core import launch_mapdl
+ |  &gt;&gt;&gt; mapdl = launch_mapdl()
+ |  &gt;&gt;&gt; xpl = mapdl.xpl
+ |
+ |  Open a mode file and extract a vector.
+ |
+ |  &gt;&gt;&gt; xpl.open(&#39;file.mode&#39;)
+ |  &gt;&gt;&gt; vec = xpl.read(&#39;MASS&#39;)
+ |  &gt;&gt;&gt; vec.asarray()
+ |  array([ 4,  7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 40, 43,
+ |          46, 49, 52, 55, 58,  1], dtype=int32)
+ |
+ |  Methods defined here:
+ |
+ |  __init__(self, mapdl)
+ |      Initialize the class.
+ |
+ |  __repr__(self)
+ |      Return repr(self).
+ |
+ |  close(self)
+ |      Close the MAPDL file after opening.
+ |
+ |      Returns
+ |      -------
+ |      str
+ |          Response from MAPDL.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; xpl.open(&quot;file.mode&quot;)
+ |      &gt;&gt;&gt; xpl.close()
+ |      =====      ANSYS File Xplorer : Close the file.mode ANSYS File
+ |
+ |  copy(self, newfile, option=&#39;&#39;)
+ |      Copy the current opened as a new file.
+ |
+ |      Parameters
+ |      ----------
+ |      newfile : str
+ |          Name of the new file to create
+ |
+ |      option: str
+ |          Option.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; xpl.copy(&#39;tmpfile.full&#39;)
+ |       =====      ANSYS File Xplorer : Copy file.full ANSYS file to file tmpfile.full
+ |          &gt;&gt;      Remove existing output file tmpfile.full
+ |
+ |  extract(self, recordname, sets=&#39;ALL&#39;, asarray=False)
+ |      Import a Matrix/Vector from a MAPDL result file.
+ |
+ |      At the moment, this only supports reading the displacement vectors from
+ |      a result file.
+ |
+ |      Parameters
+ |      ----------
+ |      recordname : str
+ |          Record name. Currently only supports the ``&quot;NSL&quot;`` record,
+ |          displacement vectors.
+ |
+ |      sets : str or int
+ |          Number of sets. Can be ``&quot;ALL&quot;`` or the number of sets to load.
+ |
+ |      asarray : bool, optional
+ |          Return a :class:`numpy.ndarray` rather than a :class:`AnsMat
+ |          &lt;ansys.mapdl.core.math.AnsMat&gt;`. Default ``False``.
+ |
+ |      Returns
+ |      -------
+ |      numpy.ndarray or ansys.mapdl.core.math.AnsMat
+ |          A :class:`numpy.ndarray` or :class:`AnsMat
+ |          &lt;ansys.mapdl.core.math.AnsMat&gt;` of the displacement vectors,
+ |          depending on the value of ``asarray``.
+ |
+ |      Notes
+ |      -----
+ |      This only works on the ``&quot;NSL&quot;`` record of MAPDL result files.
+ |
+ |      Examples
+ |      --------
+ |      First, open a result file and extract the displacement vectors for all
+ |      sets.
+ |
+ |      &gt;&gt;&gt; xpl.open(&quot;file.rst&quot;)
+ |      &gt;&gt;&gt; mat = xpl.extract(&quot;NSL&quot;)
+ |      &gt;&gt;&gt; mat
+ |      Dense APDLMath Matrix (243, 10)
+ |
+ |      Convert to a dense numpy array
+ |
+ |      &gt;&gt;&gt; arr = mat.asarray()
+ |      &gt;&gt;&gt; arr
+ |      array([[-9.30806802e-03, -2.39600770e-02, -5.37856729e-03, ...,
+ |              -5.61188243e-03, -7.17686067e-11,  3.71893252e-03],
+ |             [-1.60960014e-02,  2.00410618e-02,  8.05822565e-03, ...,
+ |              -1.26917511e-02, -5.14133724e-11, -1.38783485e-03],
+ |             [ 2.54040694e-02,  3.91901513e-03, -2.67965796e-03, ...,
+ |              -1.46365178e-02,  8.31735188e-11, -2.33109771e-03],
+ |             ...,
+ |             [-2.80679551e-03, -1.45686692e-02,  8.05466291e-03, ...,
+ |               5.88196684e-03,  1.72211103e-02,  6.10079082e-03],
+ |             [-7.06675717e-03,  1.30455037e-02, -6.31685295e-03, ...,
+ |               1.08619340e-02, -1.72211102e-02,  2.52199472e-03],
+ |             [ 2.29726170e-02,  3.54392176e-03, -1.87020162e-03, ...,
+ |               1.20642736e-02,  2.58299321e-11,  9.14504940e-04]])
+ |
+ |  goto(self, path)
+ |      Go directly to a new location in the file.
+ |
+ |      Parameters
+ |      ----------
+ |      path : str
+ |          Absolute path to the new location.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; print(xpl.goto(&#39;MASS&#39;))
+ |       =====      ANSYS File Xplorer : Go up to top level(s)
+ |       =====      ANSYS File Xplorer : Step into Block MASS
+ |
+ |  help(self)
+ |      XPL help message.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; print(xpl.help())
+ |
+ |  info(self, recname, option=&#39;&#39;)
+ |      Gives details on a specific record, or all records (using ``&quot;*&quot;``)
+ |
+ |      Parameters
+ |      ----------
+ |      recname : str
+ |          Record of interest
+ |
+ |      option : str
+ |          Options string.
+ |
+ |      Returns
+ |      -------
+ |      str
+ |          Response from MAPDL.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; xpl.open(&#39;file.full&#39;)
+ |      &gt;&gt;&gt; print(xpl.info(&#39;NGPH&#39;))
+ |      =====      ANSYS File Xplorer : Information about Block NGPH
+ |      ::NGPH                 Size =      6.289 KB
+ |               - Record Size   : 81
+ |               - Data type     : integer values
+ |
+ |  json(self)
+ |      Return a JSON representation of the tree or records.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; xpl.json()
+ |      {&#39;name&#39;: &#39;FULL&#39;,
+ |       &#39;children&#39;: [{&#39;name&#39;: &#39;DOFSBYNOD&#39;, &#39;size&#39;: 24},
+ |       {&#39;name&#39;: &#39;BACK&#39;, &#39;size&#39;: 336},
+ |       {&#39;name&#39;: &#39;STIFF&#39;, &#39;size&#39;: 120132},
+ |       {&#39;name&#39;: &#39;RHS&#39;, &#39;size&#39;: 1956},
+ |       {&#39;name&#39;: &#39;DIAGK&#39;, &#39;size&#39;: 1956},
+ |       {&#39;name&#39;: &#39;SCLK&#39;, &#39;size&#39;: 36},
+ |       {&#39;name&#39;: &#39;NODEEXT&#39;, &#39;size&#39;: 32},
+ |       {&#39;name&#39;: &#39;PCGDOFS&#39;, &#39;size&#39;: 984},
+ |       {&#39;name&#39;: &#39;BCDOFS&#39;, &#39;size&#39;: 984},
+ |       {&#39;name&#39;: &#39;BCVALUES&#39;, &#39;size&#39;: 20},
+ |       {&#39;name&#39;: &#39;MASS&#39;, &#39;size&#39;: 52020},
+ |       {&#39;name&#39;: &#39;DIAGM&#39;, &#39;size&#39;: 1236},
+ |       {&#39;name&#39;: &#39;NGPH&#39;, &#39;size&#39;: 6440}]}
+ |
+ |  list(self, nlev=1)
+ |      List the records at the current level.
+ |
+ |      Parameters
+ |      ----------
+ |      nlev: int
+ |          Number of levels to recursively explore.
+ |
+ |      Returns
+ |      -------
+ |      str
+ |          Listing of records from the current level.
+ |
+ |      Examples
+ |      --------
+ |      Open a full file and list the current records.
+ |
+ |      &gt;&gt;&gt; xpl.open(&quot;file.full&quot;)
+ |      &gt;&gt;&gt; xpl.list()
+ |      =====      ANSYS File Xplorer : List Blocks in File file.full
+ |       ::FULL::HEADER         Size =        652  B     Total  Size =    180.297 KB
+ |       ::FULL::DOFSBYNOD            Size =         24  B
+ |       ::FULL::BACK                 Size =        336  B
+ |
+ |       ::FULL::STIFF::HEADER        Size =    117.316 KB
+ |       ::FULL::RHS                  Size =      1.910 KB
+ |       ::FULL::DIAGK                Size =      1.910 KB
+ |       ::FULL::SCLK                 Size =      1.910 KB
+ |       ::FULL::MRK                  Size =        984  B
+ |       ::FULL::NODEEXT              Size =        336  B
+ |       ::FULL::PCGDOFS              Size =        984  B
+ |       ::FULL::BCDOFS               Size =        984  B
+ |       ::FULL::BCVALUES             Size =         12  B
+ |
+ |       ::FULL::MASS::HEADER         Size =     50.801 KB
+ |       ::FULL::DIAGM                Size =      1.910 KB
+ |       ::FULL::NGPH                 Size =        336  B
+ |
+ |  open(self, filename, option=&#39;&#39;)
+ |      Open an MAPDL file to explore.
+ |
+ |      Parameters
+ |      ----------
+ |      filename : str
+ |          Name of the file to open.
+ |
+ |      Returns
+ |      -------
+ |      str
+ |          Response from MAPDL.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; xpl.open(&#39;file.mode&#39;)
+ |      ===============================================
+ |      =====      ANSYS File Xplorer            ======
+ |      ===============================================
+ |
+ |      Opening the file.mode ANSYS File
+ |
+ |  print(self, recname)
+ |      Print values of a given records, or all records (using ``&quot;*&quot;``).
+ |
+ |      Parameters
+ |      ----------
+ |      recname : str
+ |          Record of interest
+ |
+ |      option : str
+ |          Options string.
+ |
+ |      Returns
+ |      -------
+ |      str
+ |          Response from MAPDL.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; xpl.open(&#39;file.full&#39;)
+ |      &gt;&gt;&gt; print(xpl.print(&#39;DOFSBYNOD&#39;))
+ |      =====      ANSYS File Xplorer : Print Block DOFSBYNOD
+ |      DOFSBYNOD :
+ |      Size : 3
+ |             1         2         3
+ |
+ |  read(self, recordname, asarray=False)
+ |      Read a record and return either an APDL math matrix or an APDL math vector.
+ |
+ |      Returns
+ |      -------
+ |      ansys.mapdl.AnsMat or ansys.mapdl.AnsVec
+ |          A handle to the APDLMath object.
+ |
+ |      asarray : bool, optional
+ |          Return a :class:`numpy.ndarray` rather than a :class:`AnsMat
+ |          &lt;ansys.mapdl.core.math.AnsMat&gt;`. Default ``False``.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; vec = xpl.read(&#39;MASS&#39;)
+ |      &gt;&gt;&gt; vec.asarray()
+ |      array([ 4,  7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 40, 43,
+ |             46, 49, 52, 55, 58,  1], dtype=int32)
+ |      &gt;&gt;&gt; vec = xpl.read(&#39;MASS&#39;, asarray=True)
+ |      array([ 4,  7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 40, 43,
+ |             46, 49, 52, 55, 58,  1], dtype=int32)
+ |
+ |  save(self)
+ |      Save the current file, ignoring the marked records.
+ |
+ |  step(self, where)
+ |      Go down in the tree of records
+ |
+ |      Parameters
+ |      ----------
+ |      where : str
+ |          Path to follow. This path can be composed of several
+ |          levels, for example ``&quot;BRANCH1::SUBBRANCH2::..&quot;``
+ |
+ |      Returns
+ |      -------
+ |      str
+ |          Response from MAPDL.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; xpl.step(&#39;MASS&#39;)
+ |      &gt;&gt;&gt; print(xpl.where())
+ |       =====      ANSYS File Xplorer : Display Current Location
+ |       Current Location : FULL::MASS
+ |          File Location : 7644
+ |
+ |  up(self, nlev=1)
+ |      Go up in the tree.
+ |
+ |      nlev : int
+ |          Number of levels to recursively go up, or TOP
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; print(xpl.up())
+ |       =====      ANSYS File Xplorer : Go up to 1 level(s)
+ |                   -&gt; Already at the top level. Command is ignored
+ |
+ |  where(self)
+ |      Returns the current location in the MAPDL file.
+ |
+ |      Returns
+ |      -------
+ |      str
+ |          String containing the current location.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; print(xpl.where())
+ |       =====      ANSYS File Xplorer : Display Current Location
+ |       Current Location : FULL
+ |          File Location : 412
+ |
+ |  write(self, recordname, vecname)
+ |      Write a given record back to an MAPDL file.
+ |
+ |      Use the write function at your own risk, you may corrupt an existing
+ |      file by changing the size of a record in the file.  This method must be
+ |      used only on a non-compressed file.
+ |
+ |      Parameters
+ |      ----------
+ |      recordname : str
+ |          Name of the record you want to overwrite. Your position
+ |          in the file must be set accordingly to this record location
+ |          (same as if you want to read it).
+ |
+ |      vecname : str
+ |          Name of the APDLMath vector you want to write in the MAPDL
+ |          file. Its size must be consistent with the existing record.
+ |
+ |      Returns
+ |      -------
+ |      str
+ |          Response from MAPDL.
+ |
+ |      Examples
+ |      --------
+ |      &gt;&gt;&gt; xpl.write(&#39;MASS&#39;, vecname)
+ |
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+</pre></div>
+</div>
+<section id="open-and-explore-a-file">
+<h2>Open and explore a file<a class="headerlink" href="#open-and-explore-a-file" title="Permalink to this heading">#</a></h2>
+<p>First you need to open an existing file.  We can create an example
+result file by running a verification manual input file and then
+opening the result file that it creates.</p>
+<p>NOTE: for now only one file can be opened at a time</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># run Verification Manual 1 and opening the result file it creates</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">vmfiles</span></a><span class="p">[</span><span class="s2">&quot;vm1&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xpl</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;file.rst&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>===============================================
+ =====      ANSYS File Xplorer            ======
+ ===============================================
+
+ Opening the file.rst ANSYS File
+</pre></div>
+</div>
+<p>Using the <cite>list</cite> function, you can list the records available at
+the current level.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">xpl</span><span class="o">.</span><span class="n">list</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=====      ANSYS File Xplorer : List Blocks in File file.rst
+
+ ::RST::HEADER          Size =        332  B     Total  Size =    319.598 KB
+ ::RST::DOF                  Size =         24  B
+ ::RST::NOD                  Size =         28  B
+ ::RST::ELM                  Size =         24  B
+
+ ::RST::DSI::HEADER          Size =     78.137 KB        Total  Size =    121.832 KB
+ ::RST::TIM                  Size =     78.137 KB
+ ::RST::LSP                  Size =    117.199 KB
+
+ ::RST::GEO::HEADER          Size =        332  B        Total  Size =      2.031 KB
+</pre></div>
+</div>
+<p>Using the <cite>step</cite> and <cite>up</cite> functions, you can go down into a specific
+branch of the tree, or go up to the top level</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xpl</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="s2">&quot;GEO&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xpl</span><span class="o">.</span><span class="n">list</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=====      ANSYS File Xplorer : List Blocks in File file.rst
+
+ ::GEO::HEADER          Size =        332  B     Total  Size =      2.031 KB
+
+ ::GEO::ETY::HEADER          Size =         16  B        Total  Size =        368  B
+ ::GEO::LOC                  Size =        136  B
+
+ ::GEO::EID::HEADER          Size =        144  B
+ ::GEO::CENT                 Size =        108  B
+
+ ::GEO::SEC::HEADER          Size =         16  B        Total  Size =         92  B
+
+ ::GEO::MAT::HEADER          Size =        816  B        Total  Size =        848  B
+ ::GEO::NOD                  Size =         28  B
+ ::GEO::ELM                  Size =         24  B
+</pre></div>
+</div>
+<p>Display where you are in the tree or records:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">xpl</span><span class="o">.</span><span class="n">where</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=====      ANSYS File Xplorer : Display Current Location
+
+ Current Location : RST::GEO
+    File Location : 280856
+</pre></div>
+</div>
+<p>Go up one level to move back to the top and then list the records at
+the current point.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xpl</span><span class="o">.</span><span class="n">up</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xpl</span><span class="o">.</span><span class="n">list</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=====      ANSYS File Xplorer : List Blocks in File file.rst
+
+ ::RST::HEADER          Size =        332  B     Total  Size =    319.598 KB
+ ::RST::DOF                  Size =         24  B
+ ::RST::NOD                  Size =         28  B
+ ::RST::ELM                  Size =         24  B
+
+ ::RST::DSI::HEADER          Size =     78.137 KB        Total  Size =    121.832 KB
+ ::RST::TIM                  Size =     78.137 KB
+ ::RST::LSP                  Size =    117.199 KB
+
+ ::RST::GEO::HEADER          Size =        332  B        Total  Size =      2.031 KB
+</pre></div>
+</div>
+</section>
+<section id="read-a-record-into-an-apdlmath-vector">
+<h2>Read a record into an APDLMath Vector<a class="headerlink" href="#read-a-record-into-an-apdlmath-vector" title="Permalink to this heading">#</a></h2>
+<p>The <cite>info</cite> method will give you information about a record
+(e.g. length, data type, etc.)</p>
+<p>Using the <cite>read</cite> method, you can read a specific record and fill an
+APDLMath object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">xpl</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;DOF&quot;</span><span class="p">))</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">xpl</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;DOF&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=====      ANSYS File Xplorer : Information about Block DOF
+
+ ::DOF                  Size =         24  B
+
+         - Record Size   : 3
+         - Data type     : integer values
+WMBZXN :
+ Size : 3
+        1         2         3
+</pre></div>
+</div>
+<p>To get this vector into a NumPy array you need to explicitly use <cite>asarray</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nod</span></a> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">asarray</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nod</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[1 2 3]
+</pre></div>
+</div>
+<p>Read the first nodal solution
+First we go into the first solution set</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">xpl</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="s2">&quot;DSI::SET1&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">xpl</span><span class="o">.</span><span class="n">list</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=====      ANSYS File Xplorer : Go up to top level(s)
+ =====      ANSYS File Xplorer : Step into Block DSI::SET1
+=====      ANSYS File Xplorer : List Blocks in File file.rst
+
+ ::SET1::HEADER         Size =        812  B     Total  Size =     43.695 KB
+ ::SET1::DPHEAD               Size =        812  B
+ ::SET1::EXT                  Size =        812  B
+ ::SET1::NSL                  Size =         68  B
+ ::SET1::RFDOFS               Size =         60  B
+ ::SET1::RFVALS               Size =         60  B
+
+ ::SET1::BC::HEADER           Size =        172  B       Total  Size =        348  B
+
+ ::SET1::ESL::HEADER          Size =     40.793 KB
+</pre></div>
+</div>
+<p>Then we read the Nodal solution vector <cite>“NSL”</cite> into a numpy array</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">xpl</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;NSL&quot;</span><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">un</span></a> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">asarray</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">un</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[ 0.0000000e+00  0.0000000e+00  0.0000000e+00  1.2676506e+30
+ -8.0000000e-05  1.2676506e+30  1.2676506e+30 -9.0000000e-05
+  1.2676506e+30  0.0000000e+00  0.0000000e+00  0.0000000e+00]
+</pre></div>
+</div>
+<p>Close an opened file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">xpl</span><span class="o">.</span><span class="n">close</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>=====      ANSYS File Xplorer : Close the file.rst ANSYS File
+</pre></div>
+</div>
+</section>
+<section id="stop-mapdl">
+<h2>Stop mapdl<a class="headerlink" href="#stop-mapdl" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.332 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-01-apdlmath-examples-explore-mapdl-files-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/7893b096a4dee3c81a38a8363d05251f/explore_mapdl_files.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">explore_mapdl_files.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/5b79c6a37dcb8eda4e0569cfe72493e2/explore_mapdl_files.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">explore_mapdl_files.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-and-explore-a-file">Open and explore a file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#read-a-record-into-an-apdlmath-vector">Read a record into an APDLMath Vector</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-mapdl">Stop mapdl</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/pyansys/pymapdl/edit/main/examples/01-apdlmath-examples/explore_mapdl_files.py">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.1.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.10.0. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

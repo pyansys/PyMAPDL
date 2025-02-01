@@ -1,0 +1,6 @@
+﻿ldiv
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ldiv

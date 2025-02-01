@@ -1,0 +1,6 @@
+﻿edsolv
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edsolv

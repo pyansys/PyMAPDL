@@ -1,0 +1,6 @@
+﻿cat5in
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.cat5in

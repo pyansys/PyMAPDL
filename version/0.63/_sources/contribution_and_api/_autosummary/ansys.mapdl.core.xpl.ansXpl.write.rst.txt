@@ -1,0 +1,6 @@
+write
+=====
+
+.. currentmodule:: ansys.mapdl.core.xpl
+
+.. automethod:: ansXpl.write

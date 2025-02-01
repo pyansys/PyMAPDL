@@ -1,0 +1,6 @@
+goto
+====
+
+.. currentmodule:: ansys.mapdl.core.xpl
+
+.. automethod:: ansXpl.goto

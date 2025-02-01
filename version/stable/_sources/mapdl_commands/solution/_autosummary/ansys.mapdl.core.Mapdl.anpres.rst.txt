@@ -1,0 +1,6 @@
+﻿anpres
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.anpres

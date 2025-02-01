@@ -1,0 +1,6 @@
+﻿run\_as\_routine
+================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.run_as_routine

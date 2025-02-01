@@ -1,0 +1,6 @@
+﻿anflow
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.anflow

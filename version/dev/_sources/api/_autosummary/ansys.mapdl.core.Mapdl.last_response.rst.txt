@@ -1,0 +1,6 @@
+﻿last\_response
+==============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.last_response

@@ -1,0 +1,6 @@
+sharp\_edges\_feature\_angle
+============================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.sharp_edges_feature_angle

@@ -1,0 +1,114 @@
+
+
+.. _sphx_glr_examples_gallery_examples_02-geometry:
+
+Geometry Examples
+=================
+These examples demonstrate using PyMAPDL to create basic geometry.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This section is focused on creating keypoints.">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/02-geometry/images/thumb/sphx_glr_00-keypoints_thumb.png
+    :alt: Keypoints
+
+  :ref:`sphx_glr_examples_gallery_examples_02-geometry_00-keypoints.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Keypoints</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Lines">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/02-geometry/images/thumb/sphx_glr_01-lines_thumb.png
+    :alt: Lines
+
+  :ref:`sphx_glr_examples_gallery_examples_02-geometry_01-lines.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Lines</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Areas">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/02-geometry/images/thumb/sphx_glr_02-areas_thumb.png
+    :alt: Areas
+
+  :ref:`sphx_glr_examples_gallery_examples_02-geometry_02-areas.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Areas</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Volumes">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/02-geometry/images/thumb/sphx_glr_03-volumes_thumb.png
+    :alt: Volumes
+
+  :ref:`sphx_glr_examples_gallery_examples_02-geometry_03-volumes.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Volumes</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Primitives">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/02-geometry/images/thumb/sphx_glr_04-primitives_thumb.png
+    :alt: Primitives
+
+  :ref:`sphx_glr_examples_gallery_examples_02-geometry_04-primitives.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Primitives</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/gallery_examples/02-geometry/00-keypoints
+   /examples/gallery_examples/02-geometry/01-lines
+   /examples/gallery_examples/02-geometry/02-areas
+   /examples/gallery_examples/02-geometry/03-volumes
+   /examples/gallery_examples/02-geometry/04-primitives
+

@@ -1,0 +1,6 @@
+﻿tiff
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.tiff

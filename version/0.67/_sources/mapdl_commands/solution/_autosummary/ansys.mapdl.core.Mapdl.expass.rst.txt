@@ -1,0 +1,6 @@
+﻿expass
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.expass

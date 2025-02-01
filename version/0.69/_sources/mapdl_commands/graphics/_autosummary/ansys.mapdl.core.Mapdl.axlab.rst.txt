@@ -1,0 +1,6 @@
+﻿axlab
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.axlab

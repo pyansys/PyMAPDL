@@ -1,0 +1,6 @@
+ready
+=====
+
+.. currentmodule:: ansys.mapdl.core.pool
+
+.. autoproperty:: MapdlPool.ready

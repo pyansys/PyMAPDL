@@ -1,0 +1,6 @@
+color\_cycler
+=============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.color_cycler

@@ -1,0 +1,6 @@
+﻿vcone
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.vcone

@@ -1,0 +1,6 @@
+﻿edout
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edout

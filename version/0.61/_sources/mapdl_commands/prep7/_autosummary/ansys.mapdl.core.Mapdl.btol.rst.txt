@@ -1,0 +1,6 @@
+﻿btol
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.btol

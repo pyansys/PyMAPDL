@@ -1,0 +1,6 @@
+nan\_color
+==========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.nan_color

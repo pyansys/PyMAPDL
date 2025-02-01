@@ -1,0 +1,6 @@
+﻿nsort
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.nsort

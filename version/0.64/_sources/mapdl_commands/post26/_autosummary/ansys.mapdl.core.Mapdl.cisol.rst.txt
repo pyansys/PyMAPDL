@@ -1,0 +1,6 @@
+﻿cisol
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.cisol

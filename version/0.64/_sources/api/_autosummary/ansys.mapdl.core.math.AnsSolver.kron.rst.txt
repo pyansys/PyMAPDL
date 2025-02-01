@@ -1,0 +1,6 @@
+kron
+====
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. automethod:: AnsSolver.kron

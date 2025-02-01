@@ -1,0 +1,6 @@
+﻿senergy
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.senergy

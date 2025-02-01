@@ -1,0 +1,6 @@
+﻿toffst
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.toffst

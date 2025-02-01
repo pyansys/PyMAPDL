@@ -1,0 +1,6 @@
+﻿elbow
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.elbow

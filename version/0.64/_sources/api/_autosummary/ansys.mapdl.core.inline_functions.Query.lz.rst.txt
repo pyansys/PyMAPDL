@@ -1,0 +1,6 @@
+﻿lz
+==
+
+.. currentmodule:: ansys.mapdl.core.inline_functions
+
+.. automethod:: Query.lz

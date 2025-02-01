@@ -1,0 +1,949 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Learning PyMAPDL &#8212; PyMAPDL</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css?v=e7c4c341" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=91007d66" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../_static/documentation_options.js?v=a98ddb9b"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/learning';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.68';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Frequently asked questions" href="faq.html" />
+    <link rel="prev" title="Launch PyMAPDL" href="launcher.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/getting_started/learning.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyMAPDL - Home"/>
+    <script>document.write(`<img src="../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark" alt="PyMAPDL - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog.html">
+    Release notes
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="project.html">PyMAPDL project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_mapdl.html">Install MAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_pymapdl.html">Install PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="launcher.html">Launch PyMAPDL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Learning PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versioning.html">Versions and interfaces</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contribute</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devcontainer.html">Develop on containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_container.html">Create your own MAPDL docker container</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="docker.html">MAPDL and Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macos.html">PyMAPDL and MacOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsl.html">Windows Subsystem for Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_julia.html">Julia and PyMAPDL</a></li>
+</ul>
+</div>
+</nav></div>
+        <div class="sidebar-primary-item">
+  
+  <div class="sidebar-cheatsheets">
+    <h4>PyMAPDL cheat sheet</h4>
+    
+    
+    
+    
+    <a href="../_static/cheat_sheet.pdf">
+      <img src="../_static/cheat_sheet.png" alt="PyMAPDL cheat sheet" />
+    </a>
+  </div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">Getting started</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Learning PyMAPDL</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="learning-pymapdl">
+<span id="ref-learning"></span><h1>Learning PyMAPDL<a class="headerlink" href="#learning-pymapdl" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p class="centered">
+<strong><em>PyMAPDL provides Pythonic access to MAPDL, an Ansys finite element solver.</em></strong></p><p>PyMAPDL touches on different technologies such as Python and finite elements, to bring them together
+and offer you a better user experience by seamlessly connecting this Ansys solver and the Python ecosystem.
+To learn how to use this library, you have many resources available:</p>
+<ul class="simple">
+<li><p>Complete the <a class="reference internal" href="#ref-pymapdl-course"><span class="std std-ref">Getting started with PyMAPDL</span></a> course, which guides you through PyMAPDL’s
+main functionalities.</p></li>
+<li><p>Visit the <a class="reference external" href="https://mapdl.docs.pyansys.com/version/stable/examples/index.html">Examples gallery</a> to learn from practical examples.
+The <a class="reference external" href="https://mapdl.docs.pyansys.com/version/stable/examples/gallery_examples/00-mapdl-examples/bracket_static.html#sphx-glr-examples-gallery-examples-00-mapdl-examples-bracket-static-py">Static analysis of a corner bracket</a> example is a very
+good starting point.</p></li>
+<li><p>Become familiar with the Python programming language. There are many online courses and
+websites for learning Python. Additionally, Ansys provides a <a class="reference internal" href="#ref-python-course"><span class="std std-ref">Intro to Python</span></a> course.</p></li>
+<li><p>Understand finite element methods (FEMs). Because physical models are solved using FEMs, you
+need to know how these methods work to get accurate and adequate solutions. The
+<a class="reference external" href="https://courses.ansys.com/index.php/learning-track/introduction-to-finite-element-methods/">Introduction to Finite Element Methods</a> course on the Ansys
+Learning Resources website offers tracks to help you to get familiar with these methods.</p></li>
+<li><p>Take the Ansys <a class="reference internal" href="#ref-mapdl-course"><span class="std std-ref">Intro to Ansys Mechanical APDL scripting</span></a> course. Because PyMAPDL interface with MAPDL
+through APDL commands, you should become familiar with MAPDL commands and
+workflows.</p></li>
+</ul>
+</section>
+<section id="downloads">
+<span id="ref-additional-learning"></span><h2>Downloads<a class="headerlink" href="#downloads" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>You can try the Student Version of Ansys products. For more information, see
+<a class="reference external" href="https://www.ansys.com/academic/students">Ansys Student Versions</a>.
+These are versions valid during a year and with limited capabilities
+regarding number of nodes, elements, etc.</p></li>
+</ul>
+<ul class="simple">
+<li><p>View and download <a class="reference download external" download="" href="https://mapdl.docs.ansys.com/version/0.68/_static/cheatsheet.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PyMAPDL</span> <span class="pre">cheatsheet</span></code></a>
+to help you to learn PyMAPDL.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Visit <a class="reference internal" href="../examples/index.html#ref-examples"><span class="std std-ref">Examples</span></a> to learn how PyMAPDL can be used to solve different real problems.</p></li>
+</ul>
+</section>
+<section id="courses">
+<h2>Courses<a class="headerlink" href="#courses" title="Link to this heading">#</a></h2>
+<p>Ansys has prepared high quality courses to guide you through the learning process.</p>
+<section id="intro-to-python">
+<span id="ref-python-course"></span><h3>Intro to Python<a class="headerlink" href="#intro-to-python" title="Link to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://courses.ansys.com/index.php/courses/intro-to-python/">Intro to Python</a> course teaches you
+the basis of the Python programming language.</p>
+<section id="course-content">
+<h4>Course content<a class="headerlink" href="#course-content" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Prerequisites - Installation of Python</p></li>
+<li><p>Fundamentals of Python - Lesson 1</p></li>
+<li><p>Analyzing Radiance Data - Lesson 2</p></li>
+<li><p>Repeating Actions with Loops - Lesson 3</p></li>
+<li><p>Storing Multiple Values in Lists - Lesson 4</p></li>
+<li><p>Making Choices - Lesson 5</p></li>
+<li><p>Analyzing Data from Multiple Files - Lesson 6</p></li>
+<li><p>Creating Functions - Lesson 7</p></li>
+<li><p>Defensive Programming - Lesson 8</p></li>
+<li><p>Debugging - Lesson 9</p></li>
+<li><p>Command Line Programs - Lesson 10</p></li>
+<li><p>Post Completion Survey</p></li>
+<li><p>Meet the Instructor</p></li>
+</ul>
+</section>
+</section>
+<section id="getting-started-with-pymapdl">
+<span id="ref-pymapdl-course"></span><h3>Getting started with PyMAPDL<a class="headerlink" href="#getting-started-with-pymapdl" title="Link to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://courses.ansys.com/index.php/courses/getting-started-with-pymapdl/">Getting started with PyMAPDL</a> course teaches
+you about PyMAPDL, the Pythonic way to access Ansys MAPDL.</p>
+<section id="id1">
+<h4>Course content<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Overview of PyMAPDL - Lesson 1</p></li>
+<li><p>PyMAPDL Language and Usage - Lesson 2</p></li>
+<li><p>PyMAPDL Categories - Lesson 3</p></li>
+<li><p>Getting Help - Lesson 4</p></li>
+<li><p>Post Completion Survey</p></li>
+<li><p>Meet the Instructors</p></li>
+</ul>
+</section>
+</section>
+<section id="intro-to-ansys-mechanical-apdl-scripting">
+<span id="ref-mapdl-course"></span><h3>Intro to Ansys Mechanical APDL scripting<a class="headerlink" href="#intro-to-ansys-mechanical-apdl-scripting" title="Link to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://courses.ansys.com/index.php/courses/intro-to-ansys-mechanical-apdl-scripting/">Intro to Ansys Mechanical APDL scripting</a>
+course teaches you how APDL, the Mechanical solver syntax language, works.</p>
+<section id="id2">
+<h4>Course content<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Overview of MAPDL (Lesson 1)</p></li>
+<li><p>Basics of APDL Language (Lesson 2)</p></li>
+<li><p>Solid Modeling &amp; Meshing (Lesson 3)</p></li>
+<li><p>Defining Loads, BCs, and Solver Controls (Lesson 4)</p></li>
+<li><p>General Postprocessing (Lesson 5)</p></li>
+<li><p>Selection Logic (Lesson 6)</p></li>
+<li><p>More on Parameters (Arrays, *GET) (Lesson 7)</p></li>
+<li><p>Post Completion Survey</p></li>
+<li><p>Meet the Instructors</p></li>
+</ul>
+</section>
+</section>
+<section id="ansys-innovation-space">
+<h3>Ansys Innovation Space<a class="headerlink" href="#ansys-innovation-space" title="Link to this heading">#</a></h3>
+<p>You can find more courses for different Ansys product organized in
+different categories such as
+<a class="reference external" href="https://courses.ansys.com/index.php/structures/">structures</a>,
+<a class="reference external" href="https://courses.ansys.com/index.php/fluids/">fluids</a>,
+<a class="reference external" href="https://courses.ansys.com/index.php/materials/">materials</a> or
+<a class="reference external" href="https://courses.ansys.com/index.php/discovery/">3D design</a>.</p>
+<p>You can find all the categories in <a class="reference external" href="https://courses.ansys.com/">https://courses.ansys.com</a>.</p>
+<p><strong>NOTE</strong>: You might need to create a free Ansys account to access these resources.</p>
+</section>
+</section>
+<section id="ansys-help">
+<h2>Ansys help<a class="headerlink" href="#ansys-help" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://ansyshelp.ansys.com">Ansys Help</a> is the official Ansys website for
+documentation, tutorials and videos.</p>
+<p>An <a class="reference external" href="https://ansyshelp.ansys.com/account/secured?returnurl=/Views/Secured/corp/v231/en/ans_tut/Hlp_UI_Tutorials.html">MAPDL introductory tutorials guide</a> which
+cover different topics such as
+<a class="reference external" href="https://ansyshelp.ansys.com/Views/Secured/corp/v231/en/ans_tut/structural_tut.html">Structural tutorial</a>
+<a class="reference external" href="https://ansyshelp.ansys.com/Views/Secured/corp/v231/en/ans_tut/thermal_tut.html">Thermal tutorial</a>
+<a class="reference external" href="https://ansyshelp.ansys.com/Views/Secured/corp/v231/en/ans_tut/emag_tut.html">Electromagnetics tutorial</a>
+<a class="reference external" href="https://ansyshelp.ansys.com/Views/Secured/corp/v231/en/ans_tut/mems_tut.html">Micro-Electromechanical System (MEMS) tutorial</a>
+<a class="reference external" href="https://ansyshelp.ansys.com/Views/Secured/corp/v231/en/ans_tut/ffcontact_tut.html">Contact tutorial</a> or
+<a class="reference external" href="https://ansyshelp.ansys.com/Views/Secured/corp/v231/en/ans_tut/modal_tut.html">Modal tutorial</a></p>
+<p>You can find documentation such as the
+<a class="reference external" href="https://ansyshelp.ansys.com/account/secured?returnurl=/Views/Secured/corp/v231/en/ans_cmd/Hlp_C_CmdTOC.html">Command reference guide</a>,
+<a class="reference external" href="https://ansyshelp.ansys.com/account/secured?returnurl=/Views/Secured/corp/v231/en/ans_vm/Hlp_V_VMTOC.html">Verification manual guide</a> or
+<a class="reference external" href="https://ansyshelp.ansys.com/Views/Secured/corp/v231/en/ans_tec/tecintro.html">Technology showcase guide</a>.</p>
+<p>The <a class="reference external" href="https://ansyshelp.ansys.com/Views/Secured/corp/v231/en/ans_tec/tecintro.html">Technology showcase guide</a> is a comprehensive guide with
+real-world example problems which present the broad simulation
+capabilities of Ansys Mechanical APDL.
+The problems demonstrate how to use Mechanical APDL to effectively
+and accurately solve interdisciplinary problems from a variety of
+industries and engineering fields.
+The problems are more substantive and complex than examples found
+in the standard documentation set. The documentation thoroughly
+examines the physics involved with each problem and the considerations
+necessary for translating problems into numerical models.
+You can find some of the technology showcase examples in PyMAPDL documentation
+<cite>Technology Showcases &lt;pymapdl_ex_ts_&gt;</cite>. For a more comprehensive list of
+showcases, visit <a class="reference external" href="https://ansyshelp.ansys.com/Views/Secured/corp/v231/en/ans_tec/tecintro.html">Technology showcase guide</a>.</p>
+<p><strong>NOTE</strong>: You might need to create a free Ansys account to access these resources.</p>
+</section>
+<section id="additional-resources">
+<h2>Additional resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<p>Ansys has prepared multiple resources to help you to learn and use PyMAPDL.
+You can access them from the <a class="reference external" href="https://www.ansys.com/academic/learning-resources">Ansys Learning Resources</a> website.
+In this website, you can find a summary of the available resources for MAPDL and PyMAPDL.</p>
+</section>
+<section id="recommended-articles">
+<h2>Recommended articles<a class="headerlink" href="#recommended-articles" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Ansys Gets Into Open Source With GitHub.
+<a class="reference external" href="https://www.ansys.com/blog/ansys-gets-into-open-source-with-github">Link to article in Ansys Blog</a></p></li>
+<li><p>Access the Power of Ansys from the Python World.
+<a class="reference external" href="https://www.ansys.com/blog/accessing-ansys-from-python">Link to article in Ansys blog</a></p></li>
+<li><p>Using Ansys Scripting with pyMAPDL, pyDPF-Post, and More - Part 1
+<em>Running and Post-Processing an Ansys Model Outside Ansys</em>.
+<a class="reference external" href="https://www.padtinc.com/2022/07/18/ansys-scripting-python-p1-solve-post/">Link to article in PADT Inc Blog</a>.</p></li>
+<li><p>ANSYS in a Python Web App, Part 1: Post Processing with PyDPF:
+<em>Integrating PyAnsys with Plotly’s Dash and the Dash-VTK component to build an
+Ansys structural analysis post-processing web application</em>.
+<a class="reference external" href="https://towardsdatascience.com/ansys-in-a-python-web-app-part-1-post-processing-with-pydpf-44d2fbaa6135">Link to ‘Towards Data Science’ article in Medium</a>.</p></li>
+<li><p>ANSYS in a Python Web App, Part 2: Pre Processing &amp; Solving with PyMAPDL:
+<em>ANSYS in a Python Web App, Part 2: Pre Processing &amp; Solving with PyMAPDL</em>.
+<a class="reference external" href="https://towardsdatascience.com/ansys-in-a-python-web-app-part-2-pre-processing-solving-with-pymapdl-50428c18f8e7">Link to ‘Towards Data Science’ article in Medium</a>.</p></li>
+<li><p>Paraview: Reading ANSYS APDL (RST) results in Paraview.
+<a class="reference external" href="https://discourse.paraview.org/t/reading-ansys-apdl-rst-results-in-paraview/9706">Link to ‘Paraview Forum’ question</a>.</p></li>
+</ul>
+<p>Feel free to share any educational or learning resources by <a class="reference external" href="https://github.com/ansys/pymapdl/issues">opening an issue</a>
+or <a class="reference external" href="https://github.com/ansys/PyMAPDL/discussions">starting a discussion</a> on GitHub.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloads">Downloads</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#courses">Courses</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-python">Intro to Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#course-content">Course content</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-pymapdl">Getting started with PyMAPDL</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Course content</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#intro-to-ansys-mechanical-apdl-scripting">Intro to Ansys Mechanical APDL scripting</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Course content</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ansys-innovation-space">Ansys Innovation Space</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ansys-help">Ansys help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional resources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-articles">Recommended articles</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/getting_started/learning.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+
+
+
+
+
+
+
+<script>
+var theme_static_search = JSON.parse('{"ignoreLocation": "False", "keys": ["title", "text"], "shouldSort": "True", "threshold": 0.5, "useExtendedSearch": "True"}');
+var theme_limit = "10";
+var min_chars_for_search = "1";
+var searchPath = "../_static/search.json";
+
+</script>
+
+<script src="../_static/js/fuse_search.js"></script>
+<script src="../_static/js/fuse_extension.js"></script>
+<footer class="bd-footer" font-size="4px">
+  <div class="bd-footer__inner bd-page-width">
+    <div class="footer-items__start">
+      <div class="footer-item">
+        <p class="copyright">
+          PyMAPDL 0.68.6 © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+          <br>
+        </p>
+      </div>
+    </div>
+    <div class="footer-items__end">
+      <div class="footer-item">
+        <p class="theme-version">
+          Built with the
+          <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a>
+          1.1.2. and
+           <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.0.
+          on <span id="date"></span>
+        </p>
+        <script>
+          var options = { day: "numeric", month: "long", year: "numeric" };
+          var lastModifiedDate = new Date(document.lastModified);
+          var date = lastModifiedDate.toLocaleDateString("en-US", options);
+          document.getElementById("date").innerHTML = date;
+        </script>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

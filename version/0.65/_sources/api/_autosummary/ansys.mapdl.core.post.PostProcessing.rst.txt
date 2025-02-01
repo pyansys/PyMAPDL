@@ -1,0 +1,225 @@
+﻿PostProcessing
+==============
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. autoclass:: PostProcessing
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      PostProcessing.element_displacement
+      
+      
+      PostProcessing.element_stress
+      
+      
+      PostProcessing.element_temperature
+      
+      
+      PostProcessing.element_values
+      
+      
+      PostProcessing.nodal_component_stress
+      
+      
+      PostProcessing.nodal_contact_friction_stress
+      
+      
+      PostProcessing.nodal_displacement
+      
+      
+      PostProcessing.nodal_elastic_component_strain
+      
+      
+      PostProcessing.nodal_elastic_eqv_strain
+      
+      
+      PostProcessing.nodal_elastic_principal_strain
+      
+      
+      PostProcessing.nodal_elastic_strain_intensity
+      
+      
+      PostProcessing.nodal_eqv_stress
+      
+      
+      PostProcessing.nodal_plastic_component_strain
+      
+      
+      PostProcessing.nodal_plastic_eqv_strain
+      
+      
+      PostProcessing.nodal_plastic_principal_strain
+      
+      
+      PostProcessing.nodal_plastic_strain_intensity
+      
+      
+      PostProcessing.nodal_pressure
+      
+      
+      PostProcessing.nodal_principal_stress
+      
+      
+      PostProcessing.nodal_rotation
+      
+      
+      PostProcessing.nodal_stress_intensity
+      
+      
+      PostProcessing.nodal_temperature
+      
+      
+      PostProcessing.nodal_thermal_component_strain
+      
+      
+      PostProcessing.nodal_thermal_eqv_strain
+      
+      
+      PostProcessing.nodal_thermal_principal_strain
+      
+      
+      PostProcessing.nodal_thermal_strain_intensity
+      
+      
+      PostProcessing.nodal_total_component_strain
+      
+      
+      PostProcessing.nodal_total_eqv_strain
+      
+      
+      PostProcessing.nodal_total_principal_strain
+      
+      
+      PostProcessing.nodal_total_strain_intensity
+      
+      
+      PostProcessing.nodal_values
+      
+      
+      PostProcessing.nodal_voltage
+      
+      
+      PostProcessing.plot_element_displacement
+      
+      
+      PostProcessing.plot_element_stress
+      
+      
+      PostProcessing.plot_element_temperature
+      
+      
+      PostProcessing.plot_element_values
+      
+      
+      PostProcessing.plot_nodal_component_stress
+      
+      
+      PostProcessing.plot_nodal_contact_friction_stress
+      
+      
+      PostProcessing.plot_nodal_displacement
+      
+      
+      PostProcessing.plot_nodal_elastic_component_strain
+      
+      
+      PostProcessing.plot_nodal_elastic_eqv_strain
+      
+      
+      PostProcessing.plot_nodal_elastic_principal_strain
+      
+      
+      PostProcessing.plot_nodal_elastic_strain_intensity
+      
+      
+      PostProcessing.plot_nodal_eqv_stress
+      
+      
+      PostProcessing.plot_nodal_plastic_component_strain
+      
+      
+      PostProcessing.plot_nodal_plastic_eqv_strain
+      
+      
+      PostProcessing.plot_nodal_plastic_principal_strain
+      
+      
+      PostProcessing.plot_nodal_plastic_strain_intensity
+      
+      
+      PostProcessing.plot_nodal_pressure
+      
+      
+      PostProcessing.plot_nodal_principal_stress
+      
+      
+      PostProcessing.plot_nodal_rotation
+      
+      
+      PostProcessing.plot_nodal_stress_intensity
+      
+      
+      PostProcessing.plot_nodal_temperature
+      
+      
+      PostProcessing.plot_nodal_thermal_component_strain
+      
+      
+      PostProcessing.plot_nodal_thermal_eqv_strain
+      
+      
+      PostProcessing.plot_nodal_thermal_principal_strain
+      
+      
+      PostProcessing.plot_nodal_thermal_strain_intensity
+      
+      
+      PostProcessing.plot_nodal_total_component_strain
+      
+      
+      PostProcessing.plot_nodal_total_eqv_strain
+      
+      
+      PostProcessing.plot_nodal_total_principal_strain
+      
+      
+      PostProcessing.plot_nodal_total_strain_intensity
+      
+      
+      PostProcessing.plot_nodal_values
+      
+      
+      PostProcessing.plot_nodal_voltage
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      PostProcessing.filename
+      PostProcessing.freq
+      PostProcessing.frequency_values
+      PostProcessing.load_step
+      PostProcessing.nsets
+      PostProcessing.selected_elements
+      PostProcessing.selected_nodes
+      PostProcessing.step
+      PostProcessing.sub_step
+      PostProcessing.time
+      PostProcessing.time_values
+   
+   

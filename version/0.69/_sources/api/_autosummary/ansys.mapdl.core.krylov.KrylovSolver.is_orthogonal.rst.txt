@@ -1,0 +1,6 @@
+is\_orthogonal
+==============
+
+.. currentmodule:: ansys.mapdl.core.krylov
+
+.. autoproperty:: KrylovSolver.is_orthogonal

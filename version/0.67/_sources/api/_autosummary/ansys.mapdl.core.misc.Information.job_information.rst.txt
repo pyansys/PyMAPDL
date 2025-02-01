@@ -1,0 +1,6 @@
+﻿job\_information
+================
+
+.. currentmodule:: ansys.mapdl.core.misc
+
+.. autoproperty:: Information.job_information

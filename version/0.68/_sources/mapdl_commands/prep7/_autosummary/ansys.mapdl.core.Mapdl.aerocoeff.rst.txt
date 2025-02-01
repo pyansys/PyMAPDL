@@ -1,0 +1,6 @@
+﻿aerocoeff
+=========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.aerocoeff

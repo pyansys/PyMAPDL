@@ -1,0 +1,991 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Elements &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=18fd1f76" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+ 
+<link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../../_static/documentation_options.js?v=1511083c"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mapdl_commands/prep7/elements';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.67';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="afsurf" href="_autosummary/ansys.mapdl.core.Mapdl.afsurf.html" />
+    <link rel="prev" title="transfer" href="_autosummary/ansys.mapdl.core.Mapdl.transfer.html" />
+<link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/mapdl_commands/prep7/elements.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+ 
+<!-- Include the MeiliSearch CSS stylesheet only if theme present -->
+<link href="../../_static/css/meilisearch.css" rel="stylesheet" />
+
+<!-- Create a search bar form with a text input and a dropdown selector for the search index -->
+<form
+  class="bd-search d-flex align-items-center"
+  action="../../search.html"
+  method="get"
+>
+  <input
+    type="search"
+    placeholder="Search"
+    class="form-control"
+    id="search-bar-input"
+    autofocus
+  />
+  <span class="search-button__kbd-shortcut"
+    ><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span
+  >
+  <style>
+    .bd-search .search-button__kbd-shortcut {
+      right: 33%;
+    }
+  </style>
+  
+  <select id="indexUidSelector" class="index-select">
+    
+    <option value="pymapdl-v0-67">PyMAPDL</option>
+    
+  </select>
+  
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <!-- Include the MeiliSearch JavaScript library for the search bar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    
+  <script>
+    var HOST_URL = "https://backend.search.pyansys.com/";
+    var API_KEY = "9fbccc76c147935ce2b562a9ee0c6669276987572dc1f22491cea72e9e99f35d";
+    var indexUid = "pymapdl-v0-67";
+  </script>
+
+  <script src="../../_static/js/meilisearch_theme_wrap.js"></script>
+</form>
+</div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../session/run_controls.html">Run controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../session/processor_entry.html">Processor entry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../session/files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../session/list_controls.html">List controls</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../database/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/selecting.html">Selecting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/components.html">Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/working_plane.html">Working plane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/coord_sys.html">Coordinate system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/picking.html">Picking</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../graphics/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graphics/views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graphics/scaling.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graphics/style.html">Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graphics/labeling.html">Labeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graphics/graphs.html">Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graphics/annotation.html">Annotation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../apdl/parameter_definition.html">Parameter definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apdl/macro_files.html">Macro files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apdl/abbreviations.html">Abbreviations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apdl/array_parm.html">Array parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apdl/matrix_op.html">Matrix operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apdl/process_controls.html">Process controls</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="element_type.html">Element type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="real_constants.html">Real constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials.html">Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="material_data_tables.html">Material data tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="primitives.html">Primitives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="keypoints.html">Keypoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hard_points.html">Hard points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lines.html">Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="areas.html">Areas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="volumes.html">Volumes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="booleans.html">Booleans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meshing.html">Meshing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodes.html">Nodes</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Elements</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.afsurf.html">afsurf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.e.html">e</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ecpchg.html">ecpchg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.edele.html">edele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.eextrude.html">eextrude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.egen.html">egen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.einfin.html">einfin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.eintf.html">eintf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.elist.html">elist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.emid.html">emid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.emodif.html">emodif</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.emore.html">emore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.emtgen.html">emtgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.en.html">en</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.endrelease.html">endrelease</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.engen.html">engen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.enorm.html">enorm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ensym.html">ensym</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.eread.html">eread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ereinf.html">ereinf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.errang.html">errang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.esurf.html">esurf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.esym.html">esym</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ewrite.html">ewrite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.gcdef.html">gcdef</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.gcgen.html">gcgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.inistate.html">inistate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.laylist.html">laylist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.layplot.html">layplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.lfsurf.html">lfsurf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ndsurf.html">ndsurf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.shsd.html">shsd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.swadd.html">swadd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.swdel.html">swdel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.swgen.html">swgen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.swlist.html">swlist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.tshap.html">tshap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.upgeom.html">upgeom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.usrdof.html">usrdof</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.usrelem.html">usrelem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.wtbcreate.html">wtbcreate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="superelements.html">Superelements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digitizing.html">Digitizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coupled_dof.html">Coupled degrees of freedom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constraint_equations.html">Constraint equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="status.html">Status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="explicit_dynamics.html">Explicit dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections.html">Sections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morphing.html">Morphing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="artificially_matched_layers.html">Artificially matched layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="special_purpose.html">Special purpose</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../solution/analysis_options.html">Analysis options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/nonlinear_options.html">Nonlinear options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/dynamic_options.html">Dynamic options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/spectrum_options.html">Spectrum options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/load_step_options.html">Load step options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/solid_constraints.html">Solid constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/solid_forces.html">Solid forces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/solid_surface_loads.html">Solid surface loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/solid_body_loads.html">Solid body loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/inertia.html">Inertia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/miscellaneous_loads.html">Miscellaneous loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/load_step_operations.html">Load step operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/master_dof.html">Master degrees of freedom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/gap_conditions.html">Gap conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/rezoning.html">Rezoning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/2d_to_3d_analysis.html">2D to 3D analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/birth_and_death.html">Birth and death</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/fe_constraints.html">FE constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/fe_forces.html">FE forces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/fe_surface_loads.html">FE surface loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/fe_body_loads.html">FE body loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/ocean.html">Ocean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/solution_status.html">Solution status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/radiosity.html">Radiosity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/multi_field_solver_definition_commands.html">Multi-Field solver definition commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/multi_field_solver_global_controls.html">Multi-Field solver global controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/multi_field_solver_time_controls.html">Multi-Field solver time controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/multi_field_solver_load_transfer.html">Multi-Field solver load transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/multi_field_solver_convergence_controls.html">Multi-Field solver convergence controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution/multi_field_solver_interface_mapping.html">Multi-Field solver interface mapping</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../post1/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/controls.html">Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/results.html">Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/element_table.html">Element table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/listing.html">Listing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/animation.html">Animation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/path_operations.html">Path operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/surface_operations.html">Surface operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/load_case.html">Load case calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/magnetics_calc.html">Magnetics calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/trace_points.html">Trace points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/special.html">Special purpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/status.html">Status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post1/failure_criteria.html">Failure criteria</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../post26/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post26/controls.html">Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post26/operations.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post26/display.html">Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post26/listing.html">Listing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post26/special.html">Special purpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post26/status.html">Status</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aux2/bin_dump.html">Binary file dump</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aux2/bin_manip.html">Binary file manipulation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aux3.html">Results files</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aux12/general_radiation.html">General radiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aux12/radiation_mat.html">Radiation matrix method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aux12/radiosity_solver.html">Radiosity solver</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aux15.html">IGES</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../map.html">Pressure mapping</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../display/setup.html">Setup</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../reduced/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reduced/preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reduced/generation.html">Generation pass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reduced/use_pass.html">Use pass</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conn.html">Connection commands</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../misc.html">Miscellaneous</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../inqfun.html">Undocumented inquire commands</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+      
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+      
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i
+      ></a>
+    </li> 
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">MAPDL commands</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Elements</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="elements">
+<span id="ref-elements-commands-api"></span><h1>Elements<a class="headerlink" href="#elements" title="Link to this heading">#</a></h1>
+<p>These PREP7 commands are used to create, modify, list, etc., elements.</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.afsurf.html#ansys.mapdl.core.Mapdl.afsurf" title="ansys.mapdl.core.Mapdl.afsurf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.afsurf</span></code></a>([sarea, tline])</p></td>
+<td><p>Generates surface elements overlaid on the surface of existing solid elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.e.html#ansys.mapdl.core.Mapdl.e" title="ansys.mapdl.core.Mapdl.e"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.e</span></code></a>([i, j, k, l, m, n, o, p])</p></td>
+<td><p>Defines an element by node connectivity.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ecpchg.html#ansys.mapdl.core.Mapdl.ecpchg" title="ansys.mapdl.core.Mapdl.ecpchg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.ecpchg</span></code></a>(**kwargs)</p></td>
+<td><p>Optimizes degree-of-freedom usage in a coupled acoustic model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.edele.html#ansys.mapdl.core.Mapdl.edele" title="ansys.mapdl.core.Mapdl.edele"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.edele</span></code></a>([iel1, iel2, inc])</p></td>
+<td><p>Deletes selected elements from the model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.eextrude.html#ansys.mapdl.core.Mapdl.eextrude" title="ansys.mapdl.core.Mapdl.eextrude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.eextrude</span></code></a>([action, nelem, space, dist, ...])</p></td>
+<td><p>Extrudes 2-D plane elements into 3-D solids.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.egen.html#ansys.mapdl.core.Mapdl.egen" title="ansys.mapdl.core.Mapdl.egen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.egen</span></code></a>([itime, ninc, iel1, iel2, ieinc, ...])</p></td>
+<td><p>Generates elements from an existing pattern.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.einfin.html#ansys.mapdl.core.Mapdl.einfin" title="ansys.mapdl.core.Mapdl.einfin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.einfin</span></code></a>([compname, pnode])</p></td>
+<td><p>Generates structural infinite elements from selected nodes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.eintf.html#ansys.mapdl.core.Mapdl.eintf" title="ansys.mapdl.core.Mapdl.eintf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.eintf</span></code></a>([toler, k, tlab, kcn, dx, dy, ...])</p></td>
+<td><p>Defines two-node elements between coincident or offset nodes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.elist.html#ansys.mapdl.core.Mapdl.elist" title="ansys.mapdl.core.Mapdl.elist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.elist</span></code></a>([iel1, iel2, inc, nnkey, rkey, ...])</p></td>
+<td><p>Lists the elements and their attributes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.emid.html#ansys.mapdl.core.Mapdl.emid" title="ansys.mapdl.core.Mapdl.emid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.emid</span></code></a>([key, edges])</p></td>
+<td><p>Adds or removes midside nodes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.emodif.html#ansys.mapdl.core.Mapdl.emodif" title="ansys.mapdl.core.Mapdl.emodif"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.emodif</span></code></a>([iel, stloc, i1, i2, i3, i4, ...])</p></td>
+<td><p>Modifies a previously defined element.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.emore.html#ansys.mapdl.core.Mapdl.emore" title="ansys.mapdl.core.Mapdl.emore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.emore</span></code></a>([q, r, s, t, u, v, w, x])</p></td>
+<td><p>Add more nodes to the just-defined element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.emtgen.html#ansys.mapdl.core.Mapdl.emtgen" title="ansys.mapdl.core.Mapdl.emtgen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.emtgen</span></code></a>([ncomp, ecomp, pncomp, dof, ...])</p></td>
+<td><p>Generates a set of TRANS126 elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.en.html#ansys.mapdl.core.Mapdl.en" title="ansys.mapdl.core.Mapdl.en"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.en</span></code></a>([iel, i, j, k, l, m, n, o, p])</p></td>
+<td><p>Defines an element by its number and node connectivity.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.endrelease.html#ansys.mapdl.core.Mapdl.endrelease" title="ansys.mapdl.core.Mapdl.endrelease"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.endrelease</span></code></a>([tolerance, dof1, dof2, ...])</p></td>
+<td><p>Specifies degrees of freedom to be decoupled for end release.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.engen.html#ansys.mapdl.core.Mapdl.engen" title="ansys.mapdl.core.Mapdl.engen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.engen</span></code></a>([iinc, itime, ninc, iel1, iel2, ...])</p></td>
+<td><p>Generates elements from an existing pattern.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.enorm.html#ansys.mapdl.core.Mapdl.enorm" title="ansys.mapdl.core.Mapdl.enorm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.enorm</span></code></a>([enum])</p></td>
+<td><p>Reorients shell element normals or line element node connectivity.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ensym.html#ansys.mapdl.core.Mapdl.ensym" title="ansys.mapdl.core.Mapdl.ensym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.ensym</span></code></a>([iinc, ninc, iel1, iel2, ieinc])</p></td>
+<td><p>Generates elements by symmetry reflection.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.eread.html#ansys.mapdl.core.Mapdl.eread" title="ansys.mapdl.core.Mapdl.eread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.eread</span></code></a>([fname, ext])</p></td>
+<td><p>Reads elements from a file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ereinf.html#ansys.mapdl.core.Mapdl.ereinf" title="ansys.mapdl.core.Mapdl.ereinf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.ereinf</span></code></a>(**kwargs)</p></td>
+<td><p>Generates reinforcing elements from selected existing (base) elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.errang.html#ansys.mapdl.core.Mapdl.errang" title="ansys.mapdl.core.Mapdl.errang"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.errang</span></code></a>([emin, emax, einc])</p></td>
+<td><p>Specifies the element range to be read from a file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.esurf.html#ansys.mapdl.core.Mapdl.esurf" title="ansys.mapdl.core.Mapdl.esurf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.esurf</span></code></a>([xnode, tlab, shape])</p></td>
+<td><p>Generates elements overlaid on the free faces of selected nodes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.esym.html#ansys.mapdl.core.Mapdl.esym" title="ansys.mapdl.core.Mapdl.esym"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.esym</span></code></a>([ninc, iel1, iel2, ieinc])</p></td>
+<td><p>Generates elements from a pattern by a symmetry reflection.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ewrite.html#ansys.mapdl.core.Mapdl.ewrite" title="ansys.mapdl.core.Mapdl.ewrite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.ewrite</span></code></a>([fname, ext, kappnd, format_])</p></td>
+<td><p>Writes elements to a file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.gcdef.html#ansys.mapdl.core.Mapdl.gcdef" title="ansys.mapdl.core.Mapdl.gcdef"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.gcdef</span></code></a>([option, sect1, sect2, matid, ...])</p></td>
+<td><p>Defines interface interactions between general contact surfaces.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.gcgen.html#ansys.mapdl.core.Mapdl.gcgen" title="ansys.mapdl.core.Mapdl.gcgen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.gcgen</span></code></a>([option, featureangle, edgekey, ...])</p></td>
+<td><p>Creates contact elements for general contact.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.inistate.html#ansys.mapdl.core.Mapdl.inistate" title="ansys.mapdl.core.Mapdl.inistate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.inistate</span></code></a>([action, val1, val2, val3, ...])</p></td>
+<td><p>Defines initial state data and parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.laylist.html#ansys.mapdl.core.Mapdl.laylist" title="ansys.mapdl.core.Mapdl.laylist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.laylist</span></code></a>([iel, layr1, layr2, mplab1, ...])</p></td>
+<td><p>Lists real constants material properties for layered elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.layplot.html#ansys.mapdl.core.Mapdl.layplot" title="ansys.mapdl.core.Mapdl.layplot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.layplot</span></code></a>([iel, layr1, layr2])</p></td>
+<td><p>Displays the layer stacking sequence for layered elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.lfsurf.html#ansys.mapdl.core.Mapdl.lfsurf" title="ansys.mapdl.core.Mapdl.lfsurf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.lfsurf</span></code></a>([sline, tline])</p></td>
+<td><p>Generates surface elements overlaid on the edge of existing solid</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ndsurf.html#ansys.mapdl.core.Mapdl.ndsurf" title="ansys.mapdl.core.Mapdl.ndsurf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.ndsurf</span></code></a>([snode, telem, dimn])</p></td>
+<td><p>Generates surface elements overlaid on the edge of existing elements</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.shsd.html#ansys.mapdl.core.Mapdl.shsd" title="ansys.mapdl.core.Mapdl.shsd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.shsd</span></code></a>([rid, action])</p></td>
+<td><p>Creates or deletes a shell-solid interface to be used in shell-to-solid assemblies.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.swadd.html#ansys.mapdl.core.Mapdl.swadd" title="ansys.mapdl.core.Mapdl.swadd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.swadd</span></code></a>([ecomp, shrd, ncm1, ncm2, ncm3, ...])</p></td>
+<td><p>Adds more surfaces to an existing spot weld set.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.swdel.html#ansys.mapdl.core.Mapdl.swdel" title="ansys.mapdl.core.Mapdl.swdel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.swdel</span></code></a>([ecomp])</p></td>
+<td><p>Deletes spot weld sets.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.swgen.html#ansys.mapdl.core.Mapdl.swgen" title="ansys.mapdl.core.Mapdl.swgen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.swgen</span></code></a>([ecomp, swrd, ncm1, ncm2, snd1, ...])</p></td>
+<td><p>Creates a new spot weld set.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.swlist.html#ansys.mapdl.core.Mapdl.swlist" title="ansys.mapdl.core.Mapdl.swlist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.swlist</span></code></a>([ecomp])</p></td>
+<td><p>Lists spot weld sets.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.tshap.html#ansys.mapdl.core.Mapdl.tshap" title="ansys.mapdl.core.Mapdl.tshap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.tshap</span></code></a>([shape])</p></td>
+<td><p>Defines simple 2-D and 3-D geometric surfaces for target segment</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.upgeom.html#ansys.mapdl.core.Mapdl.upgeom" title="ansys.mapdl.core.Mapdl.upgeom"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.upgeom</span></code></a>([factor, lstep, sbstep, fname, ext])</p></td>
+<td><p>Adds displacements from a previous analysis and updates the geometry of</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.usrdof.html#ansys.mapdl.core.Mapdl.usrdof" title="ansys.mapdl.core.Mapdl.usrdof"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.usrdof</span></code></a>([action, dof1, dof2, dof3, ...])</p></td>
+<td><p>Specifies the degrees of freedom for the user-defined element USER300.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.usrelem.html#ansys.mapdl.core.Mapdl.usrelem" title="ansys.mapdl.core.Mapdl.usrelem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.usrelem</span></code></a>([nnodes, ndim, keyshape, ...])</p></td>
+<td><p>Specifies the characteristics of the user-defined element USER300.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.wtbcreate.html#ansys.mapdl.core.Mapdl.wtbcreate" title="ansys.mapdl.core.Mapdl.wtbcreate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.wtbcreate</span></code></a>([iel, node, damp])</p></td>
+<td><p>Creates a USER300 element to model the turbine for full aeroelastic</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/mapdl_commands/prep7/elements.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.12.2. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+﻿anstoaqwa
+=========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.anstoaqwa

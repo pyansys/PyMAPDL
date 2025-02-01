@@ -1,0 +1,6 @@
+get\_elements\_per\_area
+========================
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. automethod:: LegacyGeometry.get_elements_per_area

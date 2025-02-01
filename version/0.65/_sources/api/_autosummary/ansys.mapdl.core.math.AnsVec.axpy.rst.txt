@@ -1,0 +1,6 @@
+axpy
+====
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. automethod:: AnsVec.axpy

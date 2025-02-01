@@ -1,0 +1,6 @@
+nodal\_thermal\_principal\_strain
+=================================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.nodal_thermal_principal_strain

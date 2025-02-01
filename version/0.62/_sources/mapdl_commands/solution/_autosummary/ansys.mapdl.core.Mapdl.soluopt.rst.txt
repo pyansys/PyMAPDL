@@ -1,0 +1,6 @@
+﻿soluopt
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.soluopt

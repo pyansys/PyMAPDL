@@ -1,0 +1,1016 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introduction to SLURM &#8212; PyMAPDL</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=e7c4c341" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=91007d66" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../_static/documentation_options.js?v=a98ddb9b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/hpc/introduction';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.68';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Setting PyMAPDL" href="settings.html" />
+    <link rel="prev" title="Harmonic analysis using the Krylov method" href="../krylov.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/user_guide/hpc/introduction.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyMAPDL - Home"/>
+    <script>document.write(`<img src="../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark" alt="PyMAPDL - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../changelog.html">
+    Release notes
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../changelog.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Basic</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../mapdl.html">PyMAPDL language and usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mesh_geometry.html">Mesh and geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">Interactive plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters.html">Setting and retrieving parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../components.html">Managing components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../post.html">Postprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshoot.html">Troubleshooting PyMAPDL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Intermediate</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">PyMAPDL command line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../convert.html">Translate scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database.html">Access MAPDL database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">PyAnsys Math overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pool.html">Create a pool of MAPDL instances</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../xpl.html">File explorer overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upf.html">Using Python to code UPF subroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../krylov.html">Harmonic analysis using the Krylov method</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">High performance computing</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to SLURM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings.html">Setting PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymapdl.html">PyMAPDL on SLURM HPC clusters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">User guide</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Introduction to SLURM</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="introduction-to-slurm">
+<span id="ref-hpc-slurm"></span><h1>Introduction to SLURM<a class="headerlink" href="#introduction-to-slurm" title="Link to this heading">#</a></h1>
+<p>High performance computing (HPC) clusters are powerful systems designed to handle
+computationally intensive tasks efficiently. SLURM (Simple Linux Utility for Resource
+Management) is one of the most widely used job schedulers in HPC environments. This
+page provides an overview of job submission using PyMAPDL and
+SLURM on HPC clusters.</p>
+<section id="what-is-slurm">
+<h2>What is SLURM?<a class="headerlink" href="#what-is-slurm" title="Link to this heading">#</a></h2>
+<p>SLURM is an open source workload manager and job scheduler designed for Linux
+clusters of all sizes. It efficiently allocates resources (compute nodes, CPU
+cores, memory, and GPUs) to jobs submitted by users.</p>
+<p>For more information on SLURM, see the <a class="reference external" href="https://slurm.schedmd.com">SLURM documentation</a>.</p>
+</section>
+<section id="basic-terms">
+<h2>Basic terms<a class="headerlink" href="#basic-terms" title="Link to this heading">#</a></h2>
+<p>Descriptions follow of basic terms.</p>
+<ul class="simple">
+<li><p><strong>Nodes</strong>: Individual computing servers within the cluster.</p></li>
+<li><p><strong>Compute node</strong>: A type of node used only for running processes.
+It is not accessible from outside the cluster.</p></li>
+<li><p><strong>Login node</strong>: A type of node used only for login and job submission.
+No computation should be performed on it. It is sometimes referred to as
+<em>virtual desktop infrastructure</em> (VDI).</p></li>
+<li><p><strong>Partition</strong>: A logical grouping of nodes with similar characteristics (for
+example, CPU architecture and memory size).</p></li>
+<li><p><strong>Job</strong>: A task submitted to SLURM for execution.</p></li>
+<li><p><strong>Queue</strong>: A waiting area where jobs are held until resources become available.</p></li>
+<li><p><strong>Scheduler</strong>: The component responsible for deciding which job gets
+executed and when and where it gets executed.</p></li>
+</ul>
+</section>
+<section id="regular-job-submission-workflow">
+<h2>Regular job submission workflow<a class="headerlink" href="#regular-job-submission-workflow" title="Link to this heading">#</a></h2>
+<section id="log-into-the-cluster">
+<span id="ref-hpc-login"></span><h3>Log into the cluster<a class="headerlink" href="#log-into-the-cluster" title="Link to this heading">#</a></h3>
+<p>You need access credentials and permissions to log in and submit jobs on the HPC cluster.
+Depending on the login node configuration, you can log in using Virtual Network
+Computing (VNC) applications or a terminal.</p>
+<p>For example, you can log in to a login node using the terminal:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">user@machine:~$ </span>ssh<span class="w"> </span>username@login-node-hostname
+</pre></div>
+</div>
+</section>
+<section id="writing-a-slurm-batch-script">
+<h3>Writing a SLURM batch script<a class="headerlink" href="#writing-a-slurm-batch-script" title="Link to this heading">#</a></h3>
+<p>A SLURM batch script is a shell script that specifies
+job parameters and commands to execute. Here’s a basic example:</p>
+<p><strong>my_script.sh</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=myjob</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=4</span>
+<span class="c1">#SBATCH --time=01:00:00</span>
+
+<span class="c1"># Commands to run</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Hello, SLURM!&quot;</span>
+srun<span class="w"> </span>my_executable
+</pre></div>
+</div>
+<p>This script is run using <code class="docutils literal notranslate"><span class="pre">srun</span></code> and <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>.
+Notice how comments in the file prefixed with <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> describe the job configuration.
+For more information on available <code class="docutils literal notranslate"><span class="pre">srun</span></code> and <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>
+arguments, see <a class="reference external" href="https://slurm.schedmd.com/srun.html">Slurm Workload Manager - srun</a> and
+<a class="reference external" href="https://slurm.schedmd.com/sbatch.html">Slurm Workload Manager - sbatch</a>.</p>
+</section>
+<section id="submitting-a-job">
+<h3>Submitting a job<a class="headerlink" href="#submitting-a-job" title="Link to this heading">#</a></h3>
+<p>To submit a job, use the <code class="docutils literal notranslate"><span class="pre">srun</span></code> command followed by the name of
+the batch script:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">user@machine:~$ </span>srun<span class="w"> </span>my_script.sh
+</pre></div>
+</div>
+<p>If you prefer to submit a batch job, you can use the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">user@machine:~$ </span>sbatch<span class="w"> </span>my_script.sh
+</pre></div>
+</div>
+<p>You can specify each job setting using the command line. For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">user@machine:~$ </span>srun<span class="w"> </span>--nodes<span class="o">=</span><span class="m">2</span><span class="w"> </span>my_script.sh
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Command line arguments versus in-file arguments</strong>:
+Command line arguments do <strong>NOT</strong> overwrite the equivalent arguments
+written in the bash file. Hence, you must ensure that the argument that you
+want to pass using the command line is not already present in the bash file.</p>
+</div>
+</section>
+</section>
+<section id="monitoring-jobs">
+<h2>Monitoring jobs<a class="headerlink" href="#monitoring-jobs" title="Link to this heading">#</a></h2>
+<section id="view-the-job-queue">
+<h3>View the job queue<a class="headerlink" href="#view-the-job-queue" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command displays information about jobs that are currently queued or
+running on the system.</p>
+<p><strong>Basic usage:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>squeue
+</pre></div>
+</div>
+<p><strong>To see jobs from a specific user:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>squeue<span class="w"> </span>-u<span class="w"> </span>username
+</pre></div>
+</div>
+<p><strong>To filter jobs by partition:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>squeue<span class="w"> </span>-p<span class="w"> </span>partition_name
+</pre></div>
+</div>
+<p><strong>Common options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-l</span></code> or <code class="docutils literal notranslate"><span class="pre">--long</span></code>: Displays detailed information about each job.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--start</span></code>: Predicts and shows the start times for pending jobs.</p></li>
+</ul>
+</section>
+<section id="control-the-jobs-and-configuration">
+<h3>Control the jobs and configuration<a class="headerlink" href="#control-the-jobs-and-configuration" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">scontrol</span></code> command provides a way to view and modify the SLURM configuration and state.
+It’s a versatile tool for managing jobs, nodes, partitions, and more.</p>
+<p><strong>Show information about a job:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scontrol<span class="w"> </span>show<span class="w"> </span>job<span class="w"> </span>&lt;jobID&gt;
+</pre></div>
+</div>
+<p><strong>Show information about a node:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scontrol<span class="w"> </span>show<span class="w"> </span>node<span class="w"> </span>nodename
+</pre></div>
+</div>
+<p><strong>Hold and release jobs:</strong></p>
+<ul class="simple">
+<li><p>To hold a job (stop it from starting): <code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">hold</span> <span class="pre">&lt;jobID&gt;</span></code></p></li>
+<li><p>To release a job on hold: <code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">release</span> <span class="pre">&lt;jobID&gt;</span></code></p></li>
+</ul>
+</section>
+<section id="cancel-jobs">
+<h3>Cancel jobs<a class="headerlink" href="#cancel-jobs" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">scancel</span></code> command cancels a running or pending job.</p>
+<p><strong>Cancel a specific job:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scancel<span class="w"> </span>&lt;jobID&gt;
+</pre></div>
+</div>
+<p><strong>Cancel all jobs of a specific user:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scancel<span class="w"> </span>-u<span class="w"> </span>username
+</pre></div>
+</div>
+<p><strong>Cancel jobs by partition:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scancel<span class="w"> </span>-p<span class="w"> </span>partition_name
+</pre></div>
+</div>
+<p><strong>Common options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--name=jobname</span></code>: Cancels all jobs with a specific name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--state=pending</span></code>: Cancels all jobs in a specific state,
+such as all pending jobs as shown.</p></li>
+</ul>
+</section>
+<section id="report-accounting-information">
+<h3>Report accounting Information<a class="headerlink" href="#report-accounting-information" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">sacct</span></code> account reports job or job step accounting information
+about active or completed jobs.</p>
+<p><strong>Basic usage:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sacct
+</pre></div>
+</div>
+<p><strong>To see information about jobs from a specific user:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sacct<span class="w"> </span>-u<span class="w"> </span>username
+</pre></div>
+</div>
+<p><strong>To show information about a specific job or job range:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sacct<span class="w"> </span>-j<span class="w"> </span>&lt;jobID&gt;
+sacct<span class="w"> </span>-j<span class="w"> </span>&lt;jobID_1&gt;,&lt;jobID_2&gt;
+</pre></div>
+</div>
+<p><strong>Common options:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--format</span></code>: Specifies which fields to display.
+For example, <code class="docutils literal notranslate"><span class="pre">--format=JobID,JobName,State</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-S</span></code> and <code class="docutils literal notranslate"><span class="pre">-E</span></code>: Sets the start and end times for the report.
+For example, <code class="docutils literal notranslate"><span class="pre">-S</span> <span class="pre">2023-01-01</span> <span class="pre">-E</span> <span class="pre">2023-01-31</span></code>.</p></li>
+</ul>
+<p>For more information, see the SLURM documentation
+or use the <code class="docutils literal notranslate"><span class="pre">man</span></code> command (for example, <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">squeue</span></code>) to explore all available
+options and their usage.</p>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best practices<a class="headerlink" href="#best-practices" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Optimize resource usage to minimize job wait times and maximize cluster efficiency.</p></li>
+<li><p>Regularly monitor job queues and system resources to identify potential bottlenecks.</p></li>
+<li><p>Follow naming conventions for batch scripts and job names to maintain organization.</p></li>
+<li><p>Keep batch scripts and job submissions concise and well-documented
+for reproducibility and troubleshooting.</p></li>
+</ul>
+</section>
+<section id="advanced-configuration">
+<h2>Advanced configuration<a class="headerlink" href="#advanced-configuration" title="Link to this heading">#</a></h2>
+<p>The following topics provide some advanced ideas for you to
+explore when using PyMAPDL on HPC clusters.
+In this section, these topics are just briefly described so
+you can use online resources such as <a class="reference external" href="https://slurm.schedmd.com">SLURM documentation</a>.</p>
+<section id="advanced-job-management">
+<h3>Advanced job management<a class="headerlink" href="#advanced-job-management" title="Link to this heading">#</a></h3>
+<section id="job-dependencies">
+<h4>Job dependencies<a class="headerlink" href="#job-dependencies" title="Link to this heading">#</a></h4>
+<p>Specify dependencies between jobs using the <code class="docutils literal notranslate"><span class="pre">--dependency</span></code> flag.
+Jobs can depend on completion, failure, or other criteria of previously submitted jobs.</p>
+</section>
+<section id="array-jobs">
+<h4>Array jobs<a class="headerlink" href="#array-jobs" title="Link to this heading">#</a></h4>
+<p>Submit multiple jobs as an array using the <code class="docutils literal notranslate"><span class="pre">--array</span></code> flag. Each array
+element corresponds to a separate job, allowing for parallel execution of similar tasks.</p>
+</section>
+<section id="job-arrays-with-dependencies">
+<h4>Job arrays with dependencies<a class="headerlink" href="#job-arrays-with-dependencies" title="Link to this heading">#</a></h4>
+<p>Combine array jobs with dependencies for complex job
+scheduling requirements. This allows for parallel execution while maintaining dependencies
+between individual tasks.</p>
+</section>
+</section>
+<section id="resource-allocation-and-request">
+<h3>Resource allocation and request<a class="headerlink" href="#resource-allocation-and-request" title="Link to this heading">#</a></h3>
+<section id="specify-resources">
+<h4>Specify resources<a class="headerlink" href="#specify-resources" title="Link to this heading">#</a></h4>
+<p>Use SLURM directives in batch scripts to specify required
+resources such as number of nodes, CPU cores, memory, and time limit.</p>
+</section>
+<section id="request-resources">
+<h4>Request resources<a class="headerlink" href="#request-resources" title="Link to this heading">#</a></h4>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">--constraint</span></code> flag to request specific hardware
+configurations (for example, CPU architecture) or the <code class="docutils literal notranslate"><span class="pre">--gres</span></code> flag for requesting generic
+resources like GPUs.</p>
+</section>
+<section id="resource-limits">
+<h4>Resource Limits<a class="headerlink" href="#resource-limits" title="Link to this heading">#</a></h4>
+<p>Set resource limits for individual jobs using directives such as
+<code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code>, <code class="docutils literal notranslate"><span class="pre">--mem</span></code>, and <code class="docutils literal notranslate"><span class="pre">--time</span></code>.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-slurm">What is SLURM?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-terms">Basic terms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-job-submission-workflow">Regular job submission workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#log-into-the-cluster">Log into the cluster</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-slurm-batch-script">Writing a SLURM batch script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-a-job">Submitting a job</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-jobs">Monitoring jobs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#view-the-job-queue">View the job queue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-the-jobs-and-configuration">Control the jobs and configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cancel-jobs">Cancel jobs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#report-accounting-information">Report accounting Information</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices">Best practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-configuration">Advanced configuration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-job-management">Advanced job management</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#job-dependencies">Job dependencies</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#array-jobs">Array jobs</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#job-arrays-with-dependencies">Job arrays with dependencies</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resource-allocation-and-request">Resource allocation and request</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#specify-resources">Specify resources</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#request-resources">Request resources</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#resource-limits">Resource Limits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/user_guide/hpc/introduction.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="../../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+
+
+
+
+
+
+
+<script>
+var theme_static_search = JSON.parse('{"ignoreLocation": "False", "keys": ["title", "text"], "shouldSort": "True", "threshold": 0.5, "useExtendedSearch": "True"}');
+var theme_limit = "10";
+var min_chars_for_search = "1";
+var searchPath = "../../_static/search.json";
+
+</script>
+
+<script src="../../_static/js/fuse_search.js"></script>
+<script src="../../_static/js/fuse_extension.js"></script>
+<footer class="bd-footer" font-size="4px">
+  <div class="bd-footer__inner bd-page-width">
+    <div class="footer-items__start">
+      <div class="footer-item">
+        <p class="copyright">
+          PyMAPDL 0.68.6 © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+          <br>
+        </p>
+      </div>
+    </div>
+    <div class="footer-items__end">
+      <div class="footer-item">
+        <p class="theme-version">
+          Built with the
+          <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a>
+          1.1.2. and
+           <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.0.
+          on <span id="date"></span>
+        </p>
+        <script>
+          var options = { day: "numeric", month: "long", year: "numeric" };
+          var lastModifiedDate = new Date(document.lastModified);
+          var date = lastModifiedDate.toLocaleDateString("en-US", options);
+          document.getElementById("date").innerHTML = date;
+        </script>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

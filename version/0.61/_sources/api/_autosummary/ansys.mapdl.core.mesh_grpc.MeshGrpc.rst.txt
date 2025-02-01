@@ -1,0 +1,54 @@
+﻿MeshGrpc
+========
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoclass:: MeshGrpc
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      MeshGrpc.element_coord_system
+      
+      
+      MeshGrpc.save
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      MeshGrpc.ekey
+      MeshGrpc.elem
+      MeshGrpc.elem_real_constant
+      MeshGrpc.element_components
+      MeshGrpc.enum
+      MeshGrpc.enum_all
+      MeshGrpc.etype
+      MeshGrpc.grid
+      MeshGrpc.key_option
+      MeshGrpc.material_type
+      MeshGrpc.n_elem
+      MeshGrpc.n_node
+      MeshGrpc.nnum
+      MeshGrpc.nnum_all
+      MeshGrpc.node_angles
+      MeshGrpc.node_components
+      MeshGrpc.nodes
+      MeshGrpc.rlblock
+      MeshGrpc.rlblock_num
+      MeshGrpc.section
+   
+   

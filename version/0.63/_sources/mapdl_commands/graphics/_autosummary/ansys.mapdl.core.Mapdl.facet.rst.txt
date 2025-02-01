@@ -1,0 +1,6 @@
+﻿facet
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.facet

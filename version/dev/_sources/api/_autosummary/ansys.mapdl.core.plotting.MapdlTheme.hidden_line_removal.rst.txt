@@ -1,0 +1,6 @@
+hidden\_line\_removal
+=====================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.hidden_line_removal

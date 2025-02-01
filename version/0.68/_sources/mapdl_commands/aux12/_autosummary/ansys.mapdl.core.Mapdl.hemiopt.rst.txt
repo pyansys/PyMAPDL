@@ -1,0 +1,6 @@
+﻿hemiopt
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.hemiopt

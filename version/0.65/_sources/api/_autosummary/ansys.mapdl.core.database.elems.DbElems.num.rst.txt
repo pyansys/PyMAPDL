@@ -1,0 +1,6 @@
+num
+===
+
+.. currentmodule:: ansys.mapdl.core.database.elems
+
+.. automethod:: DbElems.num

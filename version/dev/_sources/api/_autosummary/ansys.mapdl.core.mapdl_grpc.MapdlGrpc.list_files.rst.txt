@@ -1,0 +1,6 @@
+﻿list\_files
+===========
+
+.. currentmodule:: ansys.mapdl.core.mapdl_grpc
+
+.. automethod:: MapdlGrpc.list_files

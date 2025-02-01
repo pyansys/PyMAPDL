@@ -1,0 +1,6 @@
+﻿edfplot
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edfplot

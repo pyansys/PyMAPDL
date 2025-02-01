@@ -1,0 +1,6 @@
+﻿tshap
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.tshap

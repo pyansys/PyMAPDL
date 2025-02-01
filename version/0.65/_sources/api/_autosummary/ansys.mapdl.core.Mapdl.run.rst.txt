@@ -1,0 +1,6 @@
+﻿run
+===
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.run

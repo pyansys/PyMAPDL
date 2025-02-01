@@ -1,0 +1,6 @@
+restore\_defaults
+=================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. automethod:: MapdlTheme.restore_defaults

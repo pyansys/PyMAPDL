@@ -1,0 +1,6 @@
+nodal\_total\_principal\_strain
+===============================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.nodal_total_principal_strain

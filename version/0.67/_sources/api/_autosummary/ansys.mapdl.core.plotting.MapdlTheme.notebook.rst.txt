@@ -1,0 +1,6 @@
+notebook
+========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.notebook

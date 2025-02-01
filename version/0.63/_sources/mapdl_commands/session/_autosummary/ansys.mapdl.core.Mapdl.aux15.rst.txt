@@ -1,0 +1,6 @@
+﻿aux15
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.aux15

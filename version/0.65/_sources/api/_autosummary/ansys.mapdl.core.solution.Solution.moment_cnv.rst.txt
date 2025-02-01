@@ -1,0 +1,6 @@
+moment\_cnv
+===========
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.moment_cnv

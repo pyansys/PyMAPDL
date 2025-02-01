@@ -1,0 +1,6 @@
+time\_step\_size
+================
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.time_step_size

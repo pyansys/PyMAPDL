@@ -1,0 +1,6 @@
+﻿is\_grpc
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.is_grpc

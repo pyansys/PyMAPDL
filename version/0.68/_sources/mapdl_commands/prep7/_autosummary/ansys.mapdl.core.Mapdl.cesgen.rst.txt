@@ -1,0 +1,6 @@
+﻿cesgen
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.cesgen

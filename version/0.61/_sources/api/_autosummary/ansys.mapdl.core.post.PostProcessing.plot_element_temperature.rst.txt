@@ -1,0 +1,6 @@
+plot\_element\_temperature
+==========================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.plot_element_temperature

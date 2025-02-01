@@ -1,0 +1,6 @@
+﻿transfer
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.transfer

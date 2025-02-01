@@ -1,0 +1,6 @@
+﻿blc4
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.blc4

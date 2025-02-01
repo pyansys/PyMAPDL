@@ -1,0 +1,6 @@
+force\_cnv
+==========
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.force_cnv

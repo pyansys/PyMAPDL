@@ -1,0 +1,6 @@
+﻿prnsol
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.prnsol

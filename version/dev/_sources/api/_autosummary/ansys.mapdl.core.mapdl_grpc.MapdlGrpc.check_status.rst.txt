@@ -1,0 +1,6 @@
+﻿check\_status
+=============
+
+.. currentmodule:: ansys.mapdl.core.mapdl_grpc
+
+.. autoproperty:: MapdlGrpc.check_status

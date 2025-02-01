@@ -1,0 +1,6 @@
+subtract
+========
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. automethod:: MapdlMath.subtract

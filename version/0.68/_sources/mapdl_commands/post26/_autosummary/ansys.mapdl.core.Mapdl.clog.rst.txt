@@ -1,0 +1,6 @@
+﻿clog
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.clog

@@ -1,0 +1,6 @@
+﻿tbeo
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.tbeo

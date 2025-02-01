@@ -1,0 +1,6 @@
+﻿uz
+==
+
+.. currentmodule:: ansys.mapdl.core.inline_functions
+
+.. automethod:: Query.uz

@@ -1,0 +1,6 @@
+﻿modmsh
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.modmsh

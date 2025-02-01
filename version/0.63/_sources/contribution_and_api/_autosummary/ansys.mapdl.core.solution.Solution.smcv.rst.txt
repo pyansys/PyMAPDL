@@ -1,0 +1,6 @@
+smcv
+====
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.smcv

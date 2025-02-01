@@ -1,0 +1,6 @@
+﻿is\_alive
+=========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.is_alive

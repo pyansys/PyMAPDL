@@ -1,0 +1,6 @@
+next\_available
+===============
+
+.. currentmodule:: ansys.mapdl.core.pool
+
+.. automethod:: MapdlPool.next_available

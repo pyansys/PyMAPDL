@@ -1,0 +1,6 @@
+add\_mesh
+=========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. automethod:: MapdlPlotter.add_mesh

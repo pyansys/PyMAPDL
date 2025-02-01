@@ -1,0 +1,6 @@
+﻿get\_nodal\_loads
+=================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.get_nodal_loads

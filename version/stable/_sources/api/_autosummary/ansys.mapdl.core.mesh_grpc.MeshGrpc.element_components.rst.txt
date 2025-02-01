@@ -1,0 +1,6 @@
+element\_components
+===================
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoproperty:: MeshGrpc.element_components

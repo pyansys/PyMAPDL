@@ -1,0 +1,6 @@
+areas
+=====
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. automethod:: LegacyGeometry.areas

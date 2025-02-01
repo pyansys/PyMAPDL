@@ -1,0 +1,6 @@
+items
+=====
+
+.. currentmodule:: ansys.mapdl.core.parameters
+
+.. automethod:: Parameters.items

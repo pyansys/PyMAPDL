@@ -1,0 +1,6 @@
+﻿plcfreq
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.plcfreq

@@ -1,0 +1,95 @@
+﻿MapdlTheme
+==========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoclass:: MapdlTheme
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      MapdlTheme.from_dict
+      
+      
+      MapdlTheme.load_theme
+      
+      
+      MapdlTheme.restore_defaults
+      
+      
+      MapdlTheme.save
+      
+      
+      MapdlTheme.to_dict
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      MapdlTheme.above_range_color
+      MapdlTheme.anti_aliasing
+      MapdlTheme.auto_close
+      MapdlTheme.axes
+      MapdlTheme.background
+      MapdlTheme.before_close_callback
+      MapdlTheme.below_range_color
+      MapdlTheme.camera
+      MapdlTheme.cmap
+      MapdlTheme.color
+      MapdlTheme.color_cycler
+      MapdlTheme.colorbar_horizontal
+      MapdlTheme.colorbar_orientation
+      MapdlTheme.colorbar_vertical
+      MapdlTheme.depth_peeling
+      MapdlTheme.edge_color
+      MapdlTheme.enable_camera_orientation_widget
+      MapdlTheme.floor_color
+      MapdlTheme.font
+      MapdlTheme.full_screen
+      MapdlTheme.hidden_line_removal
+      MapdlTheme.image_scale
+      MapdlTheme.interactive
+      MapdlTheme.interpolate_before_map
+      MapdlTheme.jupyter_backend
+      MapdlTheme.lighting
+      MapdlTheme.lighting_params
+      MapdlTheme.line_width
+      MapdlTheme.multi_rendering_splitting_position
+      MapdlTheme.multi_samples
+      MapdlTheme.name
+      MapdlTheme.nan_color
+      MapdlTheme.notebook
+      MapdlTheme.opacity
+      MapdlTheme.outline_color
+      MapdlTheme.point_size
+      MapdlTheme.render_lines_as_tubes
+      MapdlTheme.render_points_as_spheres
+      MapdlTheme.return_cpos
+      MapdlTheme.sharp_edges_feature_angle
+      MapdlTheme.show_edges
+      MapdlTheme.show_scalar_bar
+      MapdlTheme.show_vertices
+      MapdlTheme.silhouette
+      MapdlTheme.slider_styles
+      MapdlTheme.smooth_shading
+      MapdlTheme.split_sharp_edges
+      MapdlTheme.title
+      MapdlTheme.trame
+      MapdlTheme.transparent_background
+      MapdlTheme.volume_mapper
+      MapdlTheme.window_size
+   
+   

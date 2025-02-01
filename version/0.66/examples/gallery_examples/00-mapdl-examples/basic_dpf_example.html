@@ -1,0 +1,1007 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Basic DPF-Core Usage with PyMAPDL &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css?v=62c9ccaa" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+ 
+<link href="../../../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../../../_static/documentation_options.js?v=71ded878"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/00-mapdl-examples/basic_dpf_example';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.66';
+        </script>
+    <link rel="icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Static simulation of double cantilever beam test via cohesive elements" href="composite_dcb.html" />
+    <link rel="prev" title="3D Acoustic Analysis" href="acoustic_analysis.html" />
+<link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/gallery_examples/00-mapdl-examples/basic_dpf_example.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+
+<!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.66  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>   <div class="container-xl">
+  <div class="row">
+    <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+    <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul> 
+<li class="nav-item nav-item-additional-breadcrumb">
+  <a href="https://docs.pyansys.com/">PyAnsys</a> » 
+</li>
+ 
+<li class="nav-item nav-item-0">
+  <a href="../../../index.html">PyMAPDL</a> » 
+</li>
+ 
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Examples</a> » </li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Full examples using PyMAPDL</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Basic DPF-Core Usage with PyMAPDL</a></li> 
+      </ul>
+    </div></div>
+  </div>
+</div>
+ 
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.66  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Full examples using PyMAPDL</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2d_plate_with_a_hole.html">MAPDL 2D Plane Stress Concentration Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2d_pressure_vessel.html">2D Pressure Vessel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyMAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BodyFlux-Averaging.html">Analysis of a 2D magnetostatic solenoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acoustic_analysis.html">3D Acoustic Analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Basic DPF-Core Usage with PyMAPDL</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="composite_dcb.html">Static simulation of double cantilever beam test via cohesive elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contact_elements.html">Contact Element Example</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cyclic_analysis.html">Cyclic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cyclic_static.html">Static Cyclic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exhaust_manifold_thermal_stress.html">Thermal-structural analysis of exhaust manifold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">Plotting and Mesh Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lathe_cutter.html">Structural Analysis of a Lathe Cutter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_operations.html">Path Operations within pyMAPDL and MAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pressure_vessel.html">Pressure Vessel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slashmap_cfx_mapping.html">CFX pressure data mapping to structural blade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../01-geometry/index.html">Geometry examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-tips-n-tricks/index.html">Miscellaneous examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-general-fea/index.html">Academic finite element examples</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/verif-manual/index.html">Verification Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/technology_showcase_examples/index.html">Technology Showcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/index.html">Extended examples</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-gallery-examples-00-mapdl-examples-basic-dpf-example-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="basic-dpf-core-usage-with-pymapdl">
+<span id="ref-dpf-basic-example"></span><span id="sphx-glr-examples-gallery-examples-00-mapdl-examples-basic-dpf-example-py"></span><h1>Basic DPF-Core Usage with PyMAPDL<a class="headerlink" href="#basic-dpf-core-usage-with-pymapdl" title="Link to this heading">#</a></h1>
+<p>This example is adapted from
+<a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/examples/00-basic/00-basic_example.html">Basic DPF-Core Usage Example</a>
+and it shows how to open a result file in <a class="reference external" href="https://dpf.docs.pyansys.com/">DPF</a> and do some
+basic postprocessing.</p>
+<p>If you have Ansys 2021 R1 installed, starting DPF is quite easy
+as DPF-Core takes care of launching all the services that
+are required for postprocessing Ansys files.</p>
+<p>First, import the DPF-Core module as <code class="docutils literal notranslate"><span class="pre">dpf_core</span></code> and import the
+included examples file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="kn">from</span> <span class="nn">ansys.dpf</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">dpf</span>
+
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core.examples</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">vmfiles</span></a>
+</pre></div>
+</div>
+</section>
+<section id="create-model">
+<h1>Create model<a class="headerlink" href="#create-model" title="Link to this heading">#</a></h1>
+<p>Running an example from the MAPDL verification manual</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">vm5</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">vmfiles</span></a><span class="p">[</span><span class="s2">&quot;vm5&quot;</span><span class="p">]</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">output</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">vm5</span></a><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">output</span></a><span class="p">)</span>
+
+<span class="c1"># If you are working locally, you don&#39;t need to perform the following steps</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">temp_directory</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/tempfile.html#tempfile.gettempdir" title="tempfile.gettempdir" class="sphx-glr-backref-module-tempfile sphx-glr-backref-type-py-function"><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span></a><span class="p">()</span>
+
+<span class="c1"># Downloading RST file to the current folder</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_path</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">download_result</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">temp_directory</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/INPUT FILE= vm5.dat  LINE=       0
+ANSYS MEDIA REL. 2023R1 (11/04/2022) REF. VERIF. MANUAL: REL. 2023R1
+
+*** VERIFICATION RUN - CASE VM5                              ***  OPTION=  4
+
+
+/SHOW SWITCH PLOTS TO  JPEG        - RASTER MODE.
+  *****MAPDL VERIFICATION RUN ONLY*****
+    DO NOT USE RESULTS FOR PRODUCTION
+
+         ***** MAPDL ANALYSIS DEFINITION (PREP7) *****
+
+TITLE=
+ VM5, LATERALLY LOADED TAPERED SUPPORT STRUCTURE (QUAD. ELEMENTS)
+
+
+C***     MECHANICS OF SOLIDS, CRANDALL AND DAHL, 1959, PAGE 342, PROB. 7.18
+
+
+C***          USING PLANE42 ELEMENTS
+
+
+
+PERFORM A STATIC ANALYSIS
+ THIS WILL BE A NEW ANALYSIS
+
+ELEMENT TYPE          1 IS PLANE182     2-D 4-NODE PLANE STRS SOLID
+ KEYOPT( 1- 6)=        2      0      3        0      0      0
+ KEYOPT( 7-12)=        0      0      0        0      0      0
+ KEYOPT(13-18)=        0      0      0        0      0      0
+
+CURRENT NODAL DOF SET IS  UX    UY
+ TWO-DIMENSIONAL MODEL
+
+REAL CONSTANT SET          1  ITEMS   1 TO   6
+   2.0000       0.0000       0.0000       0.0000       0.0000       0.0000
+
+MATERIAL          1     EX   =  0.3000000E+08
+
+MATERIAL          1     NUXY =   0.000000
+
+NODE          1  KCS=      0  X,Y,Z=  25.000       0.0000       0.0000
+
+NODE          7  KCS=      0  X,Y,Z=  75.000       0.0000       0.0000
+
+FILL       5 POINTS BETWEEN NODE       1 AND NODE       7
+ START WITH NODE       2 AND INCREMENT BY       1
+
+NODE          8  KCS=      0  X,Y,Z=  25.000      -3.0000       0.0000
+
+NODE         14  KCS=      0  X,Y,Z=  75.000      -9.0000       0.0000
+
+FILL       5 POINTS BETWEEN NODE       8 AND NODE      14
+ START WITH NODE       9 AND INCREMENT BY       1
+
+ELEMENT      1       2      1      8      9
+
+GENERATE       6 TOTAL SETS OF ELEMENTS WITH NODE INCREMENT OF         1
+  SET IS SELECTED ELEMENTS IN RANGE         1 TO         1 IN STEPS OF       1
+
+MAXIMUM ELEMENT NUMBER=         6
+
+SELECT       FOR ITEM=LOC  COMPONENT=X     BETWEEN  75.000     AND   75.000
+  KABS=  0.  TOLERANCE= 0.375000
+
+         2  NODES (OF         14  DEFINED) SELECTED BY  NSEL  COMMAND.
+
+SPECIFIED CONSTRAINT UX   FOR SELECTED NODES            1 TO          14 BY           1
+REAL=  0.00000000       IMAG=  0.00000000
+ADDITIONAL DOFS=  UY
+
+ALL SELECT   FOR ITEM=NODE COMPONENT=
+ IN RANGE         1 TO         14 STEP          1
+
+        14  NODES (OF         14  DEFINED) SELECTED BY NSEL  COMMAND.
+
+SPECIFIED NODAL LOAD FY   FOR SELECTED NODES         1 TO        1 BY        1
+ REAL= -4000.00000       IMAG=  0.00000000
+
+
+***** ROUTINE COMPLETED *****  CP =         0.000
+
+
+
+*****  MAPDL SOLUTION ROUTINE  *****
+
+PRINT BASI ITEMS WITH A FREQUENCY OF      1
+  FOR ALL APPLICABLE ENTITIES
+
+/OUTPUT FILE=
+</pre></div>
+</div>
+<p>Next, open the generated RST file and print out the
+<a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.model.html#ansys.dpf.core.model.Model" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> object.
+The <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.model.html#ansys.dpf.core.model.Model" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> class helps to
+organize access methods for the result by
+keeping track of the operators and data sources used by the result
+file.</p>
+<p>Printing the model displays:</p>
+<ul class="simple">
+<li><p>Analysis type</p></li>
+<li><p>Available results</p></li>
+<li><p>Size of the mesh</p></li>
+<li><p>Number of results</p></li>
+</ul>
+<p>If you are working with a remote server, you might need to upload the <code class="docutils literal notranslate"><span class="pre">RST</span></code>
+file before working with it.
+Then you can create the <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.model.html#ansys.dpf.core.model.Model" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DPF</span> <span class="pre">Model</span></code></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpf</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">make_tmp_dir_server</span><span class="p">(</span><span class="n">dpf</span><span class="o">.</span><span class="n">SERVER</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">dpf</span><span class="o">.</span><span class="n">SERVER</span><span class="o">.</span><span class="n">local_server</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_path</span></a><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">server_file_path</span></a> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">upload_file_in_tmp_folder</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">rst_path</span></a><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">dpf</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">server_file_path</span></a><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPF Model
+------------------------------
+Static analysis
+Unit system: SI: m, kg, s, V, A, K
+Physics Type: Mecanic
+Available results:
+     -  displacement: Nodal Displacement
+     -  reaction_force: Nodal Force
+     -  element_nodal_forces: ElementalNodal Element nodal Forces
+     -  stress: ElementalNodal Stress
+     -  elemental_volume: Elemental Volume
+     -  stiffness_matrix_energy: Elemental Energy-stiffness matrix
+     -  artificial_hourglass_energy: Elemental Hourglass Energy
+     -  thermal_dissipation_energy: Elemental thermal dissipation energy
+     -  kinetic_energy: Elemental Kinetic Energy
+     -  co_energy: Elemental co-energy
+     -  incremental_energy: Elemental incremental energy
+     -  elastic_strain: ElementalNodal Strain
+     -  thermal_strain: ElementalNodal Thermal Strains
+     -  thermal_strains_eqv: ElementalNodal Thermal Strains eqv
+     -  swelling_strains: ElementalNodal Swelling Strains
+     -  structural_temperature: ElementalNodal Temperature
+------------------------------
+DPF  Meshed Region:
+  33 nodes
+  6 elements
+  Unit:
+  With shell (2D) elements, shell (3D) elements
+------------------------------
+DPF  Time/Freq Support:
+  Number of sets: 1
+Cumulative     Time (s)       LoadStep       Substep
+1              1.000000       1              1
+</pre></div>
+</div>
+</section>
+<section id="model-metadata">
+<h1>Model Metadata<a class="headerlink" href="#model-metadata" title="Link to this heading">#</a></h1>
+<p>Specific metadata can be extracted from the model by referencing the
+model’s <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.model.html#ansys.dpf.core.model.Model.metadata" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">metadata</span></code></a>
+property.  For example, to print only the
+<a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.model.html#ansys.dpf.core.model.Metadata.result_info" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-attr docutils literal notranslate"><span class="pre">result_info</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">metadata</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">result_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Static analysis
+Unit system: SI: m, kg, s, V, A, K
+Physics Type: Mecanic
+Available results:
+     -  displacement: Nodal Displacement
+     -  reaction_force: Nodal Force
+     -  element_nodal_forces: ElementalNodal Element nodal Forces
+     -  stress: ElementalNodal Stress
+     -  elemental_volume: Elemental Volume
+     -  stiffness_matrix_energy: Elemental Energy-stiffness matrix
+     -  artificial_hourglass_energy: Elemental Hourglass Energy
+     -  thermal_dissipation_energy: Elemental thermal dissipation energy
+     -  kinetic_energy: Elemental Kinetic Energy
+     -  co_energy: Elemental co-energy
+     -  incremental_energy: Elemental incremental energy
+     -  elastic_strain: ElementalNodal Strain
+     -  thermal_strain: ElementalNodal Thermal Strains
+     -  thermal_strains_eqv: ElementalNodal Thermal Strains eqv
+     -  swelling_strains: ElementalNodal Swelling Strains
+     -  structural_temperature: ElementalNodal Temperature
+</pre></div>
+</div>
+<p>To print the <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.meshed_region.html#ansys.dpf.core.meshed_region.MeshedRegion" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">mesh</span> <span class="pre">region</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">meshed_region</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPF  Meshed Region:
+  33 nodes
+  6 elements
+  Unit:
+  With shell (2D) elements, shell (3D) elements
+</pre></div>
+</div>
+<p>To print the time or frequency of the results use
+<a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.time_freq_support.html#ansys.dpf.core.time_freq_support.TimeFreqSupport" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">time_freq_support</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">metadata</span><span class="o">.</span><span class="n">time_freq_support</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPF  Time/Freq Support:
+  Number of sets: 1
+Cumulative     Time (s)       LoadStep       Substep
+1              1.000000       1              1
+</pre></div>
+</div>
+</section>
+<section id="extracting-displacement-results">
+<h1>Extracting Displacement Results<a class="headerlink" href="#extracting-displacement-results" title="Link to this heading">#</a></h1>
+<p>All results of the model can be accessed through the <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.results.html#ansys.dpf.core.results.Results" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Results</span></code></a>
+property, which returns the <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.results.html#ansys.dpf.core.results.Results" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ansys.dpf.core.results.Results</span></code></a>
+class. This class contains the DPF result operators available to a
+specific result file, which are listed when printing the object with
+<code class="docutils literal notranslate"><span class="pre">print(results)</span></code>.</p>
+<p>Here, the <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.operators.result.displacement.html#ansys.dpf.core.operators.result.displacement.displacement" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">displacement</span></code></a>
+operator is connected with
+<a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.data_sources.html#ansys.dpf.core.data_sources.DataSources" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSources</span></code></a>, which
+takes place automatically when running
+<a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.operators.result.displacement.html#ansys.dpf.core.operators.result.displacement.displacement" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">results.displacement()</span></code></a>.
+By default, the <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.operators.result.displacement.html#ansys.dpf.core.operators.result.displacement.displacement" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">displacement</span></code></a>
+operator is connected to the first result set,
+which for this static result is the only result.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">results</span>
+<span class="n">displacements</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">displacement</span><span class="p">()</span>
+<span class="n">fields</span> <span class="o">=</span> <span class="n">displacements</span><span class="o">.</span><span class="n">outputs</span><span class="o">.</span><span class="n">fields_container</span><span class="p">()</span>
+
+<span class="c1"># Finally, extract the data of the displacement field:</span>
+<span class="n">disp</span> <span class="o">=</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">disp</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>DPFArray([[-4.38851905e-03, -8.90023185e-03,  0.00000000e+00],
+          [-6.69683824e-03, -2.11175625e-02,  0.00000000e+00],
+          [ 4.17859820e-03, -2.11057663e-02,  0.00000000e+00],
+          [ 3.30502628e-03, -8.89049154e-03,  0.00000000e+00],
+          [-5.53644478e-03, -1.42612890e-02,  0.00000000e+00],
+          [-1.20792265e-03, -2.11145211e-02,  0.00000000e+00],
+          [ 3.82436228e-03, -1.42559816e-02,  0.00000000e+00],
+          [-4.90502176e-04, -8.89780417e-03,  0.00000000e+00],
+          [-2.17801557e-03, -2.15151386e-03,  0.00000000e+00],
+          [ 1.82830253e-03, -2.15124124e-03,  0.00000000e+00],
+          [-3.27160527e-03, -4.90756375e-03,  0.00000000e+00],
+          [ 2.63019818e-03, -4.89004246e-03,  0.00000000e+00],
+          [-8.95838911e-05, -2.15503538e-03,  0.00000000e+00],
+          [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
+          [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
+          [-1.07316284e-03, -5.41584305e-04,  0.00000000e+00],
+          [ 9.59021573e-04, -5.64429271e-04,  0.00000000e+00],
+          [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00],
+          [-1.10106159e-02, -6.60224200e-02,  0.00000000e+00],
+          [-1.20838957e-02, -9.90994350e-02,  0.00000000e+00],
+          [ 3.61860276e-04, -9.88721453e-02,  0.00000000e+00],
+          [ 3.23207196e-03, -6.59380057e-02,  0.00000000e+00],
+          [-1.17563515e-02, -8.18061655e-02,  0.00000000e+00],
+          [-5.82220244e-03, -9.89754713e-02,  0.00000000e+00],
+          [ 2.08036965e-03, -8.18682795e-02,  0.00000000e+00],
+          [-3.87518431e-03, -6.59854725e-02,  0.00000000e+00],
+          [-8.99066833e-03, -3.98506343e-02,  0.00000000e+00],
+          [ 4.27062988e-03, -3.98210573e-02,  0.00000000e+00],
+          [-1.00608366e-02, -5.19510806e-02,  0.00000000e+00],
+          [ 3.92601832e-03, -5.19563394e-02,  0.00000000e+00],
+          [-2.31550786e-03, -3.98370089e-02,  0.00000000e+00],
+          [-7.85485340e-03, -2.95981071e-02,  0.00000000e+00],
+          [ 4.34038437e-03, -2.95942670e-02,  0.00000000e+00]])
+</pre></div>
+</div>
+</section>
+<section id="plot-displacements">
+<h1>Plot displacements<a class="headerlink" href="#plot-displacements" title="Link to this heading">#</a></h1>
+<p>You can plot the previous displacement field using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">meshed_region</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_basic_dpf_example_001.png" srcset="../../../_images/sphx_glr_basic_dpf_example_001.png" alt="basic dpf example" class = "sphx-glr-single-img"/><p>Or using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_basic_dpf_example_002.png" srcset="../../../_images/sphx_glr_basic_dpf_example_002.png" alt="basic dpf example" class = "sphx-glr-single-img"/><p>This way is particularly useful if you have used <a class="reference external" href="https://dpf.docs.pyansys.com/version/stable/api/ansys.dpf.core.scoping.html#ansys.dpf.core.scoping.Scoping" title="(in PyDPF-Core v0.9.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ansys.dpf.core.scoping.Scoping</span></code></a>
+on the mesh or results.</p>
+</section>
+<section id="close-session">
+<h1>Close session<a class="headerlink" href="#close-session" title="Link to this heading">#</a></h1>
+<p>Stop MAPDL session.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.166 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-00-mapdl-examples-basic-dpf-example-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/ecf711c7d9f2354345dfbb6bd9191eeb/basic_dpf_example.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">basic_dpf_example.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/cf3ed876db4518ae25425d0eccb40a2a/basic_dpf_example.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">basic_dpf_example.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+                </article>
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Basic DPF-Core Usage with PyMAPDL</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-model">Create model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#model-metadata">Model Metadata</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-displacement-results">Extracting Displacement Results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-displacements">Plot displacements</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#close-session">Close session</a></li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/pyansys/pymapdl/edit/main/examples/00-mapdl-examples/basic_dpf_example.py">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.11.2. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

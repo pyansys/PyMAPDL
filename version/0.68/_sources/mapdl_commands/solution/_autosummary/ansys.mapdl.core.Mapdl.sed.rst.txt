@@ -1,0 +1,6 @@
+﻿sed
+===
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sed

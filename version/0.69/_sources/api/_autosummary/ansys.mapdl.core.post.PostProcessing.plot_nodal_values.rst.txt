@@ -1,0 +1,6 @@
+plot\_nodal\_values
+===================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.plot_nodal_values

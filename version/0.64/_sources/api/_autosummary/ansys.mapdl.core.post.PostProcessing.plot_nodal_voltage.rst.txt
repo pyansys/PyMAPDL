@@ -1,0 +1,6 @@
+plot\_nodal\_voltage
+====================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.plot_nodal_voltage

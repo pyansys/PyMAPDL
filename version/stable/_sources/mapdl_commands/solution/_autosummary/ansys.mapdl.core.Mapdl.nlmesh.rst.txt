@@ -1,0 +1,6 @@
+﻿nlmesh
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.nlmesh

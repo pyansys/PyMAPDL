@@ -1,0 +1,6 @@
+plot\_nodal\_total\_strain\_intensity
+=====================================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.plot_nodal_total_strain_intensity

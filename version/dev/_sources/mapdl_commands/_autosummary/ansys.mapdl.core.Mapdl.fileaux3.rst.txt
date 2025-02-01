@@ -1,0 +1,6 @@
+﻿fileaux3
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.fileaux3

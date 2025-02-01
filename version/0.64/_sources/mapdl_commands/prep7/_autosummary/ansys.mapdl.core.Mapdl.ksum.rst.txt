@@ -1,0 +1,6 @@
+﻿ksum
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ksum

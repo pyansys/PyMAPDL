@@ -1,0 +1,6 @@
+nodal\_pressure
+===============
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.nodal_pressure

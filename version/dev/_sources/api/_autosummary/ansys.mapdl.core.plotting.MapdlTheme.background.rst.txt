@@ -1,0 +1,6 @@
+background
+==========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.background

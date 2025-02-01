@@ -1,0 +1,6 @@
+﻿remove\_temp\_dir\_on\_exit
+===========================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoattribute:: Mapdl.remove_temp_dir_on_exit

@@ -1,0 +1,6 @@
+﻿mat
+===
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.mat

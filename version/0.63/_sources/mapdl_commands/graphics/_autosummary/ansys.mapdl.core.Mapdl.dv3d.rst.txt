@@ -1,0 +1,6 @@
+﻿dv3d
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.dv3d

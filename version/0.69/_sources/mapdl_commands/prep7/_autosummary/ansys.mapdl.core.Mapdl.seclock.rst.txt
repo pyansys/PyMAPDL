@@ -1,0 +1,6 @@
+﻿seclock
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.seclock

@@ -1,0 +1,6 @@
+﻿mode
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.mode

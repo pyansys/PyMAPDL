@@ -1,0 +1,6 @@
+﻿yrange
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.yrange

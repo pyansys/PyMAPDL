@@ -1,0 +1,6 @@
+wait\_for\_ready
+================
+
+.. currentmodule:: ansys.mapdl.core.pool
+
+.. automethod:: MapdlPool.wait_for_ready

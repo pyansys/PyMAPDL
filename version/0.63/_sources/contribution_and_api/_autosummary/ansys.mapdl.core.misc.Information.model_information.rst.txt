@@ -1,0 +1,6 @@
+﻿model\_information
+==================
+
+.. currentmodule:: ansys.mapdl.core.misc
+
+.. autoproperty:: Information.model_information

@@ -1,0 +1,12 @@
+
+:orphan:
+
+.. _sphx_glr_examples_07-technology-showcase-examples_sg_execution_times:
+
+Computation times
+=================
+**00:56.845** total execution time for **examples_07-technology-showcase-examples** files:
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_07-technology-showcase-examples_20-example-technology-showcase-dynamic-simulation-PCB.py` (``20-example-technology-showcase-dynamic-simulation-PCB.py``) | 00:56.845 | 0.0 MB |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+

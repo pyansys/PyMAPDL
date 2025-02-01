@@ -1,0 +1,6 @@
+all\_asarray
+============
+
+.. currentmodule:: ansys.mapdl.core.database.nodes
+
+.. automethod:: DbNodes.all_asarray

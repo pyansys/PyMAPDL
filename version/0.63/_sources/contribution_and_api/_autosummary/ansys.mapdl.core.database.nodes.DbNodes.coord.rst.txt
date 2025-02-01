@@ -1,0 +1,6 @@
+coord
+=====
+
+.. currentmodule:: ansys.mapdl.core.database.nodes
+
+.. automethod:: DbNodes.coord

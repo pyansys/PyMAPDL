@@ -1,0 +1,6 @@
+auto\_close
+===========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.auto_close

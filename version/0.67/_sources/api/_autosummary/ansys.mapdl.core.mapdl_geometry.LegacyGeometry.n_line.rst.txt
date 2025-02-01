@@ -1,0 +1,6 @@
+n\_line
+=======
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. autoproperty:: LegacyGeometry.n_line

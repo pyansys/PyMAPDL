@@ -1,0 +1,1160 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>UPF in PyMAPDL &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css?v=068850c2" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+ 
+<link href="../../../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=77059071"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/extended_examples/Python_UPF/python_upf_examples';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.65';
+        </script>
+    <link rel="icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Harmonic analysis using the frequency-sweep Krylov method" href="../Krylov/krylov_example.html" />
+    <link rel="prev" title="Gmsh example" href="../ex_01-gmsh_example/ex_01-gmsh_example.html" />
+<link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/extended_examples/Python_UPF/python_upf_examples.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+
+<!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.65  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>   <div class="container-xl">
+  <div class="row">
+    <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+    <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul> 
+<li class="nav-item nav-item-additional-breadcrumb">
+  <a href="https://docs.pyansys.com/">PyAnsys</a> » 
+</li>
+ 
+<li class="nav-item nav-item-0">
+  <a href="../../../index.html">PyMAPDL</a> » 
+</li>
+ 
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Examples</a> » </li>
+          <li class="nav-item nav-item-2"><a href="../index.html" accesskey="U">Extended examples</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">UPF in PyMAPDL</a></li> 
+      </ul>
+    </div></div>
+  </div>
+</div>
+ 
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.65  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/index.html">Full examples using PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/01-apdlmath-examples/index.html">PyMAPDL math examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/02-geometry/index.html">Geometry examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/03-tips-n-tricks/index.html">Miscellaneous examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/04-general-fea/index.html">Academic finite element examples</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/verif-manual/index.html">Verification Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/technology_showcase_examples/index.html">Technology Showcases</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Extended examples</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference external" href="http://cartpole.mapdl.docs.pyansys.com/ml-rl-notebook.html">Cart-Pole Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ex_01-gmsh_example/ex_01-gmsh_example.html">Gmsh example</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">UPF in PyMAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Krylov/krylov_example.html">Harmonic analysis using the frequency-sweep Krylov method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dash/dash_example.html">Use Dash to build a PyMAPDL web app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../executable/executable.html">Create your own Python command-line app</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="upf-in-pymapdl">
+<span id="python-upf-examples"></span><h1>UPF in PyMAPDL<a class="headerlink" href="#upf-in-pymapdl" title="Permalink to this heading">#</a></h1>
+<p>The following Python UPF examples are available:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#python-usermat-subroutine">Python UserMat subroutine</a></p></li>
+<li><p><a class="reference internal" href="#python-usrshift-subroutine">Python UsrShift subroutine</a></p></li>
+<li><p><a class="reference internal" href="#python-userhyper-subroutine">Python UserHyper subroutine</a></p></li>
+</ul>
+<section id="python-usermat-subroutine">
+<h2>Python <code class="docutils literal notranslate"><span class="pre">UserMat</span></code> subroutine<a class="headerlink" href="#python-usermat-subroutine" title="Permalink to this heading">#</a></h2>
+<p>This example simulates a block modeled with 3D elements. The
+user material in the <code class="docutils literal notranslate"><span class="pre">usermat.py</span></code> file is equivalent to linear elastic.
+The block is under uniaxial compression. The final deformation is compared
+with the theoretical result.</p>
+<section id="input-data">
+<h3>Input data<a class="headerlink" href="#input-data" title="Permalink to this heading">#</a></h3>
+<div class="highlight-apdl notranslate"><div class="highlight"><pre><span></span><span class="k">/batch</span><span class="p">,</span><span class="nv">list</span>
+<span class="k">/title</span><span class="p">,</span><span class="nv">upf</span><span class="o">-</span><span class="nv">py1s</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test usermat.py with 3D elements&#39;</span>
+
+<span class="k">/prep7</span>
+<span class="k">/upf</span><span class="p">,</span><span class="s1">&#39;usermat.py&#39;</span>
+<span class="k">tb</span><span class="p">,</span><span class="nv">user</span><span class="p">,</span><span class="mi">1</span><span class="p">,,</span><span class="mi">2</span>
+<span class="k">tbdata</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1e5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="w">    </span><span class="c">! E, Poisson</span>
+
+<span class="k">et</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">185</span>
+
+<span class="k">block</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">esize</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">mshape</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="nv">D</span>
+<span class="k">vmesh</span><span class="p">,</span><span class="nv">all</span>
+<span class="k">elist</span>
+
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">x</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">ux</span>
+
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">uy</span>
+
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">z</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">uz</span><span class="p">,</span>
+
+<span class="k">allsel</span><span class="p">,</span><span class="nv">all</span>
+<span class="k">finish</span>
+
+<span class="k">/solu</span>
+
+<span class="k">time</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">deltime</span><span class="p">,</span><span class="mf">0.1</span>
+<span class="k">eresx</span><span class="p">,</span><span class="nv">no</span>
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">x</span><span class="p">,</span><span class="mi">1</span>
+<span class="c">!d,all,ux,-0.01</span>
+<span class="k">sf</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">pres</span><span class="p">,</span><span class="mi">1000</span><span class="w">        </span><span class="c">! pressure on x-axis</span>
+<span class="k">allsel</span><span class="p">,</span><span class="nv">all</span>
+
+<span class="k">outres</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">all</span>
+
+<span class="k">solve</span>
+
+<span class="k">finish</span>
+<span class="k">/POST1</span>
+<span class="k">set</span><span class="p">,</span><span class="nv">last</span>
+<span class="k">esel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">elem</span><span class="p">,,</span><span class="mi">1</span>
+<span class="k">/output</span>
+<span class="k">presol</span><span class="p">,</span><span class="nv">s</span>
+<span class="k">presol</span><span class="p">,</span><span class="nv">epel</span>
+<span class="k">/com</span><span class="p">,</span><span class="w"> </span><span class="nv">expected</span><span class="w"> </span><span class="nv">results</span><span class="p">:</span><span class="w"> </span><span class="nv">Sx</span><span class="o">=-</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="nv">epel_x</span><span class="o">=</span><span class="mf">-1e-2</span>
+<span class="k">finish</span>
+<span class="k">/exit</span><span class="p">,</span><span class="nv">nosave</span>
+</pre></div>
+</div>
+</section>
+<section id="usermat-py-file">
+<h3><code class="docutils literal notranslate"><span class="pre">usermat.py</span></code> file<a class="headerlink" href="#usermat-py-file" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">grpc</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">mapdl</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="k">class</span> <span class="nc">MapdlUserService</span><span class="p">(</span><span class="n">MapdlUser_pb2_grpc</span><span class="o">.</span><span class="n">MapdlUserServiceServicer</span><span class="p">):</span>
+    <span class="c1">#   #################################################################</span>
+    <span class="k">def</span> <span class="nf">UserMat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="n">ncomp</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">ncomp</span>
+        <span class="n">nDirect</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">nDirect</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">MapdlUser_pb2</span><span class="o">.</span><span class="n">UserMatResponse</span><span class="p">()</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">stress</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">stress</span><span class="p">[:]</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">ustatev</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">ustatev</span><span class="p">[:]</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">sedEl</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">sedEl</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">sedPl</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">sedPl</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">epseq</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">epseq</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">epsPl</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">epsPl</span><span class="p">[:]</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">var0</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">var0</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">var3</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">var3</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">var4</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">var4</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">var5</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">var5</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">var6</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">var6</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">var7</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">var7</span>
+
+        <span class="k">if</span> <span class="n">ncomp</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>  <span class="c1"># ***    3d, plane strain and axisymmetric example</span>
+            <span class="n">usermat3d</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">nDirect</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">ncomp</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># ***    plane stress example</span>
+            <span class="n">usermatps</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ncomp</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>  <span class="c1"># ***    3d beam example</span>
+            <span class="n">usermatbm</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">ncomp</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># ***    1d beam example</span>
+            <span class="n">usermat1d</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span>
+
+
+<span class="k">def</span> <span class="nf">usermat3d</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="n">ZERO</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">HALF</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">THIRD</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">3.0</span>
+    <span class="n">ONE</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">TWO</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="n">SMALL</span> <span class="o">=</span> <span class="mf">1.0e-08</span>
+    <span class="n">sqTiny</span> <span class="o">=</span> <span class="mf">1.0e-20</span>
+    <span class="n">ONEDM02</span> <span class="o">=</span> <span class="mf">1.0e-02</span>
+    <span class="n">ONEDM05</span> <span class="o">=</span> <span class="mf">1.0e-05</span>
+    <span class="n">ONEHALF</span> <span class="o">=</span> <span class="mf">1.5</span>
+    <span class="n">TWOTHIRD</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="mf">3.0</span>
+    <span class="n">mcomp</span> <span class="o">=</span> <span class="mi">6</span>
+
+    <span class="n">G</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+
+    <span class="n">db</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>  <span class="c1"># Connect to the MAPDL DB gRPC Server</span>
+    <span class="n">ncomp</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">ncomp</span>
+
+    <span class="c1"># *** get Young&#39;s modulus and Poisson&#39;s ratio</span>
+    <span class="n">young</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">prop</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">posn</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">prop</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">twoG</span> <span class="o">=</span> <span class="n">young</span> <span class="o">/</span> <span class="p">(</span><span class="n">ONE</span> <span class="o">+</span> <span class="n">posn</span><span class="p">)</span>
+    <span class="n">elast1</span> <span class="o">=</span> <span class="n">young</span> <span class="o">*</span> <span class="n">posn</span> <span class="o">/</span> <span class="p">((</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">posn</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">posn</span><span class="p">))</span>
+    <span class="n">elast2</span> <span class="o">=</span> <span class="n">HALF</span> <span class="o">*</span> <span class="n">twoG</span>
+
+    <span class="c1">#</span>
+    <span class="c1"># *** calculate elastic stiffness matrix (3d)</span>
+    <span class="c1">#</span>
+    <span class="n">dsdeEl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">elast1</span> <span class="o">+</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">elast2</span><span class="p">)</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">elast1</span> <span class="o">+</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">elast2</span><span class="p">)</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">elast1</span> <span class="o">+</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">elast2</span><span class="p">)</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="n">TWO</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+
+    <span class="n">dsdeEl</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">elast1</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">elast2</span> <span class="o">*</span> <span class="p">(</span><span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="n">dsdeEl</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dsdeEl</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+
+    <span class="n">Strain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ncomp</span><span class="p">)</span>
+    <span class="n">Strain</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">ncomp</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">Strain</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">ncomp</span><span class="p">]</span>
+    <span class="n">dStrain</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ncomp</span><span class="p">)</span>
+    <span class="n">dStrain</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">ncomp</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">dStrain</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">ncomp</span><span class="p">]</span>
+
+    <span class="c1">#</span>
+    <span class="c1"># *** calculate the stress and</span>
+    <span class="c1">#     copy elastic moduli dsdeEl to material Jacobian matrix</span>
+
+    <span class="n">strainEl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">Strain</span><span class="p">)</span>  <span class="c1"># strainEl = Strain</span>
+    <span class="n">strainEl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">strainEl</span><span class="p">,</span> <span class="n">dStrain</span><span class="p">)</span>  <span class="c1"># strainEl += dStrain</span>
+
+    <span class="n">dsdePl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">dsdeEl</span><span class="p">)</span>
+    <span class="n">sigElp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ncomp</span><span class="p">)</span>
+    <span class="n">sigElp</span> <span class="o">=</span> <span class="n">dsdeEl</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">strainEl</span><span class="p">)</span>
+
+    <span class="n">response</span><span class="o">.</span><span class="n">stress</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">sigElp</span>
+    <span class="n">dsdePl</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">*</span> <span class="mi">6</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">dsdePl</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">dsdePl</span>
+
+    <span class="k">return</span> <span class="n">response</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">upf</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="python-usrshift-subroutine">
+<h2>Python <code class="docutils literal notranslate"><span class="pre">UsrShift</span></code> subroutine<a class="headerlink" href="#python-usrshift-subroutine" title="Permalink to this heading">#</a></h2>
+<p>This example describes a block of Prony viscoplastic material with a user-defined
+shift function following a Tool-Narayanaswamy shift function. Uniaxial tension is
+applied on one end and held for 15 seconds with a constant 280 K uniform
+temperature. The final stress is obtained to verify stress relaxation.</p>
+<section id="id1">
+<h3>Input data<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<div class="highlight-apdl notranslate"><div class="highlight"><pre><span></span><span class="k">/batch</span><span class="p">,</span><span class="nv">list</span>
+<span class="k">/title</span><span class="p">,</span><span class="nv">upf</span><span class="o">-</span><span class="nv">py10s</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test usrshift.py&#39;</span>
+
+<span class="k">/prep7</span>
+<span class="k">/upf</span><span class="p">,</span><span class="s1">&#39;usrshift.py&#39;</span>
+
+<span class="nv">n1</span><span class="o">=</span><span class="mi">60</span>
+<span class="nv">n2</span><span class="o">=</span><span class="nv">n1</span><span class="o">*</span><span class="mi">10</span>
+<span class="nv">n3</span><span class="o">=</span><span class="nv">n1</span>
+<span class="nv">dy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0045</span>
+<span class="nv">fact</span><span class="o">=</span><span class="mi">2</span>
+<span class="nv">t1end</span><span class="o">=</span><span class="mf">30.0</span><span class="o">/</span><span class="nv">fact</span>
+<span class="nv">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span>
+<span class="nv">tau</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="nv">a1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">alpha</span><span class="w">          </span><span class="c">! participating factor for el182, 183</span>
+<span class="nv">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tau</span>
+<span class="nv">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">a1</span><span class="o">/</span><span class="nv">a1</span><span class="w">          </span><span class="c">! participating factor for el88</span>
+
+<span class="nv">tr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="nv">theta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">280</span>
+<span class="k">toffst</span><span class="p">,</span><span class="mi">273</span>
+<span class="k">tunif</span><span class="p">,</span><span class="w"> </span><span class="nv">theta</span>
+<span class="k">tref</span><span class="p">,</span><span class="mi">0</span>
+<span class="nv">b1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">log</span><span class="o">(</span><span class="nv">fact</span><span class="o">)*(</span><span class="mi">273</span><span class="o">+</span><span class="nv">tr</span><span class="o">)*(</span><span class="mi">273</span><span class="o">+</span><span class="nv">theta</span><span class="o">)/(</span><span class="nv">theta</span><span class="o">-</span><span class="nv">tr</span><span class="o">)</span>
+<span class="nv">b2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">b11</span><span class="o">=</span><span class="nv">b1</span><span class="o">/</span><span class="mi">273</span><span class="o">/</span><span class="mi">273</span>
+
+<span class="nv">young</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20e5</span>
+<span class="nv">poiss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.3</span>
+<span class="nv">G0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">young</span><span class="o">/</span><span class="mi">2</span><span class="o">/(</span><span class="mi">1</span><span class="o">+</span><span class="nv">poiss</span><span class="o">)</span>
+<span class="nv">K0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">young</span><span class="o">/</span><span class="mi">3</span><span class="o">/(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="nv">poiss</span><span class="o">)</span>
+
+<span class="c">! material 1                ! rate-dependent vpl</span>
+<span class="k">mp</span><span class="p">,</span><span class="nv">ex</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nv">young</span>
+<span class="k">mp</span><span class="p">,</span><span class="nv">nuxy</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.3</span>
+<span class="k">tb</span><span class="p">,</span><span class="nv">prony</span><span class="p">,</span><span class="mi">1</span><span class="p">,,</span><span class="mi">1</span><span class="p">,</span><span class="nv">shear</span><span class="w">         </span><span class="c">! define viscousity parameters</span>
+<span class="k">tbdata</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nv">a1</span><span class="p">,</span><span class="nv">t1</span>
+<span class="k">tb</span><span class="p">,</span><span class="nv">prony</span><span class="p">,</span><span class="mi">1</span><span class="p">,,</span><span class="mi">1</span><span class="p">,</span><span class="nv">bulk</span><span class="w">          </span><span class="c">! define viscousity parameters</span>
+<span class="k">tbdata</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nv">a1</span><span class="p">,</span><span class="nv">t1</span>
+<span class="k">tb</span><span class="p">,</span><span class="nv">shift</span><span class="p">,</span><span class="mi">1</span><span class="p">,,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="w">           </span><span class="c">! Tool-Narayanaswamy shift function</span>
+<span class="k">tbdata</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nv">tr</span><span class="p">,</span><span class="nv">b11</span><span class="p">,</span>
+
+<span class="c">! FE model and mesh</span>
+
+<span class="k">et</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">186</span>
+<span class="k">mat</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">block</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">esize</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">vmesh</span><span class="p">,</span><span class="mi">1</span>
+
+<span class="k">nall</span>
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">x</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">ux</span>
+<span class="k">nall</span>
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">y</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">uy</span>
+<span class="k">nall</span>
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">z</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">uz</span>
+
+<span class="k">/solu</span>
+<span class="k">nlgeom</span><span class="p">,</span><span class="nv">on</span>
+<span class="k">cnvtol</span><span class="p">,</span><span class="nv">u</span><span class="p">,,</span><span class="mf">1.0e-8</span>
+<span class="k">cnvtol</span><span class="p">,</span><span class="nv">f</span><span class="p">,,</span><span class="mf">1.0e-6</span>
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="mf">1.000</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">uy</span><span class="p">,</span><span class="nv">dy</span>
+<span class="k">nall</span>
+<span class="k">time</span><span class="p">,</span><span class="mf">1.0e-8</span>
+<span class="k">nsubst</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">outres</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span>
+<span class="k">solve</span>
+
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="mf">1.000</span>
+<span class="k">time</span><span class="p">,</span><span class="nv">t1end</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">uy</span><span class="p">,</span><span class="nv">dy</span>
+<span class="k">nall</span>
+<span class="k">nsubst</span><span class="p">,</span><span class="nv">n1</span><span class="p">,</span><span class="nv">n2</span><span class="p">,</span><span class="nv">n3</span>
+<span class="k">outres</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span>
+<span class="k">outpr</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">last</span>
+<span class="k">solve</span>
+
+<span class="k">finish</span>
+
+<span class="k">/post1</span>
+<span class="k">set</span><span class="p">,</span><span class="nv">last</span>
+<span class="k">/output</span>
+<span class="k">presol</span><span class="p">,</span><span class="nv">s</span>
+
+<span class="k">/com</span><span class="p">,</span><span class="w"> </span><span class="nv">expected</span><span class="w"> </span><span class="nv">results</span><span class="w">   </span><span class="nv">Sy</span><span class="o">=</span><span class="mf">4490.0</span>
+
+<span class="k">finish</span>
+<span class="k">/exit</span><span class="p">,</span><span class="nv">nosave</span>
+</pre></div>
+</div>
+</section>
+<section id="usrshift-py-file">
+<h3><code class="docutils literal notranslate"><span class="pre">usrshift.py</span></code> file<a class="headerlink" href="#usrshift-py-file" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">grpc</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">mapdl</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="k">class</span> <span class="nc">MapdlUserService</span><span class="p">(</span><span class="n">MapdlUser_pb2_grpc</span><span class="o">.</span><span class="n">MapdlUserServiceServicer</span><span class="p">):</span>
+    <span class="c1">#   #################################################################</span>
+
+    <span class="k">def</span> <span class="nf">UsrShift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">MapdlUser_pb2</span><span class="o">.</span><span class="n">UsrShiftResponse</span><span class="p">()</span>
+        <span class="n">one</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">half</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="n">quart</span> <span class="o">=</span> <span class="mf">0.25</span>
+
+        <span class="n">tref</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">propsh</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">temp</span>
+        <span class="n">timinc</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">timinc</span>
+        <span class="n">dtemp</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">dtemp</span>
+        <span class="n">nTerms</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">nTerms</span>
+
+        <span class="n">thalf</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">-</span> <span class="n">dtemp</span> <span class="o">*</span> <span class="n">half</span> <span class="o">-</span> <span class="n">tref</span>
+        <span class="n">t3quart</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">-</span> <span class="n">dtemp</span> <span class="o">*</span> <span class="n">quart</span> <span class="o">-</span> <span class="n">tref</span>
+
+        <span class="n">c1</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">c2</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nTerms</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">c1</span> <span class="o">=</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="n">propsh</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">thalf</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">c2</span> <span class="o">=</span> <span class="n">c2</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="n">propsh</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">t3quart</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">dxi</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span> <span class="o">*</span> <span class="n">timinc</span>
+        <span class="n">dxihalf</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span> <span class="o">*</span> <span class="n">timinc</span> <span class="o">*</span> <span class="n">half</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">dxi</span> <span class="o">=</span> <span class="n">dxi</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">dxihalf</span> <span class="o">=</span> <span class="n">dxihalf</span>
+
+        <span class="k">return</span> <span class="n">response</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">upf</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="python-userhyper-subroutine">
+<h2>Python <code class="docutils literal notranslate"><span class="pre">UserHyper</span></code> subroutine<a class="headerlink" href="#python-userhyper-subroutine" title="Permalink to this heading">#</a></h2>
+<p>This example models a block under simple uniaxial tension. The block is made of a
+user-defined hyper material that is identical to Arruda-Boyce hyperelasticity. Large
+deformation effects are included. The final stress is printed for comparison against
+the reference.</p>
+<section id="id2">
+<h3>Input data<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<div class="highlight-apdl notranslate"><div class="highlight"><pre><span></span><span class="k">/BATCH</span><span class="p">,</span><span class="nv">LIST</span>
+<span class="k">/title</span><span class="p">,</span><span class="w"> </span><span class="nv">upf</span><span class="o">-</span><span class="nv">py16s</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;test UserHyper.py with MAPDL&#39;</span>
+<span class="k">/com</span><span class="p">,</span><span class="w"> </span><span class="nv">displacement</span><span class="o">-</span><span class="nv">controlled</span><span class="w"> </span><span class="nv">uniaxial</span><span class="w"> </span><span class="nv">tension</span><span class="w"> </span><span class="nv">test</span><span class="w"> </span><span class="nv">for</span><span class="w"> </span><span class="nv">Boyce</span><span class="w"> </span><span class="nv">material</span><span class="w"> </span><span class="nv">model</span>
+
+<span class="k">/prep7</span>
+
+<span class="k">/upf</span><span class="p">,</span><span class="s1">&#39;userhyper.py&#39;</span>
+<span class="k">tb</span><span class="p">,</span><span class="nv">hyper</span><span class="p">,</span><span class="mi">1</span><span class="p">,,,</span><span class="nv">user</span>
+<span class="k">tbdata</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">2.8284</span>
+
+<span class="k">et</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">185</span>
+
+<span class="k">block</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">esize</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">vmesh</span><span class="p">,</span><span class="mi">1</span>
+
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">x</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">ux</span>
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">y</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">uy</span>
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">z</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">uz</span>
+<span class="k">nall</span>
+
+<span class="k">nsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">x</span><span class="p">,</span><span class="mf">1.0</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">ux</span><span class="p">,</span><span class="mf">0.3</span>
+
+<span class="k">nall</span>
+
+<span class="k">/solu</span>
+
+<span class="k">nlgeom</span><span class="p">,</span><span class="nv">on</span>
+<span class="k">time</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">nsubst</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span>
+
+<span class="o">/</span><span class="nv">out</span><span class="p">,</span><span class="nv">scratch</span>
+<span class="k">solve</span>
+
+<span class="k">/post1</span>
+<span class="k">/output</span>
+
+<span class="k">set</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nv">last</span>
+<span class="k">presol</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">x</span>
+
+<span class="k">/com</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;expected results from equivalent userhyper.F&#39;</span>
+<span class="k">/com</span><span class="p">,</span><span class="w">    </span><span class="nv">NODE</span><span class="w">     </span><span class="nv">SX</span><span class="w">           </span><span class="nv">SY</span><span class="w">           </span><span class="nv">SZ</span><span class="w">           </span><span class="nv">SXY</span><span class="w">          </span><span class="nv">SYZ</span>
+<span class="k">/com</span><span class="p">,</span><span class="w">       </span><span class="mi">2</span><span class="w">  </span><span class="mf">0.20118</span><span class="w">      </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.13752E-015</span><span class="w"> </span><span class="mf">0.67903E-017</span>
+<span class="k">/com</span><span class="p">,</span><span class="w">       </span><span class="mi">4</span><span class="w">  </span><span class="mf">0.20118</span><span class="w">      </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.13776E-015</span><span class="w"> </span><span class="mf">0.40293E-017</span>
+<span class="k">/com</span><span class="p">,</span><span class="w">       </span><span class="mi">3</span><span class="w">  </span><span class="mf">0.20118</span><span class="w">      </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.50933E-015-0.10653E-014</span>
+<span class="k">/com</span><span class="p">,</span><span class="w">       </span><span class="mi">1</span><span class="w">  </span><span class="mf">0.20118</span><span class="w">      </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.50909E-015-0.54682E-015</span>
+<span class="k">/com</span><span class="p">,</span><span class="w">       </span><span class="mi">5</span><span class="w">  </span><span class="mf">0.20118</span><span class="w">      </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.32054E-003-0.15222E-015</span><span class="w"> </span><span class="mf">0.58245E-015</span>
+<span class="k">/com</span><span class="p">,</span><span class="w">       </span><span class="mi">6</span><span class="w">  </span><span class="mf">0.20118</span><span class="w">      </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.32054E-003-0.15313E-015</span><span class="w"> </span><span class="mf">0.10856E-014</span>
+<span class="k">/com</span><span class="p">,</span><span class="w">       </span><span class="mi">7</span><span class="w">  </span><span class="mf">0.20118</span><span class="w">      </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.32054E-003-0.55356E-015</span><span class="w"> </span><span class="mf">0.17421E-016</span>
+<span class="k">/com</span><span class="p">,</span><span class="w">       </span><span class="mi">8</span><span class="w">  </span><span class="mf">0.20118</span><span class="w">      </span><span class="mf">0.32054E-003</span><span class="w"> </span><span class="mf">0.32054E-003-0.55265E-015</span><span class="w"> </span><span class="mf">0.28848E-016</span>
+
+<span class="k">finish</span>
+<span class="k">/exit</span><span class="p">,</span><span class="nv">nosave</span>
+</pre></div>
+</div>
+</section>
+<section id="userhyper-py-file">
+<h3><code class="docutils literal notranslate"><span class="pre">userhyper.py</span></code> file<a class="headerlink" href="#userhyper-py-file" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">grpc</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">mapdl</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">firstcall</span> <span class="o">=</span> <span class="mi">1</span>
+
+
+<span class="k">class</span> <span class="nc">MapdlUserService</span><span class="p">(</span><span class="n">MapdlUser_pb2_grpc</span><span class="o">.</span><span class="n">MapdlUserServiceServicer</span><span class="p">):</span>
+    <span class="c1">#   #################################################################</span>
+    <span class="k">def</span> <span class="nf">UserHyper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="k">global</span> <span class="n">firstcall</span>
+        <span class="k">if</span> <span class="n">firstcall</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&gt;&gt; Using Python UserHyper function</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">firstcall</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">prophy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">prophy</span><span class="p">)</span>
+        <span class="n">invar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">invar</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">MapdlUser_pb2</span><span class="o">.</span><span class="n">UserHyperResponse</span><span class="p">()</span>
+
+        <span class="n">ZERO</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">ONE</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">HALF</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="n">TWO</span> <span class="o">=</span> <span class="mf">2.0</span>
+        <span class="n">THREE</span> <span class="o">=</span> <span class="mf">3.0</span>
+        <span class="n">TOLER</span> <span class="o">=</span> <span class="mf">1.0e-12</span>
+
+        <span class="n">ci</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mf">0.5</span><span class="p">,</span>
+            <span class="mf">0.05</span><span class="p">,</span>
+            <span class="mf">0.104761904761905e-01</span><span class="p">,</span>
+            <span class="mf">0.271428571428571e-02</span><span class="p">,</span>
+            <span class="mf">0.770315398886827e-03</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">i1</span> <span class="o">=</span> <span class="n">invar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">jj</span> <span class="o">=</span> <span class="n">invar</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">mu</span> <span class="o">=</span> <span class="n">prophy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">lm</span> <span class="o">=</span> <span class="n">prophy</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">oD1</span> <span class="o">=</span> <span class="n">prophy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">i1i</span> <span class="o">=</span> <span class="n">ONE</span>
+        <span class="n">im1</span> <span class="o">=</span> <span class="n">ONE</span> <span class="o">/</span> <span class="n">i1</span>
+        <span class="n">t3i</span> <span class="o">=</span> <span class="n">ONE</span>
+        <span class="n">potential</span> <span class="o">=</span> <span class="n">ZERO</span>
+        <span class="n">pInvDer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+            <span class="n">ia</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">t3i</span> <span class="o">=</span> <span class="n">t3i</span> <span class="o">*</span> <span class="n">THREE</span>
+            <span class="n">i1i</span> <span class="o">=</span> <span class="n">i1i</span> <span class="o">*</span> <span class="n">i1</span>
+            <span class="n">i1i1</span> <span class="o">=</span> <span class="n">i1i</span> <span class="o">*</span> <span class="n">im1</span>
+            <span class="n">i1i2</span> <span class="o">=</span> <span class="n">i1i1</span> <span class="o">*</span> <span class="n">im1</span>
+            <span class="n">lm2</span> <span class="o">=</span> <span class="n">ci</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">lm</span> <span class="o">**</span> <span class="p">(</span><span class="n">TWO</span> <span class="o">*</span> <span class="p">(</span><span class="n">ia</span> <span class="o">-</span> <span class="n">ONE</span><span class="p">)))</span>
+            <span class="n">potential</span> <span class="o">=</span> <span class="n">potential</span> <span class="o">+</span> <span class="n">lm2</span> <span class="o">*</span> <span class="p">(</span><span class="n">i1i</span> <span class="o">-</span> <span class="n">t3i</span><span class="p">)</span>
+            <span class="n">pInvDer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInvDer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">lm2</span> <span class="o">*</span> <span class="n">ia</span> <span class="o">*</span> <span class="n">i1i1</span>
+            <span class="n">pInvDer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInvDer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">lm2</span> <span class="o">*</span> <span class="n">ia</span> <span class="o">*</span> <span class="p">(</span><span class="n">ia</span> <span class="o">-</span> <span class="n">ONE</span><span class="p">)</span> <span class="o">*</span> <span class="n">i1i2</span>
+
+        <span class="n">potential</span> <span class="o">=</span> <span class="n">potential</span> <span class="o">*</span> <span class="n">mu</span>
+        <span class="n">pInvDer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInvDer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">mu</span>
+        <span class="n">pInvDer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInvDer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">mu</span>
+
+        <span class="n">j1</span> <span class="o">=</span> <span class="n">ONE</span> <span class="o">/</span> <span class="n">jj</span>
+        <span class="n">pInvDer</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZERO</span>
+        <span class="n">pInvDer</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">ZERO</span>
+
+        <span class="k">if</span> <span class="n">oD1</span> <span class="o">&gt;</span> <span class="n">TOLER</span><span class="p">:</span>
+            <span class="n">oD1</span> <span class="o">=</span> <span class="n">ONE</span> <span class="o">/</span> <span class="n">oD1</span>
+            <span class="n">incomp</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">potential</span> <span class="o">=</span> <span class="n">potential</span> <span class="o">+</span> <span class="n">oD1</span> <span class="o">*</span> <span class="p">((</span><span class="n">jj</span> <span class="o">*</span> <span class="n">jj</span> <span class="o">-</span> <span class="n">ONE</span><span class="p">)</span> <span class="o">*</span> <span class="n">HALF</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">jj</span><span class="p">))</span>
+            <span class="n">pInvDer</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">oD1</span> <span class="o">*</span> <span class="p">(</span><span class="n">jj</span> <span class="o">-</span> <span class="n">j1</span><span class="p">)</span>
+            <span class="n">pInvDer</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="n">oD1</span> <span class="o">*</span> <span class="p">(</span><span class="n">ONE</span> <span class="o">+</span> <span class="n">j1</span> <span class="o">*</span> <span class="n">j1</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">potential</span> <span class="o">=</span> <span class="n">potential</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">incomp</span> <span class="o">=</span> <span class="n">incomp</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">pInvDer</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">pInvDer</span><span class="p">[:]</span>
+
+        <span class="k">return</span> <span class="n">response</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">upf</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-usermat-subroutine">Python <code class="docutils literal notranslate"><span class="pre">UserMat</span></code> subroutine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data">Input data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usermat-py-file"><code class="docutils literal notranslate"><span class="pre">usermat.py</span></code> file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-usrshift-subroutine">Python <code class="docutils literal notranslate"><span class="pre">UsrShift</span></code> subroutine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Input data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usrshift-py-file"><code class="docutils literal notranslate"><span class="pre">usrshift.py</span></code> file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-userhyper-subroutine">Python <code class="docutils literal notranslate"><span class="pre">UserHyper</span></code> subroutine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Input data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#userhyper-py-file"><code class="docutils literal notranslate"><span class="pre">userhyper.py</span></code> file</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/pyansys/pymapdl/edit/main/doc/source/examples/extended_examples/Python_UPF/python_upf_examples.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.1.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.10.0. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

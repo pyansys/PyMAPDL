@@ -1,0 +1,6 @@
+﻿layer
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.layer

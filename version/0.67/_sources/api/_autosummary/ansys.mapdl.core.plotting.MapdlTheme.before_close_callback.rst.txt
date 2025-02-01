@@ -1,0 +1,6 @@
+before\_close\_callback
+=======================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.before_close_callback

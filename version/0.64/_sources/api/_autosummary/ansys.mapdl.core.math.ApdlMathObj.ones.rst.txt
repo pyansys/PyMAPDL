@@ -1,0 +1,6 @@
+ones
+====
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. automethod:: ApdlMathObj.ones

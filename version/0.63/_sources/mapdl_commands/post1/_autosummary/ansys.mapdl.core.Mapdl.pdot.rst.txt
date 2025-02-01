@@ -1,0 +1,6 @@
+﻿pdot
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.pdot

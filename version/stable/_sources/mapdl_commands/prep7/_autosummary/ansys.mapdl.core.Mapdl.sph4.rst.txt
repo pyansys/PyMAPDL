@@ -1,0 +1,6 @@
+﻿sph4
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sph4

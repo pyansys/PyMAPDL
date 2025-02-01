@@ -1,0 +1,6 @@
+﻿curr2d
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.curr2d

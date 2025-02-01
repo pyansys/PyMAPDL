@@ -1,0 +1,6 @@
+colorbar\_vertical
+==================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.colorbar_vertical

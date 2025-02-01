@@ -1,0 +1,6 @@
+edge\_color
+===========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.edge_color

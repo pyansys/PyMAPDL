@@ -1,0 +1,6 @@
+nodal\_principal\_stress
+========================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.nodal_principal_stress

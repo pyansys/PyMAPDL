@@ -1,0 +1,6 @@
+﻿space
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.space

@@ -1,0 +1,6 @@
+﻿use\_vtk
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.use_vtk

@@ -1,0 +1,6 @@
+﻿kuse
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.kuse

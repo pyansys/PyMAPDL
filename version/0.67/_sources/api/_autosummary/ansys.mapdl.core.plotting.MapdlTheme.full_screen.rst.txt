@@ -1,0 +1,6 @@
+full\_screen
+============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.full_screen

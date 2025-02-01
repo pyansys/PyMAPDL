@@ -1,0 +1,6 @@
+﻿result\_file
+============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.result_file

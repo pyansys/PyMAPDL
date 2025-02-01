@@ -1,0 +1,6 @@
+n\_elem
+=======
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoproperty:: MeshGrpc.n_elem

@@ -1,0 +1,6 @@
+filename
+========
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. autoproperty:: PostProcessing.filename

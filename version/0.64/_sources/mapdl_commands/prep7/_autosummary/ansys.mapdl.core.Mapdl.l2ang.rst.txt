@@ -1,0 +1,6 @@
+﻿l2ang
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.l2ang

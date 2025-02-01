@@ -1,0 +1,6 @@
+﻿load\_array
+===========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.load_array

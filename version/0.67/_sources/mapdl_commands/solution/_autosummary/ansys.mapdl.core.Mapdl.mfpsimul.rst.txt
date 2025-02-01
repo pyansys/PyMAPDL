@@ -1,0 +1,6 @@
+﻿mfpsimul
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.mfpsimul

@@ -1,0 +1,6 @@
+﻿platform
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.platform

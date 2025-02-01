@@ -1,0 +1,70 @@
+﻿Geometry
+========
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. autoclass:: Geometry
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Geometry.area_select
+      
+      
+      Geometry.generate_surface
+      
+      
+      Geometry.get_areas
+      
+      
+      Geometry.get_elements_per_area
+      
+      
+      Geometry.get_keypoints
+      
+      
+      Geometry.get_lines
+      
+      
+      Geometry.get_volumes
+      
+      
+      Geometry.keypoint_select
+      
+      
+      Geometry.line_select
+      
+      
+      Geometry.volume_select
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Geometry.anum
+      Geometry.areas
+      Geometry.keypoints
+      Geometry.knum
+      Geometry.lines
+      Geometry.lnum
+      Geometry.n_area
+      Geometry.n_keypoint
+      Geometry.n_line
+      Geometry.n_volu
+      Geometry.vnum
+      Geometry.volumes
+   
+   

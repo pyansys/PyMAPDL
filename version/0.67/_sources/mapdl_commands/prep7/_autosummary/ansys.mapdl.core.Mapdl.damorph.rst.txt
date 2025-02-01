@@ -1,0 +1,6 @@
+﻿damorph
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.damorph

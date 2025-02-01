@@ -1,0 +1,6 @@
+﻿nsym
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.nsym

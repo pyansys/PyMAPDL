@@ -1,0 +1,6 @@
+﻿emis
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.emis

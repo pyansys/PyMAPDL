@@ -1,0 +1,6 @@
+plot\_nodal\_stress\_intensity
+==============================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.plot_nodal_stress_intensity

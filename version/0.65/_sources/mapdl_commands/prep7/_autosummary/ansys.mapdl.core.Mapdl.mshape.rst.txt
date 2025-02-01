@@ -1,0 +1,6 @@
+﻿mshape
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.mshape

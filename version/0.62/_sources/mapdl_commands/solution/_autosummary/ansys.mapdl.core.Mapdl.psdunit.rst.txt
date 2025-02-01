@@ -1,0 +1,6 @@
+﻿psdunit
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.psdunit

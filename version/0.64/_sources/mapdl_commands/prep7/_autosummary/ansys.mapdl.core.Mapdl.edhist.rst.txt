@@ -1,0 +1,6 @@
+﻿edhist
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edhist

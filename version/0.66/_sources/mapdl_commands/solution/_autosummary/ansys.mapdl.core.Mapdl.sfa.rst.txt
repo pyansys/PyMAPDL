@@ -1,0 +1,6 @@
+﻿sfa
+===
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sfa

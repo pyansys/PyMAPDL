@@ -1,0 +1,6 @@
+voltage\_conv
+=============
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.voltage_conv

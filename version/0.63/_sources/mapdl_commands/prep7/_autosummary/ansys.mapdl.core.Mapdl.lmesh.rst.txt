@@ -1,0 +1,6 @@
+﻿lmesh
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.lmesh

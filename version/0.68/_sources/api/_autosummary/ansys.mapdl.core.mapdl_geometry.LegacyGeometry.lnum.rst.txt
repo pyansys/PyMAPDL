@@ -1,0 +1,6 @@
+lnum
+====
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. autoproperty:: LegacyGeometry.lnum

@@ -1,0 +1,6 @@
+﻿rsurf
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.rsurf

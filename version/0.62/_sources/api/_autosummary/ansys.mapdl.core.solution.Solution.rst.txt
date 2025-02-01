@@ -1,0 +1,56 @@
+﻿Solution
+========
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoclass:: Solution
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Solution.converged
+      Solution.current_cnv
+      Solution.current_segment_cnv
+      Solution.decent_parm
+      Solution.displacement_cnv
+      Solution.fluid_flow_cnv
+      Solution.force_cnv
+      Solution.heat_flow_cnv
+      Solution.magnetic_flux_cnv
+      Solution.moment_cnv
+      Solution.mx_creep_rat
+      Solution.mx_dof
+      Solution.mx_plastic_inc
+      Solution.n_cg_iter
+      Solution.n_cmit
+      Solution.n_cmls
+      Solution.n_cmss
+      Solution.n_eqit
+      Solution.pressure_conv
+      Solution.res_eig
+      Solution.res_frq
+      Solution.rotation_cnv
+      Solution.smcv
+      Solution.temperature_cnv
+      Solution.time_step_size
+      Solution.vector_cnv
+      Solution.velocity_conv
+      Solution.voltage_conv
+   
+   

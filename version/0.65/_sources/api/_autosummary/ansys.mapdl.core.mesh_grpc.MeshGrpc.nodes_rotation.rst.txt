@@ -1,0 +1,6 @@
+nodes\_rotation
+===============
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoproperty:: MeshGrpc.nodes_rotation

@@ -1,0 +1,1170 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Genetic algorithms and PyMAPDL &#8212; PyMAPDL</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css?v=e7c4c341" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=91007d66" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="../../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../../_static/documentation_options.js?v=a98ddb9b"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/extended_examples/hpc/hpc_ml_ga';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.68';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="PyMAPDL Developer Portal articles" href="../../devportal.html" />
+    <link rel="prev" title="Create a GUI app in Python with PySide6" href="../gui/executable.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/extended_examples/hpc/hpc_ml_ga.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyMAPDL - Home"/>
+    <script>document.write(`<img src="../../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark" alt="PyMAPDL - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Release notes
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/index.html">Full examples using PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/01-geometry/index.html">Geometry examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/02-tips-n-tricks/index.html">Miscellaneous examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/03-general-fea/index.html">Academic finite element examples</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Extended examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference external" href="http://cartpole.mapdl.docs.pyansys.com/ml-rl-notebook.html">Cart-Pole Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ex_01-gmsh_example/ex_01-gmsh_example.html">Gmsh example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Python_UPF/python_upf_examples.html">UPF in PyMAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Krylov/krylov_example.html">Harmonic analysis using the frequency-sweep Krylov method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dash/dash_example.html">Use Dash to build a PyMAPDL web app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../executable/executable.html">Create your own Python command-line app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gui/executable.html">Create a GUI app in Python with PySide6</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Genetic algorithms and PyMAPDL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devportal.html">PyMAPDL Developer Portal articles</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/verif-manual/index.html">Verification Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/technology_showcase_examples/index.html">Technology Showcases</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../../index.html" class="nav-link">Examples</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">Extended examples</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Genetic algorithms and PyMAPDL</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="genetic-algorithms-and-pymapdl">
+<span id="hpc-ml-ga-example"></span><h1>Genetic algorithms and PyMAPDL<a class="headerlink" href="#genetic-algorithms-and-pymapdl" title="Link to this heading">#</a></h1>
+<p>This example shows how to use PyMAPDL in an HPC cluster to
+take advantage of multiple MAPDL instances to calculate each of the
+genetic algorithm population solutions.
+To manage multiple MAPDL instances, you should use the
+<a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.pool.MapdlPool.html#ansys.mapdl.core.pool.MapdlPool" title="ansys.mapdl.core.pool.MapdlPool"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapdlPool</span></code></a> class, which allows you
+to run multiple jobs in the background.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Genetic algorithms are optimization techniques inspired by the principles of natural
+selection and genetics. They are used to find solutions to complex problems by mimicking
+the process of natural selection to evolve potential solutions over successive generations.
+In a genetic algorithm, a population of candidate solutions (chromosomes) undergoes a
+series of operations, including selection, crossover, and mutation, to produce new
+generations of solutions. The fittest chromosomes, which best satisfy the problem
+constraints and objectives, are more likely to be selected for reproduction, thus
+gradually improving the overall quality of solutions over time. Genetic algorithms are
+particularly useful for solving problems where traditional methods are impractical or
+inefficient, such as optimization, search, and machine learning tasks. They find
+applications in various fields, including engineering, economics, biology, and computer science.</p>
+</section>
+<section id="problem-definition">
+<h2>Problem definition<a class="headerlink" href="#problem-definition" title="Link to this heading">#</a></h2>
+<p>This example shows how to use a generic algorithm to calculate the force
+required for a double-clamped beam to deform a specific amount in its
+center.</p>
+<p>The beam model is the same as <a class="reference internal" href="../../gallery_examples/00-mapdl-examples/mapdl_beam.html#ref-mapdl-beam"><span class="std std-ref">MAPDL 2D Beam Example</span></a>.
+It is made of <code class="docutils literal notranslate"><span class="pre">BEAM188</span></code> elements that span for 2.2 meters,
+and it fully clamped at both ends.</p>
+<p>The PyMAPDL beam model is defined in the <code class="docutils literal notranslate"><span class="pre">calculate_beam()</span></code> function as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_beam</span><span class="p">(</span><span class="n">mapdl</span><span class="p">,</span> <span class="n">force</span><span class="p">):</span>
+    <span class="c1"># Initialize</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+
+    <span class="c1"># Define an I-beam</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;BEAM188&quot;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">keyopt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># transverse shear stress output</span>
+
+    <span class="c1"># Material properties</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;EX&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">2e7</span><span class="p">)</span>  <span class="c1"># N/cm2</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;PRXY&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">)</span>  <span class="c1"># Poisson&#39;s ratio</span>
+
+    <span class="c1"># Beam properties in centimeters</span>
+    <span class="n">sec_num</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">sectype</span><span class="p">(</span><span class="n">sec_num</span><span class="p">,</span> <span class="s2">&quot;BEAM&quot;</span><span class="p">,</span> <span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;ISection&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">secoffset</span><span class="p">(</span><span class="s2">&quot;CENT&quot;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">secdata</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># dimensions are in centimeters</span>
+
+    <span class="c1"># Set FEM model</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nnum</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">node</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Define the boundary conditions</span>
+    <span class="c1"># Allow movement only in the X and Z direction</span>
+    <span class="k">for</span> <span class="n">const</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;UX&quot;</span><span class="p">,</span> <span class="s2">&quot;UY&quot;</span><span class="p">,</span> <span class="s2">&quot;ROTX&quot;</span><span class="p">,</span> <span class="s2">&quot;ROTZ&quot;</span><span class="p">]:</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">const</span><span class="p">)</span>
+
+    <span class="c1"># Constrain only nodes 1 and 23 in the Z direction</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;UZ&quot;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="s2">&quot;UZ&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Apply a -Z force at node 12</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="s2">&quot;FZ&quot;</span><span class="p">,</span> <span class="n">force</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Run the static analysis</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/solu&quot;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s2">&quot;static&quot;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+    <span class="c1"># Extract data</span>
+    <span class="n">UZ</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">nodal_displacement</span><span class="p">(</span><span class="s2">&quot;Z&quot;</span><span class="p">)</span>
+    <span class="n">UZ_node_12</span> <span class="o">=</span> <span class="n">UZ</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">UZ_node_12</span>
+</pre></div>
+</div>
+<p>This function returns the control parameter for the model, which is the displacement at the Z-direction on the node 12 (<code class="docutils literal notranslate"><span class="pre">UZ_node_12</span></code>).</p>
+</section>
+<section id="mapdl-pool-setup">
+<h2>MAPDL pool setup<a class="headerlink" href="#mapdl-pool-setup" title="Link to this heading">#</a></h2>
+<p>Genetic algorithms are expensive in regard to the amount of calculations needed to reach an optimal solution. As shown earlier, many simulations must be performed to select, cross over, and mutate
+all the chromosomes across all the populations.
+For this reason, to speed up the process, it is desirable to have as many MAPDL instances as possible so that each one can calculate one chromosome fit function.</p>
+<p>To manage multiple MAPDL instances, the best approach is to use the <a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.pool.MapdlPool.html#ansys.mapdl.core.pool.MapdlPool" title="ansys.mapdl.core.pool.MapdlPool"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapdlPool</span></code></a> class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing packages</span>
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">MapdlPool</span>
+
+<span class="c1"># Start pool</span>
+<span class="c1"># Number of instances should be equal to number of CPUs</span>
+<span class="c1"># as set later in the ``sbatch`` command</span>
+<span class="n">pool</span> <span class="o">=</span> <span class="n">MapdlPool</span><span class="p">(</span><span class="n">n_instances</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="deflection-target">
+<h2>Deflection target<a class="headerlink" href="#deflection-target" title="Link to this heading">#</a></h2>
+<p>Because this is a demonstration example, the target displacement is calculated
+using the beam function itself with a force of 22840 <span class="math notranslate nohighlight">\(N/cm^2\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Define deflection target</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pool</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Getting the first MAPDL instance in the pool</span>
+<span class="n">force</span> <span class="o">=</span> <span class="mi">22840</span>  <span class="c1"># N/cm2</span>
+<span class="n">target_displacement</span> <span class="o">=</span> <span class="n">calculate_beam</span><span class="p">(</span><span class="n">pool</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">force</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Setting target to </span><span class="si">{</span><span class="n">target_displacement</span><span class="si">}</span><span class="s2"> for force </span><span class="si">{</span><span class="n">force</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="genetic-algorithm-model">
+<h2>Genetic algorithm model<a class="headerlink" href="#genetic-algorithm-model" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Introduction<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>You use the <a class="reference external" href="https://pygad.readthedocs.io/en/latest/">PyGAD</a> library to configure the genetic algorithm.</p>
+<blockquote class="epigraph">
+<div><p>PyGAD is an open source Python library for building the genetic algorithm and optimizing machine learning algorithms.</p>
+<p>PyGAD supports different types of crossover, mutation, and parent selection operators.
+PyGAD allows different types of problems to be optimized using the genetic algorithm
+by customizing the fitness function. It works with both single-objective and
+multi-objective optimization problems.</p>
+<p>From PyGAD - Python Genetic Algorithm - <a class="reference external" href="https://pygad.readthedocs.io/en/latest/">https://pygad.readthedocs.io/en/latest/</a></p>
+</div></blockquote>
+</section>
+<section id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h3>
+<p>To configure the genetic algorithm, the following code is used:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set GA model</span>
+<span class="n">sol_per_pop</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">num_generations</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">num_parents_mating</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">num_genes</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># equal to the size of inputs/outputs.</span>
+<span class="n">parallel_processing</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;thread&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pool</span><span class="p">)]</span>  <span class="c1"># Number of parallel workers</span>
+
+<span class="c1"># Initial guess limits</span>
+<span class="n">init_range_low</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">init_range_high</span> <span class="o">=</span> <span class="mi">30000</span>
+<span class="n">gene_type</span> <span class="o">=</span> <span class="nb">int</span>  <span class="c1"># limit to ints</span>
+
+<span class="c1"># Extra configuration</span>
+<span class="c1"># https://blog.derlin.ch/genetic-algorithms-with-pygad</span>
+<span class="n">parent_selection_type</span> <span class="o">=</span> <span class="s2">&quot;rws&quot;</span>
+<span class="n">keep_parents</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># No keeping parents.</span>
+<span class="n">mutation_percent_genes</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">mutation_probability</span> <span class="o">=</span> <span class="mf">0.5</span>
+</pre></div>
+</div>
+<p>In the preceding code, the most import parameters are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sol_per_pop</span></code>: Number of solutions (chromosomes) within the population.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_generations</span></code>:  Number of genes in the solution/chromosome.
+In this case, because only one parameter is simulated (deflection Z at node 12),
+this value is 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_parents_mating</span></code>: Number of solutions to select as parents.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parent_selection_type</span></code>:  Parent selection type. This example uses the <code class="docutils literal notranslate"><span class="pre">rws</span></code> type
+(for roulette wheel selection). For more information on parent selection type,
+see <a class="reference external" href="https://blog.derlin.ch/genetic-algorithms-with-pygad">Genetic algorithms with PyGAD: selection, crossover, mutation</a>
+by Lucy Linder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parallel_processing</span></code>: Number of parallel workers for the genetic
+algorithm and how these workers are created. They can be created as a <code class="docutils literal notranslate"><span class="pre">&quot;thread&quot;</span></code>
+or <code class="docutils literal notranslate"><span class="pre">&quot;process&quot;</span></code>. The example creates the workers as threads, and the amount is
+equal to the number of instances.</p></li>
+</ul>
+</section>
+<section id="helper-functions">
+<h3>Helper functions<a class="headerlink" href="#helper-functions" title="Link to this heading">#</a></h3>
+<p>Additionally, for printing purposes, several helper functions are defined:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="c1"># To calculate the fitness criteria model solution and target displacement</span>
+<span class="k">def</span> <span class="nf">calculate_fitness_criteria</span><span class="p">(</span><span class="n">model_output</span><span class="p">):</span>
+    <span class="c1"># we add a constant (target/1E8) here to avoid dividing by zero</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span>
+        <span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">model_output</span> <span class="o">-</span> <span class="n">target_displacement</span><span class="p">)</span> <span class="o">+</span> <span class="n">target_displacement</span> <span class="o">/</span> <span class="mf">1e10</span><span class="p">)</span>
+    <span class="p">)</span>
+
+
+<span class="c1"># To calculate the error in the model solution with respect to the target displacement</span>
+<span class="k">def</span> <span class="nf">calculate_error</span><span class="p">(</span><span class="n">model_output</span><span class="p">):</span>
+    <span class="c1"># Only for visualization purposes</span>
+    <span class="k">return</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">model_output</span> <span class="o">-</span> <span class="n">target_displacement</span><span class="p">)</span> <span class="o">/</span> <span class="n">target_displacement</span>
+
+
+<span class="c1"># This function is executed at the end of the fitness stage (all chromosomes are calculated),</span>
+<span class="c1"># and it is used to do some printing.</span>
+<span class="k">def</span> <span class="nf">on_fitness</span><span class="p">(</span><span class="n">pyga_instance</span><span class="p">,</span> <span class="n">solution</span><span class="p">):</span>
+    <span class="c1"># This attribute does not exist. It is created after the GA class has been initialized.</span>
+    <span class="n">pyga_instance</span><span class="o">.</span><span class="n">igen</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">GENERATION </span><span class="si">{</span><span class="n">pyga_instance</span><span class="o">.</span><span class="n">igen</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=============&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="fitness-function">
+<h3>Fitness function<a class="headerlink" href="#fitness-function" title="Link to this heading">#</a></h3>
+<p>After all helper functions are defined, the fitness function can be defined:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fitness_func</span><span class="p">(</span><span class="n">ga_instance</span><span class="p">,</span> <span class="n">solution</span><span class="p">,</span> <span class="n">solution_idx</span><span class="p">):</span>
+    <span class="c1"># Query a free MAPDL instance</span>
+
+    <span class="k">with</span> <span class="n">pool</span><span class="o">.</span><span class="n">next</span><span class="p">(</span><span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="p">(</span><span class="n">mapdl</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+
+        <span class="c1"># Perform chromosome simulation</span>
+        <span class="n">model_output</span> <span class="o">=</span> <span class="n">calculate_beam</span><span class="p">(</span><span class="n">mapdl</span><span class="p">,</span> <span class="n">solution</span><span class="p">)</span>
+
+        <span class="c1"># Calculate errors and criteria</span>
+        <span class="n">error_</span> <span class="o">=</span> <span class="n">calculate_error</span><span class="p">(</span><span class="n">model_output</span><span class="p">)</span>
+        <span class="n">fitness_criteria</span> <span class="o">=</span> <span class="n">calculate_fitness_criteria</span><span class="p">(</span><span class="n">model_output</span><span class="p">)</span>
+
+        <span class="c1"># Print at each chromosome solution</span>
+        <span class="c1"># Print the port to observe how the GA is using all MAPDL instances</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;MAPDL instance </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">(port: </span><span class="si">{</span><span class="n">mapdl</span><span class="o">.</span><span class="n">port</span><span class="si">}</span><span class="s2">)</span><span class="se">\t</span><span class="s2">Input: </span><span class="si">{</span><span class="n">solution</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">0.1f</span><span class="si">}</span><span class="se">\t</span><span class="s2">Outputs: </span><span class="si">{</span><span class="n">model_output</span><span class="si">:</span><span class="s2">0.7f</span><span class="si">}</span><span class="se">\t</span><span class="s2">Error: </span><span class="si">{</span><span class="n">error_</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">%</span><span class="se">\t</span><span class="s2">Fitness criteria: </span><span class="si">{</span><span class="n">fitness_criteria</span><span class="si">:</span><span class="s2">0.6f</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fitness_criteria</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://mapdl.docs.pyansys.com/version/stable/">PyMAPDL</a> and <a class="reference external" href="https://pygad.readthedocs.io/en/latest/">PyGAD</a> evaluate each chromosome using this function to
+evaluate how fit is it and assign survival probability.</p>
+</section>
+<section id="mutation-function">
+<h3>Mutation function<a class="headerlink" href="#mutation-function" title="Link to this heading">#</a></h3>
+<p>To further demonstrate <a class="reference external" href="https://pygad.readthedocs.io/en/latest/">PyGAD</a> capabilities, this example uses a custom mutation
+function.</p>
+<p>This custom mutation function does two things:</p>
+<ul class="simple">
+<li><p><strong>To each chromosomes</strong>, it adds a random value between the maximum and minimum of the population.</p></li>
+<li><p><strong>To two random chromosomes</strong>, it additionally adds a random percentage of the mean across all the
+population between -10% and 10%. The random chromosomes are selected independently.
+This is to reduce the possibility of the function converging to a local minimal.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mutation_func</span><span class="p">(</span><span class="n">offspring</span><span class="p">,</span> <span class="n">ga_instance</span><span class="p">):</span>
+    <span class="n">average</span> <span class="o">=</span> <span class="n">offspring</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">max_value</span> <span class="o">=</span> <span class="n">offspring</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">average</span>
+    <span class="n">min_value</span> <span class="o">=</span> <span class="n">offspring</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="n">average</span>
+
+    <span class="n">min_value</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span><span class="p">,</span> <span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">offspring</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">min_value</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">max_value</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">offspring</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">random_spring_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">offspring</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">offspring</span><span class="p">[</span><span class="n">random_spring_idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">average</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">offspring</span>
+</pre></div>
+</div>
+</section>
+<section id="model-assembly">
+<h3>Model assembly<a class="headerlink" href="#model-assembly" title="Link to this heading">#</a></h3>
+<p>Use the GA class to assemble all the parameters and functions
+created to run the simulation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygad</span>
+
+<span class="n">ga_instance</span> <span class="o">=</span> <span class="n">pygad</span><span class="o">.</span><span class="n">GA</span><span class="p">(</span>
+    <span class="c1"># Main options</span>
+    <span class="n">sol_per_pop</span><span class="o">=</span><span class="n">sol_per_pop</span><span class="p">,</span>
+    <span class="n">num_generations</span><span class="o">=</span><span class="n">num_generations</span><span class="p">,</span>
+    <span class="n">num_parents_mating</span><span class="o">=</span><span class="n">num_parents_mating</span><span class="p">,</span>
+    <span class="n">num_genes</span><span class="o">=</span><span class="n">num_genes</span><span class="p">,</span>
+    <span class="n">fitness_func</span><span class="o">=</span><span class="n">fitness_func</span><span class="p">,</span>
+    <span class="n">parallel_processing</span><span class="o">=</span><span class="n">parallel_processing</span><span class="p">,</span>
+    <span class="n">random_seed</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># to get reproducible results</span>
+    <span class="c1">#</span>
+    <span class="c1"># Mutation</span>
+    <span class="n">mutation_percent_genes</span><span class="o">=</span><span class="n">mutation_percent_genes</span><span class="p">,</span>
+    <span class="n">mutation_type</span><span class="o">=</span><span class="n">mutation_func</span><span class="p">,</span>
+    <span class="n">mutation_probability</span><span class="o">=</span><span class="n">mutation_probability</span><span class="p">,</span>
+    <span class="c1">#</span>
+    <span class="c1"># Parents</span>
+    <span class="n">keep_parents</span><span class="o">=</span><span class="n">keep_parents</span><span class="p">,</span>
+    <span class="n">parent_selection_type</span><span class="o">=</span><span class="n">parent_selection_type</span><span class="p">,</span>
+    <span class="c1">#</span>
+    <span class="c1"># Helpers</span>
+    <span class="n">on_fitness</span><span class="o">=</span><span class="n">on_fitness</span><span class="p">,</span>
+    <span class="n">gene_type</span><span class="o">=</span><span class="n">gene_type</span><span class="p">,</span>
+    <span class="n">init_range_low</span><span class="o">=</span><span class="n">init_range_low</span><span class="p">,</span>
+    <span class="n">init_range_high</span><span class="o">=</span><span class="n">init_range_high</span><span class="p">,</span>
+    <span class="n">save_solutions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">ga_instance</span><span class="o">.</span><span class="n">igen</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># To count the number of generations</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="simulation">
+<h2>Simulation<a class="headerlink" href="#simulation" title="Link to this heading">#</a></h2>
+<p>Once the model is set, use the <code class="docutils literal notranslate"><span class="pre">run()</span></code> method to start the simulation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+
+<span class="n">ga_instance</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time spent (minutes): </span><span class="si">{</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="plot-fitness-and-genes-values">
+<h2>Plot fitness and genes values<a class="headerlink" href="#plot-fitness-and-genes-values" title="Link to this heading">#</a></h2>
+<p>You can plot the solution fitness across generations and the evolution of gene
+values using the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">ga_instance</span><span class="o">.</span><span class="n">plot_fitness</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Applied force&quot;</span><span class="p">],</span> <span class="n">save_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+
+<span class="n">ga_instance</span><span class="o">.</span><span class="n">plot_genes</span><span class="p">(</span><span class="n">solutions</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+
+<span class="n">solution</span><span class="p">,</span> <span class="n">solution_fitness</span><span class="p">,</span> <span class="n">solution_idx</span> <span class="o">=</span> <span class="n">ga_instance</span><span class="o">.</span><span class="n">best_solution</span><span class="p">(</span>
+    <span class="n">ga_instance</span><span class="o">.</span><span class="n">last_generation_fitness</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameters of the best solution : </span><span class="si">{</span><span class="n">solution</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitness value of the best solution = </span><span class="si">{</span><span class="n">solution_fitness</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id5">
+<img alt="../../../_images/fitness_plot.png" src="../../../_images/fitness_plot.png" />
+<figcaption>
+<p><span class="caption-text">Fitness at each generation plot</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id6">
+<img alt="../../../_images/genes.png" src="../../../_images/genes.png" />
+<figcaption>
+<p><span class="caption-text">Evolution of genes values</span><a class="headerlink" href="#id6" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="model-storage">
+<h2>Model storage<a class="headerlink" href="#model-storage" title="Link to this heading">#</a></h2>
+<p>You can store the model in a file for later reuse:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To save the model data:</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="c1"># Save the GA instance</span>
+<span class="c1"># In the filename to save the instance to, do not specify the extension.</span>
+<span class="n">formatted_date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2">-%m-%y&quot;</span><span class="p">)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ml_ga_beam_</span><span class="si">{</span><span class="n">formatted_date</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">ga_instance</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Load the model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the saved GA instance</span>
+<span class="n">loaded_ga_instance</span> <span class="o">=</span> <span class="n">pygad</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="c1"># Plot fitness function again</span>
+<span class="n">loaded_ga_instance</span><span class="o">.</span><span class="n">plot_fitness</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="simulation-on-an-hpc-cluster-using-slurm">
+<h2>Simulation on an HPC cluster using SLURM<a class="headerlink" href="#simulation-on-an-hpc-cluster-using-slurm" title="Link to this heading">#</a></h2>
+<p>The previous steps create the PyMAPDL script.
+To see the file, you can click this link
+<a class="reference download internal" download="" href="../../../_downloads/94e60ac9c67bcdc3a8e44b826c06c7e6/ml_ga_beam.py"><code class="xref download docutils literal notranslate"><span class="pre">ml_ga_beam.py</span></code></a>.</p>
+<p>To run the preceding script in an HPC environment, you must
+create a Python environment, install the packages, and then run
+this script.</p>
+<ol class="arabic">
+<li><p>Log into your HPC cluster.
+For more information, see <a class="reference internal" href="../../../user_guide/hpc/introduction.html#ref-hpc-login"><span class="std std-ref">Log into the cluster</span></a></p></li>
+<li><p>Create a virtual environment that is accessible from
+the compute nodes.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">user@machine:~$ </span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>/home/user/.venv
+</pre></div>
+</div>
+<p>If you have problems when creating the virtual environment
+or accessing it from the compute nodes,
+see <a class="reference internal" href="../../../user_guide/hpc/pymapdl.html#ref-hpc-pymapdl-job"><span class="std std-ref">Submit a PyMAPDL job</span></a>.</p>
+</li>
+<li><p>Install the requirements for this example from the
+<a class="reference download internal" download="" href="../../../_downloads/424fd68692afb7542a6ce338c426c225/requirements.txt"><code class="xref download docutils literal notranslate"><span class="pre">requirements.txt</span></code></a> file.</p></li>
+<li><p>Create the bash script <code class="docutils literal notranslate"><span class="pre">job.sh</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=ml_ga_beam</span>
+<span class="c1">#SBATCH --time=01:00:00</span>
+<span class="c1">#SBATCH --time=1:00:00</span>
+<span class="c1">#SBATCH --partition=%your_partition_name%</span>
+<span class="c1">#SBATCH --output=output_%j.txt</span>
+<span class="c1">#SBATCH --error=error_%j.txt</span>
+
+<span class="c1"># Commands to run</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Running simulation...&quot;</span>
+<span class="nb">source</span><span class="w"> </span>/home/user/.venv/bin/activate<span class="w">  </span><span class="c1"># Activate venv</span>
+python<span class="w"> </span>ml_ga_beam.py
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Done&quot;</span>
+</pre></div>
+</div>
+<p>Remember to replace <code class="docutils literal notranslate"><span class="pre">%your_partition_name%</span></code> with your cluster
+partition.</p>
+</li>
+<li><p>Run the bash script using the <a class="reference external" href="https://slurm.schedmd.com/sbatch.html">sbatch</a> command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sbatch --nodes=1 --ntasks-per-node=10 job.sh</span>
+</pre></div>
+</div>
+<p>The preceding command allocates 10 cores for the job.
+For optimal performance, this value should be higher than the number
+of MAPDL instances that the
+<a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.pool.MapdlPool.html#ansys.mapdl.core.pool.MapdlPool" title="ansys.mapdl.core.pool.MapdlPool"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapdlPool</span></code></a> instance is creating.</p>
+</li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-definition">Problem definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapdl-pool-setup">MAPDL pool setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deflection-target">Deflection target</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#genetic-algorithm-model">Genetic algorithm model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration">Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#helper-functions">Helper functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitness-function">Fitness function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutation-function">Mutation function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-assembly">Model assembly</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation">Simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-fitness-and-genes-values">Plot fitness and genes values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-storage">Model storage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulation-on-an-hpc-cluster-using-slurm">Simulation on an HPC cluster using SLURM</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/examples/extended_examples/hpc/hpc_ml_ga.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="../../../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+
+
+
+
+
+
+
+<script>
+var theme_static_search = JSON.parse('{"ignoreLocation": "False", "keys": ["title", "text"], "shouldSort": "True", "threshold": 0.5, "useExtendedSearch": "True"}');
+var theme_limit = "10";
+var min_chars_for_search = "1";
+var searchPath = "../../../_static/search.json";
+
+</script>
+
+<script src="../../../_static/js/fuse_search.js"></script>
+<script src="../../../_static/js/fuse_extension.js"></script>
+<footer class="bd-footer" font-size="4px">
+  <div class="bd-footer__inner bd-page-width">
+    <div class="footer-items__start">
+      <div class="footer-item">
+        <p class="copyright">
+          PyMAPDL 0.68.6 © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+          <br>
+        </p>
+      </div>
+    </div>
+    <div class="footer-items__end">
+      <div class="footer-item">
+        <p class="theme-version">
+          Built with the
+          <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a>
+          1.1.2. and
+           <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.0.
+          on <span id="date"></span>
+        </p>
+        <script>
+          var options = { day: "numeric", month: "long", year: "numeric" };
+          var lastModifiedDate = new Date(document.lastModified);
+          var date = lastModifiedDate.toLocaleDateString("en-US", options);
+          document.getElementById("date").innerHTML = date;
+        </script>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

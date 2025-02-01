@@ -1,0 +1,6 @@
+﻿dscale
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.dscale

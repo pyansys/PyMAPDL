@@ -1,0 +1,6 @@
+﻿pnum
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.pnum

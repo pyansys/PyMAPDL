@@ -1,0 +1,6 @@
+﻿global\_status
+==============
+
+.. currentmodule:: ansys.mapdl.core.misc
+
+.. autoproperty:: Information.global_status

@@ -1,0 +1,6 @@
+﻿launched
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.launched

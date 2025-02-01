@@ -1,0 +1,6 @@
+push
+====
+
+.. currentmodule:: ansys.mapdl.core.database.elems
+
+.. automethod:: DbElems.push

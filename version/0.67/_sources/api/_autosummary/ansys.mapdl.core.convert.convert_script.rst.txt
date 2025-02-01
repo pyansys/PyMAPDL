@@ -1,0 +1,6 @@
+﻿convert\_script
+===============
+
+.. currentmodule:: ansys.mapdl.core.convert
+
+.. autofunction:: convert_script

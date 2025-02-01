@@ -1,0 +1,6 @@
+floor\_color
+============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.floor_color

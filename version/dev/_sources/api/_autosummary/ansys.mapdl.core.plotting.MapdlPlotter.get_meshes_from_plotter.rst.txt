@@ -1,0 +1,6 @@
+get\_meshes\_from\_plotter
+==========================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. automethod:: MapdlPlotter.get_meshes_from_plotter

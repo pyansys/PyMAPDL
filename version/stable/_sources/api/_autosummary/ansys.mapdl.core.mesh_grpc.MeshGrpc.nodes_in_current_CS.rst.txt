@@ -1,0 +1,6 @@
+nodes\_in\_current\_CS
+======================
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoproperty:: MeshGrpc.nodes_in_current_CS

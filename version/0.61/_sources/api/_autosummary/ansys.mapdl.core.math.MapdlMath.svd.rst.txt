@@ -1,0 +1,6 @@
+svd
+===
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. automethod:: MapdlMath.svd

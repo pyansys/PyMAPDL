@@ -1,0 +1,63 @@
+﻿AnsMat
+======
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. autoclass:: AnsMat
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      AnsMat.asarray
+      
+      
+      AnsMat.axpy
+      
+      
+      AnsMat.const
+      
+      
+      AnsMat.copy
+      
+      
+      AnsMat.dot
+      
+      
+      AnsMat.norm
+      
+      
+      AnsMat.ones
+      
+      
+      AnsMat.rand
+      
+      
+      AnsMat.sym
+      
+      
+      AnsMat.zeros
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      AnsMat.T
+      AnsMat.ncol
+      AnsMat.nrow
+      AnsMat.shape
+      AnsMat.size
+   
+   

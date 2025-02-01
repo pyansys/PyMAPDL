@@ -1,0 +1,6 @@
+to\_dict
+========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. automethod:: MapdlTheme.to_dict

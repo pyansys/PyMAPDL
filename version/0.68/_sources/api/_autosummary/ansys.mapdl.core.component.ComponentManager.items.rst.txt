@@ -1,0 +1,6 @@
+items
+=====
+
+.. currentmodule:: ansys.mapdl.core.component
+
+.. automethod:: ComponentManager.items

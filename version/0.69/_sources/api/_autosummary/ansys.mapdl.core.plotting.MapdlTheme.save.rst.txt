@@ -1,0 +1,6 @@
+save
+====
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. automethod:: MapdlTheme.save

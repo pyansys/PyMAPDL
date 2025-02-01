@@ -1,0 +1,49 @@
+﻿AnsSolver
+=========
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. autoclass:: AnsSolver
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      AnsSolver.axpy
+      
+      
+      AnsSolver.const
+      
+      
+      AnsSolver.copy
+      
+      
+      AnsSolver.factorize
+      
+      
+      AnsSolver.norm
+      
+      
+      AnsSolver.ones
+      
+      
+      AnsSolver.rand
+      
+      
+      AnsSolver.solve
+      
+      
+      AnsSolver.zeros
+      
+   
+   
+
+   
+   
+   

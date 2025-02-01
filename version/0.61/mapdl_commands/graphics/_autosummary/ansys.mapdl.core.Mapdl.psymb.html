@@ -1,0 +1,822 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>psymb &#8212; PyMAPDL</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    
+        <link href="../../../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mapdl_commands/graphics/_autosummary/ansys.mapdl.core.Mapdl.psymb';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.61';
+        </script>
+    <link rel="shortcut icon" href="../../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="triad" href="ansys.mapdl.core.Mapdl.triad.html" />
+    <link rel="prev" title="psf" href="ansys.mapdl.core.Mapdl.psf.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="None">
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/mapdl_commands/graphics/_autosummary/ansys.mapdl.core.Mapdl.psymb.html" />
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      <!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+    
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.61  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../../../index.html">PyMAPDL</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >MAPDL Commands</a> » </li>
+          <li class="nav-item nav-item-2"><a href="../labeling.html" accesskey="U">Labeling</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">psymb</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.61  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../session/run_controls.html">Run Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../session/processor_entry.html">Processor Entry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../session/files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../session/list_controls.html">List Controls</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../database/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/selecting.html">Selecting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/components.html">Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/working_plane.html">Working Plane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/coord_sys.html">Coordinate System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/picking.html">Picking</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scaling.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../style.html">Style</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../labeling.html">Labeling</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.cformat.html">cformat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.clabel.html">clabel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.contour.html">contour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.cval.html">cval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.gformat.html">gformat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.hbc.html">hbc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.number.html">number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.pbc.html">pbc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.pbf.html">pbf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.plopts.html">plopts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.pnum.html">pnum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.psf.html">psf</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">psymb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.triad.html">triad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.udoc.html">udoc</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../graphs.html">Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../annotation.html">Annotation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/parameter_definition.html">Parameter Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/macro_files.html">Macro Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/abbreviations.html">Abbreviations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/array_parm.html">Array Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/matrix_op.html">Matrix Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/process_controls.html">Process Controls</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/database.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/element_type.html">Element Type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/real_constants.html">Real Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/materials.html">Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/material_data_tables.html">Material Data Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/primitives.html">Primitives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/keypoints.html">Keypoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/hard_points.html">Hard Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/lines.html">Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/areas.html">Areas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/volumes.html">Volumes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/booleans.html">Booleans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/meshing.html">Meshing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/nodes.html">Nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/elements.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/superelements.html">Superelements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/digitizing.html">Digitizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/coupled_dof.html">Coupled Degrees of Freedom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/constraint_equations.html">Constraint Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/status.html">Status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/explicit_dynamics.html">Explicit Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/sections.html">Sections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/morphing.html">Morphing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/artificially_matched_layers.html">Artificially Matched Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/special_purpose.html">Special Purpose</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../solution/analysis_options.html">Analysis Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/nonlinear_options.html">Nonlinear Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/dynamic_options.html">Dynamic Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/spectrum_options.html">Spectrum Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/load_step_options.html">Load Step Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/solid_constraints.html">Solid Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/solid_forces.html">Solid Forces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/solid_surface_loads.html">Solid Surface Loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/solid_body_loads.html">Solid Body Loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/inertia.html">Inertia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/miscellaneous_loads.html">Miscellaneous Loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/load_step_operations.html">Load Step Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/master_dof.html">Master Degrees of Freedom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/gap_conditions.html">Gap Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/rezoning.html">Rezoning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/2d_to_3d_analysis.html">2D to 3D Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/birth_and_death.html">Birth and Death</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/fe_constraints.html">FE Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/fe_forces.html">FE Forces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/fe_surface_loads.html">FE Surface Loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/fe_body_loads.html">FE Body Loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/ocean.html">Ocean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/solution_status.html">Solution Status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/radiosity.html">Radiosity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/multi_field_solver_definition_commands.html">Multi-Field Solver Definition Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/multi_field_solver_global_controls.html">Multi-Field Solver Global Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/multi_field_solver_time_controls.html">Multi-Field Solver Time Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/multi_field_solver_load_transfer.html">Multi-Field Solver Load Transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/multi_field_solver_convergence_controls.html">Multi-Field Solver Convergence Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../solution/multi_field_solver_interface_mapping.html">Multi-Field Solver Interface Mapping</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../post1/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/controls.html">Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/results.html">Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/element_table.html">Element Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/listing.html">Listing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/animation.html">Animation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/path_operations.html">Path Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/surface_operations.html">Surface Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/load_case.html">Load Case Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/magnetics_calc.html">Magnetics Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/trace_points.html">Trace Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/special.html">Special Purpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/status.html">Status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/failure_criteria.html">Failure Criteria</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../post26/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/controls.html">Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/operations.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/display.html">Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/listing.html">Listing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/special.html">Special Purpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/status.html">Status</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../aux2/bin_dump.html">Binary File Dump</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aux2/bin_manip.html">Binary File Manipulation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../aux3.html">Results Files</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../aux12/general_radiation.html">General Radiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aux12/radiation_mat.html">Radiation Matrix Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aux12/radiosity_solver.html">Radiosity Solver</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../aux15.html">IGES</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../map.html">Pressure Mapping</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../display/setup.html">Setup</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../reduced/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reduced/preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reduced/generation.html">Generation Pass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reduced/use_pass.html">Use Pass</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../conn.html">Connection Commands</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../misc.html">Miscellaneous</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../inqfun.html">Undocumented Inquire Commands</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="psymb">
+<h1>psymb<a class="headerlink" href="#psymb" title="Permalink to this headline">#</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="ansys.mapdl.core.Mapdl.psymb">
+<span class="sig-prename descclassname"><span class="pre">Mapdl.</span></span><span class="sig-name descname"><span class="pre">psymb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.mapdl.core.Mapdl.psymb" title="Permalink to this definition">#</a></dt>
+<dd><p>Shows various symbols on displays.</p>
+<p>APDL Command: /PSYMB</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>label</strong></dt><dd><p>Show symbols as selected from the following labels:</p>
+<p>CS - Local coordinate systems.</p>
+<p>NDIR - Nodal coordinate systems (on rotated nodes only).</p>
+<p>ESYS - Element coordinate systems (element displays only).</p>
+<p>LDIR - Line directions (line displays only).</p>
+<p>LDIV - Controls the display of element divisions on lines.</p>
+<p>ADIR - Area direction symbol (for keypoint, line, area and volume plots).</p>
+<dl class="simple">
+<dt>LAYR - Layer orientations (relative to the projected element x-axis) or fiber</dt><dd><p>orientations in smeared reinforcing elements. Used only
+within an element display. Use KEY to specify the layer
+number.</p>
+</dd>
+</dl>
+<p>ECON - Element mesh symbols on keypoints and lines.</p>
+<dl class="simple">
+<dt>DOT - Larger symbols displayed for node and keypoint locations.  When Label = DOT,</dt><dd><p>KEY = 1 by default.</p>
+</dd>
+</dl>
+<p>XNOD - Extra node of surface or circuit elements.</p>
+<dl class="simple">
+<dt>FBCS - Force boundary condition scaling. Subsequent KEY value determines whether or</dt><dd><p>not to scale the applied and derived forces/moments to the
+same maximum value.</p>
+</dd>
+<dt>DEFA - Resets the symbol keys so that ANSYS displays none of the symbols controlled by</dt><dd><p>the /PSYMB command.  The value of the KEY field is ignored.</p>
+</dd>
+<dt>STAT - Prints the status of the settings of the symbol</dt><dd><p>keys controlled by the /PSYMB command.  The KEY
+field is ignored.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>key</strong></dt><dd><p>Symbol key:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">-1</span></code> - Effective only if Label = LAYR and solid shape</dt><dd><p>element display (/ESHAPE) is active. Orientation of
+all layers appears with the solid shape element
+display.</p>
+</dd>
+<dt>0 - No symbol (default). If Label = LDIV, then KEY= 0</dt><dd><p>indicates that the displayed element divisions will
+correspond to the existing mesh (the word MESHED or
+EXISTING can also be substituted). Also, for Label =
+LDIV, if you execute any meshing command (such as
+AMESH or VMESH), KEY is set to 0 (MESHED)
+automatically. If Label = FBCS, then KEY= 0 indicates
+that boundary condition scaling will not be
+common. The applied and derived forces/moments will
+be scaled to their respective maximum values.</p>
+</dd>
+<dt>1 - Include symbol. If Label = LDIV, then KEY = 1</dt><dd><p>indicates that the displayed line divisions will
+correspond to the value assigned by LESIZE (the word
+LESIZE can also be substituted). Also, for Label =
+LDIV, if you execute the LESIZE command, KEY is set
+to 1 (LESIZE) automatically. If Label = FBCS, then
+KEY= 1 indicates that boundary condition scaling will
+be common. The applied and derived forces/moments
+will be scaled to the same maximum value.</p>
+</dd>
+<dt>N - If Label = LAYR, then N is equal to the layer</dt><dd><p>number. If Label = DOT, then N can be equal to
+0,1,…..15, indicating the dot size. If Label =
+LDIV, then KEY = -1, indicates that no element
+divisions will be displayed (the word OFF can also be
+substituted).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Includes various symbols on the display.  Triads are right-handed with
+x displayed as the longest leg.  Where color is displayed, x is white,
+y is green, and z is blue.  For beams, x is always along the length of
+the element.   For lines, an arrow represents the direction of a line,
+from the beginning keypoint to the end keypoint.  See /PLOPTS command
+for additional display options.  Use /PSTATUS or /PSYMB,STAT to display
+settings.  Use /PSYMB,DEFA to reset all specifications back to their
+defaults.  The command /PSYMB,ECON,1 causes the symbol “M” to be
+displayed on keypoints and lines associated with meshed entities.  When
+you issue the command /PSYMB,DOT,1, a larger symbol is displayed for
+each node and keypoint location.</p>
+<p>PowerGraphics (/GRAPHICS,POWER) does not support /PSYMB,ESYS and
+/PSYMB,LAYR.</p>
+<p>If KEY = N and PowerGraphics is off, the centroid of the surface
+elements is connected to the extra node using a gray line.  However, if
+PowerGraphics is on, the color of the line connecting the centroid to
+the extra node is the same as that for the elements themselves (as
+determined by /PNUM).</p>
+<p>When Label = LAYR, the layer systems can be visualized with all
+current-technology layered elements and the smeared reinforcing element
+REINF265. To use /PSYMB,LAYR with REINF265, first set the vector-mode
+graphics option (/DEVICE,VECTOR,1).</p>
+<p>This command is valid in any processor.</p>
+</dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../../_sources/mapdl_commands/graphics/_autosummary/ansys.mapdl.core.Mapdl.psymb.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

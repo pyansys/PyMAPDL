@@ -1,0 +1,6 @@
+﻿djlist
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.djlist

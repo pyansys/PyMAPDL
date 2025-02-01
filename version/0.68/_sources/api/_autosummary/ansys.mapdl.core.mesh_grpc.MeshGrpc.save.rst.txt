@@ -1,0 +1,6 @@
+save
+====
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. automethod:: MeshGrpc.save

@@ -1,0 +1,6 @@
+﻿chain\_commands
+===============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.chain_commands

@@ -1,0 +1,6 @@
+image\_scale
+============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.image_scale

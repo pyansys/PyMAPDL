@@ -1,0 +1,6 @@
+﻿sspb
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sspb

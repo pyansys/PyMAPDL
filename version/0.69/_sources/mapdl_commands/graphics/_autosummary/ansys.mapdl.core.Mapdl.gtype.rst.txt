@@ -1,0 +1,6 @@
+﻿gtype
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.gtype

@@ -1,0 +1,6 @@
+﻿cmrotate
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.cmrotate

@@ -1,0 +1,6 @@
+﻿edrc
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edrc

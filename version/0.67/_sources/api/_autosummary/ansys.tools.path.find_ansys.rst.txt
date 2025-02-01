@@ -1,0 +1,6 @@
+﻿find\_ansys
+===========
+
+.. currentmodule:: ansys.tools.path
+
+.. autofunction:: find_ansys

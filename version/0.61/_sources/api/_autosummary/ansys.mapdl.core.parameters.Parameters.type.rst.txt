@@ -1,0 +1,6 @@
+type
+====
+
+.. currentmodule:: ansys.mapdl.core.parameters
+
+.. autoproperty:: Parameters.type

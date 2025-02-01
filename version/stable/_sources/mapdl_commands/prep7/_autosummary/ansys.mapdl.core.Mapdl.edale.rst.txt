@@ -1,0 +1,6 @@
+﻿edale
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edale

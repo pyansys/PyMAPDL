@@ -1,0 +1,6 @@
+slider\_styles
+==============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.slider_styles

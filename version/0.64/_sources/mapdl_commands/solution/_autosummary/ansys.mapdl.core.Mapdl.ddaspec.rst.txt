@@ -1,0 +1,6 @@
+﻿ddaspec
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ddaspec

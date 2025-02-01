@@ -1,0 +1,6 @@
+﻿channel\_state
+==============
+
+.. currentmodule:: ansys.mapdl.core.mapdl_grpc
+
+.. autoproperty:: MapdlGrpc.channel_state

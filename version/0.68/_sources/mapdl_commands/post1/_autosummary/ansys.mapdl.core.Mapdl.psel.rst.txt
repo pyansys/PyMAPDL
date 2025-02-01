@@ -1,0 +1,6 @@
+﻿psel
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.psel

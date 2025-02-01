@@ -1,0 +1,6 @@
+smooth\_shading
+===============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.smooth_shading

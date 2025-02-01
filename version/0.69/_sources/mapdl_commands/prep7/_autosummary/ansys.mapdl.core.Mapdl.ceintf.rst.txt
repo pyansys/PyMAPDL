@@ -1,0 +1,6 @@
+﻿ceintf
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ceintf

@@ -1,0 +1,21 @@
+
+:orphan:
+
+.. _sphx_glr_examples_gallery_examples_02-tips-n-tricks_sg_execution_times:
+
+
+Computation times
+=================
+**00:08.383** total execution time for **examples_gallery_examples_02-tips-n-tricks** files:
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_02-tips-n-tricks_03-using_inline_functions_and_Query.py` (``03-using_inline_functions_and_Query.py``)     | 00:02.149 | 0.0 MB |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_02-tips-n-tricks_01-smoothing-element-size-transitions.py` (``01-smoothing-element-size-transitions.py``) | 00:02.094 | 0.0 MB |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_02-tips-n-tricks_00-example-template.py` (``00-example-template.py``)                                     | 00:01.737 | 0.0 MB |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_02-tips-n-tricks_04-rotational-displacement.py` (``04-rotational-displacement.py``)                       | 00:01.592 | 0.0 MB |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_02-tips-n-tricks_05-explore_mapdl_files.py` (``05-explore_mapdl_files.py``)                               | 00:00.810 | 0.0 MB |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+

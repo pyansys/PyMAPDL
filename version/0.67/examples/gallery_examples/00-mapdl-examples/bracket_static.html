@@ -1,0 +1,1589 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Static analysis of a corner bracket &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css?v=18fd1f76" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+ 
+<link href="../../../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../../../_static/documentation_options.js?v=1511083c"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/00-mapdl-examples/bracket_static';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.67';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Static simulation of double cantilever beam test via cohesive elements" href="composite_dcb.html" />
+    <link rel="prev" title="Basic DPF-Core Usage with PyMAPDL" href="basic_dpf_example.html" />
+<link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/gallery_examples/00-mapdl-examples/bracket_static.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+ 
+<!-- Include the MeiliSearch CSS stylesheet only if theme present -->
+<link href="../../../_static/css/meilisearch.css" rel="stylesheet" />
+
+<!-- Create a search bar form with a text input and a dropdown selector for the search index -->
+<form
+  class="bd-search d-flex align-items-center"
+  action="../../../search.html"
+  method="get"
+>
+  <input
+    type="search"
+    placeholder="Search"
+    class="form-control"
+    id="search-bar-input"
+    autofocus
+  />
+  <span class="search-button__kbd-shortcut"
+    ><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span
+  >
+  <style>
+    .bd-search .search-button__kbd-shortcut {
+      right: 33%;
+    }
+  </style>
+  
+  <select id="indexUidSelector" class="index-select">
+    
+    <option value="pymapdl-v0-67">PyMAPDL</option>
+    
+  </select>
+  
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <!-- Include the MeiliSearch JavaScript library for the search bar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    
+  <script>
+    var HOST_URL = "https://backend.search.pyansys.com/";
+    var API_KEY = "9fbccc76c147935ce2b562a9ee0c6669276987572dc1f22491cea72e9e99f35d";
+    var indexUid = "pymapdl-v0-67";
+  </script>
+
+  <script src="../../../_static/js/meilisearch_theme_wrap.js"></script>
+</form>
+</div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Full examples using PyMAPDL</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2d_magnetostatic_solenoid-BodyFlux_Averaging.html">Analysis of a 2D magnetostatic solenoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2d_plate_with_a_hole.html">MAPDL 2D Plane Stress Concentration Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2d_pressure_vessel.html">2D Pressure Vessel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyMAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acoustic_analysis.html">3D Acoustic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_dpf_example.html">Basic DPF-Core Usage with PyMAPDL</a></li>
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Static analysis of a corner bracket</a></li>
+<li class="toctree-l2"><a class="reference internal" href="composite_dcb.html">Static simulation of double cantilever beam test via cohesive elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contact_elements.html">Contact Element Example</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cyclic_analysis.html">Cyclic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cyclic_static.html">Static Cyclic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exhaust_manifold_thermal_stress.html">Thermal-structural analysis of exhaust manifold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">Plotting and Mesh Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lathe_cutter.html">Structural Analysis of a Lathe Cutter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modal_beam.html">MAPDL modal beam analysis example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_operations.html">Path Operations within pyMAPDL and MAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pressure_vessel.html">Pressure Vessel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slashmap_cfx_mapping.html">CFX pressure data mapping to structural blade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../01-geometry/index.html">Geometry examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-tips-n-tricks/index.html">Miscellaneous examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-general-fea/index.html">Academic finite element examples</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/verif-manual/index.html">Verification Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/technology_showcase_examples/index.html">Technology Showcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/index.html">Extended examples</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+      
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+      
+    <li class="breadcrumb-item">
+      <a
+        href="../../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i
+      ></a>
+    </li> 
+    <li class="breadcrumb-item">
+      <a href="../../index.html" class="nav-link">Examples</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">Full examples using PyMAPDL</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Static analysis of a corner bracket</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-gallery-examples-00-mapdl-examples-bracket-static-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="static-analysis-of-a-corner-bracket">
+<span id="ref-static-analysis-bracket"></span><span id="sphx-glr-examples-gallery-examples-00-mapdl-examples-bracket-static-py"></span><h1>Static analysis of a corner bracket<a class="headerlink" href="#static-analysis-of-a-corner-bracket" title="Link to this heading">#</a></h1>
+<p>This is an example adapted from a classic Ansys APDL tutorial
+<a class="reference external" href="https://ansyshelp.ansys.com/account/Secured?returnurl=/Views/Secured/corp/v231/en/ans_tut/structural_cb.html">Static Analysis of a Corner Bracket</a></p>
+<section id="problem-specification">
+<h2>Problem specification<a class="headerlink" href="#problem-specification" title="Link to this heading">#</a></h2>
+<table class="table">
+<tbody>
+<tr class="row-odd"><td><p>Applicable Products:</p></td>
+<td><p>Ansys Multiphysics, Ansys Mechanical, Ansys Structural</p></td>
+</tr>
+<tr class="row-even"><td><p>Level of Difficulty:</p></td>
+<td><p>Easy</p></td>
+</tr>
+<tr class="row-odd"><td><p>Interactive Time Required:</p></td>
+<td><p>60 to 90 minutes</p></td>
+</tr>
+<tr class="row-even"><td><p>Discipline:</p></td>
+<td><p>Structural</p></td>
+</tr>
+<tr class="row-odd"><td><p>Analysis Type:</p></td>
+<td><p>Linear static</p></td>
+</tr>
+<tr class="row-even"><td><p>Element Types Used:</p></td>
+<td><p><a class="reference external" href="https://ansyshelp.ansys.com/account/Secured?returnurl=/Views/Secured/corp/v231/en/ans_elem/Hlp_E_PLANE183.html..|pyansyscontact|replace::`PyAnsysCoreteam&lt;pyansys.core&#64;ansys.com&gt;`_">PLANE183</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Features Demonstrated:</p></td>
+<td><p>Solid modeling including primitives, boolean operations, and fillets; tapered pressure load
+deformed shape and stress displays; listing of reaction forces;</p></td>
+</tr>
+<tr class="row-even"><td><p>Help Resources:</p></td>
+<td><p>Structural Static Analysis and <a class="reference external" href="https://ansyshelp.ansys.com/account/Secured?returnurl=/Views/Secured/corp/v231/en/ans_elem/Hlp_E_PLANE183.html..|pyansyscontact|replace::`PyAnsysCoreteam&lt;pyansys.core&#64;ansys.com&gt;`_">PLANE183</a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="problem-description">
+<h2>Problem description<a class="headerlink" href="#problem-description" title="Link to this heading">#</a></h2>
+<p>This is a simple, single-load-step, structural static analysis of a corner angle
+bracket. The upper-left pin hole is constrained (welded) around its entire
+circumference, and a tapered pressure load is applied to the bottom of the
+lower-right pin hole. The US customary system of units is used.
+The objective is to demonstrate how Mechanical APDL is typical used in an analysis.</p>
+<section id="bracket-model">
+<h3>Bracket model<a class="headerlink" href="#bracket-model" title="Link to this heading">#</a></h3>
+<p>The dimensions of the corner bracket are shown in the following figure.
+The bracket is made of A36 steel with a Young’s modulus of <span class="math notranslate nohighlight">\(3\cdot10^7\)</span> psi
+and Poisson’s ratio of <span class="math notranslate nohighlight">\(0.27\)</span>.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../../_images/bracket_dimensions.png"><img alt="Bracket image" src="../../../_images/bracket_dimensions.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-text"><strong>Bracket model dimensions</strong></span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="approach-and-assumptions">
+<h3>Approach and assumptions<a class="headerlink" href="#approach-and-assumptions" title="Link to this heading">#</a></h3>
+<p>Because the bracket is thin in the z direction (1/2-inch thickness) compared
+to its x and y dimensions, and because the pressure load acts only in the x-y
+plane, assume plane stress for the analysis.</p>
+<p>The approach is to use solid modeling to generate the 2D model and automatically
+mesh it with nodes and elements.
+An alternative approach would be to create the nodes and elements directly.</p>
+</section>
+</section>
+<section id="launching-mapdl">
+<h2>Launching MAPDL<a class="headerlink" href="#launching-mapdl" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">jobName</span></a> <span class="o">=</span> <span class="s2">&quot;bracket&quot;</span>  <span class="c1"># optional</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">(</span><span class="n">jobname</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">jobName</span></a><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="build-the-geometry">
+<h2>Build the geometry<a class="headerlink" href="#build-the-geometry" title="Link to this heading">#</a></h2>
+<section id="define-rectangles">
+<h3>Define rectangles<a class="headerlink" href="#define-rectangles" title="Link to this heading">#</a></h3>
+<p>There are several ways to create the model geometry within Mechanical APDL,
+and some are more convenient than others. The first step is to recognize that you can
+construct the bracket easily with combinations of rectangles and circle primitives.</p>
+<p>Select an arbitrary global origin location, and then define the rectangle and circle
+primitives relative to that origin. For this analysis, use the center of the
+upper-left hole. Begin by defining a rectangle relative to that location.</p>
+<p>The APDL command <a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.rectng.html#ansys.mapdl.core.Mapdl.rectng" title="ansys.mapdl.core.Mapdl.rectng"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.prep7()</span></code></a> is
+used to create a rectangle with <code class="docutils literal notranslate"><span class="pre">X1</span></code>, <code class="docutils literal notranslate"><span class="pre">X2</span></code>, <code class="docutils literal notranslate"><span class="pre">Y1</span></code>, and <code class="docutils literal notranslate"><span class="pre">Y2</span></code> dimensions.
+In PyMAPDL the <code class="xref py py-class docutils literal notranslate"><span class="pre">mapdl()</span></code> class is used
+to call the APDL command.</p>
+<section id="dimension-box-1">
+<h4>Dimension box 1<a class="headerlink" href="#dimension-box-1" title="Link to this heading">#</a></h4>
+<p>Enter the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">Y1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">Y2</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Or use a Python list to store the dimensions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="dimension-box-2">
+<h4>Dimension box 2<a class="headerlink" href="#dimension-box-2" title="Link to this heading">#</a></h4>
+<p>Enter the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box2</span></a> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../../../mapdl_commands/session/_autosummary/ansys.mapdl.core.Mapdl.prep7.html#ansys.mapdl.core.Mapdl.prep7" title="ansys.mapdl.core.Mapdl.prep7"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.prep7()</span></code></a> command starts the APDL
+preprocessor to start the build up of the analysis.
+This is the processor where the model geometry is created.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****MAPDL VERIFICATION RUN ONLY*****
+     DO NOT USE RESULTS FOR PRODUCTION
+
+          ***** MAPDL ANALYSIS DEFINITION (PREP7) *****
+</pre></div>
+</div>
+<p>Parameterize as much as possible, taking advantage of Python features such as the
+Python <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> or <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code> class.
+Good practice would be to have all parameters near or at the top of the input
+file. However, for this interactive tutorial, they are inline.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># build your cubes</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">rectng</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+<p>In Python, you can use the <code class="docutils literal notranslate"><span class="pre">*</span></code> to unpack an object in a function
+call. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">rectng</span><span class="p">(</span><span class="o">*</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box2</span></a><span class="p">)</span>  <span class="c1"># prints the id of the created area</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</section>
+</section>
+<section id="plot-areas">
+<h3>Plot areas<a class="headerlink" href="#plot-areas" title="Link to this heading">#</a></h3>
+<p>PyMAPDL plots can be controlled through arguments passed to the different plot
+methods, such as <a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.Mapdl.aplot.html#ansys.mapdl.core.Mapdl.aplot" title="ansys.mapdl.core.Mapdl.aplot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.aplot()</span></code></a>.</p>
+<p>The area plot shows both rectangles, which are areas, in the same color.
+To more clearly distinguish between areas, turn on area numbers.
+For more information, see the <a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.Mapdl.aplot.html#ansys.mapdl.core.Mapdl.aplot" title="ansys.mapdl.core.Mapdl.aplot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.aplot()</span></code></a> method.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">aplot</span><span class="p">(</span><span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span> <span class="n">show_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_001.png" srcset="../../../_images/sphx_glr_bracket_static_001.png" alt="bracket static" class = "sphx-glr-single-img"/><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you download the Jupyter Notebook version of
+<a class="reference internal" href="#ref-static-analysis-bracket-end">this example</a>, you can take advantage
+of Jupyter Notebook features.
+For example, you can right-click a command to display contextual help.</p>
+</div>
+</section>
+<section id="create-first-circle">
+<h3>Create first circle<a class="headerlink" href="#create-first-circle" title="Link to this heading">#</a></h3>
+<p>With the use of logic and Boolean geometrical operations, you can use
+the original geometric parameters (<code class="docutils literal notranslate"><span class="pre">box1</span></code>, <code class="docutils literal notranslate"><span class="pre">box2</span></code>) to locate the circles.</p>
+<p>Create the half circle at each end of the bracket. You first create
+a full circle on each end and then combine the circles and rectangles with a
+Boolean add operation (discussed in <a class="reference internal" href="#subtract-pin-holes-from-bracket">Subtract pin holes from bracket</a>).</p>
+<p>The APDL command to create the circles is
+<a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.cyl4.html#ansys.mapdl.core.Mapdl.cyl4" title="ansys.mapdl.core.Mapdl.cyl4"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.cyl4()</span></code></a>.</p>
+<p>The first circle area is located on the left side at the X,Y location, and
+its radius is <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create first circle</span>
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">radius</span></a> <span class="o">=</span> <span class="mi">1</span>
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">circle1_X</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">circle1_Y</span></a> <span class="o">=</span> <span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cyl4</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">circle1_X</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">circle1_Y</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">radius</span></a><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">aplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span> <span class="n">show_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_002.png" srcset="../../../_images/sphx_glr_bracket_static_002.png" alt="bracket static" class = "sphx-glr-single-img"/></section>
+<section id="create-second-circle">
+<h3>Create second circle<a class="headerlink" href="#create-second-circle" title="Link to this heading">#</a></h3>
+<p>Create the second circle at the X,Y location:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">circle2_X</span></a> <span class="o">=</span> <span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box2</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box2</span></a><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">circle2_Y</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box2</span></a><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Use these parameter values to create the new area with the same radius of <span class="math notranslate nohighlight">\(1\)</span>
+as the first circle area.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">cyl4</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">circle2_X</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">circle2_Y</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">radius</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">aplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span> <span class="n">show_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_003.png" srcset="../../../_images/sphx_glr_bracket_static_003.png" alt="bracket static" class = "sphx-glr-single-img"/></section>
+<section id="add-areas">
+<h3>Add areas<a class="headerlink" href="#add-areas" title="Link to this heading">#</a></h3>
+<p>Now that the appropriate pieces of the model (rectangles and circles) are defined,
+add them together so the model becomes one continuous area.
+Use the Boolean add operation <a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.aadd.html#ansys.mapdl.core.Mapdl.aadd" title="ansys.mapdl.core.Mapdl.aadd"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.aadd()</span></code></a>
+to add the areas together.</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">all</span></code> argument to add all areas.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">aadd</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>  <span class="c1"># Prints the ID of the created area</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</section>
+<section id="create-line-fillet">
+<h3>Create line fillet<a class="headerlink" href="#create-line-fillet" title="Link to this heading">#</a></h3>
+<p>The right angle between the two boxes can be improved using a fillet with a
+radius of <span class="math notranslate nohighlight">\(0.4\)</span>.
+You can do this by selecting the lines around this area and creating the fillet.</p>
+<p>Use the APDL <a class="reference internal" href="../../../mapdl_commands/database/_autosummary/ansys.mapdl.core.Mapdl.lsel.html#ansys.mapdl.core.Mapdl.lsel" title="ansys.mapdl.core.Mapdl.lsel"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.lsel()</span></code></a> method
+to select lines. Here, the X and Y locations of the lines are used to create
+the boxes for creating your selection.</p>
+<p>After selecting the line, you need to write it to a parameter so you can use
+it to generate the fillet line.
+This is done using the <a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.Mapdl.get.html#ansys.mapdl.core.Mapdl.get" title="ansys.mapdl.core.Mapdl.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.get()</span></code></a>
+method.</p>
+<p>Because you have selected one line, you can use the <code class="docutils literal notranslate"><span class="pre">MAX</span></code> and <code class="docutils literal notranslate"><span class="pre">NUM</span></code> arguments
+for the <a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.Mapdl.get.html#ansys.mapdl.core.Mapdl.get" title="ansys.mapdl.core.Mapdl.get"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.get()</span></code></a> method.</p>
+<p>Select first line for fillet</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">line1</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">l1</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;line1&quot;</span><span class="p">,</span> <span class="s2">&quot;LINE&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;NUM&quot;</span><span class="p">,</span> <span class="s2">&quot;MAX&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you write the command to a Python parameter (<code class="docutils literal notranslate"><span class="pre">line1</span></code>), you can use either
+the APDL parameter <code class="docutils literal notranslate"><span class="pre">l1</span></code> or the Python parameter <code class="docutils literal notranslate"><span class="pre">line1</span></code> when you create
+the fillet line.</p>
+<p>Select second line for fillet and create Python parameter</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">line2</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box2</span></a><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">l2</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;line2&quot;</span><span class="p">,</span> <span class="s2">&quot;LINE&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;NUM&quot;</span><span class="p">,</span> <span class="s2">&quot;MAX&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once you have both lines selected, you can use the PyMAPDL command
+<a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.lfillt.html#ansys.mapdl.core.Mapdl.lfillt" title="ansys.mapdl.core.Mapdl.lfillt"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.lfillt()</span></code></a> to generate the fillet
+between the lines.</p>
+<p><strong>Note</strong> that Python could return a list if more than one line is selected.</p>
+<p>Here you use a mix of the APDL parameter as a string <code class="docutils literal notranslate"><span class="pre">line1</span></code> and
+the <code class="docutils literal notranslate"><span class="pre">l2</span></code> Python parameter to create the fillet line.</p>
+<p>Create fillet line using selected line (parameter names)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fillet_radius</span></a> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">line3</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">lfillt</span><span class="p">(</span><span class="s2">&quot;line1&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">l2</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fillet_radius</span></a><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_004.png" srcset="../../../_images/sphx_glr_bracket_static_004.png" alt="bracket static" class = "sphx-glr-single-img"/></section>
+<section id="create-fillet-area">
+<h3>Create fillet area<a class="headerlink" href="#create-fillet-area" title="Link to this heading">#</a></h3>
+<p>To create the area delineated by <code class="docutils literal notranslate"><span class="pre">line1</span></code>, <code class="docutils literal notranslate"><span class="pre">line2</span></code>, and newly created
+<code class="docutils literal notranslate"><span class="pre">line3</span></code>, use the <a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.al.html#ansys.mapdl.core.Mapdl.al" title="ansys.mapdl.core.Mapdl.al"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.al()</span></code></a> method.
+The three lines are the input. If you select them all, you can use
+the <code class="docutils literal notranslate"><span class="pre">'ALL'</span></code> argument to create the area.</p>
+<p>First you have to reselect the newly created lines in the fillet area.
+To do this, you can use the <code class="docutils literal notranslate"><span class="pre">fillet_radius</span></code> parameter and the
+<a class="reference internal" href="../../../mapdl_commands/database/_autosummary/ansys.mapdl.core.Mapdl.lsel.html#ansys.mapdl.core.Mapdl.lsel" title="ansys.mapdl.core.Mapdl.lsel"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.lsel()</span></code></a> command.</p>
+<p>For the two newly created straight lines, the length is the same as
+the <code class="docutils literal notranslate"><span class="pre">fillet_radius</span></code> value. Thus, you can use the length argument
+with the <a class="reference internal" href="../../../mapdl_commands/database/_autosummary/ansys.mapdl.core.Mapdl.lsel.html#ansys.mapdl.core.Mapdl.lsel" title="ansys.mapdl.core.Mapdl.lsel"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.lsel()</span></code></a> command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+
+<span class="c1"># Select lines for the area</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LENGTH&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fillet_radius</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([4, 5], dtype=int32)
+</pre></div>
+</div>
+<p>Additionally, you need to get the fillet line itself (<code class="docutils literal notranslate"><span class="pre">line3</span></code>). You can use the
+<a class="reference internal" href="../../../mapdl_commands/database/_autosummary/ansys.mapdl.core.Mapdl.lsel.html#ansys.mapdl.core.Mapdl.lsel" title="ansys.mapdl.core.Mapdl.lsel"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.lsel()</span></code></a> command again with either
+the <code class="docutils literal notranslate"><span class="pre">'RADIUS'</span></code> argument if there is only one line with that radius in the model
+or more directly use the parameter name of the line.
+Note the <code class="docutils literal notranslate"><span class="pre">'A'</span></code> to additionally select items.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;LINE&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">line3</span></a><span class="p">)</span>
+
+<span class="c1"># plotting ares</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span> <span class="n">show_line_numbering</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_005.png" srcset="../../../_images/sphx_glr_bracket_static_005.png" alt="bracket static" class = "sphx-glr-single-img"/><p>Then use <a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.al.html#ansys.mapdl.core.Mapdl.al" title="ansys.mapdl.core.Mapdl.al"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.al()</span></code></a> command to create the areas
+from the lines.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the area</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">al</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>  <span class="c1"># Prints the ID of the newly created area</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</section>
+<section id="add-areas-together">
+<h3>Add areas together<a class="headerlink" href="#add-areas-together" title="Link to this heading">#</a></h3>
+<p>Append all areas again with the <code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.aadd()</span> <span class="pre">&lt;ansys.mapdl.core.Mapdl.aadd&gt;</span> <span class="pre">command()</span></code>.
+Because you have only the two areas to combine, use the <code class="docutils literal notranslate"><span class="pre">'ALL'</span></code> argument.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add the area to the main area</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">aadd</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">aplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span> <span class="n">show_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_006.png" srcset="../../../_images/sphx_glr_bracket_static_006.png" alt="bracket static" class = "sphx-glr-single-img"/></section>
+<section id="create-first-pin-hole">
+<h3>Create first pin hole<a class="headerlink" href="#create-first-pin-hole" title="Link to this heading">#</a></h3>
+<p>The first pin hole is located at the left side of the first box. Thus, you can use
+the box dimensions to locate your new circle.</p>
+<p>The X value (center) of the pin hole is at the first coordinate of
+the <code class="docutils literal notranslate"><span class="pre">box1</span></code> (<code class="docutils literal notranslate"><span class="pre">X1</span></code>). The Y value is the average of the two <code class="docutils literal notranslate"><span class="pre">box1</span></code> Y values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the first pinhole</span>
+<a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole_radius</span></a> <span class="o">=</span> <span class="mf">0.4</span>
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole1_X</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole1_Y</span></a> <span class="o">=</span> <span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box1</span></a><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole1</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">cyl4</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole1_X</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole1_Y</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole_radius</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p>Because you have two pin hole circles, you use the command twice.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some of these areas are set to parameters to use later in the analysis.
+This allows you to use the lines to create the areas with
+the <a class="reference internal" href="../../../mapdl_commands/database/_autosummary/ansys.mapdl.core.Mapdl.asll.html#ansys.mapdl.core.Mapdl.asll" title="ansys.mapdl.core.Mapdl.asll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.asll()</span></code></a> command.</p>
+</div>
+</section>
+<section id="create-second-pin-hole">
+<h3>Create second pin hole<a class="headerlink" href="#create-second-pin-hole" title="Link to this heading">#</a></h3>
+<p>The second pin hole is located at the bottom of the second box, so again we
+can use the box 2 dimensions to locate the circle.
+For this pinhole the dimensions are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2_X</span></a> <span class="o">=</span> <span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box2</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box2</span></a><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2_Y</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">box2</span></a><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">cyl4</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2_X</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2_Y</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole_radius</span></a><span class="p">)</span>
+<span class="n">pinhole2_lines</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">asll</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="subtract-pin-holes-from-bracket">
+<h3>Subtract pin holes from bracket<a class="headerlink" href="#subtract-pin-holes-from-bracket" title="Link to this heading">#</a></h3>
+<p>If you use the <a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.Mapdl.aplot.html#ansys.mapdl.core.Mapdl.aplot" title="ansys.mapdl.core.Mapdl.aplot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.aplot()</span></code></a> command with lines, at
+this point, you have created two circle areas overlapping the bracket.
+You can use the <a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.asba.html#ansys.mapdl.core.Mapdl.asba" title="ansys.mapdl.core.Mapdl.asba"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.asba()</span></code></a> command, which is
+the Boolean command to subtract areas, to remove the circles from the bracket.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove pin hole areas from bracket</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">asba</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole1</span></a><span class="p">)</span>
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bracket</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">asba</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">aplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">show_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_007.png" srcset="../../../_images/sphx_glr_bracket_static_007.png" alt="bracket static" class = "sphx-glr-single-img"/></section>
+</section>
+<section id="model-definition">
+<h2>Model definition<a class="headerlink" href="#model-definition" title="Link to this heading">#</a></h2>
+<section id="define-material-properties">
+<h3>Define material properties<a class="headerlink" href="#define-material-properties" title="Link to this heading">#</a></h3>
+<p>There is only one material property to define for the bracket,
+A36 Steel, with given values for the Young’s modulus of elasticity and Poisson’s ratio.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ex</span></a> <span class="o">=</span> <span class="mf">30e6</span>  <span class="c1"># Young&#39;s Modulus</span>
+<a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">prxy</span></a> <span class="o">=</span> <span class="mf">0.27</span>  <span class="c1"># Poisson&#39;s ratio</span>
+</pre></div>
+</div>
+<p>Use the <a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.mp.html#ansys.mapdl.core.Mapdl.mp" title="ansys.mapdl.core.Mapdl.mp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.mp()</span></code></a> command to
+define material properties in PyMAPDL.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;EX&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ex</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;PRXY&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">prxy</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>MATERIAL          1     PRXY =  0.2700000
+</pre></div>
+</div>
+</section>
+<section id="define-element-types-and-options">
+<h3>Define element types and options<a class="headerlink" href="#define-element-types-and-options" title="Link to this heading">#</a></h3>
+<p>You use the <a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.et.html#ansys.mapdl.core.Mapdl.et" title="ansys.mapdl.core.Mapdl.et"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.et()</span></code></a> command to select an element .</p>
+<p>In any analysis, you select elements from a library of element types and
+define the appropriate ones for the analysis. In this case, only one element
+type is used: <a class="reference external" href="https://ansyshelp.ansys.com/account/Secured?returnurl=/Views/Secured/corp/v231/en/ans_elem/Hlp_E_PLANE183.html..|pyansyscontact|replace::`PyAnsysCoreteam&lt;pyansys.core&#64;ansys.com&gt;`_">PLANE183</a>, a 2D, quadratic, structural,
+higher-order element.</p>
+<p>A higher-order element enables you to have a coarser mesh than with lower-order
+elements while still maintaining solution accuracy. Also, Mechanical APDL
+generates some triangle-shaped elements in the mesh that would otherwise be
+inaccurate when using lower-order elements.</p>
+<section id="options-for-plane183">
+<h4>Options for <cite>PLANE183</cite><a class="headerlink" href="#options-for-plane183" title="Link to this heading">#</a></h4>
+<p>Specify plane stress with thickness as an option for <a class="reference external" href="https://ansyshelp.ansys.com/account/Secured?returnurl=/Views/Secured/corp/v231/en/ans_elem/Hlp_E_PLANE183.html..|pyansyscontact|replace::`PyAnsysCoreteam&lt;pyansys.core&#64;ansys.com&gt;`_">PLANE183</a>.
+(Thickness is defined as a real constant in <a class="reference internal" href="#define-real-constants">Define real constants</a>).
+Select plane stress with the thickness option for the element behavior.
+The thickness option is set using the element keyoption 3.  For more
+information, see the <a class="reference external" href="https://ansyshelp.ansys.com/account/Secured?returnurl=/Views/Secured/corp/v231/en/ans_elem/Hlp_E_PLANE183.html..|pyansyscontact|replace::`PyAnsysCoreteam&lt;pyansys.core&#64;ansys.com&gt;`_">PLANE183</a> element definition in the
+Ansys Help.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a ``PLANE183`` element type with thickness</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;PLANE183&quot;</span><span class="p">,</span> <span class="n">kop3</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</section>
+</section>
+<section id="define-real-constants">
+<h3>Define real constants<a class="headerlink" href="#define-real-constants" title="Link to this heading">#</a></h3>
+<p>Assuming plane stress with thickness, enter the thickness as a real constant
+for <a class="reference external" href="https://ansyshelp.ansys.com/account/Secured?returnurl=/Views/Secured/corp/v231/en/ans_elem/Hlp_E_PLANE183.html..|pyansyscontact|replace::`PyAnsysCoreteam&lt;pyansys.core&#64;ansys.com&gt;`_">PLANE183</a>:</p>
+<p>You use the <a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.r.html#ansys.mapdl.core.Mapdl.r" title="ansys.mapdl.core.Mapdl.r"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.r()</span></code></a> command to set real
+constants.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set element thickness</span>
+<a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">thick</span></a> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">thick</span></a><span class="p">)</span>  <span class="c1"># thickness of 0.5 length units)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>REAL CONSTANT SET          1  ITEMS   1 TO   6
+   0.50000       0.0000       0.0000       0.0000       0.0000       0.0000
+</pre></div>
+</div>
+</section>
+</section>
+<section id="mesh">
+<h2>Mesh<a class="headerlink" href="#mesh" title="Link to this heading">#</a></h2>
+<p>You can mesh the model without specifying mesh-size controls. If you are
+unsure of how to determine mesh density, you can allow Mechanical APDL to apply
+a default mesh. For this model, however, you want to specify a global element size
+to control overall mesh density.
+Set global size control using the <a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.esize.html#ansys.mapdl.core.Mapdl.esize" title="ansys.mapdl.core.Mapdl.esize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.esize()</span></code></a>
+command. Set a size of <span class="math notranslate nohighlight">\(0.5\)</span> or a slightly smaller value to improve the mesh.</p>
+<p>Mesh the areas using the <a class="reference internal" href="../../../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.amesh.html#ansys.mapdl.core.Mapdl.amesh" title="ansys.mapdl.core.Mapdl.amesh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.amesh()</span></code></a> command.
+Your mesh may vary slightly from the mesh shown. You may see slightly different
+results during postprocessing.</p>
+<p>Now you can use the <a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.Mapdl.eplot.html#ansys.mapdl.core.Mapdl.eplot" title="ansys.mapdl.core.Mapdl.eplot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.eplot()</span></code></a> command to see the mesh.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">element_size</span></a> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">element_size</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">amesh</span><span class="p">(</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bracket</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span>
+    <span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span>
+    <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">show_axes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">line_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">background</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_008.png" srcset="../../../_images/sphx_glr_bracket_static_008.png" alt="bracket static" class = "sphx-glr-single-img"/></section>
+<section id="boundary-conditions">
+<h2>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading">#</a></h2>
+<p>Loading is considered part of the
+<a class="reference internal" href="../../../mapdl_commands/post26/_autosummary/ansys.mapdl.core.Mapdl.solu.html#ansys.mapdl.core.Mapdl.solu" title="ansys.mapdl.core.Mapdl.solu"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.solu()</span></code></a> command or the solution processor in APDL.
+But it can be also done in the preprocessor with
+<a class="reference internal" href="../../../mapdl_commands/session/_autosummary/ansys.mapdl.core.Mapdl.prep7.html#ansys.mapdl.core.Mapdl.prep7" title="ansys.mapdl.core.Mapdl.prep7"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.prep7()</span></code></a> command.</p>
+<p>You can activate the solution processor by calling the
+<a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.solution.Solution.html#ansys.mapdl.core.solution.Solution" title="ansys.mapdl.core.solution.Solution"><code class="xref py py-class docutils literal notranslate"><span class="pre">mapdl.solution()</span></code></a> class,
+by using the <a class="reference internal" href="../../../mapdl_commands/session/_autosummary/ansys.mapdl.core.Mapdl.slashsolu.html#ansys.mapdl.core.Mapdl.slashsolu" title="ansys.mapdl.core.Mapdl.slashsolu"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.slashsolu()</span></code></a>
+command, or by using <a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.Mapdl.run.html#ansys.mapdl.core.Mapdl.run" title="ansys.mapdl.core.Mapdl.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.run(&quot;/solu&quot;)</span></code></a> to
+call the APDL <code class="docutils literal notranslate"><span class="pre">/SOLU</span></code> command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">solution</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>***** ROUTINE COMPLETED *****  CP =         0.000
+
+
+
+ *****  MAPDL SOLUTION ROUTINE  *****
+</pre></div>
+</div>
+<p>Set the analysis type with the
+<a class="reference internal" href="../../../mapdl_commands/solution/_autosummary/ansys.mapdl.core.Mapdl.antype.html#ansys.mapdl.core.Mapdl.antype" title="ansys.mapdl.core.Mapdl.antype"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.antype()</span></code></a> command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s2">&quot;STATIC&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>PERFORM A STATIC ANALYSIS
+  THIS WILL BE A NEW ANALYSIS
+</pre></div>
+</div>
+<section id="apply-displacement-constraints">
+<h3>Apply displacement constraints<a class="headerlink" href="#apply-displacement-constraints" title="Link to this heading">#</a></h3>
+<p>This is where you add boundary conditions to the model. First, you want to fix
+the model by setting a zero displacement at the first pin hole.
+You can apply displacement constraints directly to lines.</p>
+<p>To do this without the graphical interface, you would need to replot the lines.
+Or you can use Booleans and generate the lines from the pin hole locations/box
+parameters.
+By using the parameters that you have created, you can select the lines and fix one end
+of the bracket.</p>
+<p>Pick the four lines around the left-hand hole using
+the <a class="reference internal" href="../../../mapdl_commands/database/_autosummary/ansys.mapdl.core.Mapdl.lsel.html#ansys.mapdl.core.Mapdl.lsel" title="ansys.mapdl.core.Mapdl.lsel"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.lsel()</span></code></a> command and
+the <code class="docutils literal notranslate"><span class="pre">pinehole1</span></code> parameters.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bc1</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span>
+    <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole1_X</span></a> <span class="o">-</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole_radius</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole1_X</span></a> <span class="o">+</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole_radius</span></a>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of lines selected : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bc1</span></a><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Number of lines selected : 4
+</pre></div>
+</div>
+<p>Then for loading, select and apply the boundary condition to the nodes attached
+to those lines using the <a class="reference internal" href="../../../mapdl_commands/database/_autosummary/ansys.mapdl.core.Mapdl.nsll.html#ansys.mapdl.core.Mapdl.nsll" title="ansys.mapdl.core.Mapdl.nsll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.nsll()</span></code></a> command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fixNodes</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">nsll</span><span class="p">(</span><span class="n">type_</span><span class="o">=</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next use the <a class="reference internal" href="../../../mapdl_commands/solution/_autosummary/ansys.mapdl.core.Mapdl.d.html#ansys.mapdl.core.Mapdl.d" title="ansys.mapdl.core.Mapdl.d"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.d()</span></code></a> command to set
+the displacement to zero (fixed constraint).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up boundary conditions</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># The 0 is not required since default is zero</span>
+
+<span class="c1"># Selecting everything again</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW
+</pre></div>
+</div>
+</section>
+<section id="apply-pressure-load">
+<h3>Apply pressure load<a class="headerlink" href="#apply-pressure-load" title="Link to this heading">#</a></h3>
+<p>Apply the tapered pressure load to the bottom-right pin hole. In this case,
+tapered means varying linearly.
+When a circle is created in Mechanical APDL, four lines define the perimeter;
+therefore, apply the pressure to two lines making up the lower half of the circle.
+Because the pressure tapers from a maximum value (500 psi) at the bottom of the
+circle to a minimum value (50 psi) at the sides, apply pressure in two separate
+steps, with reverse tapering values for each line.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">p1</span></a> <span class="o">=</span> <span class="mi">50</span>
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">p2</span></a> <span class="o">=</span> <span class="mi">500</span>
+</pre></div>
+</div>
+<p>The Mechanical APDL convention for pressure loading is that a positive load
+value represents pressure into the surface (compressive).</p>
+<p>To pick the line, use the same <a class="reference internal" href="../../../mapdl_commands/database/_autosummary/ansys.mapdl.core.Mapdl.lsel.html#ansys.mapdl.core.Mapdl.lsel" title="ansys.mapdl.core.Mapdl.lsel"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.lsel()</span></code></a>
+command used in the previous cell block and then convert the lines
+to a nodal selection with the <a class="reference internal" href="../../../mapdl_commands/database/_autosummary/ansys.mapdl.core.Mapdl.nsel.html#ansys.mapdl.core.Mapdl.nsel" title="ansys.mapdl.core.Mapdl.nsel"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.nsel()</span></code></a>
+command.</p>
+<p>Note we have a slightly more complicated picking procedure for the two quarters
+of the full circle. A method to select the lines would be to select the lower
+half of the second pinhole circle.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2_Y</span></a> <span class="o">-</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole_radius</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2_Y</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([11, 12], dtype=int32)
+</pre></div>
+</div>
+<p>Now repick from that selection the lines that are less than the X center of that pin hole.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2_X</span></a><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_009.png" srcset="../../../_images/sphx_glr_bracket_static_009.png" alt="bracket static" class = "sphx-glr-single-img"/><p>Once you have the correct line, use
+the <a class="reference internal" href="../../../mapdl_commands/solution/_autosummary/ansys.mapdl.core.Mapdl.sf.html#ansys.mapdl.core.Mapdl.sf" title="ansys.mapdl.core.Mapdl.sf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.sf()</span></code></a> command
+to load the line with the varying surface load.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here you load the left side of the lower half of second pin hole.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;PRES&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">p1</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">p2</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW
+</pre></div>
+</div>
+<p>Repeat the procedure for the second pin hole.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2_Y</span></a> <span class="o">-</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole_radius</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2_Y</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2_X</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole2_X</span></a> <span class="o">+</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pinhole_radius</span></a><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lplot</span><span class="p">(</span>
+    <span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span>
+    <span class="n">show_line_numbering</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;PRES&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">p2</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">p1</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_010.png" srcset="../../../_images/sphx_glr_bracket_static_010.png" alt="bracket static" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW
+</pre></div>
+</div>
+</section>
+</section>
+<section id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Link to this heading">#</a></h2>
+<p>To solve an Ansys FE analysis, the solution processor must be activated,
+using the <a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.solution.Solution.html#ansys.mapdl.core.solution.Solution" title="ansys.mapdl.core.solution.Solution"><code class="xref py py-class docutils literal notranslate"><span class="pre">mapdl.solution()</span></code></a> class
+or the <a class="reference internal" href="../../../mapdl_commands/session/_autosummary/ansys.mapdl.core.Mapdl.slashsolu.html#ansys.mapdl.core.Mapdl.slashsolu" title="ansys.mapdl.core.Mapdl.slashsolu"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.slashsolu()</span></code></a>
+command. This was done a few steps earlier.</p>
+<p>The model is ready to be solved using the
+<a class="reference internal" href="../../../mapdl_commands/solution/_autosummary/ansys.mapdl.core.Mapdl.solve.html#ansys.mapdl.core.Mapdl.solve" title="ansys.mapdl.core.Mapdl.solve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.solve()</span></code></a> command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solve the model</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ There is no title defined for this analysis.
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+                ---GIVE SUGGESTIONS ONLY---
+
+ ELEMENT TYPE         1 IS PLANE183 WITH PLANE STRESS OPTION. NO SUGGESTION IS
+ AVAILABLE.
+
+
+   *****MAPDL VERIFICATION RUN ONLY*****
+     DO NOT USE RESULTS FOR PRODUCTION
+
+                       S O L U T I O N   O P T I O N S
+
+   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .2-D
+   DEGREES OF FREEDOM. . . . . . UX   UY
+   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
+   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Present time 0 is less than or equal to the previous time.  Time will
+ default to 1.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ The imaginary pressure value defined on element 2, face 2 (and possibly
+ others) will be not be used for this analysis type, but may be in a
+ later analysis.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ The conditions for direct assembly have been met.  No .emat or .erot
+ files will be produced.
+
+
+
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+
+  ...Number of elements: 90
+  ...Number of nodes:    335
+  ...Decompose to 0 CPU domains
+  ...Element load balance ratio =     0.000
+
+
+                      L O A D   S T E P   O P T I O N S
+
+   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1
+   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000
+   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1
+   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO
+   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT
+   DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN
+                                                  FOR THE LAST SUBSTEP
+
+
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 96184868.8 at element 0.
+ Minimum = 31609902.3 at element 0.
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        90  PLANE183      0.000   0.000000
+ Time at end of element matrix formulation CP = 0.
+
+ DISTRIBUTED SPARSE MATRIX DIRECT SOLVER.
+  Number of equations =         646,    Maximum wavefront =      0
+  Memory available (MB) =    0.0    ,  Memory required (MB) =    0.0
+
+ Distributed sparse solver maximum pivot= 0 at node 0 .
+ Distributed sparse solver minimum pivot= 0 at node 0 .
+ Distributed sparse solver minimum pivot in absolute value= 0 at node 0
+ .
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        90  PLANE183      0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        90  PLANE183      0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+</pre></div>
+</div>
+<p>Mechanical APDL stores the results of this single-load-step problem in the
+database and in the results file, <code class="file docutils literal notranslate"><span class="pre">Jobname.RST</span></code> (or <code class="file docutils literal notranslate"><span class="pre">Jobname.RTH</span></code>
+for thermal or <code class="file docutils literal notranslate"><span class="pre">Jobname.RMG</span></code> for magnetic). The database can contain only
+one set of results at any given time, so in a multiple-load-step or
+multiple-substep analysis, Mechanical APDL stores only the final solution in
+the database.</p>
+<p>Mechanical APDL stores all solutions in the results file.</p>
+</section>
+<section id="review-the-results">
+<h2>Review the results<a class="headerlink" href="#review-the-results" title="Link to this heading">#</a></h2>
+<p>This step represents the beginning of the postprocessing phase.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The results you see may vary slightly from what is shown due to variations in the mesh.</p>
+</div>
+<section id="enter-the-postprocessor">
+<h3>Enter the postprocessor<a class="headerlink" href="#enter-the-postprocessor" title="Link to this heading">#</a></h3>
+<p>The Ansys APDL postprocessor is a separate processor called with the
+<a class="reference internal" href="../../../mapdl_commands/session/_autosummary/ansys.mapdl.core.Mapdl.post1.html#ansys.mapdl.core.Mapdl.post1" title="ansys.mapdl.core.Mapdl.post1"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.post1()</span></code></a> command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =         0.000
+
+
+   *****MAPDL VERIFICATION RUN ONLY*****
+     DO NOT USE RESULTS FOR PRODUCTION
+
+          ***** MAPDL RESULTS INTERPRETATION (POST1) *****
+
+
+ USE LAST SUBSTEP ON RESULT FILE  FOR LOAD CASE 0
+
+ SET COMMAND GOT LOAD STEP=     1  SUBSTEP=     1  CUMULATIVE ITERATION=     1
+   TIME/FREQUENCY=  1.0000
+ TITLE=
+</pre></div>
+</div>
+</section>
+<section id="plot-the-deformed-shape">
+<h3>Plot the deformed shape<a class="headerlink" href="#plot-the-deformed-shape" title="Link to this heading">#</a></h3>
+<p>Here <a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.Mapdl.result.html#ansys.mapdl.core.Mapdl.result" title="ansys.mapdl.core.Mapdl.result"><code class="xref py py-class docutils literal notranslate"><span class="pre">mapdl.result</span></code></a> is used to retrieve
+the results and for plotting.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot displacement</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">result</span>
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">result_set</span></a> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Plotting the first results</span>
+<a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">disp_fact</span></a> <span class="o">=</span> <span class="mf">1e10</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span>
+    <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">result_set</span></a><span class="p">,</span>
+    <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span>
+    <span class="n">displacement_factor</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">show_displacement</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_011.png" srcset="../../../_images/sphx_glr_bracket_static_011.png" alt="bracket static" class = "sphx-glr-single-img"/></section>
+<section id="plot-the-von-mises-equivalent-stress">
+<h3>Plot the von Mises equivalent stress<a class="headerlink" href="#plot-the-von-mises-equivalent-stress" title="Link to this heading">#</a></h3>
+<p>You can also generate stress plots using
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.plot_principal_nodal_stress()</span></code> command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;SEQV&quot;</span><span class="p">,</span>
+    <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">,</span>
+    <span class="n">background</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
+    <span class="n">text_color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="n">add_text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_bracket_static_012.png" srcset="../../../_images/sphx_glr_bracket_static_012.png" alt="bracket static" class = "sphx-glr-single-img"/><p>Obtain von Mises stresses.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/version/stable/api/utilities/_autosummary/pyvista.pyvista_ndarray.html#pyvista.pyvista_ndarray" title="pyvista.pyvista_ndarray" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nnum</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">stress</span></a> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Von Mises stress is the last column in the stress results</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">von_mises</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">stress</span></a><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="list-reaction-solution">
+<h3>List reaction solution<a class="headerlink" href="#list-reaction-solution" title="Link to this heading">#</a></h3>
+<p>To list the FY reactions forces use the APDL
+<a class="reference internal" href="../../../mapdl_commands/post1/_autosummary/ansys.mapdl.core.Mapdl.prrsol.html#ansys.mapdl.core.Mapdl.prrsol" title="ansys.mapdl.core.Mapdl.prrsol"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mapdl.prrsol()</span></code></a> command which print
+the constrained node reaction solution.</p>
+<p>You can use the <a class="reference internal" href="../../../api/commands.html#ansys.mapdl.core.commands.CommandListingOutput" title="ansys.mapdl.core.commands.CommandListingOutput"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_dataframe</span></code></a>
+command to convert the output to a dataframe for more static print:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.core.frame.DataFrame" class="sphx-glr-backref-module-pandas-core-frame sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">reactForces</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">prrsol</span><span class="p">(</span><span class="n">lab</span><span class="o">=</span><span class="s2">&quot;FY&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;NODE&quot;</span><span class="p">,</span> <span class="s2">&quot;FY&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.core.frame.DataFrame" class="sphx-glr-backref-module-pandas-core-frame sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">reactForces</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>     NODE       FY
+0   103.0  21.7590
+1   104.0   9.8719
+2   105.0  12.5870
+3   107.0   1.5168
+4   108.0  12.2310
+5   109.0  29.4880
+6   111.0 -29.8790
+7   112.0 -10.5920
+8   113.0  -2.5094
+9   114.0 -12.4730
+10  115.0  -9.8004
+11  116.0 -22.2000
+</pre></div>
+</div>
+<p>The values shown are representative and may vary from the values that you obtain.
+Many other options are available for reviewing results in the general postprocessor.
+You can see some of these other options in other tutorials, such.
+as the <a class="reference external" href="https://ansyshelp.ansys.com/account/secured?returnurl=/Views/Secured/corp/v231/en/ans_tut/Hlp_UI_Tutorials.html">Ansys tutorial guide</a>.</p>
+</section>
+<section id="exit-mechanical-apdl">
+<h3>Exit Mechanical APDL<a class="headerlink" href="#exit-mechanical-apdl" title="Link to this heading">#</a></h3>
+<p>Exit Mechanical APDL once you have finished.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing" id="ref-static-analysis-bracket-end"><strong>Total running time of the script:</strong> (0 minutes 10.890 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-00-mapdl-examples-bracket-static-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/fe6575b18502549b5be4888b0fabe508/bracket_static.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">bracket_static.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/63bb77d59abc28750714552437953834/bracket_static.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">bracket_static.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-specification">Problem specification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-description">Problem description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bracket-model">Bracket model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approach-and-assumptions">Approach and assumptions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-mapdl">Launching MAPDL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-geometry">Build the geometry</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-rectangles">Define rectangles</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dimension-box-1">Dimension box 1</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dimension-box-2">Dimension box 2</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-areas">Plot areas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-first-circle">Create first circle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-second-circle">Create second circle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-areas">Add areas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-line-fillet">Create line fillet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-fillet-area">Create fillet area</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-areas-together">Add areas together</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-first-pin-hole">Create first pin hole</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-second-pin-hole">Create second pin hole</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subtract-pin-holes-from-bracket">Subtract pin holes from bracket</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-definition">Model definition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-material-properties">Define material properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-element-types-and-options">Define element types and options</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#options-for-plane183">Options for <cite>PLANE183</cite></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-real-constants">Define real constants</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mesh">Mesh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary conditions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-displacement-constraints">Apply displacement constraints</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-pressure-load">Apply pressure load</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-the-results">Review the results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enter-the-postprocessor">Enter the postprocessor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-deformed-shape">Plot the deformed shape</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-von-mises-equivalent-stress">Plot the von Mises equivalent stress</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-reaction-solution">List reaction solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exit-mechanical-apdl">Exit Mechanical APDL</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/examples/gallery_examples/00-mapdl-examples/bracket_static.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.12.2. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

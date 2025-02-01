@@ -1,0 +1,6 @@
+﻿print\_com
+==========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.print_com

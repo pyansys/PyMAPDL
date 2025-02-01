@@ -1,0 +1,6 @@
+﻿torus
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.torus

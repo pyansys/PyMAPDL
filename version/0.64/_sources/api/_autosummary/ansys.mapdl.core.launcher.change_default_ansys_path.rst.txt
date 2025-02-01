@@ -1,0 +1,6 @@
+﻿change\_default\_ansys\_path
+============================
+
+.. currentmodule:: ansys.mapdl.core.launcher
+
+.. autofunction:: change_default_ansys_path

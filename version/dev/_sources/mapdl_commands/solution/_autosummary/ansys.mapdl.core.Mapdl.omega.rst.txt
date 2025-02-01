@@ -1,0 +1,6 @@
+﻿omega
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.omega

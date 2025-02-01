@@ -1,0 +1,6 @@
+﻿lplot
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.lplot

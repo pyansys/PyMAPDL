@@ -1,0 +1,6 @@
+﻿get\_nsol
+=========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.get_nsol

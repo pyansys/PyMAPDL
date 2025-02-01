@@ -1,0 +1,6 @@
+﻿exited
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.exited

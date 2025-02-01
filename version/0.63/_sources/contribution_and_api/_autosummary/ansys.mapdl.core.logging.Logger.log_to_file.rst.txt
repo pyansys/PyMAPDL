@@ -1,0 +1,6 @@
+log\_to\_file
+=============
+
+.. currentmodule:: ansys.mapdl.core.logging
+
+.. automethod:: Logger.log_to_file

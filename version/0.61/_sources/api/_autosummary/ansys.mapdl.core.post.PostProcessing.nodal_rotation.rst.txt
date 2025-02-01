@@ -1,0 +1,6 @@
+nodal\_rotation
+===============
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.nodal_rotation

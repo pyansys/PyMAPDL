@@ -1,0 +1,6 @@
+﻿mpcopy
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.mpcopy

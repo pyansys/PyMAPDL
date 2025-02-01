@@ -1,0 +1,1075 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Release notes &#8212; PyMAPDL</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="_static/css/ansys_sphinx_theme.css?v=e7c4c341" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=91007d66" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="_static/documentation_options.js?v=a98ddb9b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/thebelab-helper.js"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=49e1bf35"></script>
+    <script src="_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'changelog';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.68';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="PyMAPDL Developer Portal articles" href="examples/devportal.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/changelog.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyMAPDL - Home"/>
+    <script>document.write(`<img src="_static/pyansys_logo_transparent_white.png" class="logo__image only-dark" alt="PyMAPDL - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples/index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="#">
+    Release notes
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Release notes</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="release-notes">
+<span id="ref-release-notes"></span><h1>Release notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
+<p>This document contains the release notes for the project.</p>
+<section id="id2">
+<h2><a class="reference external" href="https://github.com/ansys/pymapdl/releases/tag/v0.68.6">0.68.6</a> - 2024-10-11<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="added">
+<h3>Added<a class="headerlink" href="#added" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>chore: update CHANGELOG for v0.68.5 <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3455">#3455</a></p></li>
+<li><p>refactor: removing deprecated arguments <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3473">#3473</a></p></li>
+</ul>
+</section>
+<section id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>fix: contributors file <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3457">#3457</a></p></li>
+<li><p>fix: environment variables not being passed to MAPDL process <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3461">#3461</a></p></li>
+<li><p>fix: exiting earlier to avoid exceptions from gRPC calls <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3463">#3463</a></p></li>
+<li><p>fix: add <code class="docutils literal notranslate"><span class="pre">build</span> <span class="pre">cheatsheet</span></code> as env variable within doc-build <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3468">#3468</a></p></li>
+</ul>
+</section>
+<section id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>build: bump grpcio from 1.66.1 to 1.66.2 in the grpc-deps group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3453">#3453</a></p></li>
+<li><p>build: bump sphinx-autobuild from 2024.9.19 to 2024.10.3 in the documentation group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3454">#3454</a></p></li>
+<li><p>build: bump ansys-tools-visualization-interface from 0.4.4 to 0.4.5 in the core group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3477">#3477</a></p></li>
+<li><p>build: bump the documentation group with 3 updates <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3478">#3478</a></p></li>
+</ul>
+</section>
+<section id="miscellaneous">
+<h3>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>feat: having two global flags. One for visualizer and one for pyvista <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3460">#3460</a></p></li>
+</ul>
+</section>
+<section id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>docs: another hpc docs reorg <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3465">#3465</a></p></li>
+<li><p>docs: fix cheat sheet rendering <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3469">#3469</a></p></li>
+</ul>
+</section>
+<section id="maintenance">
+<h3>Maintenance<a class="headerlink" href="#maintenance" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>ci: bump the actions group with 2 updates <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3470">#3470</a></p></li>
+<li><p>ci: pre-commit autoupdate <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3471">#3471</a></p></li>
+<li><p>ci: bypass team check if it is dependabot <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3472">#3472</a></p></li>
+<li><p>build: bump numpy from 2.1.1 to 2.1.2 in the minimal group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3476">#3476</a></p></li>
+</ul>
+</section>
+</section>
+<section id="id21">
+<h2><a class="reference external" href="https://github.com/ansys/pymapdl/releases/tag/v0.68.5">0.68.5</a> - 2024-10-04<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
+<section id="id22">
+<h3>Added<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>feat: Adapt PyMAPDL to common plotter <a class="reference external" href="https://github.com/ansys/pymapdl/pull/2799">#2799</a></p></li>
+<li><p>refactor: clean mapdl inprocess and move mute to MapdlCore <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3220">#3220</a></p></li>
+<li><p>refactor: moving tests to a class and adding delete method. <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3258">#3258</a></p></li>
+<li><p>maint: update CHANGELOG for v0.68.4 <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3276">#3276</a></p></li>
+<li><p>chore: drop python3.9 support <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3326">#3326</a></p></li>
+<li><p>chore: update image cache <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3371">#3371</a></p></li>
+<li><p>chore: pre-commit autoupdate <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3373">#3373</a></p></li>
+<li><p>chore: skip database testing on v23.X <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3384">#3384</a></p></li>
+<li><p>chore: remove mapdl_inprocess.py from codecov analysis <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3404">#3404</a></p></li>
+<li><p>perf: reduce-testing-time <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3427">#3427</a></p></li>
+</ul>
+</section>
+<section id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>ci: bump docker/login-action from 3.2.0 to 3.3.0 in the actions group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3306">#3306</a></p></li>
+<li><p>build: bump importlib-metadata from 8.0.0 to 8.2.0 in the minimal group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3309">#3309</a></p></li>
+<li><p>build: update pre-commit-hook <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3339">#3339</a></p></li>
+</ul>
+</section>
+<section id="id36">
+<h3>Fixed<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>fix: removing io error when logging to closed streams <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3273">#3273</a></p></li>
+<li><p>fix: increasing timeout for local-min <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3282">#3282</a></p></li>
+<li><p>fix: local-min timeout <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3288">#3288</a></p></li>
+<li><p>fix: missing arguments in secdata <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3295">#3295</a></p></li>
+<li><p>Fix/node-numbering <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3297">#3297</a></p></li>
+<li><p>fix: filename with /OUTPUT command in stored commands <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3304">#3304</a></p></li>
+<li><p>fix: license headers <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3307">#3307</a></p></li>
+<li><p>fix: Making sure we skip all the pool unit tests. <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3315">#3315</a></p></li>
+<li><p>fix: reuploading file on CDREAD <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3355">#3355</a></p></li>
+<li><p>fix: warning raised in v251 <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3361">#3361</a></p></li>
+<li><p>fix: avoid changing entities ids after plotting <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3421">#3421</a></p></li>
+<li><p>fix: disabling logging on <cite>__del__</cite> <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3428">#3428</a></p></li>
+<li><p>fix: small plotting fix <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3439">#3439</a></p></li>
+<li><p>fix: changelog <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3452">#3452</a></p></li>
+</ul>
+</section>
+<section id="id51">
+<h3>Dependencies<a class="headerlink" href="#id51" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>build: bump numpy from 1.26.4 to 2.0.0 <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3177">#3177</a></p></li>
+<li><p>build: bump sphinx from 7.3.7 to 7.4.4 in the documentation group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3283">#3283</a></p></li>
+<li><p>build: bump grpcio from 1.65.0 to 1.65.1 in the grpc-deps group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3299">#3299</a></p></li>
+<li><p>build: bump sphinx from 7.4.4 to 7.4.6 in the documentation group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3300">#3300</a></p></li>
+<li><p>build: bump ansys-tools-visualization-interface from 0.2.6 to 0.3.0 in the core group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3310">#3310</a></p></li>
+<li><p>build: bump the documentation group with 3 updates <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3311">#3311</a>, <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3324">#3324</a></p></li>
+<li><p>build: bump pytest from 8.2.2 to 8.3.2 in the testing group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3312">#3312</a></p></li>
+<li><p>build: bump grpcio from 1.65.1 to 1.65.2 in the grpc-deps group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3322">#3322</a></p></li>
+<li><p>build: bump ansys-tools-visualization-interface from 0.3.0 to 0.4.0 in the core group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3323">#3323</a></p></li>
+<li><p>feat: adding <cite>PYMAPDL_APDL_LOG</cite> env var for testing <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3328">#3328</a></p></li>
+<li><p>build: bump grpcio from 1.65.2 to 1.65.4 in the grpc-deps group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3344">#3344</a></p></li>
+<li><p>build: bump the core group with 2 updates <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3345">#3345</a>, <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3358">#3358</a>, <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3368">#3368</a></p></li>
+<li><p>build: bump sphinx-gallery from 0.17.0 to 0.17.1 in the documentation group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3346">#3346</a></p></li>
+<li><p>ci: bump ansys/actions from 6 to 7 in the actions group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3352">#3352</a></p></li>
+<li><p>build: bump pyansys-tools-report from 0.7.3 to 0.8.0 in the testing group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3360">#3360</a></p></li>
+<li><p>build: bump the documentation group across 1 directory with 3 updates <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3363">#3363</a></p></li>
+<li><p>build: bump grpcio from 1.65.4 to 1.66.0 in the grpc-deps group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3367">#3367</a></p></li>
+<li><p>build: bump grpcio from 1.66.0 to 1.66.1 in the grpc-deps group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3381">#3381</a></p></li>
+<li><p>build: bump plotly from 5.23.0 to 5.24.0 in the documentation group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3383">#3383</a></p></li>
+<li><p>build: bump the core group with 3 updates <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3386">#3386</a></p></li>
+<li><p>build: bump sphinx-autobuild from 2024.4.16 to 2024.9.3 in the documentation group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3387">#3387</a></p></li>
+<li><p>build: bump ansys-tools-visualization-interface from 0.4.0 to 0.4.4 in the core group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3400">#3400</a></p></li>
+<li><p>build: bump plotly from 5.24.0 to 5.24.1 in the documentation group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3401">#3401</a></p></li>
+<li><p>build: bump pytest from 8.3.2 to 8.3.3 in the testing group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3402">#3402</a></p></li>
+<li><p>build: bump ansys-sphinx-theme from 1.0.8 to 1.0.11 in the core group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3418">#3418</a></p></li>
+<li><p>build: bump sphinx-autobuild from 2024.9.3 to 2024.9.19 in the documentation group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3419">#3419</a></p></li>
+<li><p>build: bump pandas from 2.2.2 to 2.2.3 in the documentation group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3433">#3433</a></p></li>
+</ul>
+</section>
+<section id="id82">
+<h3>Miscellaneous<a class="headerlink" href="#id82" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>feat/adding missing argument <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3293">#3293</a></p></li>
+<li><p>feat/adding preppost license to allowed <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3294">#3294</a></p></li>
+<li><p>docs: adding warning about *mwrite. Update *vwrite warning to include *mwrite <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3296">#3296</a></p></li>
+<li><p>[pre-commit.ci] pre-commit autoupdate <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3316">#3316</a>, <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3330">#3330</a>, <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3351">#3351</a></p></li>
+<li><p>feat: adding more descriptive errors <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3319">#3319</a></p></li>
+<li><p>feat: database module improvements <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3320">#3320</a></p></li>
+<li><p>feat: adding channel subscription method and tests <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3340">#3340</a></p></li>
+<li><p>feat: Adding ‘methodconfig’ for all services in channel to allow retry <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3343">#3343</a></p></li>
+<li><p>feat: adding python side retry mechanism <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3354">#3354</a></p></li>
+<li><p>Update conftest.py to switch mapdl.tbdat to mapdl.tbdata <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3362">#3362</a></p></li>
+<li><p>feat: supporting ´´to_dataframe()´´ for some bc list commands <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3412">#3412</a></p></li>
+<li><p>feat: add exit to inprocess backend <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3435">#3435</a></p></li>
+<li><p>feat: removing-CDB-files <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3441">#3441</a></p></li>
+</ul>
+</section>
+<section id="id98">
+<h3>Documentation<a class="headerlink" href="#id98" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>feat: Supporting SLURM env vars for launching MAPDL configuration <a class="reference external" href="https://github.com/ansys/pymapdl/pull/2754">#2754</a></p></li>
+<li><p>Docs/improving hpc documentation <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3379">#3379</a></p></li>
+<li><p>build: bump ansys-sphinx-theme from 1.0.5 to 1.0.7 in the core group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3382">#3382</a></p></li>
+<li><p>docs: remove <code class="docutils literal notranslate"><span class="pre">thispagetitle</span></code> meta tag and add default <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3389">#3389</a></p></li>
+<li><p>docs: fix keywords metadata <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3396">#3396</a></p></li>
+<li><p>docs: cards layout for the landing page <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3414">#3414</a></p></li>
+<li><p>docs: adding cheat sheet on documentation <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3422">#3422</a></p></li>
+<li><p>docs: revamping example landing page and adding groups <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3434">#3434</a></p></li>
+<li><p>docs: reorg hpc section <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3436">#3436</a></p></li>
+<li><p>docs: update image and code block <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3440">#3440</a></p></li>
+<li><p>docs: adding directive to hide elements <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3449">#3449</a></p></li>
+</ul>
+</section>
+<section id="id110">
+<h3>Maintenance<a class="headerlink" href="#id110" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>build: bump pyansys-tools-versioning from 0.5.0 to 0.6.0 in the minimal group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3357">#3357</a></p></li>
+<li><p>build: bump importlib-metadata from 8.2.0 to 8.4.0 in the minimal group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3366">#3366</a></p></li>
+<li><p>build: bump the minimal group with 2 updates <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3399">#3399</a>, <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3417">#3417</a></p></li>
+<li><p>ci: pre-commit autoupdate <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3443">#3443</a></p></li>
+<li><p>ci: bump actions/checkout from 4.1.7 to 4.2.0 in the actions group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3444">#3444</a></p></li>
+<li><p>ci: changing pre-commit commit and pr name <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3445">#3445</a></p></li>
+</ul>
+</section>
+</section>
+<section id="id119">
+<h2><a class="reference external" href="https://github.com/ansys/pymapdl/releases/tag/v0.68.4">0.68.4</a> - 2024-07-15<a class="headerlink" href="#id119" title="Link to this heading">#</a></h2>
+<section id="id120">
+<h3>Added<a class="headerlink" href="#id120" title="Link to this heading">#</a></h3>
+</section>
+<section id="id121">
+<h3>Fixed<a class="headerlink" href="#id121" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>fix: missing arguments on <code class="docutils literal notranslate"><span class="pre">OCDATA</span></code> command <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3226">#3226</a></p></li>
+<li><p>fix: Raising <cite>ValueError</cite> when using ips within pool library <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3240">#3240</a></p></li>
+<li><p>fix: pool issues <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3266">#3266</a></p></li>
+<li><p>fix: using same labels everywhere <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3188">#3188</a></p></li>
+<li><p>fix: avoid inspecting suspended processes <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3227">#3227</a></p></li>
+<li><p>fix: not deleting temporary file when <code class="docutils literal notranslate"><span class="pre">remove_temp_dir_on_exit</span></code> =True <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3247">#3247</a></p></li>
+<li><p>fix: local tests always running as student <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3251">#3251</a></p></li>
+<li><p>fix: incorrect env vars section <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3252">#3252</a></p></li>
+</ul>
+</section>
+<section id="id130">
+<h3>Documentation<a class="headerlink" href="#id130" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>docs: adapt static images to dark/light themes <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3249">#3249</a></p></li>
+<li><p>docs: documenting new naming conventions for commits, branches and PRs. <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3228">#3228</a></p></li>
+</ul>
+</section>
+<section id="id133">
+<h3>Dependencies<a class="headerlink" href="#id133" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>build: bump grpcio from 1.64.1 to 1.65.0 in the grpc-deps group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3270">#3270</a></p></li>
+<li><p>build: bump zipp from 3.17.0 to 3.19.1 in /doc/source/examples/extended_examples/hpc <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3261">#3261</a></p></li>
+<li><p>build: bump the minimal group across 1 directory with 2 updates <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3197">#3197</a></p></li>
+<li><p>build: bump importlib-metadata from 7.2.0 to 7.2.1 in the minimal group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3212">#3212</a></p></li>
+<li><p>build: bump scipy from 1.13.1 to 1.14.0 in the core group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3213">#3213</a></p></li>
+<li><p>build: bump the documentation group with 2 updates <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3214">#3214</a></p></li>
+<li><p>build: bump autopep8 from 2.3.0 to 2.3.1 in the testing group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3215">#3215</a></p></li>
+<li><p>build: update requirements in devcontainer directory <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3217">#3217</a></p></li>
+<li><p>build: removing reredirect sphinx extension <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3224">#3224</a></p></li>
+<li><p>build: bump importlib-metadata from 7.2.1 to 8.0.0 in the minimal group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3229">#3229</a></p></li>
+<li><p>build: bump the core group with 2 updates <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3241">#3241</a></p></li>
+<li><p>build: update ansys-api-mapdl to 0.5.2 <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3255">#3255</a></p></li>
+<li><p>build: bump certifi from 2024.2.2 to 2024.7.4 in /doc/source/examples/extended_examples/hpc <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3242">#3242</a></p></li>
+</ul>
+</section>
+<section id="tests">
+<h3>Tests<a class="headerlink" href="#tests" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>test: skip test <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3259">#3259</a></p></li>
+</ul>
+</section>
+<section id="id148">
+<h3>Maintenance<a class="headerlink" href="#id148" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>[pre-commit.ci] pre-commit autoupdate <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3238">#3238</a>, <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3253">#3253</a></p></li>
+<li><p>ci: Fix missing labels format in dependabot file <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3204">#3204</a></p></li>
+<li><p>ci: wrong tagging on the coverage artifacts <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3225">#3225</a></p></li>
+<li><p>ci: Adding v251 CentOS based image to testing <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3210">#3210</a></p></li>
+<li><p>ci: [pre-commit.ci] pre-commit autoupdate <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3206">#3206</a></p></li>
+<li><p>ci: Use CICD only on <code class="docutils literal notranslate"><span class="pre">v*</span></code> tags. <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3186">#3186</a></p></li>
+<li><p>ci: checking documentation style in <code class="docutils literal notranslate"><span class="pre">Examples</span></code> directory too <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3191">#3191</a></p></li>
+<li><p>chore: update CHANGELOG for v0.68.3 <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3201">#3201</a></p></li>
+<li><p>ci: Update julia testing <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3211">#3211</a></p></li>
+<li><p>ci: improving if to match also schedule and workflow_dispatch <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3223">#3223</a></p></li>
+<li><p>ci: Using a dynamically generated matrix for testing job setup <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3232">#3232</a></p></li>
+<li><p>ci: increase the files checked for changes before load docs cache <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3237">#3237</a></p></li>
+<li><p>ci: run extended array based on the person who open the PR <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3256">#3256</a></p></li>
+</ul>
+</section>
+<section id="id163">
+<h3>Miscellaneous<a class="headerlink" href="#id163" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>chore: update CHANGELOG for v0.68.2 <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3183">#3183</a></p></li>
+</ul>
+</section>
+</section>
+<section id="id166">
+<h2><a class="reference external" href="https://github.com/ansys/pymapdl/releases/tag/v0.68.3">0.68.3</a> - 2024-06-21<a class="headerlink" href="#id166" title="Link to this heading">#</a></h2>
+<section id="id167">
+<h3>Added<a class="headerlink" href="#id167" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>feat: Add an inprocess backend to pymapdl <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3198">#3198</a></p></li>
+</ul>
+</section>
+</section>
+<section id="id170">
+<h2><a class="reference external" href="https://github.com/ansys/pymapdl/releases/tag/v0.68.2">0.68.2</a> - 2024-06-18<a class="headerlink" href="#id170" title="Link to this heading">#</a></h2>
+<section id="id171">
+<h3>Added<a class="headerlink" href="#id171" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>feat: add a MAPDL version section in for bug issues <a class="reference external" href="https://github.com/ansys/pymapdl/pull/2982">#2982</a></p></li>
+<li><p>feat: adding some env var print to report <a class="reference external" href="https://github.com/ansys/pymapdl/pull/2999">#2999</a></p></li>
+<li><p>feat: adding <code class="docutils literal notranslate"><span class="pre">cycexpand</span></code> command <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3023">#3023</a></p></li>
+<li><p>feat: update <code class="docutils literal notranslate"><span class="pre">vfquery</span></code> <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3037">#3037</a></p></li>
+<li><p>feat: add argument to disable run_at_connect in <cite>MapdlGrpc</cite> <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3047">#3047</a></p></li>
+<li><p>feat: allowing passing IP to <code class="docutils literal notranslate"><span class="pre">MapdlPool</span></code> <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3048">#3048</a></p></li>
+<li><p>feat: add argument to disable run_at_connect in MapdlGrpc <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3049">#3049</a></p></li>
+<li><p>feat: converting chained APDL commands to PyMAPDL context manager <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3154">#3154</a></p></li>
+<li><p>feat: allowing multiple IPs for remote connection on <code class="docutils literal notranslate"><span class="pre">MapdlPool</span></code> <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3166">#3166</a></p></li>
+<li><p>feat: implementing <code class="docutils literal notranslate"><span class="pre">ansys/actions/changelogs</span></code> and adding release note in documentation <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3019">#3019</a></p></li>
+<li><p>feat: adding option to <code class="docutils literal notranslate"><span class="pre">_ctrl</span></code> command <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3002">#3002</a></p></li>
+<li><p>feat: making old API function discoverable when Click is not installed <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3086">#3086</a></p></li>
+</ul>
+</section>
+<section id="id184">
+<h3>Changed<a class="headerlink" href="#id184" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>refactor: refactoring CLI <a class="reference external" href="https://github.com/ansys/pymapdl/pull/2960">#2960</a></p></li>
+</ul>
+</section>
+<section id="id186">
+<h3>Fixed<a class="headerlink" href="#id186" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>fix: avoiding future sphinx warning <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3035">#3035</a></p></li>
+<li><p>fix: update the general files to align with PyAnsys standards <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3151">#3151</a></p></li>
+<li><p>fix: combine the <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> files <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3169">#3169</a></p></li>
+</ul>
+</section>
+<section id="id190">
+<h3>Documentation<a class="headerlink" href="#id190" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>docs: adding previous changes in <code class="docutils literal notranslate"><span class="pre">changelog.d</span></code> repository <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3182">#3182</a></p></li>
+<li><p>docs: clarifying MAPDL commands API section <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3071">#3071</a></p></li>
+<li><p>docs: HPC documentation <a class="reference external" href="https://github.com/ansys/pymapdl/pull/2966">#2966</a></p></li>
+<li><p>docs: adding ML-Genetic Algorithm example <a class="reference external" href="https://github.com/ansys/pymapdl/pull/2981">#2981</a></p></li>
+<li><p>docs: customize agent for linkchecker <a class="reference external" href="https://github.com/ansys/pymapdl/pull/2998">#2998</a></p></li>
+<li><p>docs: setting docs version to v241 <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3024">#3024</a></p></li>
+<li><p>docs: adding documentation about remote mapdl pool <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3046">#3046</a></p></li>
+<li><p>docs: update a minor typo in <cite>mapdl.rst</cite> <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3140">#3140</a></p></li>
+</ul>
+</section>
+<section id="id199">
+<h3>Dependencies<a class="headerlink" href="#id199" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>build: bump autopep8 from 2.2.0 to 2.3.0 in the testing group <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3179">#3179</a></p></li>
+<li><p>build: bump pyvista[trame] from 0.43.9 to 0.43.10 <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3180">#3180</a></p></li>
+<li><p>build: bump ansys-sphinx-theme from 0.16.5 to 0.16.6 in the core group across 1 directory <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3181">#3181</a></p></li>
+</ul>
+</section>
+<section id="id203">
+<h3>Miscellaneous<a class="headerlink" href="#id203" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>chore: removing cdb files <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3036">#3036</a></p></li>
+<li><p>ci: having only one set of Dependabot rules <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3107">#3107</a></p></li>
+<li><p>ci: adding tag for doc review <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3118">#3118</a></p></li>
+<li><p>ci: remove OS package duplicate <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3147">#3147</a></p></li>
+<li><p>ci: using trusted publisher release process <a class="reference external" href="https://github.com/ansys/pymapdl/pull/3171">#3171</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">0.68.6 - 2024-10-11</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#added">Added</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixed">Fixed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies">Dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#miscellaneous">Miscellaneous</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maintenance">Maintenance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">0.68.5 - 2024-10-04</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Added</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changed">Changed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">Fixed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51">Dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id82">Miscellaneous</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id98">Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id110">Maintenance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id119">0.68.4 - 2024-07-15</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id120">Added</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id121">Fixed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id130">Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id133">Dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tests">Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id148">Maintenance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id163">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id166">0.68.3 - 2024-06-21</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id167">Added</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id170">0.68.2 - 2024-06-18</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id171">Added</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id184">Changed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id186">Fixed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id190">Documentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id199">Dependencies</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id203">Miscellaneous</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/changelog.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+
+
+
+
+
+
+
+<script>
+var theme_static_search = JSON.parse('{"ignoreLocation": "False", "keys": ["title", "text"], "shouldSort": "True", "threshold": 0.5, "useExtendedSearch": "True"}');
+var theme_limit = "10";
+var min_chars_for_search = "1";
+var searchPath = "_static/search.json";
+
+</script>
+
+<script src="_static/js/fuse_search.js"></script>
+<script src="_static/js/fuse_extension.js"></script>
+<footer class="bd-footer" font-size="4px">
+  <div class="bd-footer__inner bd-page-width">
+    <div class="footer-items__start">
+      <div class="footer-item">
+        <p class="copyright">
+          PyMAPDL 0.68.6 © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+          <br>
+        </p>
+      </div>
+    </div>
+    <div class="footer-items__end">
+      <div class="footer-item">
+        <p class="theme-version">
+          Built with the
+          <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a>
+          1.1.2. and
+           <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.0.
+          on <span id="date"></span>
+        </p>
+        <script>
+          var options = { day: "numeric", month: "long", year: "numeric" };
+          var lastModifiedDate = new Date(document.lastModified);
+          var date = lastModifiedDate.toLocaleDateString("en-US", options);
+          document.getElementById("date").innerHTML = date;
+        </script>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

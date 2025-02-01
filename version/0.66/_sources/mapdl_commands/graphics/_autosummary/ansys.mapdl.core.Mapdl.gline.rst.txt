@@ -1,0 +1,6 @@
+﻿gline
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.gline

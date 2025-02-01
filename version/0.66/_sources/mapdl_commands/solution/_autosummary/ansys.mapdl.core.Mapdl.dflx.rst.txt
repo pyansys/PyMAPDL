@@ -1,0 +1,6 @@
+﻿dflx
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.dflx

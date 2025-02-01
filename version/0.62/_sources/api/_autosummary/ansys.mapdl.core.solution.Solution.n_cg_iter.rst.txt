@@ -1,0 +1,6 @@
+n\_cg\_iter
+===========
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.n_cg_iter

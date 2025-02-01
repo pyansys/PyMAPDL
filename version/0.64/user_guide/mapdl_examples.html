@@ -1,0 +1,1115 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>ANSYS APDL interactive control examples &#8212; PyMAPDL</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    
+        <link href="../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/mapdl_examples';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.64';
+        </script>
+    <link rel="shortcut icon" href="../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interactive plotting" href="plotting.html" />
+    <link rel="prev" title="PyMAPDL language and usage" href="mapdl.html" />
+<link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/user_guide/mapdl_examples.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.64  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../index.html">PyMAPDL</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">User guide</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">ANSYS APDL interactive control examples</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.64  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="launcher.html">Initial setup and launch of MAPDL locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl.html">PyMAPDL language and usage</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">ANSYS APDL interactive control examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Interactive plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh_geometry.html">Mesh and geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post.html">Postprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Setting and retrieving parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Access MAPDL database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convert.html">Translate scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math.html">APDL Math overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pool.html">Create a pool of MAPDL instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xpl.html">File explorer overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upf.html">Using Python to code UPF subroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="krylov.html">Harmonic analysis using the Krylov method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">Troubleshooting PyMAPDL</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="ansys-apdl-interactive-control-examples">
+<h1>ANSYS APDL interactive control examples<a class="headerlink" href="#ansys-apdl-interactive-control-examples" title="Permalink to this heading">#</a></h1>
+<p>These examples demonstrate how to convert an existing
+ANSYS APDL script to a Python PyMAPDL script. You could also simply
+use the built-in <a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.convert_script.html#ansys.mapdl.core.convert_script" title="ansys.mapdl.core.convert_script"><code class="xref py py-func docutils literal notranslate"><span class="pre">convert_script()</span></code></a> function within
+<a class="reference external" href="https://mapdl.docs.pyansys.com/version/stable/">ansys-mapdl-core</a> to convert an existing
+input file.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">convert_script</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputfile</span> <span class="o">=</span> <span class="s2">&quot;ansys_inputfile.inp&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pyscript</span> <span class="o">=</span> <span class="s2">&quot;pyscript.py&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">convert_script</span><span class="p">(</span><span class="n">inputfile</span><span class="p">,</span> <span class="n">pyscript</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="torsional-load-on-a-bar-using-surf154-elements">
+<h2>Torsional load on a bar using SURF154 elements<a class="headerlink" href="#torsional-load-on-a-bar-using-surf154-elements" title="Permalink to this heading">#</a></h2>
+<p>This Ansys APDL script builds a bar and applies torque to it using
+SURF154 elements. This is a static analysis example.</p>
+<section id="script-initialization">
+<h3>Script initialization<a class="headerlink" href="#script-initialization" title="Permalink to this heading">#</a></h3>
+<p>Here is the beginning of the MAPDL script:</p>
+<div class="highlight-apdl notranslate"><div class="highlight"><pre><span></span><span class="c">!----------------------------------------</span>
+<span class="c">! Input torque applied (moment)</span>
+<span class="c">! Input radius, height, element size...</span>
+<span class="c">!----------------------------------------</span>
+<span class="nv">TORQUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+<span class="nv">RADIUS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+<span class="nv">H_TIP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+<span class="nv">HEIGHT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span>
+<span class="nv">ELEMSIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="nv">PI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">acos</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">FORCE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="o">/</span><span class="nv">RADIUS</span>
+<span class="nv">PRESSURE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">FORCE</span><span class="o">/</span><span class="p">(</span><span class="nv">H_TIP</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="nv">PI</span><span class="o">*</span><span class="nv">RADIUS</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here is the corresponding PyMAPDL script, including the initialization of an
+instance of the <a class="reference internal" href="../api/mapdl.html#ansys.mapdl.core.mapdl._MapdlCore" title="ansys.mapdl.core.mapdl._MapdlCore"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mapdl</span></code></a> class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+
+<span class="c1"># start Ansys in the current working directory with default jobname &quot;file&quot;</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+
+<span class="c1"># define cylinder and mesh parameters</span>
+<span class="n">torque</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">radius</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">h_tip</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">elemsize</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">force</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">radius</span>
+<span class="n">pressure</span> <span class="o">=</span> <span class="n">force</span> <span class="o">/</span> <span class="p">(</span><span class="n">h_tip</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">radius</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="model-creation">
+<h3>Model creation<a class="headerlink" href="#model-creation" title="Permalink to this heading">#</a></h3>
+<p>Here is an APDL script for creating the model:</p>
+<div class="highlight-apdl notranslate"><div class="highlight"><pre><span></span><span class="c">!----------------------------------------</span>
+<span class="c">! Define higher-order SOLID186</span>
+<span class="c">! Define surface effect elements SURF154</span>
+<span class="c">! which is used to apply torque</span>
+<span class="c">! as a tangential pressure</span>
+<span class="c">!----------------------------------------</span>
+<span class="o">/</span><span class="nv">prep7</span>
+<span class="k">et</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">186</span>
+<span class="k">et</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">154</span>
+<span class="k">r</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span>
+<span class="k">r</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span>
+
+<span class="c">!----------------------------------------</span>
+<span class="c">! Aluminum properties (or something)</span>
+<span class="c">!----------------------------------------</span>
+<span class="k">mp</span><span class="p">,</span><span class="nv">ex</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="mf">0e6</span>
+<span class="k">mp</span><span class="p">,</span><span class="nv">nuxy</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">.3</span>
+<span class="k">mp</span><span class="p">,</span><span class="nv">dens</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">.1</span><span class="o">/</span><span class="mi">38</span><span class="mf">6.1</span>
+<span class="k">mp</span><span class="p">,</span><span class="nv">dens</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span>
+
+<span class="c">!----------------------------------------</span>
+<span class="c">! Simple cylinder</span>
+<span class="c">!----------------------------------------</span>
+<span class="o">*</span><span class="nv">do</span><span class="p">,</span><span class="w"> </span><span class="nv">ICOUNT</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span>
+<span class="k">cylind</span><span class="p">,</span><span class="nv">RADIUS</span><span class="p">,,</span><span class="nv">HEIGHTH_TIP</span><span class="p">,</span><span class="nv">HEIGHT</span><span class="p">,</span><span class="mi">90</span><span class="o">*</span><span class="p">(</span><span class="nv">ICOUNT</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="mi">90</span><span class="o">*</span><span class="nv">ICOUNT</span>
+<span class="o">*</span><span class="nv">enddo</span>
+
+<span class="k">nummrg</span><span class="p">,</span><span class="nv">kp</span>
+<span class="k">lsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">x</span><span class="p">,</span><span class="mi">0</span>
+
+<span class="k">lsel</span><span class="p">,</span><span class="k">r</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">y</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">lsel</span><span class="p">,</span><span class="k">r</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">z</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nv">HEIGHT</span><span class="o">-</span><span class="nv">H_TIP</span>
+<span class="k">lesize</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">ELEMSIZE</span><span class="o">*</span><span class="mi">2</span>
+<span class="k">mshape</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">mshkey</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">esize</span><span class="p">,</span><span class="nv">ELEMSIZE</span>
+<span class="k">allsel</span><span class="p">,</span><span class="nv">all</span>
+<span class="k">VSWEEP</span><span class="p">,</span><span class="w"> </span><span class="nv">ALL</span>
+<span class="k">csys</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">asel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">z</span><span class="p">,</span><span class="nv">HEIGHT</span><span class="o">-</span><span class="nv">H_TIP</span><span class="o">+</span><span class="mf">0.0001</span><span class="p">,</span><span class="nv">HEIGHT0</span><span class="mf">.0001</span>
+<span class="k">asel</span><span class="p">,</span><span class="k">r</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">x</span><span class="p">,</span><span class="nv">RADIUS</span>
+<span class="k">local</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">csys</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">aatt</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">11</span>
+<span class="k">amesh</span><span class="p">,</span><span class="nv">all</span>
+<span class="k">finish</span>
+</pre></div>
+</div>
+<p>Here is the corresponding PyMAPDL script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define higher-order SOLID186</span>
+<span class="c1"># Define surface effect elements SURF154 to apply torque</span>
+<span class="c1"># as a tangential pressure</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">186</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">154</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Aluminum properties (or something)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;ex&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">10e6</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;nuxy&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;dens&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span> <span class="o">/</span> <span class="mf">386.1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;dens&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Simple cylinder</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">cylind</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mi">90</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">90</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nummrg</span><span class="p">(</span><span class="s2">&quot;kp&quot;</span><span class="p">)</span>
+
+<span class="c1"># interactive volume plot (optional)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vplot</span><span class="p">()</span>
+
+<span class="c1"># mesh cylinder</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="n">h_tip</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">lesize</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">elemsize</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mshape</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mshkey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><span class="n">elemsize</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vsweep</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">asel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="n">h_tip</span> <span class="o">+</span> <span class="mf">0.0001</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">asel</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">local</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">aatt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">amesh</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+
+<span class="c1"># plot elements</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="solution">
+<h3>Solution<a class="headerlink" href="#solution" title="Permalink to this heading">#</a></h3>
+<p>Here is the APDL script for the solution:</p>
+<div class="highlight-apdl notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="k">solu</span>
+<span class="k">antype</span><span class="p">,</span><span class="nv">static</span><span class="p">,</span><span class="nv">new</span>
+<span class="k">eqslv</span><span class="p">,</span><span class="nv">pcg</span><span class="p">,</span><span class="mf">1e-8</span>
+
+<span class="c">!----------------------------------------</span>
+<span class="c">! Apply tangential pressure</span>
+<span class="c">!----------------------------------------</span>
+<span class="k">esel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="k">type</span><span class="p">,,</span><span class="mi">2</span>
+<span class="k">sfe</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="nv">pres</span><span class="p">,,</span><span class="nv">PRESSURE</span>
+
+<span class="c">!----------------------------------------</span>
+<span class="c">! Constrain bottom of cylinder/rod</span>
+<span class="c">!----------------------------------------</span>
+<span class="k">asel</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="nv">loc</span><span class="p">,</span><span class="nv">z</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">nsla</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">all</span>
+<span class="k">allsel</span><span class="p">,</span><span class="nv">all</span>
+<span class="o">/</span><span class="nv">psf</span><span class="p">,</span><span class="nv">pres</span><span class="p">,,</span><span class="mi">2</span>
+<span class="o">/</span><span class="nv">pbc</span><span class="p">,</span><span class="nv">u</span><span class="p">,</span><span class="mi">1</span>
+<span class="o">/</span><span class="nv">title</span><span class="p">,</span><span class="w"> </span><span class="nv">Simple</span><span class="w"> </span><span class="nv">torsional</span><span class="w"> </span><span class="nv">example</span>
+<span class="k">solve</span>
+<span class="k">finish</span>
+<span class="o">/</span><span class="nv">post1</span>
+<span class="k">set</span><span class="p">,</span><span class="nv">last</span>
+<span class="k">fsum</span>
+<span class="k">esel</span><span class="p">,</span><span class="nv">u</span><span class="p">,</span><span class="k">type</span><span class="p">,,</span><span class="mi">2</span>
+<span class="k">SAVE</span>
+</pre></div>
+</div>
+<p>Here is the corresponding PyMAPDL script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># new solution</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>  <span class="c1"># Using Slash instead of / due to duplicate SOLU command</span>
+<span class="c1"># ansys(&#39;/solu&#39;)  # could also use this line</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s2">&quot;static&quot;</span><span class="p">,</span> <span class="s2">&quot;new&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eqslv</span><span class="p">(</span><span class="s2">&quot;pcg&quot;</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)</span>
+
+<span class="c1"># Apply tangential pressure</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">esel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">sfe</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;pres&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">pressure</span><span class="p">)</span>
+
+<span class="c1"># Constrain bottom of cylinder/rod</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">asel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsla</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psf</span><span class="p">(</span><span class="s2">&quot;pres&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pbc</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Access and plot the results within Python using PyMAPDL:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># access the result from the mapdl result</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">result</span>
+
+<span class="c1"># alternatively, open the result file using the path used in MAPDL</span>
+<span class="c1"># from ansys.mapdl import reader as pymapdl_reader</span>
+<span class="c1"># resultfile = os.path.join(mapdl.path, &#39;file.rst&#39;)</span>
+<span class="c1"># result = pymapdl_reader.read_binary(resultfile)</span>
+
+<span class="c1"># access element results as arrays</span>
+<span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">element_stress</span><span class="p">,</span> <span class="n">elemnum</span><span class="p">,</span> <span class="n">enode</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">element_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">nodenum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># plot interactively</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">)</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Sx&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">)</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;SEQV&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot and save non-interactively</span>
+<span class="c1"># (cpos was output from ``cpos = result.plot()`` and setting up</span>
+<span class="c1"># the correct camera angle)</span>
+<span class="n">cpos</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mf">20.992831318277517</span><span class="p">,</span> <span class="mf">9.78629316586435</span><span class="p">,</span> <span class="mf">31.905115108541928</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.35955395443745797</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4198191001571547</span><span class="p">,</span> <span class="mf">10.346158032932495</span><span class="p">),</span>
+    <span class="p">(</span><span class="o">-</span><span class="mf">0.10547549888485548</span><span class="p">,</span> <span class="mf">0.9200673323892437</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.377294345312956</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span> <span class="n">savefig</span><span class="o">=</span><span class="s2">&quot;cylinder_disp.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/cylinder_disp.png"><img alt="../_images/cylinder_disp.png" src="../_images/cylinder_disp.png" style="width: 300pt;" /></a>
+<figcaption>
+<p><span class="caption-text">Non-interactive Screenshot of Displacement from PyMAPDL</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Sx&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span> <span class="n">screenshot</span><span class="o">=</span><span class="s2">&quot;cylinder_sx.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/cylinder_sx.png"><img alt="../_images/cylinder_sx.png" src="../_images/cylinder_sx.png" style="width: 300pt;" /></a>
+<figcaption>
+<p><span class="caption-text">Non-interactive Screenshot of X Stress from PyMAPDL</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;SEQV&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;bwr&quot;</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span> <span class="n">screenshot</span><span class="o">=</span><span class="s2">&quot;cylinder_vonmises.png&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/cylinder_vonmises.png"><img alt="../_images/cylinder_vonmises.png" src="../_images/cylinder_vonmises.png" style="width: 300pt;" /></a>
+<figcaption>
+<p><span class="caption-text">Non-interactive screenshot of von Mises stress from PyMAPDL</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Alternatively, you can access the same results directly from MAPDL
+using the <code class="xref py py-attr docutils literal notranslate"><span class="pre">Mapdl.post_processing</span></code>
+attribute:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_component_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Sx&quot;</span><span class="p">)</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_eqv_stress</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="running-an-input-file-spotweld-shell181-example">
+<h2>Running an input file - spotweld SHELL181 example<a class="headerlink" href="#running-an-input-file-spotweld-shell181-example" title="Permalink to this heading">#</a></h2>
+<p>This MAPDL example demonstrates how to model spot welding on three
+thin sheets of metal. Here, the full input file is simply run using
+the PyMAPDL interface.</p>
+<div class="highlight-apdl notranslate"><div class="highlight"><pre><span></span><span class="c">!----------------------------------------</span>
+<span class="c">! Example problem for demonstrating</span>
+<span class="c">! Spotweld technology</span>
+<span class="c">!----------------------------------------</span>
+<span class="c">!</span>
+<span class="c">!----------------------------------------</span>
+<span class="c">! Originated in 9.0 JJDoyle 2004/09/01</span>
+<span class="c">!----------------------------------------</span>
+<span class="o">/</span><span class="nv">prep7</span>
+<span class="o">/</span><span class="nv">num</span><span class="p">,</span><span class="mi">0</span>
+<span class="o">/</span><span class="nv">pnum</span><span class="p">,</span><span class="nv">area</span><span class="p">,</span><span class="mi">1</span>
+
+<span class="k">k</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span>
+<span class="k">k</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span>
+<span class="k">k</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.15</span>
+<span class="k">k</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mf">0.15</span>
+<span class="c">!</span>
+<span class="k">l</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span>
+<span class="k">l</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span>
+<span class="k">l</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span>
+<span class="k">lfillt</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span>
+<span class="k">lfillt</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span>
+<span class="c">!</span>
+<span class="k">k</span><span class="p">,</span><span class="mi">9</span><span class="p">,,</span>
+<span class="k">k</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span>
+<span class="k">k</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span>
+<span class="k">l</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span>
+<span class="k">l</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span>
+
+<span class="k">k</span><span class="p">,</span><span class="mi">12</span><span class="p">,,</span><span class="mi">10</span>
+<span class="k">lsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,,,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span>
+<span class="k">AROTAT</span><span class="p">,</span><span class="nv">all</span><span class="p">,,,,,,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span>
+
+<span class="k">lsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,,,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span>
+<span class="k">AROTAT</span><span class="p">,</span><span class="nv">all</span><span class="p">,,,,,,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span>
+<span class="k">areverse</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">areverse</span><span class="p">,</span><span class="mi">2</span>
+
+<span class="k">asel</span><span class="p">,</span><span class="nv">s</span><span class="p">,,,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span>
+<span class="k">ARSYM</span><span class="p">,</span><span class="nv">Y</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="k">allsel</span>
+
+<span class="c">!********</span>
+<span class="c">!define weld location with hardpoint</span>
+<span class="c">!********</span>
+<span class="k">HPTCREATE</span><span class="p">,</span><span class="nv">AREA</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nv">COORD</span><span class="p">,</span><span class="mi">1</span><span class="mf">2.9</span><span class="p">,</span><span class="mf">0.15</span><span class="p">,</span><span class="o">-</span><span class="mf">1.36</span><span class="p">,</span>
+
+<span class="o">/</span><span class="nv">view</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+<span class="nv">gplo</span>
+<span class="c">!</span>
+<span class="k">et</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">181</span>
+<span class="k">r</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.15</span>
+<span class="k">r</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.1</span>
+<span class="c">!</span>
+<span class="k">mp</span><span class="p">,</span><span class="nv">ex</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="mf">0e6</span>
+<span class="k">mp</span><span class="p">,</span><span class="nv">prxy</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.3</span>
+<span class="c">!</span>
+<span class="k">esize</span><span class="p">,</span><span class="mf">0.25</span>
+<span class="k">real</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">amesh</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">amesh</span><span class="p">,</span><span class="mi">2</span>
+<span class="k">real</span><span class="p">,</span><span class="mi">2</span>
+<span class="k">asel</span><span class="p">,</span><span class="nv">s</span><span class="p">,,,</span><span class="mi">3</span><span class="p">,</span><span class="mi">12</span>
+<span class="k">amesh</span><span class="p">,</span><span class="nv">all</span>
+<span class="c">!</span>
+<span class="k">lsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,,,</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span>
+<span class="k">lsel</span><span class="p">,</span><span class="k">a</span><span class="p">,,,</span><span class="mi">12</span><span class="p">,</span><span class="mi">17</span>
+<span class="k">lsel</span><span class="p">,</span><span class="k">a</span><span class="p">,,,</span><span class="mi">26</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">3</span>
+<span class="k">lsel</span><span class="p">,</span><span class="k">a</span><span class="p">,,,</span><span class="mi">24</span><span class="p">,</span><span class="mi">36</span><span class="p">,</span><span class="mi">3</span>
+<span class="k">nsll</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="mi">1</span>
+<span class="nv">wpstyle</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.003</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,,</span><span class="mi">5</span>
+<span class="nv">WPSTYLE</span><span class="p">,,,,,,,,</span><span class="mi">1</span>
+<span class="nv">wpro</span><span class="p">,,</span><span class="o">-</span><span class="mi">9</span><span class="mf">0.000000</span><span class="p">,</span>
+<span class="k">CSWPLA</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span>
+<span class="k">csys</span><span class="p">,</span><span class="mi">11</span>
+<span class="k">nrotat</span><span class="p">,</span><span class="nv">all</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">uy</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">rotx</span>
+
+<span class="k">csys</span><span class="p">,</span><span class="mi">0</span>
+
+<span class="k">lsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,,,</span><span class="mi">23</span>
+<span class="k">nsll</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">uz</span>
+
+<span class="k">lsel</span><span class="p">,</span><span class="nv">s</span><span class="p">,,,</span><span class="mi">17</span>
+<span class="k">nsll</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">d</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">uz</span><span class="p">,</span><span class="mi">4</span>
+
+<span class="k">ALLSEL</span>
+<span class="o">/</span><span class="nv">view</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+<span class="o">/</span><span class="nv">eshape</span><span class="p">,</span><span class="mi">1</span>
+<span class="k">ksel</span><span class="p">,</span><span class="nv">s</span><span class="p">,,,</span><span class="mi">33</span>
+<span class="k">nslk</span><span class="p">,</span><span class="nv">s</span><span class="p">,</span><span class="mi">1</span>
+<span class="o">*</span><span class="nv">get</span><span class="p">,</span><span class="nv">sw_node</span><span class="p">,</span><span class="nv">node</span><span class="p">,,</span><span class="nv">num</span><span class="p">,</span><span class="nv">max</span>
+
+<span class="o">/</span><span class="k">solu</span>
+<span class="k">allsel</span>
+<span class="k">nlgeom</span><span class="p">,</span><span class="nv">on</span>
+<span class="k">time</span><span class="p">,</span><span class="mi">4</span>
+<span class="k">nsubst</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">5</span>
+<span class="k">outres</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">all</span>
+<span class="nv">fini</span>
+
+<span class="c">!------------------------------------</span>
+<span class="c">!build flex spotweld with BEAM188, run the solution,</span>
+<span class="c">!and post process results</span>
+<span class="c">!------------------------------------</span>
+<span class="nv">fini</span>
+<span class="k">allsel</span>
+<span class="o">/</span><span class="nv">prep7</span>
+<span class="k">mp</span><span class="p">,</span><span class="nv">ex</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="mf">8e6</span>
+<span class="k">mp</span><span class="p">,</span><span class="nv">prxy</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.3</span>
+<span class="c">!</span>
+<span class="k">SECTYPE</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="nv">beam</span><span class="p">,</span><span class="nv">csolid</span>
+<span class="k">SECDATA</span><span class="p">,</span><span class="mf">0.25</span>
+<span class="c">!</span>
+<span class="k">et</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">188</span>
+<span class="k">type</span><span class="p">,</span><span class="mi">2</span>
+<span class="k">mat</span><span class="p">,</span><span class="mi">2</span>
+<span class="k">secnum</span><span class="p">,</span><span class="mi">2</span>
+
+<span class="k">SWGEN</span><span class="p">,</span><span class="nv">sweld1</span><span class="p">,</span><span class="mf">0.50</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="nv">sw_node</span><span class="p">,,</span>
+<span class="k">SWADD</span><span class="p">,</span><span class="nv">sweld1</span><span class="p">,,</span><span class="mi">12</span>
+
+<span class="o">/</span><span class="k">solu</span>
+<span class="k">allsel</span>
+<span class="k">nlgeom</span><span class="p">,</span><span class="nv">on</span>
+<span class="k">time</span><span class="p">,</span><span class="mi">4</span>
+<span class="k">nsubst</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">5</span>
+<span class="k">outres</span><span class="p">,</span><span class="nv">all</span><span class="p">,</span><span class="nv">all</span>
+<span class="k">solve</span>
+<span class="k">FINISH</span>
+</pre></div>
+</div>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="s2">&quot;spot_weld.inp&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here is the Python script using
+<a class="reference external" href="https://reader.docs.pyansys.com/">ansys-mapdl-reader</a> package to access the results
+after running the MAPDL analysis.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.mapdl</span> <span class="kn">import</span> <span class="n">reader</span> <span class="k">as</span> <span class="n">pymapdl_reader</span>
+</pre></div>
+</div>
+<p>Open the result file and plot the displacement of time step 3</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">resultfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">directory</span><span class="p">,</span> <span class="s2">&quot;file.rst&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pymapdl_reader</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="n">resultfile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../_images/spot_disp.png"><img alt="../_images/spot_disp.png" src="../_images/spot_disp.png" style="width: 300pt;" /></a>
+<figcaption>
+<p><span class="caption-text">Spot Weld: Displacement</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Get the nodal and element component stress at time step 0. Plot the
+stress in the Z direction.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nodenum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">element_stress</span><span class="p">,</span> <span class="n">elemnum</span><span class="p">,</span> <span class="n">enode</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">element_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="go">Plot the Z direction stress:</span>
+<span class="go">The stress at the contact element simulating the spot weld</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Sz&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../_images/spot_sz.png"><img alt="../_images/spot_sz.png" src="../_images/spot_sz.png" style="width: 300pt;" /></a>
+<figcaption>
+<p><span class="caption-text">Spot weld: Z stress</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Get the principal nodal stress and plot the von Mises stress</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">pstress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;SEQV&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../_images/spot_seqv.png"><img alt="../_images/spot_seqv.png" src="../_images/spot_seqv.png" style="width: 300pt;" /></a>
+<figcaption>
+<p><span class="caption-text">Spot weld: von Mises stress</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#torsional-load-on-a-bar-using-surf154-elements">Torsional load on a bar using SURF154 elements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#script-initialization">Script initialization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-creation">Model creation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution">Solution</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-an-input-file-spotweld-shell181-example">Running an input file - spotweld SHELL181 example</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/pyansys/pymapdl/edit/main/doc/source/user_guide/mapdl_examples.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/mapdl_examples.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

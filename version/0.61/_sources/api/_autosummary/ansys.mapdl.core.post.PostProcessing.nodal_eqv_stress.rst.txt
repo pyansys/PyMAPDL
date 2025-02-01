@@ -1,0 +1,6 @@
+nodal\_eqv\_stress
+==================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.nodal_eqv_stress

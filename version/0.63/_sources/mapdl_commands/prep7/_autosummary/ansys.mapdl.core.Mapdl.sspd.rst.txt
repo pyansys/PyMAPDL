@@ -1,0 +1,6 @@
+﻿sspd
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sspd

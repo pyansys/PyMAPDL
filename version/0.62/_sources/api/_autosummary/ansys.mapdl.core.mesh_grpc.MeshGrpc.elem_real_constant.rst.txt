@@ -1,0 +1,6 @@
+elem\_real\_constant
+====================
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoproperty:: MeshGrpc.elem_real_constant

@@ -1,0 +1,961 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mesh and geometry &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css?v=18fd1f76" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+ 
+<link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../_static/documentation_options.js?v=1511083c"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/mesh_geometry';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.67';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Postprocessing" href="post.html" />
+    <link rel="prev" title="Interactive plotting" href="plotting.html" />
+<link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/user_guide/mesh_geometry.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+ 
+<!-- Include the MeiliSearch CSS stylesheet only if theme present -->
+<link href="../_static/css/meilisearch.css" rel="stylesheet" />
+
+<!-- Create a search bar form with a text input and a dropdown selector for the search index -->
+<form
+  class="bd-search d-flex align-items-center"
+  action="../search.html"
+  method="get"
+>
+  <input
+    type="search"
+    placeholder="Search"
+    class="form-control"
+    id="search-bar-input"
+    autofocus
+  />
+  <span class="search-button__kbd-shortcut"
+    ><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span
+  >
+  <style>
+    .bd-search .search-button__kbd-shortcut {
+      right: 33%;
+    }
+  </style>
+  
+  <select id="indexUidSelector" class="index-select">
+    
+    <option value="pymapdl-v0-67">PyMAPDL</option>
+    
+  </select>
+  
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <!-- Include the MeiliSearch JavaScript library for the search bar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    
+  <script>
+    var HOST_URL = "https://backend.search.pyansys.com/";
+    var API_KEY = "9fbccc76c147935ce2b562a9ee0c6669276987572dc1f22491cea72e9e99f35d";
+    var indexUid = "pymapdl-v0-67";
+  </script>
+
+  <script src="../_static/js/meilisearch_theme_wrap.js"></script>
+</form>
+</div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="launcher.html">Initial setup and launch of MAPDL locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl.html">PyMAPDL language and usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl_examples.html">ANSYS APDL interactive control examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Interactive plotting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Mesh and geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post.html">Postprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Setting and retrieving parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Access MAPDL database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convert.html">Translate scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math.html">PyAnsys Math overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pool.html">Create a pool of MAPDL instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xpl.html">File explorer overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upf.html">Using Python to code UPF subroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="krylov.html">Harmonic analysis using the Krylov method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">Troubleshooting PyMAPDL</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+      
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+      
+    <li class="breadcrumb-item">
+      <a
+        href="../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i
+      ></a>
+    </li> 
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">User guide</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Mesh and geometry</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="mesh-and-geometry">
+<h1>Mesh and geometry<a class="headerlink" href="#mesh-and-geometry" title="Link to this heading">#</a></h1>
+<p>The <a class="reference internal" href="../api/mapdl.html#ansys.mapdl.core.mapdl._MapdlCore" title="ansys.mapdl.core.mapdl._MapdlCore"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mapdl</span></code></a> class allows you to access
+the mesh and geometry without writing to an intermediate file or
+interpreting the text output from various MAPDL commands. For
+example, to access the nodes and elements of a model, normally you
+would list the nodes within MAPDL using the
+<a class="reference internal" href="../mapdl_commands/prep7/_autosummary/ansys.mapdl.core.Mapdl.nlist.html#ansys.mapdl.core.Mapdl.nlist" title="ansys.mapdl.core.Mapdl.nlist"><code class="xref py py-func docutils literal notranslate"><span class="pre">Mapdl.nlist()</span></code></a> method.
+However, this generates a string.
+Array access requires either cumbersome MAPDL GET commands or that the
+nodes be written to an archive file and then read in with other
+software:</p>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">NLIST</span>
+
+<span class="go">LIST ALL SELECTED NODES.   DSYS=      0</span>
+
+<span class="go">NODE        X             Y             Z           THXY     THYZ     THZX</span>
+<span class="go">    1   0.0000        0.0000        0.0000          0.00     0.00     0.00</span>
+<span class="go">    2   1.0000        0.0000        0.0000          0.00     0.00     0.00</span>
+<span class="go">    3   0.2500        0.0000        0.0000          0.00     0.00     0.00</span>
+</pre></div>
+</div>
+<p>However, with the <a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mesh_grpc.MeshGrpc.html#ansys.mapdl.core.mesh_grpc.MeshGrpc" title="ansys.mapdl.core.mesh_grpc.MeshGrpc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Mapdl.mesh</span></code></a> class,
+you can interface with a current instance of the
+<a class="reference internal" href="../api/mapdl.html#ansys.mapdl.core.mapdl._MapdlCore" title="ansys.mapdl.core.mapdl._MapdlCore"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mapdl</span></code></a> class and access the current nodes coordinates
+with this code:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nodes</span>
+<span class="go">[[0.0, 0.0, 0.0],</span>
+<span class="go">  [1.0, 0.0, 0.0],</span>
+<span class="go">  [0.25, 0.0, 0.0],</span>
+<span class="go">  [0.75, 0.5, 3.5],</span>
+<span class="go">  [0.75, 0.5, 4.0],</span>
+<span class="go">  [0.75, 0.5, 4.5]]</span>
+</pre></div>
+</div>
+<p>Both the <a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.html#ansys.mapdl.core.mapdl_geometry.Geometry" title="ansys.mapdl.core.mapdl_geometry.Geometry"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Mapdl.geometry</span></code></a> and
+<a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mesh_grpc.MeshGrpc.html#ansys.mapdl.core.mesh_grpc.MeshGrpc" title="ansys.mapdl.core.mesh_grpc.MeshGrpc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Mapdl.mesh</span></code></a> attributes support
+additional, lower-level access to MAPDL data. You can use this code
+to access them:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span>
+</pre></div>
+</div>
+<p>To view the current mesh status, you can use this code:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span>
+<span class="go"> ANSYS Mesh</span>
+<span class="go">   Number of Nodes:              7217</span>
+<span class="go">   Number of Elements:           2080</span>
+<span class="go">   Number of Element Types:      2</span>
+<span class="go">   Number of Node Components:    0</span>
+<span class="go">   Number of Element Components: 0</span>
+</pre></div>
+</div>
+<section id="geometry">
+<h2>Geometry<a class="headerlink" href="#geometry" title="Link to this heading">#</a></h2>
+<p>In PyMAPDL 0.66.0 and later, by default, all geometry entities are returned
+as a <a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.MultiBlock.html#pyvista.MultiBlock" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.MultiBlock</span></code></a>  object.</p>
+<p><strong>Example 1</strong></p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">areas</span>
+<span class="go">MultiBlock (0x147ca7640)</span>
+<span class="go">  N Blocks    28</span>
+<span class="go">  X Bounds    -0.016, 0.016</span>
+<span class="go">  Y Bounds    -0.008, 0.018</span>
+<span class="go">  Z Bounds    -0.003, 0.015</span>
+</pre></div>
+</div>
+<p><strong>Example 2</strong>:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">keypoints</span>
+<span class="go">MultiBlock (0x147a78220)</span>
+<span class="go">  N Blocks    26</span>
+<span class="go">  X Bounds    -0.016, 0.016</span>
+<span class="go">  Y Bounds    -0.008, 0.018</span>
+<span class="go">  Z Bounds    -0.003, 0.015</span>
+</pre></div>
+</div>
+<p>As you can see, you do not need to call the entities in the new API.</p>
+<p>For more differences between the new Geometry API and the old one, see
+<a class="reference internal" href="#migration-geometry-api-066"><span class="std std-ref">Migration to the new Geometry API</span></a>.</p>
+<p>The selection now is easier.</p>
+<p>You can use indexing:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">volume0</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">volumes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">volume0</span>
+<span class="go">UnstructuredGrid (0x149107340)</span>
+<span class="go">  N Cells:    34</span>
+<span class="go">  N Points:   36</span>
+<span class="go">  X Bounds:   0.000e+00, 1.588e-02</span>
+<span class="go">  Y Bounds:   -7.620e-03, 1.778e-02</span>
+<span class="go">  Z Bounds:   -3.180e-03, 0.000e+00</span>
+<span class="go">  N Arrays:   3</span>
+</pre></div>
+</div>
+<p>You can use the entity name:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">volume1</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">volumes</span><span class="p">[</span><span class="s2">&quot;volume 1&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">volume1</span>
+<span class="go">UnstructuredGrid (0x149107340)</span>
+<span class="go">  N Cells:    34</span>
+<span class="go">  N Points:   36</span>
+<span class="go">  X Bounds:   0.000e+00, 1.588e-02</span>
+<span class="go">  Y Bounds:   -7.620e-03, 1.778e-02</span>
+<span class="go">  Z Bounds:   -3.180e-03, 0.000e+00</span>
+<span class="go">  N Arrays:   3</span>
+</pre></div>
+</div>
+<p>You can plot different entities by calling the <code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code> method:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">areas</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/multiblock_pic1.png" src="../_images/multiblock_pic1.png" />
+</figure>
+<p>You can plot a single entity:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">areas</span><span class="p">[</span><span class="s2">&quot;area 1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/multiblock_pic2.png" src="../_images/multiblock_pic2.png" />
+</figure>
+<p>You can plot multiple entities using slices:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">areas</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../_images/multiblock_pic3.png" src="../_images/multiblock_pic3.png" />
+</figure>
+<p>Furthermore, the following methods are provided to return the geometry entities as other Python objects:</p>
+<p id="table-1"><strong>Table 1. Get_ENTITY methods.</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><strong>Default output</strong></p></th>
+<th class="head"><p><code class="code highlight py python docutils literal highlight-python"><span class="n">return_as_list</span><span class="o">=</span><span class="kc">True</span></code></p></th>
+<th class="head"><p><code class="code highlight py python docutils literal highlight-python"><span class="n">return_as_array</span><span class="o">=</span><span class="kc">True</span></code></p></th>
+<th class="head"><p><code class="code highlight py python docutils literal highlight-python"><span class="n">return_ids_in_array</span><span class="o">=</span><span class="kc">True</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.get_keypoints.html#ansys.mapdl.core.mapdl_geometry.Geometry.get_keypoints" title="ansys.mapdl.core.mapdl_geometry.Geometry.get_keypoints"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Geometry.get_keypoints()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.PolyData.html#pyvista.PolyData" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.PolyData</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.PolyData.html#pyvista.PolyData" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List[pyvista.PolyData]</span></code></a></p></td>
+<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Numpy.array</span></code></p></td>
+<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Numpy.array</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.get_lines.html#ansys.mapdl.core.mapdl_geometry.Geometry.get_lines" title="ansys.mapdl.core.mapdl_geometry.Geometry.get_lines"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Geometry.get_lines()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.PolyData.html#pyvista.PolyData" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.PolyData</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.PolyData.html#pyvista.PolyData" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List[pyvista.PolyData]</span></code></a></p></td>
+<td><p><strong>Not Applicable</strong></p></td>
+<td><p><strong>Not Applicable</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.get_areas.html#ansys.mapdl.core.mapdl_geometry.Geometry.get_areas" title="ansys.mapdl.core.mapdl_geometry.Geometry.get_areas"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Geometry.get_areas()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.PolyData.html#pyvista.PolyData" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.PolyData</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List[pyvista.UnstructuredGrid]</span></code></a></p></td>
+<td><p><strong>Not Applicable</strong></p></td>
+<td><p><strong>Not Applicable</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.get_volumes.html#ansys.mapdl.core.mapdl_geometry.Geometry.get_volumes" title="ansys.mapdl.core.mapdl_geometry.Geometry.get_volumes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Geometry.get_volumes()</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.PolyData.html#pyvista.PolyData" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.PolyData</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List[pyvista.UnstructuredGrid]</span></code></a></p></td>
+<td><p><strong>Not Applicable</strong></p></td>
+<td><p><strong>Not Applicable</strong></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="migration-to-the-new-geometry-api">
+<span id="migration-geometry-api-066"></span><h2>Migration to the new Geometry API<a class="headerlink" href="#migration-to-the-new-geometry-api" title="Link to this heading">#</a></h2>
+<p>Several changes must be addressed in older scripts to update them
+from the old API to the new API.</p>
+<p>One of the most important is that you no longer need to call the entities like you did in the old API.</p>
+<p><strong>Old API</strong></p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="go"># Old API</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">areas</span><span class="p">()</span>
+<span class="go">[UnstructuredGrid (0x7f14add95040)</span>
+<span class="go">  N Cells:   12</span>
+<span class="go">  N Points:  20</span>
+<span class="go">  X Bounds:  -2.000e+00, 2.000e+00</span>
+<span class="go">  Y Bounds:  0.000e+00, 1.974e+00</span>
+<span class="go">  Z Bounds:  0.000e+00, 0.000e+00</span>
+<span class="go">  N Arrays:  4,</span>
+<span class="go">UnstructuredGrid (0x7f14add95ca0)</span>
+<span class="go">  N Cells:   12</span>
+<span class="go">  N Points:  20</span>
+<span class="go">  X Bounds:  -2.000e+00, 2.000e+00</span>
+<span class="go">  Y Bounds:  0.000e+00, 1.974e+00</span>
+<span class="go">  Z Bounds:  5.500e-01, 5.500e-01</span>
+<span class="go">  N Arrays:  4,</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<p><strong>New API</strong></p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">areas</span>
+<span class="go">MultiBlock (0x147ca7640)</span>
+<span class="go">  N Blocks    28</span>
+<span class="go">  X Bounds    -0.016, 0.016</span>
+<span class="go">  Y Bounds    -0.008, 0.018</span>
+<span class="go">  Z Bounds    -0.003, 0.015</span>
+</pre></div>
+</div>
+<p>In addition, the type of entities returned by those methods are different.
+This table compares the objects returned by the old and new APIs:</p>
+<p id="table-2"><strong>Table 2. Comparison between objects returned by both APIs.</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Function</strong></p></th>
+<th class="head"><p><strong>Old API</strong>
+(Function based - Must be called)</p></th>
+<th class="head"><p><strong>New API</strong>
+(Property based - Doesn’t need to be called)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.keypoints.html#ansys.mapdl.core.mapdl_geometry.Geometry.keypoints" title="ansys.mapdl.core.mapdl_geometry.Geometry.keypoints"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Geometry.keypoints</span></code></a></p></td>
+<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Numpy.array</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.MultiBlock.html#pyvista.MultiBlock" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.MultiBlock</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.lines.html#ansys.mapdl.core.mapdl_geometry.Geometry.lines" title="ansys.mapdl.core.mapdl_geometry.Geometry.lines"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Geometry.lines</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.PolyData.html#pyvista.PolyData" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.PolyData</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.MultiBlock.html#pyvista.MultiBlock" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.MultiBlock</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.areas.html#ansys.mapdl.core.mapdl_geometry.Geometry.areas" title="ansys.mapdl.core.mapdl_geometry.Geometry.areas"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Geometry.areas</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.PolyData.html#pyvista.PolyData" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.PolyData</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.MultiBlock.html#pyvista.MultiBlock" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.MultiBlock</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.volumes.html#ansys.mapdl.core.mapdl_geometry.Geometry.volumes" title="ansys.mapdl.core.mapdl_geometry.Geometry.volumes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Geometry.volumes</span></code></a></p></td>
+<td><p><strong>Not existent</strong></p></td>
+<td><p><a class="reference external" href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.MultiBlock.html#pyvista.MultiBlock" title="(in PyVista v0.42.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyvista.MultiBlock</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+<p>This table shows the equivalence between the old and new APIs:</p>
+<p id="table-3"><strong>Table 3. Equivalence between both API methods.</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Old API</strong></p></th>
+<th class="head"><p><strong>New API</strong> equivalent</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.LegacyGeometry.keypoints.html#ansys.mapdl.core.mapdl_geometry.LegacyGeometry.keypoints" title="ansys.mapdl.core.mapdl_geometry.LegacyGeometry.keypoints"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LegacyGeometry.keypoints()</span></code></a></p></td>
+<td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.get_keypoints.html#ansys.mapdl.core.mapdl_geometry.Geometry.get_keypoints" title="ansys.mapdl.core.mapdl_geometry.Geometry.get_keypoints"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Geometry.get_keypoints(return_as_array=True)</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.LegacyGeometry.lines.html#ansys.mapdl.core.mapdl_geometry.LegacyGeometry.lines" title="ansys.mapdl.core.mapdl_geometry.LegacyGeometry.lines"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LegacyGeometry.lines()</span></code></a></p></td>
+<td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.get_lines.html#ansys.mapdl.core.mapdl_geometry.Geometry.get_lines" title="ansys.mapdl.core.mapdl_geometry.Geometry.get_lines"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Geometry.get_lines()</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.LegacyGeometry.areas.html#ansys.mapdl.core.mapdl_geometry.LegacyGeometry.areas" title="ansys.mapdl.core.mapdl_geometry.LegacyGeometry.areas"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LegacyGeometry.areas()</span></code></a></p></td>
+<td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.get_areas.html#ansys.mapdl.core.mapdl_geometry.Geometry.get_areas" title="ansys.mapdl.core.mapdl_geometry.Geometry.get_areas"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Geometry.get_areas()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Not existent</strong></p></td>
+<td><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.mapdl_geometry.Geometry.volumes.html#ansys.mapdl.core.mapdl_geometry.Geometry.volumes" title="ansys.mapdl.core.mapdl_geometry.Geometry.volumes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Geometry.volumes</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="mapdl-geometry-commands">
+<h3>MAPDL geometry commands<a class="headerlink" href="#mapdl-geometry-commands" title="Link to this heading">#</a></h3>
+<p>For additional MAPDL commands for creating geometries, see the
+<a class="reference internal" href="../mapdl_commands/index.html#ref-prep-commands"><span class="std std-ref">Preprocessing</span></a> commands.</p>
+</section>
+<section id="api-reference">
+<h3>API reference<a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h3>
+<p>For a full description of the <code class="docutils literal notranslate"><span class="pre">Mesh</span></code> and <code class="docutils literal notranslate"><span class="pre">Geometry</span></code> classes,
+see <a class="reference internal" href="../api/mesh.html#ref-mesh-api"><span class="std std-ref">Mesh</span></a> and <a class="reference internal" href="../api/geometry.html#ref-geometry-api"><span class="std std-ref">Geometry</span></a>.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometry">Geometry</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#migration-to-the-new-geometry-api">Migration to the new Geometry API</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapdl-geometry-commands">MAPDL geometry commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api-reference">API reference</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/user_guide/mesh_geometry.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.12.2. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

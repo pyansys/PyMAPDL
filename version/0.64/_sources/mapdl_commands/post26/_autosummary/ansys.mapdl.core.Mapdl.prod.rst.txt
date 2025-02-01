@@ -1,0 +1,6 @@
+﻿prod
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.prod

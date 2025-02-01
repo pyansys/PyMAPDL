@@ -1,0 +1,6 @@
+material\_type
+==============
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoproperty:: MeshGrpc.material_type

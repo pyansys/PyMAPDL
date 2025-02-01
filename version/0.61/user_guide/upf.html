@@ -1,0 +1,888 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Using Python to Code UPF Subroutines &#8212; PyMAPDL</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    
+        <link href="../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/upf';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.61';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Extended Examples" href="extended_examples/index.html" />
+    <link rel="prev" title="File Explorer Overview" href="xpl.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="None">
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/user_guide/upf.html" />
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      <!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+    
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.61  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../index.html">PyMAPDL</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">User Guide</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Using Python to Code UPF Subroutines</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.61  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="launcher.html">Initial Setup and Launching MAPDL Locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl.html">PyMAPDL Language and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl_examples.html">ANSYS APDL Interactive Control Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Interactive Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh_geometry.html">Mesh and Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post.html">Post-Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Setting and Retrieving Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convert.html">Translating Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math.html">APDL Math Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pool.html">Create a Pool of MAPDL Instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xpl.html">File Explorer Overview</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Using Python to Code UPF Subroutines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extended_examples/index.html">Extended Examples</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="using-python-to-code-upf-subroutines">
+<span id="python-upf"></span><h1>Using Python to Code UPF Subroutines<a class="headerlink" href="#using-python-to-code-upf-subroutines" title="Permalink to this headline">#</a></h1>
+<p>As an alternative to compiled languages like C and Fortran, you can use the
+Python language to code user programmable subroutines. A subset of the
+documented UPF subroutines support the Python UPF capability (see <a class="reference internal" href="#supported-upf-subroutines">Supported UPF
+Subroutines</a>).</p>
+<p>You must install a Python distribution before using this feature. Python 3.6
+through Python 3.7 are supported.</p>
+<p>Python UPFs are only supported on Linux.</p>
+<p>It is strongly recommended you start your code based on one of the examples in
+<a class="reference internal" href="#python-upf-examples">Python UPF Examples</a>.  In your Python code, you can make use of standard
+Python libraries like NumPy.</p>
+<p>The following topics are available:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#supported-upf-subroutines">Supported UPF Subroutines</a></p></li>
+<li><p><a class="reference internal" href="#python-upf-methodology">Python UPF Methodology</a></p></li>
+<li><p><a class="reference internal" href="#accessing-the-database-from-the-python-code">Accessing the Database from the Python Code</a></p></li>
+<li><p><a class="reference internal" href="#python-upf-limitations">Python UPF Limitations</a></p></li>
+<li><p><a class="reference internal" href="#python-upf-examples">Python UPF Examples</a></p></li>
+</ul>
+<section id="supported-upf-subroutines">
+<h2>Supported UPF Subroutines<a class="headerlink" href="#supported-upf-subroutines" title="Permalink to this headline">#</a></h2>
+<p>A subset of the entire set of available UPF subroutines support Python coding (see the
+table below). This list will be expanded in the future.</p>
+<p><strong>Table 1: Python Support for Subroutines</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Subroutine</strong></p></th>
+<th class="head"><p><strong>Fortran Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td colspan="2"><p><strong>Material Behavior</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>UserMat</cite></p></td>
+<td><p>Subroutine UserMat (Creating Your Own Material Model)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>UserMatTh</cite></p></td>
+<td><p>Subroutine UserMatTh (Creating Your Own Thermal Material Model)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>UserHyper</cite></p></td>
+<td><p>Subroutine UserHyper (Writing Your Own Isotropic Hyperelasticity Laws)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>UserCreep</cite></p></td>
+<td><p>Subroutine UserCreep (Defining Creep Material Behavior)</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Modifying and Monitoring Elements</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>UsrShift</cite></p></td>
+<td><p>Subroutine UsrShift (Calculating Pseudotime Time Increment)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>UTimeInc</cite></p></td>
+<td><p>Subroutine UTimeInc (Overriding the Program-Determined Time Step)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>UCnvrg</cite></p></td>
+<td><p>Subroutine UCnvrg (Overriding the Program-Determined Convergence)</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p><strong>Customizing Loads</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><cite>usrefl</cite></p></td>
+<td><p>Subroutine usrefl (Changing Scalar Fields to User-Defined Values)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>userpr</cite></p></td>
+<td><p>Subroutine userpr (Changing Element Pressure Information)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>usercv</cite></p></td>
+<td><p>Subroutine usercv (Changing Element Face Convection Surface Information)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>userfx</cite></p></td>
+<td><p>Subroutine userfx (Changing Element Face Heat Flux Surface Information)</p></td>
+</tr>
+<tr class="row-even"><td colspan="2"><p><strong>Access Subroutines</strong></p></td>
+</tr>
+<tr class="row-odd"><td rowspan="5"><p><cite>UanBeg</cite> / <cite>UanFin</cite></p>
+<p><cite>USolBeg</cite> / <cite>USolFin</cite></p>
+<p><cite>ULdBeg</cite> / <cite>ULdFin</cite></p>
+<p><cite>UItBeg</cite> / <cite>UItFin</cite></p>
+<p><cite>USsBeg</cite> / <cite>USsFin</cite></p>
+</td>
+<td rowspan="5"><p>Access at the Beginning and End of Various Operations</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+</tbody>
+</table>
+</section>
+<section id="python-upf-methodology">
+<h2>Python UPF Methodology<a class="headerlink" href="#python-upf-methodology" title="Permalink to this headline">#</a></h2>
+<p>Coding a Python UPF is different from using a compiled language like C/C++ or Fortran,
+mainly in terms of the API. Because the <a class="reference external" href="https://storage.ansys.com/doclinks/external.html?code=grpc-ELU-N2a">gRPC technology</a>
+is used to handle the
+communication and the exchange of data between the Python process and the Mechanical APDL
+process, you need to understand the way this feature handles the
+serialization/deserialization of data.</p>
+<p>The main difference is in the subroutine arguments. Instead of having a full list of
+arguments as described for each of the subroutines, there are only two: the request
+object (for inputs), and the response object (for outputs). If an argument is both input
+and output of the subroutine, it will be part of both objects.</p>
+<p>The description of the request object and the response object can be found in the
+<strong>MapdlUser.proto</strong> file stored in this installation
+directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ansys</span> <span class="n">Inc</span>\<span class="n">v212</span>\<span class="n">ansys</span>\<span class="n">syslib</span>\<span class="n">ansGRPC</span>\<span class="n">User</span>
+</pre></div>
+</div>
+<p>First, create a Python file starting from this template:</p>
+<p><strong>my_upf.py</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">grpc</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">mapdl</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">MapdlUserService</span><span class="p">(</span> <span class="n">MapdlUser_pb2_grpc</span><span class="o">.</span><span class="n">MapdlUserServiceServicer</span> <span class="p">):</span>
+
+<span class="c1">#   #################################################################</span>
+    <span class="k">def</span> <span class="nf">UAnBeg</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+
+        <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot; ======================================= &quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot; &gt;&gt; Inside the PYTHON UAnBeg routine  &lt;&lt; &quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot; ======================================= </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">google_dot_protobuf_dot_empty__pb2</span><span class="o">.</span><span class="n">_EMPTY</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">upf</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Note that the Mechanical APDL application automatically installs a Mechanical APDL Python package (a
+set of Python functions to handle the connection between Mechanical APDL and the Python
+environment). Each Python UPF must be imported, as noted by:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mapdl</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>The above example redefines the <cite>UAnBeg</cite> routine and prints a
+customized banner. This file must be in the same directory as the input file.</p>
+<p>To use this Python UPF, you must add the Mechanical APDL <code class="docutils literal notranslate"><span class="pre">/UPF</span></code> command to your input file:</p>
+<p><strong>my_inp.dat</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/UPF,my_upf.py
+
+! The UAnBeg UPF must be activated by using the USRCAL APDL command
+
+USRCAL,UANBEG
+</pre></div>
+</div>
+<p>This command is trapped by the Mechanical APDL Launcher so that a Python gRPC server is up
+and running when the Mechanical APDL process starts.</p>
+<p>When launching Mechanical APDL using this input file, you will see the following printout to
+indicate Mechanical APDL detected the Python UPF instructions and has launched a Python
+server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Processing</span> <span class="s2">&quot;/upf&quot;</span> <span class="n">found</span> <span class="ow">in</span> <span class="nb">input</span> <span class="n">file</span> <span class="s2">&quot;my_inp.dat&quot;</span>
+
+<span class="n">Python</span> <span class="n">UPF</span> <span class="n">Detected</span>
+
+<span class="n">PYTHON</span> <span class="n">VERSION</span> <span class="p">:</span> <span class="mf">3.6</span>
+<span class="o">&gt;&gt;</span>
+<span class="o">&gt;&gt;</span> <span class="n">START</span> <span class="n">PYTHON</span> <span class="n">GRPC</span> <span class="n">SERVER</span>
+<span class="o">&gt;&gt;</span>
+<span class="o">&gt;&gt;</span> <span class="n">User</span> <span class="n">Functions</span> <span class="n">Python</span> <span class="n">File</span> <span class="p">:</span>  <span class="n">my_upf</span><span class="o">.</span><span class="n">py</span>
+<span class="o">&gt;&gt;</span>
+<span class="o">&gt;&gt;</span> <span class="n">Server</span> <span class="n">started</span> <span class="n">on</span> <span class="n">port</span> <span class="p">[</span><span class="mi">50054</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>During the Mechanical APDL process, you will see this Python printout:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RUN</span> <span class="n">SETUP</span> <span class="n">PROCEDURE</span> <span class="n">FROM</span> <span class="n">FILE</span><span class="o">=</span> <span class="o">/</span><span class="n">ansys_inc</span><span class="o">/</span><span class="n">v212</span><span class="o">/</span><span class="n">ansys</span><span class="o">/</span><span class="n">apdl</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">ans</span>
+<span class="o">=======================================</span>
+<span class="o">&gt;&gt;</span> <span class="n">Inside</span> <span class="n">the</span> <span class="n">PYTHON</span> <span class="n">UAnBeg</span> <span class="n">routine</span>  <span class="o">&lt;&lt;</span>
+<span class="o">=======================================</span>
+</pre></div>
+</div>
+<p>At the very end of the process, the Python server is automatically shutdown:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|-----------------------------------------------------------------|</span>
+<span class="o">|</span>                                                                 <span class="o">|</span>
+<span class="o">|</span>   <span class="n">CP</span> <span class="n">Time</span>      <span class="p">(</span><span class="n">sec</span><span class="p">)</span> <span class="o">=</span>          <span class="mf">0.326</span>       <span class="n">Time</span>  <span class="o">=</span>  <span class="mi">10</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">24</span>   <span class="o">|</span>
+<span class="o">|</span>   <span class="n">Elapsed</span> <span class="n">Time</span> <span class="p">(</span><span class="n">sec</span><span class="p">)</span> <span class="o">=</span>          <span class="mf">2.000</span>       <span class="n">Date</span>  <span class="o">=</span>  <span class="mi">03</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">2021</span> <span class="o">|</span>
+<span class="o">|</span>                                                                 <span class="o">|</span>
+<span class="o">*-----------------------------------------------------------------*</span>
+
+<span class="o">&gt;&gt;</span> <span class="n">We</span> <span class="n">shutdown</span> <span class="n">Python</span> <span class="n">Server</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="accessing-the-database-from-the-python-code">
+<h2>Accessing the Database from the Python Code<a class="headerlink" href="#accessing-the-database-from-the-python-code" title="Permalink to this headline">#</a></h2>
+<p>Within your UPF routine, you may need to access the Mechanical APDL database in read/write
+mode.</p>
+<p>In the Python code, you can create a connection with the DB server. This command must
+be called only once, so you can protect the call based on the value of a static
+variable:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">grpc</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">mapdl</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">firstcall</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">class</span> <span class="nc">MapdlUserService</span><span class="p">(</span><span class="n">MapdlUser_pb2_grpc</span><span class="o">.</span><span class="n">MapdlUserServiceServicer</span><span class="p">):</span>
+
+
+<span class="c1">#   ###############################################################</span>
+    <span class="k">def</span> <span class="nf">UserMat</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+
+        <span class="k">global</span> <span class="n">firstcall</span>
+
+        <span class="k">if</span> <span class="n">firstcall</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;&gt;&gt; Connection to the MAPDL DB Server</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="n">firstcall</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># continuation of the python function</span>
+        <span class="c1"># ...</span>
+</pre></div>
+</div>
+<p>Once the DB connection has been initialized, you can access the database of the
+Mechanical APDL instance in read/write mode.</p>
+<p>A subset of the functions documented in _Accessing the Mechanical APDL Database
+have been exposed and can be called from the Python code.</p>
+<p>Below is a list of those functions:</p>
+<p><strong>Table 2. Supported Database Access Functions.</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Supported Database Access Functions</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><cite>db.start()</cite></p></td>
+<td><p>Initializes the connection with a running Mechanical APDL instance. The DB Server is automatically started in Mechanical APDL if a <strong>/UPF</strong> command with a python file has been detected.</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>db.stop()</cite></p></td>
+<td><p>Closes the connection with the DB Server.</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>db.ndnext(next)</cite></p></td>
+<td><p>Equivalent to the function described in function ndnext (Getting the Next Node Number)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>db.ndinqr(ind, key)</cite></p></td>
+<td><p>Equivalent to the function described in function ndinqr (Getting Information About a Node)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>db.getnod(inod)</cite></p></td>
+<td><p>Equivalent to the function described in function getnod (Getting a Nodal Point)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>db.putnod(inod, x, y, z)</cite></p></td>
+<td><p>Equivalent to the function described in function putnod (Storing a Node)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>db.elnext(ielm)</cite></p></td>
+<td><p>Equivalent to the function described in function elnext (Getting the Number of the Next Element)</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>db.getelem(ielm)</cite></p></td>
+<td><p>Equivalent to the function described in function elmget (Getting an Element’s Attributes and Nodes)</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>db.get_ElmInfo(inquire)</cite></p></td>
+<td><p>Equivalent to the function get_ElmInfo described in accessing Solution and Material Data</p></td>
+</tr>
+<tr class="row-odd"><td><p><cite>db.get_ElmData(kchar, elemId, kMatRecPt, ncomp, vect)</cite></p></td>
+<td><p>Equivalent to the function get_ElmData described in accessing Solution and Material Data</p></td>
+</tr>
+<tr class="row-even"><td><p><cite>db.putElmData(inquire, elemId, kIntg, nvect, vect)</cite></p></td>
+<td><p>Equivalent to the function put_ElmData described in accessing Solution and Material Data</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="python-upf-limitations">
+<h2>Python UPF Limitations<a class="headerlink" href="#python-upf-limitations" title="Permalink to this headline">#</a></h2>
+<p>The Python UPF capability has these limitations:</p>
+<ul class="simple">
+<li><p>Currently, Distributed Ansys is not supported. You must specify the <code class="docutils literal notranslate"><span class="pre">-smp</span></code> option on the command line to make sure Mechanical APDL is running in shared-memory processing mode.</p></li>
+<li><p>Python UPFs are only available on Linux platforms.</p></li>
+</ul>
+</section>
+<section id="python-upf-examples">
+<h2>Python UPF Examples<a class="headerlink" href="#python-upf-examples" title="Permalink to this headline">#</a></h2>
+<p>The following Python UPF Examples are available in <a class="reference internal" href="extended_examples/Python_UPF/python_upf_examples.html#python-upf-examples"><span class="std std-ref">UPF in PyMAPDL</span></a> :</p>
+<ul class="simple">
+<li><p>Example: Python <cite>UserMat</cite> Subroutine</p></li>
+<li><p>Example: Python <cite>UsrShift</cite> Subroutine</p></li>
+<li><p>Example: Python <cite>UserHyper</cite> Subroutine</p></li>
+</ul>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#supported-upf-subroutines">
+   Supported UPF Subroutines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-upf-methodology">
+   Python UPF Methodology
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#accessing-the-database-from-the-python-code">
+   Accessing the Database from the Python Code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-upf-limitations">
+   Python UPF Limitations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-upf-examples">
+   Python UPF Examples
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/upf.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

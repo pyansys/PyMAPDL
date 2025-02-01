@@ -1,0 +1,6 @@
+﻿lspec
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.lspec

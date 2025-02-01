@@ -1,0 +1,994 @@
+:orphan:
+
+
+
+.. _sphx_glr_examples:
+
+.. _ref_example_gallery:
+
+========
+Examples
+========
+Here are a series of examples using MAPDL with ``ansys-mapdl-core``.
+
+
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_examples_00-mapdl-examples:
+
+Full Examples Using PyMAPDL
+===========================
+These examples demonstrate full examples using the PyMAPDL module.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This tutorial shows how you can use PyMAPDL to determine and verify the &quot;stress concentration f...">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_2d_plate_with_a_hole_thumb.png
+     :alt: MAPDL 2D Plane Stress Concentration Analysis
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_2d_plate_with_a_hole.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/2d_plate_with_a_hole
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Objective ~~~~~~~~~ In this example we will perform stress analysis of pipe due to internal pre...">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_2d_pressure_vessel_thumb.png
+     :alt: 2D Pressure Vessel
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_2d_pressure_vessel.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/2d_pressure_vessel
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This tutorial is the 3D corollary to the 2D plane example ref_plane_stress_concentration, but T...">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_3d_notch_thumb.png
+     :alt: 3D Stress Concentration Analysis for a Notched Plate
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_3d_notch.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/3d_notch
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how you can use MAPDL to create a plate, impose thermal boundary cond...">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_3d_plate_thermal_thumb.png
+     :alt: Basic Thermal Analysis with pyMAPDL
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_3d_plate_thermal.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/3d_plate_thermal
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to create contact elements for general contact.">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_contact_elements_thumb.png
+     :alt: Contact Element Example
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_contact_elements.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/contact_elements
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="PyMAPDL can load basic IGES geometry for analysis.">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_geometry_thumb.png
+     :alt: Plotting and Mesh Access
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_geometry.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/geometry
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This is a simple example that loads an archive file containing a beam and then runs a modal ana...">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_mapdl_3d_beam_thumb.png
+     :alt: MAPDL 3D Beam Example
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_mapdl_3d_beam.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/mapdl_3d_beam
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This is an example from FINITE ELEMENT ANALYSIS USING ANSYS 11.0">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_mapdl_beam_thumb.png
+     :alt: MAPDL 2D Beam Example
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_mapdl_beam.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/mapdl_beam
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This tutorial shows how you can use pyansys and MAPDL to interpolate along a path for stress.  ...">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_path_operations_thumb.png
+     :alt: Path Operations within pyMAPDL and MAPDL
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_path_operations.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/path_operations
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Also shown here: - Various ways of accessing stress results from MAPDL. - Comparison between PR...">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_pressure_vessel_thumb.png
+     :alt: Pressure Vessel
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_pressure_vessel.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/pressure_vessel
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Run a modal analysis on a mesh generated from pyvista within MAPDL.">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_pyvista_mesh_thumb.png
+     :alt: PyVista Mesh Integration
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_pyvista_mesh.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/pyvista_mesh
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Example adapted from: https://www.simutechgroup.com/tips-and-tricks/fea-articles/97-fea-tips-tr...">
+
+.. only:: html
+
+ .. figure:: /examples/00-mapdl-examples/images/thumb/sphx_glr_transient_thermal_thumb.png
+     :alt: Example Thermal Transient Analysis
+
+     :ref:`sphx_glr_examples_00-mapdl-examples_transient_thermal.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/00-mapdl-examples/transient_thermal
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_examples_01-apdlmath-examples:
+
+.. _ref_apdl_math_examples:
+
+PyMAPDL Math Examples
+=====================
+These examples demonstrate using APDL Math from the PyMAPDL library.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This tutorial shows how you can use pymapdl to use APDL math for basic operations on APDLMath v...">
+
+.. only:: html
+
+ .. figure:: /examples/01-apdlmath-examples/images/thumb/sphx_glr_basic_operations_thumb.png
+     :alt: PyMAPDL APDLMath Basic Operations
+
+     :ref:`sphx_glr_examples_01-apdlmath-examples_basic_operations.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-apdlmath-examples/basic_operations
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example uses a verification manual input file, but you can use your own sparse or dense ma...">
+
+.. only:: html
+
+ .. figure:: /examples/01-apdlmath-examples/images/thumb/sphx_glr_eigen_solve_thumb.png
+     :alt: Using APDLMath to solve Eigenproblems
+
+     :ref:`sphx_glr_examples_01-apdlmath-examples_eigen_solve.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-apdlmath-examples/eigen_solve
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="These files include most of the binary files generated by APDL (e.g. .RST, .FULL, etc.).">
+
+.. only:: html
+
+ .. figure:: /examples/01-apdlmath-examples/images/thumb/sphx_glr_explore_mapdl_files_thumb.png
+     :alt: Binary MAPDL File Explorer
+
+     :ref:`sphx_glr_examples_01-apdlmath-examples_explore_mapdl_files.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-apdlmath-examples/explore_mapdl_files
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows:">
+
+.. only:: html
+
+ .. figure:: /examples/01-apdlmath-examples/images/thumb/sphx_glr_mapdl_vs_scipy_thumb.png
+     :alt: Compute Eigenvalues using MAPDL or SciPy
+
+     :ref:`sphx_glr_examples_01-apdlmath-examples_mapdl_vs_scipy.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-apdlmath-examples/mapdl_vs_scipy
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This tutorial will show how to get APDLMath sparse matrices (typically stiffness or mass matric...">
+
+.. only:: html
+
+ .. figure:: /examples/01-apdlmath-examples/images/thumb/sphx_glr_scipy_sparse_matrix_thumb.png
+     :alt: Transfer APDLMath Sparse Matrices to and from SciPy Sparse Matrices
+
+     :ref:`sphx_glr_examples_01-apdlmath-examples_scipy_sparse_matrix.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-apdlmath-examples/scipy_sparse_matrix
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Use APDLMath to Solve a Dense Matrix Linear System">
+
+.. only:: html
+
+ .. figure:: /examples/01-apdlmath-examples/images/thumb/sphx_glr_solve_dense_matrix_thumb.png
+     :alt: Use APDLMath to Solve a Dense Matrix Linear System
+
+     :ref:`sphx_glr_examples_01-apdlmath-examples_solve_dense_matrix.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-apdlmath-examples/solve_dense_matrix
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Using APDLMath, you can solve linear systems of equations based on sparse or dense matrices.">
+
+.. only:: html
+
+ .. figure:: /examples/01-apdlmath-examples/images/thumb/sphx_glr_solve_sparse_matrix_thumb.png
+     :alt: Use APDLMath To Perform Sparse Factorization and Solve Operations
+
+     :ref:`sphx_glr_examples_01-apdlmath-examples_solve_sparse_matrix.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-apdlmath-examples/solve_sparse_matrix
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Manipulate APDLMath vectors or dense matrices as NumPy Arrays">
+
+.. only:: html
+
+ .. figure:: /examples/01-apdlmath-examples/images/thumb/sphx_glr_use_numpy_arrays_thumb.png
+     :alt: Manipulate APDLMath vectors or dense matrices as NumPy Arrays
+
+     :ref:`sphx_glr_examples_01-apdlmath-examples_use_numpy_arrays.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-apdlmath-examples/use_numpy_arrays
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_examples_02-geometry:
+
+.. _ref_pymapdl_geometry_examples:
+
+Geometry Examples
+=================
+These examples demonstrate using PyMAPDL to create basic geometry.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This section is focused on creating keypoints.">
+
+.. only:: html
+
+ .. figure:: /examples/02-geometry/images/thumb/sphx_glr_00-keypoints_thumb.png
+     :alt: Keypoints
+
+     :ref:`sphx_glr_examples_02-geometry_00-keypoints.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/02-geometry/00-keypoints
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Lines">
+
+.. only:: html
+
+ .. figure:: /examples/02-geometry/images/thumb/sphx_glr_01-lines_thumb.png
+     :alt: Lines
+
+     :ref:`sphx_glr_examples_02-geometry_01-lines.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/02-geometry/01-lines
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Areas">
+
+.. only:: html
+
+ .. figure:: /examples/02-geometry/images/thumb/sphx_glr_02-areas_thumb.png
+     :alt: Areas
+
+     :ref:`sphx_glr_examples_02-geometry_02-areas.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/02-geometry/02-areas
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Volumes">
+
+.. only:: html
+
+ .. figure:: /examples/02-geometry/images/thumb/sphx_glr_03-volumes_thumb.png
+     :alt: Volumes
+
+     :ref:`sphx_glr_examples_02-geometry_03-volumes.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/02-geometry/03-volumes
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Primitives">
+
+.. only:: html
+
+ .. figure:: /examples/02-geometry/images/thumb/sphx_glr_04-primitives_thumb.png
+     :alt: Primitives
+
+     :ref:`sphx_glr_examples_02-geometry_04-primitives.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/02-geometry/04-primitives
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_examples_03-tips-n-tricks:
+
+.. _ref_miscellaneous_examples:
+
+Miscellaneous Examples
+======================
+These examples demonstrate miscellaneous tips and tricks for using PyMAPDL.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This block comment should be included at the top of any new example. Each example should have a...">
+
+.. only:: html
+
+ .. figure:: /examples/03-tips-n-tricks/images/thumb/sphx_glr_00-example-template_thumb.png
+     :alt: Adding a New Gallery Example
+
+     :ref:`sphx_glr_examples_03-tips-n-tricks_00-example-template.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/03-tips-n-tricks/00-example-template
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="There are many cases in which you will want to control the density of the mesh nearby a region ...">
+
+.. only:: html
+
+ .. figure:: /examples/03-tips-n-tricks/images/thumb/sphx_glr_01-smoothing-element-size-transitions_thumb.png
+     :alt: MAPDL Element Size Transition Example
+
+     :ref:`sphx_glr_examples_03-tips-n-tricks_01-smoothing-element-size-transitions.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/03-tips-n-tricks/01-smoothing-element-size-transitions
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Inline functions like UX have been implemented in PyMAPDL as methods on the mapdl.inline_functi...">
+
+.. only:: html
+
+ .. figure:: /examples/03-tips-n-tricks/images/thumb/sphx_glr_03-using_inline_functions_and_Query_thumb.png
+     :alt: Using Inline Functions (Query)
+
+     :ref:`sphx_glr_examples_03-tips-n-tricks_03-using_inline_functions_and_Query.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/03-tips-n-tricks/03-using_inline_functions_and_Query
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Not all element types have rotational degrees of freedom, but generally, &quot;shell&quot; ones do. In th...">
+
+.. only:: html
+
+ .. figure:: /examples/03-tips-n-tricks/images/thumb/sphx_glr_04-rotational-displacement_thumb.png
+     :alt: Generating and Extracting Rotational Displacement
+
+     :ref:`sphx_glr_examples_03-tips-n-tricks_04-rotational-displacement.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/03-tips-n-tricks/04-rotational-displacement
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_examples_04-general-fea:
+
+Academic Finite Element Examples
+================================
+These examples demonstrate finite element method as applicable to
+Python and MAPDL while emphasising Python libaries such as `matplotlib
+<https://matplotlib.org/>`_
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="To illustrate it with a concrete example, we take a 2D element described by the following (x, y...">
+
+.. only:: html
+
+ .. figure:: /examples/04-general-fea/images/thumb/sphx_glr_00-how_finite_element_works_thumb.png
+     :alt: Build a Finite Element
+
+     :ref:`sphx_glr_examples_04-general-fea_00-how_finite_element_works.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/04-general-fea/00-how_finite_element_works
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_examples_06-verif-manual:
+
+Verification Manual Examples
+============================
+This section demonstrates a range of Mechanical APDL elements and
+capabilities in straightforward problems which have "classical" or
+readily-obtainable theoretical solutions using PyMAPDL.
+
+These problems may then serve as the basis for additional validation
+and qualification of Mechanical APDL capabilities for specific
+applications that may be of interest.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Reference:  - S. Timoshenko, Strength of Materials, Part I, Elementary Theory and    Problems, ...">
+
+.. only:: html
+
+ .. figure:: /examples/06-verif-manual/images/thumb/sphx_glr_vm-001-statically_indeterminate_reaction_force_analysis_thumb.png
+     :alt: Statically Indeterminate Reaction Force Analysis
+
+     :ref:`sphx_glr_examples_06-verif-manual_vm-001-statically_indeterminate_reaction_force_analysis.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/06-verif-manual/vm-001-statically_indeterminate_reaction_force_analysis
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="A standard 30 inch WF beam, with a cross-sectional area A, is supported as shown below and load...">
+
+.. only:: html
+
+ .. figure:: /examples/06-verif-manual/images/thumb/sphx_glr_vm-002-beam_stresses_and_deflections_thumb.png
+     :alt: Beam Stresses and Deflections
+
+     :ref:`sphx_glr_examples_06-verif-manual_vm-002-beam_stresses_and_deflections.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/06-verif-manual/vm-002-beam_stresses_and_deflections
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Reference:  - S. Timoshenko, Strength of Materials, Part I, Elementary Theory and    Problems, ...">
+
+.. only:: html
+
+ .. figure:: /examples/06-verif-manual/images/thumb/sphx_glr_vm-003-thermally_loaded_support_structure_thumb.png
+     :alt: Thermally Loaded Support Structure
+
+     :ref:`sphx_glr_examples_06-verif-manual_vm-003-thermally_loaded_support_structure.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/06-verif-manual/vm-003-thermally_loaded_support_structure
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Reference:  - S. Timoshenko, Strength of Materials, Part I, Elementary Theory and    Problems, ...">
+
+.. only:: html
+
+ .. figure:: /examples/06-verif-manual/images/thumb/sphx_glr_vm-004-deflection_of_a_hinged_support_thumb.png
+     :alt: Deflection of a Hinged Support
+
+     :ref:`sphx_glr_examples_06-verif-manual_vm-004-deflection_of_a_hinged_support.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/06-verif-manual/vm-004-deflection_of_a_hinged_support
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Reference:  - S. H. Crandall, N. C. Dahl, An Introduction to the Mechanics    of Solids, McGraw...">
+
+.. only:: html
+
+ .. figure:: /examples/06-verif-manual/images/thumb/sphx_glr_vm-005-laterally_loaded_tapered_support_structure_thumb.png
+     :alt: Statically Indeterminate Reaction Force Analysis
+
+     :ref:`sphx_glr_examples_06-verif-manual_vm-005-laterally_loaded_tapered_support_structure.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/06-verif-manual/vm-005-laterally_loaded_tapered_support_structure
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Reference:  - R. D. Cook, Concepts and Applications of Finite Element Analysis, 2nd Edition,   ...">
+
+.. only:: html
+
+ .. figure:: /examples/06-verif-manual/images/thumb/sphx_glr_vm-006-pinched_cylinder_thumb.png
+     :alt: Pinched Cylinder
+
+     :ref:`sphx_glr_examples_06-verif-manual_vm-006-pinched_cylinder.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/06-verif-manual/vm-006-pinched_cylinder
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Reference:  - S. H. Crandall, N. C. Dahl, An Introduction to the Mechanics of Solids,    McGraw...">
+
+.. only:: html
+
+ .. figure:: /examples/06-verif-manual/images/thumb/sphx_glr_vm-007-plastic_compression_of_a_pipe_assembly_thumb.png
+     :alt: Plastic Compression of a Pipe Assembly
+
+     :ref:`sphx_glr_examples_06-verif-manual_vm-007-plastic_compression_of_a_pipe_assembly.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/06-verif-manual/vm-007-plastic_compression_of_a_pipe_assembly
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Reference:  - None.">
+
+.. only:: html
+
+ .. figure:: /examples/06-verif-manual/images/thumb/sphx_glr_vm-008-parametric_calculation_thumb.png
+     :alt: Parametric Calculation
+
+     :ref:`sphx_glr_examples_06-verif-manual_vm-008-parametric_calculation.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/06-verif-manual/vm-008-parametric_calculation
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Reference:  - G. N. Vanderplaats, *Numerical Optimization Techniques for Engineering    Design ...">
+
+.. only:: html
+
+ .. figure:: /examples/06-verif-manual/images/thumb/sphx_glr_vm-009-large_lateral_deflection_of_unequal_stiffness_springs_thumb.png
+     :alt: Large Lateral Deflection of Unequal Stiffness Springs
+
+     :ref:`sphx_glr_examples_06-verif-manual_vm-009-large_lateral_deflection_of_unequal_stiffness_springs.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/06-verif-manual/vm-009-large_lateral_deflection_of_unequal_stiffness_springs
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Reference:  - S. H. Crandall, N. C. Dahl, *An Introduction to the Mechanics of Solids*,    McGr...">
+
+.. only:: html
+
+ .. figure:: /examples/06-verif-manual/images/thumb/sphx_glr_vm-010-bending_of_a_t-shaped_beam_thumb.png
+     :alt: Bending of a Tee-Shaped Beam
+
+     :ref:`sphx_glr_examples_06-verif-manual_vm-010-bending_of_a_t-shaped_beam.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/06-verif-manual/vm-010-bending_of_a_t-shaped_beam
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. _sphx_glr_examples_07-technology-showcase-examples:
+
+Technology Showcase Manual Examples
+====================================
+This section demonstrates the broad simulation capabilities of Ansys Mechanical
+APDL. The problems demonstrate how to use PyMAPDL to effectively and accurately
+solve interdisciplinary problems from a variety of industries and engineering
+fields.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This examples shows how to use PyMAPDL to import an existing FE model and to run a modal and PS...">
+
+.. only:: html
+
+ .. figure:: /examples/07-technology-showcase-examples/images/thumb/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_thumb.png
+     :alt: Dynamic simulation of a printed circuit board assembly
+
+     :ref:`sphx_glr_examples_07-technology-showcase-examples_20-example-technology-showcase-dynamic-simulation-PCB.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/07-technology-showcase-examples/20-example-technology-showcase-dynamic-simulation-PCB
+.. raw:: html
+
+    <div class="sphx-glr-clear"></div>
+
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

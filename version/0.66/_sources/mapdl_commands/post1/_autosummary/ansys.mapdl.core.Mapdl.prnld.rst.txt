@@ -1,0 +1,6 @@
+﻿prnld
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.prnld

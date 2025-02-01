@@ -1,0 +1,6 @@
+﻿bfint
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.bfint

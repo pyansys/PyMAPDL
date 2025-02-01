@@ -1,0 +1,6 @@
+﻿dmprat
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.dmprat

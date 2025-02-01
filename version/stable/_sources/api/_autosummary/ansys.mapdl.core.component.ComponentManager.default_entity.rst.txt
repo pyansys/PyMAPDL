@@ -1,0 +1,6 @@
+default\_entity
+===============
+
+.. currentmodule:: ansys.mapdl.core.component
+
+.. autoproperty:: ComponentManager.default_entity
