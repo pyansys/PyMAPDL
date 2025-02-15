@@ -8,7 +8,7 @@ ansys-mapdl-reader==0.54.1
 ansys-math-core==0.2.0
 ansys-platform-instancemanagement==1.1.2
 ansys-tools-path==0.7.0
-ansys-tools-visualization-interface==0.5.0
+ansys-tools-visualization-interface==0.6.1
 appdirs==1.4.4
 attrs==24.2.0
 certifi==2024.8.30
@@ -59,7 +59,7 @@ trame-vtk==2.8.12
 trame-vuetify==2.7.2
 typing_extensions==4.12.2
 urllib3==2.2.3
-vtk==9.3.1
+vtk==9.4.0
 websockets==13.1
 wslink==2.2.1
 yarl==1.17.2

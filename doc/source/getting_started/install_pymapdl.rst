@@ -9,7 +9,7 @@ Install PyMAPDL
 Python module
 ~~~~~~~~~~~~~
 The ``ansys.mapdl.core`` package currently supports Python 3.10 through
-Python 3.12 on Windows, Mac OS, and Linux.
+Python 3.13 on Windows, Mac OS, and Linux.
 
 Install the latest release from `PyPi <pymapdl_pypi_>`_ with this command:
 

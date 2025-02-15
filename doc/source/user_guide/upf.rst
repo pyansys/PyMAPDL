@@ -9,8 +9,8 @@ Python language to code user programmable subroutines. A subset of the
 documented UPF subroutines support the Python UPF capability. For more information,
 see `Supported UPF subroutines`_).
 
-You must install a Python distribution before using this feature. Python 3.9
-through Python 3.12 are supported.
+You must install a Python distribution before using this feature. Python 3.10
+through Python 3.13 are supported.
 
 Python UPFs are only supported on Linux.
 
