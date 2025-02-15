@@ -33,7 +33,7 @@ env:
   DPF_PORT: 21004
   MAPDL_PACKAGE: ghcr.io/ansys/mapdl
   ON_CI: True
-  PYTEST_ARGUMENTS: '-vvv -rxXsa --color=yes --durations=30 --random-order --random-order-bucket=class --maxfail=10 --reruns 3 --reruns-delay 4 --cov=ansys.mapdl.core --cov-report=html --timeout=180 --profile-svg --profile'
+  PYTEST_ARGUMENTS: '-vvv -rxXsal --full-trace --tb=long --color=yes --durations=30 --random-order --random-order-bucket=class --maxfail=10 --reruns 3 --reruns-delay 4 --cov=ansys.mapdl.core --cov-report=html  --timeout=180 --profile-svg --profile'
 
   BUILD_CHEATSHEET: True
   PYMAPDL_DEBUG_TESTING: True
