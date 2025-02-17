@@ -1,0 +1,151 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Sep  5 14:10:45 2024
+
+@author: mcapella
+"""
+
+from ansys.mapdl.core import launch_mapdl
+
+# Material data
+EX = 38000
+PRXY = 0.3
+DENS = 8.3e5
+
+# Geometry inputs (see image above)
+A= [0, 0, 0]
+B = [2, 0, 0]
+C = [2.3, 0.2, 0]
+D = [1.9, 0.45, 0]
+E = [1, 0.25, 0]
+# length to extrude
+z_extrude = 10
+
+# Analysis options
+element_size_2d = 0.10 # 0.25 is suggested in the tutorial, but the mesh is awful
+element_length_3d = 10
+number_modes = 5
+
+mapdl = launch_mapdl(override = True)
+
+# Start the APDL preprocessor PREP7
+mapdl.prep7()
+
+# Use Keypoints to build up the 2D airfoil
+mapdl.k(1,*A) # the * will auto unpack the list A!
+mapdl.k(2,*B)
+mapdl.k(3,*C)
+mapdl.k(4,*D)
+mapdl.k(5,*E)
+
+# Create the area using the keypoints
+mapdl.a(1, 2, 3, 4, 5)
+
+mapdl.aplot(cpos = 'xy')
+
+# Define Materials
+mapdl.mp("EX", 1, EX)
+mapdl.mp("PRXY", 1, PRXY)
+mapdl.mp("DENS",1, DENS)
+
+mapdl.et(1, "PLANE182")
+mapdl.et(2, "SOLID185")
+mapdl.keyopt(2,2,3) # Simple Enhanced Strain keyoption
+
+# Generate area mesh
+mapdl.esize(element_size_2d)
+mapdl.allsel()
+mapdl.amesh('ALL')
+mapdl.eplot(cpos="xy") # plot the 2D elements
+
+# Extrude using element type 2
+mapdl.type(2)
+mapdl.extopt('ESIZE', element_length_3d )
+mapdl.extopt('ACLEAR', 0) # Clear 2D elements
+mapdl.extopt('ATTR', 0, 0, 0) # Use the current material settings
+mapdl.vext('ALL', dz = z_extrude)
+mapdl.allsel()
+
+# Plot the extruded blade
+mapdl.eplot(cpos='iso')
+
+# Unselect 2D elements.
+mapdl.esel(type_ = 'U', item = 'TYPE', vmin = 1)
+
+# Selecte Z = 0 nodes and lock all degrees of freedom
+mapdl.nsel( 'S', 'LOC', 'Z', 0)
+mapdl.d('ALL','ALL')
+mapdl.allsel()
+
+#Specify analysis type and options.
+mapdl.run("/SOLU")  # Enter the solution processor
+mapdl.antype('MODAL')
+mapdl.modopt("LANB", number_modes )
+
+#Solve.
+solve = mapdl.solve()
+
+# Post processing (post1)
+mapdl.post1()
+output = mapdl.set("LIST")
+print(output)
+
+# Results to parameter
+result = mapdl.result
+
+mode2plot = 1 # Python counts start at 0 !
+normalizeDisplacement = 1 / result.nodal_displacement(mode2plot)[1].max()
+
+result.plot_nodal_displacement(
+    mode2plot,
+    show_displacement=True,
+    displacement_factor=normalizeDisplacement,
+    n_colors=10,)
+
+# If Your Interested
+
+#The original tutorial () also demonstrated how to create a animation plot of a result. This is not natively available in pymapdl but since this is python, you can google for ideas and create your own animation.
+
+#One idea is to create a series of plots and then stitch them together. This can be done with the python imageio.v2 library.
+
+#####################################################
+import imageio.v2 as imageio
+import webbrowser
+import os
+
+# Set up the plot parameters (number of images, playback frames per second)
+plot_count = 25
+fps = 5
+
+# Set up a new directory to save the plots and mp4
+jobLocation = os.getcwd()
+subfolder = 'figs'
+myfile = 'mode_shape_ ' + str(mode2plot) + '.mp4'
+if subfolder not in os.listdir():
+     os.mkdir(subfolder)
+path2AnimationFile = os.path.join(jobLocation, subfolder, myfile)
+
+
+imageList = []
+for ctr in range(plot_count,0,-1):
+    fileName = os.path.join(jobLocation, subfolder , 'file' + str(ctr) + '.jpg')
+    imageList.append(fileName)
+    result.plot_nodal_displacement(mode2plot,
+                                   cpos='iso',
+                                   off_screen = True,
+                                   displacement_factor = normalizeDisplacement/(ctr/2),#ctr*1000,
+                                   show_displacement = True, 
+                                   show_edges=True, 
+                                   screenshot=fileName)
+
+
+
+# imageio to stitch the images to an animation
+ims = [imageio.imread(f) for f in imageList] + [imageio.imread(f) for f in imageList[::-1]]
+imageio.mimwrite(path2AnimationFile, ims, fps = fps)
+
+webbrowser.open(os.path.join(jobLocation, subfolder, myfile))
+
+
+
+mapdl.exit()
