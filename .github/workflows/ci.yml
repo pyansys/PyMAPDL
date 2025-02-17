@@ -29,11 +29,10 @@ env:
   MEILISEARCH_API_KEY: ${{ secrets.MEILISEARCH_API_KEY }}
   MEILISEARCH_PUBLIC_API_KEY: ${{ secrets.MEILISEARCH_PUBLIC_API_KEY }}
   PYANSYS_OFF_SCREEN: True
-  DPF_START_SERVER: False
-  DPF_PORT: 21004
   MAPDL_PACKAGE: ghcr.io/ansys/mapdl
   ON_CI: True
-  PYTEST_ARGUMENTS: '-vvv -rxXsa --color=yes --durations=30 --random-order --random-order-bucket=class --maxfail=10 --reruns 3 --reruns-delay 4 --cov=ansys.mapdl.core --cov-report=html --timeout=180 --profile-svg --profile'
+  PYTEST_ARGUMENTS: '-vvv -k "dpf" -rxXsa --color=yes --durations=30 --random-order --random-order-bucket=class --maxfail=10 --reruns 3 --reruns-delay 4 --cov=ansys.mapdl.core --cov-report=html --timeout=180 --profile-svg --profile'
+  ANSYS_DPF_ACCEPT_LA: "Y"
 
   BUILD_CHEATSHEET: True
   PYMAPDL_DEBUG_TESTING: True
@@ -189,9 +188,11 @@ jobs:
           echo "Launching MAPDL service at PID: $DOCKER_PID"
           echo "DOCKER_PID=$(echo $DOCKER_PID)" >> $GITHUB_OUTPUT
 
-      - name: "DPF server activation"
-        run: |
-          $(docker pull ghcr.io/ansys/dpf-core:22.2dev && docker run -d --name dpfserver -p ${{ env.DPF_PORT }}:50052 ghcr.io/ansys/dpf-core:22.2dev && echo "DPF Server active on port ${{ env.DPF_PORT }}.") &
+      # - name: "Install DPF"
+      #   id: set-server-path
+      #   uses: ansys/pydpf-actions/install-dpf-server@feat/allow-running-from-custom-location
+      #   with:
+      #     dpf-standalone-TOKEN: ${{secrets.PYANSYS_CI_BOT_TOKEN}}
 
       - name: "Getting files change filters"
         uses: dorny/paths-filter@v3
@@ -401,7 +402,7 @@ jobs:
   build-test-remote:
     name: "Remote: ${{ matrix.mapdl-version }}"
     runs-on: ubuntu-22.04
-    needs: [smoke-tests, build-test-remote-matrix]
+    needs: [build-test-remote-matrix]
     timeout-minutes: 35
     strategy:
       fail-fast: false
@@ -415,6 +416,7 @@ jobs:
       PYMAPDL_START_INSTANCE: FALSE
       ON_LOCAL: FALSE
       ON_UBUNTU: FALSE
+      HAS_DPF: true
 
     outputs:
       DISTRIBUTED_MODE: ${{ steps.distributed_mode.outputs.distributed_mode }}
@@ -485,9 +487,12 @@ jobs:
           echo "DOCKER_PID_0=$(echo $DOCKER_PID_0)" >> $GITHUB_OUTPUT
           echo "DOCKER_PID_1=$(echo $DOCKER_PID_1)" >> $GITHUB_OUTPUT
 
-      - name: "DPF server activation"
-        run: |
-          $(docker pull ghcr.io/ansys/dpf-core:22.2dev && docker run -d --name dpfserver -p ${{ env.DPF_PORT }}:50052 ghcr.io/ansys/dpf-core:22.2dev && echo "DPF Server active on port ${{ env.DPF_PORT }}.") &
+      # - name: "Install DPF"
+      #   id: set-server-path
+      #   uses: ansys/pydpf-actions/install-dpf-server@feat/allow-running-from-custom-location
+      #   with:
+      #     dpf-standalone-TOKEN: ${{secrets.PYANSYS_CI_BOT_TOKEN}}
+      #     ANSYS_VERSION: ${{ matrix.number }}
 
       - name: "Getting files change filters"
         uses: dorny/paths-filter@v3
@@ -540,6 +545,7 @@ jobs:
           DISTRIBUTED_MODE: ${{ steps.distributed_mode.outputs.distributed_mode }}
           ON_UBUNTU: ${{ steps.ubuntu_check.outputs.ON_UBUNTU }}
           ON_STUDENT: ${{ steps.student_check.outputs.ON_STUDENT }}
+          DPF_SERVER_PATH: ${{ steps.set-server-path.outputs.SERVER }}
         run: |
           echo "ON_UBUNTU: $ON_UBUNTU"
           echo "ON_STUDENT: $ON_STUDENT"
@@ -632,7 +638,7 @@ jobs:
     name: "Local: ${{ matrix.mapdl-version }}"
     runs-on: ubuntu-22.04
     if: github.ref != 'refs/heads/main' || github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-    needs: [smoke-tests, build-test-local-minimal-matrix]
+    needs: [build-test-local-minimal-matrix]
     timeout-minutes: 75
     strategy:
       fail-fast: false
@@ -649,6 +655,7 @@ jobs:
       ON_UBUNTU: true
       P_SCHEMA: "/ansys_inc/v241/ansys/ac4/schema"
       PYTEST_TIMEOUT: 120 # seconds. Limit the duration for each unit test
+      HAS_DPF: true
 
     steps:
       - name: "Install Git and checkout project"
@@ -682,6 +689,15 @@ jobs:
           python -m venv ./.venv
           source ./.venv/bin/activate
 
+      - name: "Install DPF"
+        id: set-server-path
+        env:
+          OS: ${{ runner.os }}
+          ANSYS_VERSION: ${{ matrix.number }}
+          GITHUB_TOKEN: ${{ secrets.PYANSYS_CI_BOT_TOKEN }}
+        run: |
+          .ci/install_dpf_server.sh
+          
       - name: "Install OS packages"
         run: |
           apt update
@@ -707,12 +723,13 @@ jobs:
         env:
           ANSYSLMD_LICENSE_FILE: "1055@${{ secrets.LICENSE_SERVER }}"
           ON_STUDENT: ${{ steps.student_check.outputs.ON_STUDENT }}
+          DPF_SERVER_PATH: ${{ steps.set-server-path.outputs.SERVER }}
         run: |
           echo "ON_UBUNTU: $ON_UBUNTU"
           echo "ON_STUDENT: $ON_STUDENT"
           unset PYMAPDL_PORT
           unset PYMAPDL_START_INSTANCE
-          xvfb-run pytest -k "not test_dpf" \
+          xvfb-run pytest \
             ${{ env.PYTEST_ARGUMENTS }} \
             --reset_only_failed --add_missing_images \
             --cov-report=xml:${{ matrix.mapdl-version }}-local.xml

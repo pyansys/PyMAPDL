@@ -137,8 +137,14 @@ for version in "${versions[@]}"; do
     fi
 
     # Add line to json
+    if [[ "$version" == *"latest-ubuntu"* ]] ; then
+        version_num=$(echo $LATEST_VERSION)
+    else
+        version_num=$(echo "$version" | head -c 5 | tail -c 4 | tr -d '.')
+    fi;
+
     if [[ "$add_line" == "true" ]]; then
-        JSONline="{\"mapdl-version\": \"$version\"},"
+        JSONline="{\"mapdl-version\": \"$version\", \"number\": \"$version_num\" },"
 
         echo "ADDED line: $JSONline"
 

@@ -21,8 +21,6 @@
 # SOFTWARE.
 
 """Test the DPF implementation"""
-import os
-
 import pytest
 
 from conftest import HAS_DPF, ON_CI, has_dependency, requires
@@ -31,9 +29,7 @@ if not has_dependency("ansys-dpf-core") or not HAS_DPF:
     pytest.skip(allow_module_level=True)
 
 from ansys.dpf import core as dpf
-from ansys.dpf.core.server_types import DPF_DEFAULT_PORT
-
-DPF_PORT = os.environ.get("DPF_PORT", DPF_DEFAULT_PORT)  # Set in ci.yaml
+from ansys.dpf.core import server as server_module
 
 
 @pytest.fixture()
@@ -52,7 +48,7 @@ def skip_dpf(mapdl):
 def test_dpf_connection(skip_dpf):
     # uses 127.0.0.1 and port 50054 by default
     try:
-        grpc_con = dpf.connect_to_server(port=DPF_PORT)
+        grpc_con = dpf.connect_to_server()
         assert grpc_con.live
         assert True
     except OSError:
@@ -66,7 +62,13 @@ def test_upload(skip_dpf, mapdl, solved_box, tmpdir):
     rst_path = mapdl.download_result(str(tmpdir.mkdir("tmpdir")))
 
     # Establishing connection
-    grpc_con = dpf.connect_to_server(port=DPF_PORT)
+    grpc_con = dpf.connect_to_server()
+
+    server = server.DPFServer()
+    server = server_module.get_or_create_server(server)
+    if not server.local_server and not server.docker_config.use_docker:
+        return upload_file_in_tmp_folder(local_path, server=server)
+
     assert grpc_con.live
 
     # Upload RST

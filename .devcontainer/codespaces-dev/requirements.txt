@@ -1,4 +1,4 @@
-ansys-dpf-core==0.10.1
+ansys-dpf-core==0.13.2
 ansys-tools-visualization-interface==0.5.0
 autopep8==2.3.1
 matplotlib==3.9.2

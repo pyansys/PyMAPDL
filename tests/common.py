@@ -125,7 +125,9 @@ def has_grpc():
 
 
 def has_dpf():
-    return bool(os.environ.get("DPF_PORT"))
+    return (os.environ.get("HAS_DPF").lower().strip() in ["true", "yes"]) or bool(
+        os.environ.get("DPF_PORT")
+    )
 
 
 def is_smp():
