@@ -1,0 +1,386 @@
+"""
+.. Modal_Analysis_of_a_Model_Airplane_Wing:
+
+Modal Analysis of a Model Airplane Wing
+----------------------------------------------------
+
+This tutorial is the PyMapdl equivalent of the Ansys APDL tutorial 'Modal Analysis of a Model Airplane Wing'.
+The original tutorial can be found in the Ansys documentation. 
+Some adaptations are used here to highlight the benefits of using pymapdl/python.
+"""
+
+====================================
+Problem Specification
+====================================
+
+
+.. list-table:: 
+   :widths: 50 50
+
+   * - Applicable Products:
+     - Ansys Multiphysics, Ansys Mechanical, Ansys Structural
+
+   * - Level of Difficulty:
+     - Easy
+
+   * - Interactive Time Required:
+     - 30 to 45 minutes
+
+   * - Discipline:
+     - Structural
+
+   * - Analysis Type:
+     - Modal
+
+   * - Element Types Used:
+     - PLANE182, SOLID185
+
+   * - Features Demonstrated:
+     - Extrusion with a mesh, selecting, eigenvalue modal analysis, animation
+
+   * - Help Resources:
+     - Modal Analysis, PLANE182 and SOLID185
+
+===================
+Problem Description
+===================
+This is a simple modal analysis of a wing of a model airplane. The wing is of uniform configuration along its length and its cross-sectional area is defined to be a straight line and a spline. It is held fixed to the body of the airplane on one end and hangs freely at the other.
+
+.. image:: path\Image_1_prob_description.jpg
+
+**Objective:** Find the wing's natural frequencies and mode shapes.
+
+Given
+==========
+
+The wing is made of low density polyethylene with a Young's modulus of 38x10 :sup:`3` psi, Poisson's ratio of 0.3, and a density of 8.3E-5 lbf-sec :sup:`2`/in :sup:`4`.
+
+Approach and Assumptions
+========================
+
+Assume that the side of the wing connected to the plane is completely fixed in all degrees of freedom. The wing is solid and material properties are constant and isotropic.
+
+Use solid modeling to generate a 2D model of the cross-section of the wing. Create a reasonable mesh and extrude the cross-section into a 3D solid model (to be meshed automatically).
+
+Summary of Steps
+================
+
+**Input Parameter constants**
+
+0. Create parameters for all inputs 
+
+**Input Geometry**
+
+1. Create geometry
+
+**Define Materials**
+
+3. Define constant material properties.
+
+**Generate Mesh**
+
+4. Define element type.
+
+5. Mesh the area.
+
+6. Extrude the meshed area into a meshed volume.
+
+**Apply Loads**
+
+7. Unselect 2D elements.
+
+8. Apply constraints to the model.
+
+**Obtain Solution**
+
+9. Specify analysis types and options.
+
+10. Solve.
+
+**Review Results**
+
+11. List the natural frequencies.
+
+12. Animate the five mode shapes.
+
+13. Exit the program.
+
+
+First, start MAPDL as a service and disable all but error messages.
+
+.. code:: python
+
+    from ansys.mapdl.core import launch_mapdl
+    mapdl = launch_mapdl(loglevel="ERROR")
+     
+=============================
+0. Input Parameter constants
+=============================
+
+The parameter inputs used in the model either geometry, material or specific to the analysis.
+
+.. code:: python
+
+    # Material data
+    EX = 38000
+    PRXY = 0.3
+    DENS = 8.3e5
+
+    # Geometry inputs (see image above)
+    # Keypoint Locations
+    A= [0, 0, 0]
+    B = [2, 0, 0]
+    C = [2.3, 0.2, 0]
+    D = [1.9, 0.45, 0]
+    E = [1, 0.25, 0]
+    # length to extrude
+    z_extrude = 10 
+
+    # Analysis options
+    element_size_2d = 0.10 # 0.25 is suggested in the tutorial, but the mesh is awful
+    element_length_3d = 10
+    number_modes = 5
+
+=============================
+Input Geometry
+=============================
+
+1. Create geometry
+==================
+
+
+In the original version the model is created by importing a .inp file with the geometry. We can also do this directly in PyMapdl with a few lines of code. 
+
+.. code:: python
+
+    # Start the APDL preprocessor PREP7
+    mapdl.prep7()
+    
+    # Use Keypoints (K,num, X,Y,Z) to build up the 2D airfoil
+    mapdl.k(1,*A) # The * will auto unpack the list (A)
+    mapdl.k(2,*B)
+    mapdl.k(3,*C)
+    mapdl.k(4,*D)
+    mapdl.k(5,*E)
+
+    # Create the area using the keypoints
+    mapdl.a(1, 2, 3, 4, 5)
+    
+    mapdl.aplot(cpos = 'xy')
+
+=============================
+Define Materials
+=============================
+2. Set preferences
+====================
+Set the analysis type to structural (0). Not entirely necessary. 
+
+.. code:: python
+
+    # set preferences
+    mapdl.antype(0)
+
+3. Define constant material properties
+======================================
+
+We have our material inputs as parameters and can simply assign them using the pymapdl commands. 
+
+.. code:: python
+
+    # Define Materials
+    mapdl.mp("EX", 1, EX)  
+    mapdl.mp("PRXY", 1, PRXY)  
+    mapdl.mp("DENS",1, DENS)
+
+============================
+Generate Mesh
+============================
+
+4. Define element type
+================================================
+
+.. code:: python
+
+    # Define element types
+    mapdl.et(1, "PLANE182")
+    mapdl.et(2, "SOLID185")
+    mapdl.keyopt(2,2,3) # Simple Enhanced Strain keyoption
+
+5. Mesh the area
+================================================
+.. code:: python
+    
+    # Generate area mesh
+    mapdl.esize(element_size_2d)
+    mapdl.allsel()
+    mapdl.amesh('ALL')
+    mapdl.eplot(cpos="xy") # plot the 2D elements
+
+6. Extrude the meshed area into a meshed volume
+================================================
+
+Extrude the meshed area into a meshed volume.
+
+.. code:: python
+
+    # Extrude using element type 2
+    mapdl.type(2)
+    mapdl.extopt('ESIZE', element_length_3d )
+    mapdl.extopt('ACLEAR',0)
+    mapdl.extopt('ATTR',0,0,0)
+    mapdl.vext('ALL',dz = z_ext)
+    mapdl.allsel()
+
+    # Quick plot to visualize/check the model
+    mapdl.eplot(cpos='iso')
+
+============================
+Apply Loads
+============================
+
+7. Unselect 2D elements
+================================================
+The 2D elements are not required for the solid model analysis and can be unselected. 
+
+.. code:: python
+
+    # Unselect 2D elements.
+    mapdl.esel(type_ = 'U', item = 'TYPE', vmin = 1)
+
+8. Apply constraints to the model.
+================================================
+Constraints are applied to all nodes located where the wing is fixed to the body. Select all nodes at z = 0, then apply the displacement constraints.
+
+.. code:: python
+    
+    # Selecte Z = 0 nodes and lock all degrees of freedom
+    mapdl.nsel( 'S', 'LOC', 'Z', 0)
+    mapdl.d('ALL','ALL')
+    mapdl.allsel()
+
+============================
+Obtain Solution
+============================
+
+9. Specify analysis types and options.
+================================================
+Specify a modal analysis type.
+
+.. code:: python
+    
+    #Specify analysis type and options.
+    mapdl.run("/SOLU")  # Enter the solution processor
+    mapdl.antype('MODAL')
+    mapdl.modopt("LANB", number_modes )
+
+10. Solve
+================================================
+Solve the model.
+
+.. code:: python
+    
+    #Solve.
+    solve = mapdl.solve()
+
+
+============================
+Review Results
+============================
+
+11. List the natural frequencies. Plot.
+================================================
+
+List the natural frequencies. For that you need to enter the post1 processor.
+
+.. code:: python
+
+    # Post processing (post1)
+    mapdl.post1()
+    output = mapdl.set("LIST")
+    print(output)
+
+Set the result to a parameter for easier access.
+
+.. code:: python
+
+    # Results to parameter
+    result = mapdl.result
+
+Plot one or multiple results for a reality check (normalized).
+
+.. code:: python
+    
+    # Set mode to plot and normalize
+    mode2plot = 2
+    normalizeDisplacement = 1 / result.nodal_displacement(mode2plot - 1)[1].max()
+    
+    # Use the result.plot command to generate the image
+    result.plot_nodal_displacement(
+        mode2plot,
+        show_displacement=True,
+        displacement_factor=normalizeDisplacement,
+        n_colors=10,)
+
+
+
+12. Animate the five mode shapes.
+================================================
+The animated mode shapes can be generated with the pymapdl reader but the playback requires a video player. 
+Here we use some extry python modules to merge the images into an animation.
+The animations are saved to a generic mp4 which should be playable in any system. The webbrowser module will attempt to open the .mp4 with your default video viewer.
+Note the extra modules have to be pip installed and are not part of the Ansys installation. Use at your own risk.
+
+.. code:: python
+
+    #####################################################
+    import imageio.v2 as imageio
+    import webbrowser
+    import os
+
+   # Set up the plot parameters (number of images, playback frames per second)
+    plot_count = 25
+    fps = 5
+    
+    # Set up a new directory to save the plots and mp4
+    jobLocation = os.getcwd()
+    subfolder = 'figs'
+    myfile = 'mode_shape_ ' + str(mode2plot) + '.mp4'
+    if subfolder not in os.listdir():
+        os.mkdir(subfolder)
+    path2AnimationFile = os.path.join(jobLocation, subfolder, myfile)
+    
+    # Loop through the modes and save the names to list and the animations to file
+    imageList = []
+    for ctr in range(plot_count,0,-1):
+        fileName = os.path.join(jobLocation, subfolder , 'file' + str(ctr) + '.jpg')
+        imageList.append(fileName)
+        result.plot_nodal_displacement(mode2plot,
+                                   cpos='iso',
+                                   off_screen = True,
+                                   displacement_factor = normalizeDisplacement/(ctr/2),#ctr*1000,
+                                   show_displacement = True, 
+                                   show_edges=True, 
+                                   screenshot = fileName)
+     
+    # imageio to stitch the images to an animation. Note the loop forward and backward reusing the same images.
+    ims = [imageio.imread(f) for f in picList] + [imageio.imread(f) for f in picList[::-1]]
+    imageio.mimwrite(path2AnimationFile, ims, fps = fpx)
+
+That should create a mode_shape_n.mp4 in the figs directory in your job directory.
+You can (probably) use the webbrowser app to find the appropriate tool and open and play the videos.
+
+.. code:: python
+
+    # User webbrowser to open/play the last saved animation
+    webbrowser.open(path2AnimationFile)
+
+13. Exit the program.
+================================================
+The most often forgotten pymapdl command is the exit command :sup:`*`. If you don't exit you will find a lot of orphaned ansys.exe in your task manager. 
+
+.. code:: python
+
+    # Always remember to shut down the Ansys.exe by exiting. 
+    mapdl.exit()
+
+:sub:`The most often forgotten APDL command has to be ALLSEL` 
