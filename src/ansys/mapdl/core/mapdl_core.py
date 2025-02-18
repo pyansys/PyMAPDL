@@ -84,6 +84,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from ansys.mapdl.core.parameters import Parameters
     from ansys.mapdl.core.solution import Solution
     from ansys.mapdl.core.xpl import ansXpl
+    from ansys.mapdl.core.plugin import ansPlugin
 
 from ansys.mapdl.core.post import PostProcessing
 
@@ -338,6 +339,8 @@ class _MapdlCore(Commands):
         self._solution: Solution = Solution(self)
 
         self._xpl: Optional[ansXpl] = None  # Initialized in mapdl_grpc
+
+        self._plugin: Optional[ansPlugin] = None  # Initialized in mapdl_grpc
 
         from ansys.mapdl.core.component import ComponentManager
 
