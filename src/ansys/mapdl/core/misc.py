@@ -121,7 +121,7 @@ def check_has_mapdl() -> bool:
         True when this local installation has ANSYS installed in a
         standard location.
     """
-    from ansys.mapdl.core.launcher import check_valid_ansys
+    from ansys.mapdl.core.launcher.tools import check_valid_ansys
 
     try:
         return check_valid_ansys()

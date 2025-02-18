@@ -22,7 +22,7 @@
 
 import os
 import re
-import subprocess
+import subprocess  # nosec B404
 from unittest.mock import MagicMock, patch
 
 import numpy as np

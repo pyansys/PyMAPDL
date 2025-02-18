@@ -26,6 +26,7 @@ import os
 from pathlib import Path
 from shutil import get_terminal_size
 from sys import platform
+from typing import Literal, Union
 from unittest.mock import patch
 
 from _pytest.terminal import TerminalReporter  # for terminal customization
@@ -124,8 +125,27 @@ skip_if_running_student_version = pytest.mark.skipif(
     reason="This tests does not work on student version.",
 )
 
+_REQUIRES_ARG = Union[
+    Literal[
+        "GRPC",
+        "DPF",
+        "LOCAL",
+        "REMOTE",
+        "CICD",
+        "NOCICD",
+        "XSERVER",
+        "LINUX",
+        "NOLINUX",
+        "WINDOWS",
+        "NOWINDOWS",
+        "NOSTUDENT",
+        "CONSOLE",
+    ],
+    str,
+]
 
-def requires(requirement: str):
+
+def requires(requirement: _REQUIRES_ARG):
     """Check requirements"""
     requirement = requirement.lower()
 
@@ -223,7 +243,8 @@ pymapdl.RUNNING_TESTS = True
 from ansys.mapdl.core import Mapdl
 from ansys.mapdl.core.errors import MapdlExitedError, MapdlRuntimeError
 from ansys.mapdl.core.examples import vmfiles
-from ansys.mapdl.core.launcher import get_start_instance, launch_mapdl
+from ansys.mapdl.core.launcher import launch_mapdl
+from ansys.mapdl.core.launcher.tools import get_start_instance
 from ansys.mapdl.core.mapdl_core import VALID_DEVICES
 
 if has_dependency("ansys-tools-visualization_interface"):
@@ -679,13 +700,6 @@ _meth_patch_MAPDL_launch = [
 ]
 
 _meth_patch_MAPDL = _meth_patch_MAPDL_launch.copy()
-_meth_patch_MAPDL.extend(
-    [
-        # launcher methods
-        ("ansys.mapdl.core.launcher.launch_grpc", _returns(None)),
-        ("ansys.mapdl.core.launcher.check_mapdl_launch", _returns(None)),
-    ]
-)
 
 # For testing
 # Patch some of the starting procedures

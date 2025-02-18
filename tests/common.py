@@ -23,7 +23,7 @@
 """Shared testing module"""
 from collections import namedtuple
 import os
-import subprocess
+import subprocess  # nosec B404
 import time
 from typing import Dict, List
 from warnings import warn
@@ -32,11 +32,11 @@ import psutil
 
 from ansys.mapdl.core import LOG, Mapdl
 from ansys.mapdl.core.errors import MapdlConnectionError, MapdlExitedError
-from ansys.mapdl.core.launcher import (
+from ansys.mapdl.core.launcher import launch_mapdl
+from ansys.mapdl.core.launcher.tools import (
     _is_ubuntu,
     get_start_instance,
     is_ansys_process,
-    launch_mapdl,
 )
 
 PROCESS_OK_STATUS = [

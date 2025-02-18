@@ -28,7 +28,6 @@ import os
 from pathlib import Path
 import re
 import shutil
-import tempfile
 import time
 from unittest.mock import PropertyMock, patch
 from warnings import catch_warnings
@@ -2433,43 +2432,6 @@ def test_use_vtk(mapdl, cleared):
     mapdl.eplot()
 
     mapdl.use_vtk = prev
-
-
-@requires("local")
-@pytest.mark.xfail(reason="Flaky test. See #2435")
-def test_remove_temp_dir_on_exit(mapdl, cleared, tmpdir):
-    path = os.path.join(tempfile.gettempdir(), "ansys_" + random_string())
-    os.makedirs(path)
-    filename = os.path.join(path, "file.txt")
-    with open(filename, "w") as f:
-        f.write("Hello World")
-    assert os.path.exists(filename)
-
-    prev = mapdl.remove_temp_dir_on_exit
-    mapdl.remove_temp_dir_on_exit = True
-    mapdl._local = True  # Sanity check
-    mapdl._remove_temp_dir_on_exit(path)
-    mapdl.remove_temp_dir_on_exit = prev
-
-    assert os.path.exists(filename) is False
-    assert os.path.exists(path) is False
-
-
-@requires("local")
-@requires("nostudent")
-@pytest.mark.xfail(reason="Flaky test. See #2435")
-def test_remove_temp_dir_on_exit_with_launch_mapdl(mapdl, cleared):
-
-    mapdl_2 = launch_mapdl(remove_temp_dir_on_exit=True, port=PORT1)
-    path_ = mapdl_2.directory
-    assert os.path.exists(path_)
-
-    pids = mapdl_2._pids
-    assert all([psutil.pid_exists(pid) for pid in pids])  # checking pids too
-
-    mapdl_2.exit()
-    assert not os.path.exists(path_)
-    assert not all([psutil.pid_exists(pid) for pid in pids])
 
 
 def test_sys(mapdl, cleared):

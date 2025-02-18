@@ -37,7 +37,6 @@ from ansys.mapdl.core.misc import threaded_daemon
 if _HAS_ATP:
     from ansys.tools.path import get_mapdl_path, version_from_path
 
-LOCALHOST = "127.0.0.1"
 LIC_PATH_ENVAR = "ANSYSLIC_DIR"
 LIC_FILE_ENVAR = "ANSYSLMD_LICENSE_FILE"
 APP_NAME = "FEAT_ANSYS"  # TODO: We need to make sure this is the type of feature we need to checkout.

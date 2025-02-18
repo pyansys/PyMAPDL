@@ -188,8 +188,8 @@ LOG_APDL_DEFAULT_FILE_NAME = "apdl.log"
 _ALLOWED_START_PARM = [
     "additional_switches",
     "check_parameter_names",
+    "clear_on_connect",
     "env_vars",
-    "launched",
     "exec_file",
     "finish_job_on_exit",
     "hostname",
@@ -197,6 +197,7 @@ _ALLOWED_START_PARM = [
     "jobid",
     "jobname",
     "launch_on_hpc",
+    "launched",
     "mode",
     "nproc",
     "override",
