@@ -1,29 +1,32 @@
-.. _ref_labeling_api:
 
-********
+.. _ref_labeling:
+
+
 Labeling
-********
+========
 
-.. currentmodule:: ansys.mapdl.core
 
-These GRAPHICS commands are used to add helpful labels and symbols to
-displays.
+.. currentmodule:: ansys.mapdl.core._commands.graphics.labeling
+
+.. autoclass:: ansys.mapdl.core._commands.graphics.labeling.Labeling
 
 .. autosummary::
-   :toctree: _autosummary/
+   :template: base.rst
+   :toctree: _autosummary
 
-   Mapdl.cformat
-   Mapdl.clabel
-   Mapdl.contour
-   Mapdl.cval
-   Mapdl.gformat
-   Mapdl.hbc
-   Mapdl.number
-   Mapdl.pbc
-   Mapdl.pbf
-   Mapdl.plopts
-   Mapdl.pnum
-   Mapdl.psf
-   Mapdl.psymb
-   Mapdl.triad
-   Mapdl.udoc
+
+   Labeling.cformat
+   Labeling.clabel
+   Labeling.contour
+   Labeling.cval
+   Labeling.gformat
+   Labeling.hbc
+   Labeling.number
+   Labeling.pbc
+   Labeling.pbf
+   Labeling.plopts
+   Labeling.pnum
+   Labeling.psf
+   Labeling.psymb
+   Labeling.triad
+   Labeling.udoc

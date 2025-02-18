@@ -1,26 +1,31 @@
-.. _ref_style_api:
 
-*****
+.. _ref_style:
+
+
 Style
-*****
+=====
 
-.. currentmodule:: ansys.mapdl.core
 
-These GRAPHICS commands are used to change the way a model is
-displayed.
+.. currentmodule:: ansys.mapdl.core._commands.graphics.style
+
+.. autoclass:: ansys.mapdl.core._commands.graphics.style.Style
 
 .. autosummary::
-   :toctree: _autosummary/
+   :template: base.rst
+   :toctree: _autosummary
 
-   Mapdl.cplane
-   Mapdl.ctype
-   Mapdl.edge
-   Mapdl.eshape
-   Mapdl.facet
-   Mapdl.gline
-   Mapdl.gmarker
-   Mapdl.gmface
-   Mapdl.light
-   Mapdl.normal
-   Mapdl.shade
-   Mapdl.trlcy
+
+   Style.cplane
+   Style.ctype
+   Style.edge
+   Style.eshape
+   Style.facet
+   Style.gline
+   Style.gmarker
+   Style.gmface
+   Style.light
+   Style.normal
+   Style.shade
+   Style.slashtype
+   Style.trlcy
+   Style.txtre

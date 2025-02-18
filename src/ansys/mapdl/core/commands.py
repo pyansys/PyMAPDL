@@ -40,7 +40,7 @@ from ._commands import (
     conn,
     database,
     display_,
-    graphics_,
+    graphics,
     hidden,
     inq_func,
     map_cmd,
@@ -410,13 +410,13 @@ class DisplayCommands(display_.setup.Setup):
 
 
 class GraphicsCommands(
-    graphics_.annotation.Annotation,
-    graphics_.graphs.Graphs,
-    graphics_.labeling.Labelling,
-    graphics_.scaling.Scaling,
-    graphics_.setup.Setup,
-    graphics_.style.Style,
-    graphics_.views.Views,
+    graphics.annotation.Annotation,
+    graphics.graphs.Graphs,
+    graphics.labeling.Labeling,
+    graphics.scaling.Scaling,
+    graphics.set_up.SetUp,
+    graphics.style.Style,
+    graphics.views.Views,
 ):
     pass
 

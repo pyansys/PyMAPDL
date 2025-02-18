@@ -1,21 +1,24 @@
-.. _ref_graphs_api:
 
-******
+.. _ref_graphs:
+
+
 Graphs
-******
+======
 
-.. currentmodule:: ansys.mapdl.core
 
-These GRAPHICS commands are used to control the way line graphs are
-displayed.
+.. currentmodule:: ansys.mapdl.core._commands.graphics.graphs
+
+.. autoclass:: ansys.mapdl.core._commands.graphics.graphs.Graphs
 
 .. autosummary::
-   :toctree: _autosummary/
+   :template: base.rst
+   :toctree: _autosummary
 
-   Mapdl.axlab
-   Mapdl.grid
-   Mapdl.gropt
-   Mapdl.grtyp
-   Mapdl.gthk
-   Mapdl.xrange
-   Mapdl.yrange
+
+   Graphs.axlab
+   Graphs.grid
+   Graphs.gropt
+   Graphs.grtyp
+   Graphs.gthk
+   Graphs.xrange
+   Graphs.yrange

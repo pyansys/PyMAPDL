@@ -20,4 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from . import annotation, graphs, labeling, scaling, setup, style, views
+from . import (
+    annotation,
+    graphs,
+    labeling,
+    scaling,
+    set_up,
+    style,
+    views,
+)

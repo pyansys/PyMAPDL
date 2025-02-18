@@ -1,21 +1,24 @@
-.. _ref_scaling_api:
 
-*******
+.. _ref_scaling:
+
+
 Scaling
-*******
+=======
 
-.. currentmodule:: ansys.mapdl.core
 
-These GRAPHICS commands are used to scale various parts of the
-display.
+.. currentmodule:: ansys.mapdl.core._commands.graphics.scaling
+
+.. autoclass:: ansys.mapdl.core._commands.graphics.scaling.Scaling
 
 .. autosummary::
-   :toctree: _autosummary/
+   :template: base.rst
+   :toctree: _autosummary
 
-   Mapdl.iclwid
-   Mapdl.icscale
-   Mapdl.ratio
-   Mapdl.shrink
-   Mapdl.sscale
-   Mapdl.txtre
-   Mapdl.vscale
+
+   Scaling.iclwid
+   Scaling.icscale
+   Scaling.ratio
+   Scaling.shrink
+   Scaling.slashdscale
+   Scaling.sscale
+   Scaling.vscale

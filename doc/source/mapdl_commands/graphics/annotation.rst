@@ -1,26 +1,31 @@
-.. _ref_annotation_api:
 
-**********
+.. _ref_annotation:
+
+
 Annotation
-**********
+==========
 
-.. currentmodule:: ansys.mapdl.core
 
-These GRAPHICS commands are used to annotate a display with notes and
-symbols.
+.. currentmodule:: ansys.mapdl.core._commands.graphics.annotation
+
+.. autoclass:: ansys.mapdl.core._commands.graphics.annotation.Annotation
 
 .. autosummary::
-   :toctree: _autosummary/
+   :template: base.rst
+   :toctree: _autosummary
 
-   Mapdl.an3d
-   Mapdl.annot
-   Mapdl.anum
-   Mapdl.lspec
-   Mapdl.lsymbol
-   Mapdl.slash_pcircle
-   Mapdl.pmore
-   Mapdl.polygon
-   Mapdl.pspec
-   Mapdl.pwedge
-   Mapdl.tlabel
-   Mapdl.tspec
+
+   Annotation.an3d
+   Annotation.annot
+   Annotation.anum
+   Annotation.lspec
+   Annotation.lsymbol
+   Annotation.pcircle
+   Annotation.pmore
+   Annotation.polygon
+   Annotation.pwedge
+   Annotation.slashlarc
+   Annotation.slashline
+   Annotation.slashpspec
+   Annotation.tlabel
+   Annotation.tspec
