@@ -48,6 +48,11 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
+
+hpc = [
+  "paramiko==3.5.0",
+]
+
 jupyter = [
     "jupyterlab>=3",
     "ipywidgets",
@@ -59,6 +64,7 @@ tests = [
     "autopep8==2.3.2",
     "matplotlib==3.10.0",
     "pandas==2.2.3",
+    "paramiko==3.5.0",
     "pyansys-tools-report==0.8.2",
     "pyfakefs==5.7.4",
     "pyiges[full]==0.3.1",
@@ -72,6 +78,7 @@ tests = [
     "scipy==1.15.1",
     "vtk==9.3.1",
 ]
+
 doc = [
     "ansys-dpf-core==0.10.1",
     "ansys-mapdl-reader==0.54.2",

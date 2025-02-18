@@ -3809,9 +3809,11 @@ class MapdlGrpc(MapdlBase):
         jobid : int
             Job ID.
         """
+        from ansys.mapdl.core.launcher import submitter
+
         cmd = ["scancel", f"{jobid}"]
         # to ensure the job is stopped properly, let's issue the scancel twice.
-        subprocess.Popen(cmd)  # nosec B603
+        submitter(cmd, ssh_session=self._ssh_session)  # nosec B603
 
     def __del__(self):
         """In case the object is deleted"""
