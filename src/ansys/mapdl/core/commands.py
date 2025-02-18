@@ -395,9 +395,9 @@ class Aux15Commands(
 
 
 class DatabaseCommands(
-    database.setup.Setup,
+    database.set_up.SetUp,
     database.picking.Picking,
-    database.coord_sys.CoordinateSystem,
+    database.coordinate_system.CoordinateSystem,
     database.selecting.Selecting,
     database.working_plane.WorkingPlane,
     database.components.Components,

@@ -20,4 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from . import components, coord_sys, picking, selecting, setup, working_plane
+from . import (
+    components,
+    coordinate_system,
+    picking,
+    selecting,
+    set_up,
+    working_plane,
+)
