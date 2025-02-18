@@ -1,0 +1,6 @@
+routine
+=======
+
+.. currentmodule:: ansys.mapdl.core.parameters
+
+.. autoproperty:: Parameters.routine

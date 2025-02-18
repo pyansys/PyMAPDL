@@ -1,0 +1,6 @@
+﻿exoption
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.exoption

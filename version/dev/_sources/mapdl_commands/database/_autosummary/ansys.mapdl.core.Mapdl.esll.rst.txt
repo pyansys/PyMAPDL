@@ -1,0 +1,6 @@
+﻿esll
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.esll

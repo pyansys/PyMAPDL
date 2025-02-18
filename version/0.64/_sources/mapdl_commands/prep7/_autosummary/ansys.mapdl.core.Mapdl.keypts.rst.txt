@@ -1,0 +1,6 @@
+﻿keypts
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.keypts

@@ -1,0 +1,829 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Harmonic analysis using the Krylov method &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css?v=068850c2" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+ 
+<link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=77059071"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/krylov';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.65';
+        </script>
+    <link rel="icon" href="../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Troubleshooting PyMAPDL" href="troubleshoot.html" />
+    <link rel="prev" title="Using Python to code UPF subroutines" href="upf.html" />
+<link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/user_guide/krylov.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+
+<!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.65  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>   <div class="container-xl">
+  <div class="row">
+    <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+    <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul> 
+<li class="nav-item nav-item-additional-breadcrumb">
+  <a href="https://docs.pyansys.com/">PyAnsys</a> » 
+</li>
+ 
+<li class="nav-item nav-item-0">
+  <a href="../index.html">PyMAPDL</a> » 
+</li>
+ 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">User guide</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Harmonic analysis using the Krylov method</a></li> 
+      </ul>
+    </div></div>
+  </div>
+</div>
+ 
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.65  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="launcher.html">Initial setup and launch of MAPDL locally</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl.html">PyMAPDL language and usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl_examples.html">ANSYS APDL interactive control examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Interactive plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh_geometry.html">Mesh and geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post.html">Postprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Setting and retrieving parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Access MAPDL database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convert.html">Translate scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math.html">APDL Math overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pool.html">Create a pool of MAPDL instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xpl.html">File explorer overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upf.html">Using Python to code UPF subroutines</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Harmonic analysis using the Krylov method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">Troubleshooting PyMAPDL</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="harmonic-analysis-using-the-krylov-method">
+<h1>Harmonic analysis using the Krylov method<a class="headerlink" href="#harmonic-analysis-using-the-krylov-method" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>You can use the frequency-sweep Krylov method for a high-performance
+solution of forced-frequency simulations in acoustic or single-field
+structural analyses.</p>
+<p>Similar to the full harmonic analysis, the frequency-sweep Krylov method
+uses full system matrices to compute the harmonic response. While the full
+method solves at every frequency point in the frequency range, the
+frequency-sweep Krylov method performs the following steps to approximate
+the response across the frequency range:</p>
+<ul class="simple">
+<li><p>Builds a Krylov subspace set of vectors at the frequency value in the
+middle of the requested frequency range</p></li>
+<li><p>Reduces the system matrices and loading on the entire frequency range</p></li>
+<li><p>Solves the reduced system</p></li>
+<li><p>Expands the results back to compute the harmonic response</p></li>
+</ul>
+<p>Mechanical APDL provides the following ways to implement a harmonic analysis
+using the Krylov method:</p>
+<ol class="arabic simple">
+<li><p>Mechanical APDL commands</p></li>
+<li><p>APDL macros as described in <a class="reference external" href="https://ansyshelp.ansys.com/account/secured?returnurl=/Views/Secured/corp/v231/en/ans_str/str_Krysweep.html">Frequency-Sweep Harmonic Analysis via the Krylov Method</a> in the <em>Structural Analysis</em> guide
+for Mechanical APDL</p></li>
+</ol>
+<p>PyMAPDL also provides a way to implement a harmonic analysis using the Krylov method.
+Subsequent sections describe how to use the Krylov method in PyMAPDL.</p>
+<section id="assumptions">
+<h3><strong>Assumptions</strong><a class="headerlink" href="#assumptions" title="Permalink to this heading">#</a></h3>
+<p>The following assumptions are made when using the Krylov PyMAPDL method
+to obtain the solution:</p>
+<ul class="simple">
+<li><p>The stiffness, mass, and damping matrices are assumed to be constant
+(independent of frequency).</p></li>
+<li><p>The external load vector is linearly ramped over frequency. Ramping
+assumes that the frequency at which the Krylov subspace is built is
+in the middle of the frequency range. If you want to apply stepped loading,
+there is an option to specify that in the inputs for the
+<a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.krylov.KrylovSolver.solve.html#ansys.mapdl.core.krylov.KrylovSolver.solve" title="ansys.mapdl.core.krylov.KrylovSolver.solve"><code class="xref py py-func docutils literal notranslate"><span class="pre">KrylovSolver.solve()</span></code></a>
+method.</p></li>
+</ul>
+</section>
+</section>
+<section id="krylov-method-implementation-in-pymapdl">
+<h2>Krylov method implementation in PyMAPDL<a class="headerlink" href="#krylov-method-implementation-in-pymapdl" title="Permalink to this heading">#</a></h2>
+<p>The PyMAPDL implementation of the Krylov method gives you customization
+and flexibility because you can access subspace vectors and reduced
+solutions using the Python programming language for user-defined routines.</p>
+<p>If you do not require customization, you can use the Mechanical APDL
+commands to solve a harmonic analysis with the Krylov method. For more
+information, including the theory behind this method, see
+<a class="reference external" href="https://ansyshelp.ansys.com/account/secured?returnurl=/Views/Secured/corp/v231/en/ans_str/str_Krysweep.html">Frequency-Sweep Harmonic Analysis via the Krylov Method</a> in the <em>Structural Analysis</em> guide
+for Mechanical APDL.</p>
+<p>For additional theory information and equations for
+the Krylov method, see the works of Puri <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> and Eser <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<p>The exposure in PyMAPDL follows the same theory as the Mechanical APDL macros and
+has the following methods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.krylov.KrylovSolver.gensubspace.html#ansys.mapdl.core.krylov.KrylovSolver.gensubspace" title="ansys.mapdl.core.krylov.KrylovSolver.gensubspace"><code class="xref py py-func docutils literal notranslate"><span class="pre">KrylovSolver.gensubspace()</span></code></a>:
+Creates the Krylov subspace.</p></li>
+<li><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.krylov.KrylovSolver.solve.html#ansys.mapdl.core.krylov.KrylovSolver.solve" title="ansys.mapdl.core.krylov.KrylovSolver.solve"><code class="xref py py-func docutils literal notranslate"><span class="pre">KrylovSolver.solve()</span></code></a>:
+Solves the reduced system of equations.</p></li>
+<li><p><a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.krylov.KrylovSolver.expand.html#ansys.mapdl.core.krylov.KrylovSolver.expand" title="ansys.mapdl.core.krylov.KrylovSolver.expand"><code class="xref py py-func docutils literal notranslate"><span class="pre">KrylovSolver.expand()</span></code></a>:
+Expands the Krylov subspace.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>These methods must be run consecutively.</p>
+</div>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">#</a></h2>
+<p>This section shows how to implement an analysis identical to that
+defined by the Mechanical APDL macros.</p>
+<section id="generate-the-full-file-and-fea-model">
+<h3>Generate the FULL file and FEA model<a class="headerlink" href="#generate-the-full-file-and-fea-model" title="Permalink to this heading">#</a></h3>
+<p>Generate the FULL file for the Krylov method and the FEA model
+using Mechanical APDL:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="go">  &gt;&gt;&gt; from ansys.mapdl.core import launch_mapdl</span>
+
+<span class="go">  &gt;&gt;&gt; mapdl = launch_mapdl()</span>
+<span class="go">  &gt;&gt;&gt; mapdl.prep7()</span>
+
+<span class="go">      # Generate the FEA model (mesh, constraints, loads)</span>
+<span class="go"># ...</span>
+
+<span class="go">  &gt;&gt;&gt; mapdl.run(&quot;/SOLU&quot;)</span>
+<span class="go">  &gt;&gt;&gt; mapdl.antype(&quot;HARMIC&quot;)  # HARMONIC ANALYSIS</span>
+<span class="go">  &gt;&gt;&gt; mapdl.hropt(&quot;KRYLOV&quot;)</span>
+<span class="go">  &gt;&gt;&gt; mapdl.eqslv(&quot;SPARSE&quot;)</span>
+<span class="go">  &gt;&gt;&gt; mapdl.harfrq(0,1000)  # Set beginning and ending frequency</span>
+<span class="go">  &gt;&gt;&gt; mapdl.nsubst(100)  # Set the number of frequency increments</span>
+<span class="go">  &gt;&gt;&gt; mapdl.wrfull(1)  # GENERATE .FULL FILE AND STOP</span>
+<span class="go">  &gt;&gt;&gt; mapdl.solve()</span>
+<span class="go">  &gt;&gt;&gt; mapdl.finish()</span>
+</pre></div>
+</div>
+</section>
+<section id="create-an-instance-of-the-krylov-class">
+<h3>Create an instance of the Krylov class<a class="headerlink" href="#create-an-instance-of-the-krylov-class" title="Permalink to this heading">#</a></h3>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mk</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">krylov</span>
+</pre></div>
+</div>
+<p>Call the
+<a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.krylov.KrylovSolver.gensubspace.html#ansys.mapdl.core.krylov.KrylovSolver.gensubspace" title="ansys.mapdl.core.krylov.KrylovSolver.gensubspace"><code class="xref py py-func docutils literal notranslate"><span class="pre">gensubspace</span></code></a>
+method to create the Krylov subspace and build a subspace of
+size/dimension 10 at a frequency of 500 Hz:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Qz</span> <span class="o">=</span> <span class="n">mk</span><span class="o">.</span><span class="n">gensubspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="return-the-krylov-subspace">
+<h3>Return the Krylov subspace<a class="headerlink" href="#return-the-krylov-subspace" title="Permalink to this heading">#</a></h3>
+<p>Call the <a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.krylov.KrylovSolver.solve.html#ansys.mapdl.core.krylov.KrylovSolver.solve" title="ansys.mapdl.core.krylov.KrylovSolver.solve"><code class="xref py py-func docutils literal notranslate"><span class="pre">solve</span></code></a> method to
+reduce the system of equations and solve at each frequency. This code
+solves from 0 Hz to 1000 Hz with 100 intervals in between, with stepped loading:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Yz</span> <span class="o">=</span> <span class="n">mk</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">ramped_load</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="return-the-reduced-solution-over-the-frequency-range">
+<h3>Return the reduced solution over the frequency range<a class="headerlink" href="#return-the-reduced-solution-over-the-frequency-range" title="Permalink to this heading">#</a></h3>
+<p>Call the <a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.krylov.KrylovSolver.expand.html#ansys.mapdl.core.krylov.KrylovSolver.expand" title="ansys.mapdl.core.krylov.KrylovSolver.expand"><code class="xref py py-func docutils literal notranslate"><span class="pre">expand</span></code></a> method
+to expand the reduced solution back to the FE space, output the expanded
+solution, and calculate the residual:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">mk</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">residual_computation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;L-inf&quot;</span><span class="p">,</span> <span class="n">compute_solution_vectors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The preceding code returns a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">array</span></code></a> if the kwarg <code class="docutils literal notranslate"><span class="pre">out_key</span></code>
+is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>. Solution vectors are mapped to user order.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.25)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">array</span></code></a> class returned by the
+<a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.krylov.KrylovSolver.expand.html#ansys.mapdl.core.krylov.KrylovSolver.expand" title="ansys.mapdl.core.krylov.KrylovSolver.expand"><code class="xref py py-func docutils literal notranslate"><span class="pre">expand</span></code></a> method contains
+the node number along with the degrees of freedom (dof) solution for each of
+the calculated frequencies.</p>
+</div>
+</section>
+<section id="get-the-dof-solution-at-a-specific-frequency">
+<h3>Get the dof solution at a specific frequency<a class="headerlink" href="#get-the-dof-solution-at-a-specific-frequency" title="Permalink to this heading">#</a></h3>
+<p>This code shows how to get the nodal solution at a specific frequency
+or step:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="go"># Get the nodal solution at freq number 3``````</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">freq</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nodal_sol</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">freq</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Get the nodal solution for each node</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h2>
+<p>Examples of using the Krylov method in PyMAPDL are available in <a class="reference internal" href="../examples/extended_examples/Krylov/krylov_example.html#krylov-example"><span class="std std-ref">Harmonic analysis using the frequency-sweep Krylov method</span></a>.</p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h2>
+<p>To use the Krylov method in PyMAPDL, you must use Mechanical APDL version 2022 R2 or later.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This feature does not support Distributed Ansys.
+However, you can still run Mechanical APDL Math commands without
+specifying the <code class="docutils literal notranslate"><span class="pre">-smp</span></code> flag when launching Mechanical APDL.</p>
+</div>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">#</a></h2>
+<p>For more information on the Krylov method, see <a class="reference external" href="https://ansyshelp.ansys.com/account/secured?returnurl=/Views/Secured/corp/v231/en/ans_str/str_Krysweep.html">Frequency-Sweep Harmonic Analysis via the Krylov Method</a> in the <em>Structural Analysis</em> guide for Mechanical APDL
+and these resources:</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Puri, S. R. (2009). Krylov Subspace Based Direct Projection Techniques for Low Frequency,
+Fully Coupled, Structural Acoustic Analysis and Optimization. PhD Thesis. Oxford Brookes University,
+Mechanical Engineering Department. Oxford, UK.</p>
+</aside>
+<aside class="footnote brackets" id="id4" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Eser, M. C. (2019) Efficient Evaluation of Sound Radiation of an Electric Motor using Model Order
+Reduction. MSc Thesis. Technical University of Munich, Mechanical Engineering Department. Munich, DE.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assumptions"><strong>Assumptions</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#krylov-method-implementation-in-pymapdl">Krylov method implementation in PyMAPDL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-the-full-file-and-fea-model">Generate the FULL file and FEA model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-an-instance-of-the-krylov-class">Create an instance of the Krylov class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-the-krylov-subspace">Return the Krylov subspace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-the-reduced-solution-over-the-frequency-range">Return the reduced solution over the frequency range</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-dof-solution-at-a-specific-frequency">Get the dof solution at a specific frequency</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/pyansys/pymapdl/edit/main/doc/source/user_guide/krylov.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.1.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.10.0. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+﻿allow\_ignore
+=============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.allow_ignore

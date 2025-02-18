@@ -1,0 +1,6 @@
+current\_segment\_cnv
+=====================
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.current_segment_cnv

@@ -1,0 +1,6 @@
+lighting\_params
+================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.lighting_params

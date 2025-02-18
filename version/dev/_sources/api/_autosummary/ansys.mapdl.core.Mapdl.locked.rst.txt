@@ -1,0 +1,6 @@
+﻿locked
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.locked

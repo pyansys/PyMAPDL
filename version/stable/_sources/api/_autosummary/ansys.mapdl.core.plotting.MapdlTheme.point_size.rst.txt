@@ -1,0 +1,6 @@
+point\_size
+===========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.point_size

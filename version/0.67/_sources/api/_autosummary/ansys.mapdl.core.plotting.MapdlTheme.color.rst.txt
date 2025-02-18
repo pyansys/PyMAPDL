@@ -1,0 +1,6 @@
+color
+=====
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.color

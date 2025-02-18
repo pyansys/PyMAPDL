@@ -1,0 +1,6 @@
+n\_node
+=======
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoproperty:: MeshGrpc.n_node

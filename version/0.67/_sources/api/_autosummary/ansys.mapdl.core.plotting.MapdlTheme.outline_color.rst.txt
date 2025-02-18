@@ -1,0 +1,6 @@
+outline\_color
+==============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.outline_color

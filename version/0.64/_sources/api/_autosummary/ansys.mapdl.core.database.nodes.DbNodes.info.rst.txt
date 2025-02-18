@@ -1,0 +1,6 @@
+info
+====
+
+.. currentmodule:: ansys.mapdl.core.database.nodes
+
+.. automethod:: DbNodes.info

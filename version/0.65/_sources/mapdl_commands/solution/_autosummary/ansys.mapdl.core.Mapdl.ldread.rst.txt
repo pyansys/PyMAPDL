@@ -1,0 +1,6 @@
+﻿ldread
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ldread

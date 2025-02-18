@@ -1,0 +1,6 @@
+﻿sftran
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sftran

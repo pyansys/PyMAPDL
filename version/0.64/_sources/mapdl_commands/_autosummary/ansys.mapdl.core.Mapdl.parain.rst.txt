@@ -1,0 +1,6 @@
+﻿parain
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.parain

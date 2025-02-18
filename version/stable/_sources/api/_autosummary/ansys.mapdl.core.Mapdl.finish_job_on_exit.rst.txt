@@ -1,0 +1,6 @@
+﻿finish\_job\_on\_exit
+=====================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoattribute:: Mapdl.finish_job_on_exit

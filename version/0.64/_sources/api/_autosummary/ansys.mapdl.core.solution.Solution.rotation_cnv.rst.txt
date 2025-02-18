@@ -1,0 +1,6 @@
+rotation\_cnv
+=============
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.rotation_cnv

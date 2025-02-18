@@ -1,0 +1,6 @@
+﻿file\_type\_for\_plots
+======================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.file_type_for_plots

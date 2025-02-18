@@ -1,0 +1,6 @@
+add\_instance\_logger
+=====================
+
+.. currentmodule:: ansys.mapdl.core.logging
+
+.. automethod:: Logger.add_instance_logger

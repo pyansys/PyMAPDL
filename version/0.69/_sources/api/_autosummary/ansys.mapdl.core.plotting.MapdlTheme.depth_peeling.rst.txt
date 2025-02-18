@@ -1,0 +1,6 @@
+depth\_peeling
+==============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.depth_peeling

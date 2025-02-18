@@ -1,0 +1,6 @@
+﻿slash\_pcircle
+==============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.slash_pcircle

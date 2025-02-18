@@ -1,0 +1,6 @@
+area\_select
+============
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. automethod:: Geometry.area_select

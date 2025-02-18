@@ -1,0 +1,6 @@
+window\_size
+============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.window_size

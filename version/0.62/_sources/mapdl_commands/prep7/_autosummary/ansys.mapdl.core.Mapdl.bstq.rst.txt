@@ -1,0 +1,6 @@
+﻿bstq
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.bstq

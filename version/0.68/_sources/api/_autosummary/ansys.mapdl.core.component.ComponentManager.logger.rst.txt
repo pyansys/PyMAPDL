@@ -1,0 +1,6 @@
+logger
+======
+
+.. currentmodule:: ansys.mapdl.core.component
+
+.. autoproperty:: ComponentManager.logger

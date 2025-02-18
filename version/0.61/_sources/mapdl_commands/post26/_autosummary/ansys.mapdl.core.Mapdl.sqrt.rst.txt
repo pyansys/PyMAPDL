@@ -1,0 +1,6 @@
+﻿sqrt
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sqrt

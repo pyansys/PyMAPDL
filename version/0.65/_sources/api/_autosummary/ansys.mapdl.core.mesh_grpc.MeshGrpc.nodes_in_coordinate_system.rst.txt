@@ -1,0 +1,6 @@
+nodes\_in\_coordinate\_system
+=============================
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. automethod:: MeshGrpc.nodes_in_coordinate_system

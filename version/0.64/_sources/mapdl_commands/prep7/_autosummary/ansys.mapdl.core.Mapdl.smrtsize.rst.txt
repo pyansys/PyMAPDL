@@ -1,0 +1,6 @@
+﻿smrtsize
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.smrtsize

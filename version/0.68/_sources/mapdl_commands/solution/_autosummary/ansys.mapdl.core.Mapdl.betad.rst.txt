@@ -1,0 +1,6 @@
+﻿betad
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.betad

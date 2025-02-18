@@ -1,0 +1,6 @@
+﻿kill\_job
+=========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.kill_job

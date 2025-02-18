@@ -1,0 +1,6 @@
+﻿edtp
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edtp

@@ -1,0 +1,6 @@
+﻿mftol
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.mftol

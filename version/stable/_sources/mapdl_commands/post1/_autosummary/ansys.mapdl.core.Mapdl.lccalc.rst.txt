@@ -1,0 +1,6 @@
+﻿lccalc
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.lccalc

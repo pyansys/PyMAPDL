@@ -1,0 +1,6 @@
+get\_lines
+==========
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. automethod:: LegacyGeometry.get_lines

@@ -1,0 +1,6 @@
+﻿upload
+======
+
+.. currentmodule:: ansys.mapdl.core.mapdl_grpc
+
+.. automethod:: MapdlGrpc.upload

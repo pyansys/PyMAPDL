@@ -1,0 +1,6 @@
+silhouette
+==========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.silhouette

@@ -1,0 +1,6 @@
+count
+=====
+
+.. currentmodule:: ansys.mapdl.core.component
+
+.. automethod:: Component.count

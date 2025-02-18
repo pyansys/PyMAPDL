@@ -1,0 +1,6 @@
+﻿pvect
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.pvect

@@ -1,0 +1,6 @@
+﻿check\_parameter\_names
+=======================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.check_parameter_names

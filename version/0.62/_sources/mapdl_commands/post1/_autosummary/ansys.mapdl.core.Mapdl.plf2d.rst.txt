@@ -1,0 +1,6 @@
+﻿plf2d
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.plf2d

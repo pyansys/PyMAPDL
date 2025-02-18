@@ -1,0 +1,6 @@
+﻿grp
+===
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.grp

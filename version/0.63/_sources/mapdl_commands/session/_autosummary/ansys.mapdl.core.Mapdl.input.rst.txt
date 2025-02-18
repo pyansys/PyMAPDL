@@ -1,0 +1,6 @@
+﻿input
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.input

@@ -1,0 +1,6 @@
+﻿routine\_information
+====================
+
+.. currentmodule:: ansys.mapdl.core.information
+
+.. autoproperty:: Information.routine_information

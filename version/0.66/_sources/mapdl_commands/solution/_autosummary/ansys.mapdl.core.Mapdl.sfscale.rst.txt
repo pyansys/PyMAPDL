@@ -1,0 +1,6 @@
+﻿sfscale
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sfscale

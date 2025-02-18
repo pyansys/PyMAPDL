@@ -1,0 +1,6 @@
+index
+=====
+
+.. currentmodule:: ansys.mapdl.core.component
+
+.. automethod:: Component.index

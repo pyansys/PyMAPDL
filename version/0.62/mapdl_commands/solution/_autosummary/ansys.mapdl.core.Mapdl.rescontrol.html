@@ -1,0 +1,947 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>rescontrol &#8212; PyMAPDL</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    
+        <link href="../../../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mapdl_commands/solution/_autosummary/ansys.mapdl.core.Mapdl.rescontrol';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.62';
+        </script>
+    <link rel="shortcut icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="sbclist" href="ansys.mapdl.core.Mapdl.sbclist.html" />
+    <link rel="prev" title="outres" href="ansys.mapdl.core.Mapdl.outres.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="None">
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/mapdl_commands/solution/_autosummary/ansys.mapdl.core.Mapdl.rescontrol.html" />
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      <!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+    
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.62  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../../../index.html">PyMAPDL</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >MAPDL Commands</a> » </li>
+          <li class="nav-item nav-item-2"><a href="../miscellaneous_loads.html" accesskey="U">Miscellaneous Loads</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">rescontrol</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.62  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../session/run_controls.html">Run Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../session/processor_entry.html">Processor Entry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../session/files.html">Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../session/list_controls.html">List Controls</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../database/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/selecting.html">Selecting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/components.html">Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/working_plane.html">Working Plane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/coord_sys.html">Coordinate System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../database/picking.html">Picking</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../graphics/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../graphics/views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../graphics/scaling.html">Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../graphics/style.html">Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../graphics/labeling.html">Labeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../graphics/graphs.html">Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../graphics/annotation.html">Annotation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/parameter_definition.html">Parameter Definition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/macro_files.html">Macro Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/abbreviations.html">Abbreviations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/array_parm.html">Array Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/matrix_op.html">Matrix Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../apdl/process_controls.html">Process Controls</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/database.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/element_type.html">Element Type</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/real_constants.html">Real Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/materials.html">Materials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/material_data_tables.html">Material Data Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/primitives.html">Primitives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/keypoints.html">Keypoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/hard_points.html">Hard Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/lines.html">Lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/areas.html">Areas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/volumes.html">Volumes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/booleans.html">Booleans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/meshing.html">Meshing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/nodes.html">Nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/elements.html">Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/superelements.html">Superelements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/digitizing.html">Digitizing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/coupled_dof.html">Coupled Degrees of Freedom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/constraint_equations.html">Constraint Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/status.html">Status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/explicit_dynamics.html">Explicit Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/sections.html">Sections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/morphing.html">Morphing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/artificially_matched_layers.html">Artificially Matched Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../prep7/special_purpose.html">Special Purpose</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../analysis_options.html">Analysis Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nonlinear_options.html">Nonlinear Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dynamic_options.html">Dynamic Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spectrum_options.html">Spectrum Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../load_step_options.html">Load Step Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solid_constraints.html">Solid Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solid_forces.html">Solid Forces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solid_surface_loads.html">Solid Surface Loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solid_body_loads.html">Solid Body Loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inertia.html">Inertia</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../miscellaneous_loads.html">Miscellaneous Loads</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.anpres.html">anpres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.aport.html">aport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.asifile.html">asifile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.awave.html">awave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.biot.html">biot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.dfswave.html">dfswave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.fluread.html">fluread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.ic.html">ic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.icdele.html">icdele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.iclist.html">iclist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.icrotate.html">icrotate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.mrpm.html">mrpm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.outpr.html">outpr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.outres.html">outres</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">rescontrol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.sbclist.html">sbclist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.sbctran.html">sbctran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansys.mapdl.core.Mapdl.wsprings.html">wsprings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../load_step_operations.html">Load Step Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../master_dof.html">Master Degrees of Freedom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gap_conditions.html">Gap Conditions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rezoning.html">Rezoning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../2d_to_3d_analysis.html">2D to 3D Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../birth_and_death.html">Birth and Death</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fe_constraints.html">FE Constraints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fe_forces.html">FE Forces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fe_surface_loads.html">FE Surface Loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fe_body_loads.html">FE Body Loads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ocean.html">Ocean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../solution_status.html">Solution Status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../radiosity.html">Radiosity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_field_solver_definition_commands.html">Multi-Field Solver Definition Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_field_solver_global_controls.html">Multi-Field Solver Global Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_field_solver_time_controls.html">Multi-Field Solver Time Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_field_solver_load_transfer.html">Multi-Field Solver Load Transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_field_solver_convergence_controls.html">Multi-Field Solver Convergence Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multi_field_solver_interface_mapping.html">Multi-Field Solver Interface Mapping</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../post1/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/controls.html">Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/results.html">Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/element_table.html">Element Table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/listing.html">Listing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/animation.html">Animation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/path_operations.html">Path Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/surface_operations.html">Surface Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/load_case.html">Load Case Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/magnetics_calc.html">Magnetics Calculations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/trace_points.html">Trace Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/special.html">Special Purpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/status.html">Status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post1/failure_criteria.html">Failure Criteria</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../post26/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/controls.html">Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/operations.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/display.html">Display</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/listing.html">Listing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/special.html">Special Purpose</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../post26/status.html">Status</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../aux2/bin_dump.html">Binary File Dump</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aux2/bin_manip.html">Binary File Manipulation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../aux3.html">Results Files</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../aux12/general_radiation.html">General Radiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aux12/radiation_mat.html">Radiation Matrix Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../aux12/radiosity_solver.html">Radiosity Solver</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../aux15.html">IGES</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../map.html">Pressure Mapping</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../display/setup.html">Setup</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../reduced/setup.html">Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reduced/preparation.html">Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reduced/generation.html">Generation Pass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reduced/use_pass.html">Use Pass</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../conn.html">Connection Commands</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../misc.html">Miscellaneous</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../inqfun.html">Undocumented Inquire Commands</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="rescontrol">
+<h1>rescontrol<a class="headerlink" href="#rescontrol" title="Permalink to this headline">#</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="ansys.mapdl.core.Mapdl.rescontrol">
+<span class="sig-prename descclassname"><span class="pre">Mapdl.</span></span><span class="sig-name descname"><span class="pre">rescontrol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ldstep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxfiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxtotalfiles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.mapdl.core.Mapdl.rescontrol" title="Permalink to this definition">#</a></dt>
+<dd><p>Controls file writing for multiframe restarts.</p>
+<p>APDL Command: RESCONTROL</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>action</strong></dt><dd><p>Command action. Valid options are:</p>
+<dl>
+<dt>DEFINE</dt><dd><p>Issuing the command specifies how frequently the <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> restart files are
+written for a load step (default).</p>
+</dd>
+<dt>FILE_SUMMARY</dt><dd><p>Issuing the command prints the substep and load step information for all <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code>
+files for the current jobname in the current
+directory. If this option is specified, all other
+arguments are ignored.</p>
+</dd>
+<dt>STATUS</dt><dd><p>Issuing the command lists the current status in the tables of restart controls
+specified previously by RESCONTROL. If this option is
+specified, all other arguments are ignored.</p>
+</dd>
+<dt>NORESTART</dt><dd><p>Issuing the command cleans up some of the restart files after a Distributed
+ANSYS solution. The host process will not have the
+following files in the working directory at the end of
+the run: <code class="docutils literal notranslate"><span class="pre">.ESAV</span></code>, <code class="docutils literal notranslate"><span class="pre">.OSAV</span></code>, <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code>, <code class="docutils literal notranslate"><span class="pre">`,</span> <span class="pre">`.LDHI</span></code>. The slave
+processes will not have the following files in the
+working directory at the end of the run: <code class="docutils literal notranslate"><span class="pre">.ESAV</span></code>, <code class="docutils literal notranslate"><span class="pre">.OSAV</span></code>,
+<code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code>, <code class="docutils literal notranslate"><span class="pre">.RST</span></code> (or <code class="docutils literal notranslate"><span class="pre">.RTH</span></code>, etc.). Some of the restart files
+are never written, some are removed upon leaving <code class="docutils literal notranslate"><span class="pre">/SOLU</span></code>
+(for example, upon FINISH), and some are removed upon
+exiting the program.</p>
+<p>This option is useful for cleaning up files written by all of the Distributed
+ANSYS processes, particularly when you know that these restart files will not
+be needed later on. If this option is specified, all other arguments are ignored.</p>
+<p>If this option is used in shared-memory parallel ANSYS, most of the restart
+files in the working directory are removed. It
+has the same effect as issuing <code class="docutils literal notranslate"><span class="pre">RESCONTROL,,NONE</span></code>.</p>
+</dd>
+<dt>LINEAR</dt><dd><p>Issuing the command specifies the same actions as Action = DEFINE. However,
+this option is intended for linear static applications.
+For a linear static analysis, the restart capability is
+normally not needed. However, it is typically needed when
+a subsequent linear perturbation analysis is desired. By
+default, none of the restart files are written for a
+linear static analysis.</p>
+</dd>
+<dt>DELETE</dt><dd><p>Delete the restart control specification corresponding to the <code class="docutils literal notranslate"><span class="pre">Ldstep</span></code> label on a
+previous <code class="docutils literal notranslate"><span class="pre">RESCONTROL,DEFINE</span></code> command.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>ldstep</strong></dt><dd><p>Specifies how the <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files are written for the specified load
+steps. This option also affects how often the load history
+information is written to the <code class="docutils literal notranslate"><span class="pre">.LDHI</span></code> file.</p>
+<dl>
+<dt>ALL</dt><dd><p>Write the <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files at the same substep Frequency for all load steps; write
+the load history information to the <code class="docutils literal notranslate"><span class="pre">.LDHI</span></code> file for all load
+steps.</p>
+</dd>
+<dt>LAST</dt><dd><p>Write the <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files for the last load step only; write load history
+information to the <code class="docutils literal notranslate"><span class="pre">.LDHI</span></code> file for the last load step only.
+This option is the default for nonlinear static and full
+transient analyses. The remaining arguments are ignored.</p>
+</dd>
+<dt>N</dt><dd><p>Number that indicates how often the <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> file is written.</p>
+<p>Input a positive number to write the <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files at the substep <code class="docutils literal notranslate"><span class="pre">Frequency</span></code>
+indicated only for load step N.
+Other load steps will be written at the default substep frequency or at a frequency
+defined by a previous <code class="docutils literal notranslate"><span class="pre">RESCONTROL</span></code> specification.
+Load history information is written to the <code class="docutils literal notranslate"><span class="pre">.LDHI</span></code> file only for load steps N.</p>
+<p>Specifying a negative number (-N) to write the <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files for every Nth load step
+at the specified substep Frequency. The load
+history information is written to the <code class="docutils literal notranslate"><span class="pre">.LDHI</span></code> file
+every Nth load step. This option is suitable for
+restart applications in which more than a few
+hundred load steps are required. Compared to the
+ALL and positive N options, it can save disk
+space since the <code class="docutils literal notranslate"><span class="pre">.LDHI</span></code> file is smaller and fewer
+<code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files are written.</p>
+<p>If Ldstep = -N, all other Ldstep options specified by <code class="docutils literal notranslate"><span class="pre">RESCONTROL</span></code> are
+ignored and the program follows the -N option (write load history information every Nth load step).
+If you want to change this pattern, issue <code class="docutils literal notranslate"><span class="pre">RESCONTROL,DELETE,</span> <span class="pre">-N</span></code> and then issue another
+<code class="docutils literal notranslate"><span class="pre">RESCONTROL</span></code> command with the desired Ldstep option.</p>
+</dd>
+<dt>NONE</dt><dd><p>No multiframe restart files (<code class="docutils literal notranslate"><span class="pre">.RDB</span></code> [restart database file], <code class="docutils literal notranslate"><span class="pre">.LDHI</span></code> [load history file],
+<code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code>) are created. This option is the default for mode-superposition analyses.
+The remaining arguments are ignored.</p>
+<p>For nonlinear static, linear static, and full transient analyses, this option
+allows a restart to be done at the last or abort
+point using the same procedure as in ANSYS 5.5 or
+earlier (using the <code class="docutils literal notranslate"><span class="pre">.EMAT</span></code>, <code class="docutils literal notranslate"><span class="pre">.ESAV</span></code> or <code class="docutils literal notranslate"><span class="pre">.OSAV</span></code>, and <code class="docutils literal notranslate"><span class="pre">.DB</span></code>
+files).</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>frequency</strong></dt><dd><p>Frequency at which the <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files are written at the substep
+level.</p>
+<dl>
+<dt>NONE</dt><dd><p>Do not write any <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files for this load step.</p>
+</dd>
+<dt>LAST</dt><dd><p>Write the <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files for the last substep of the load step only (default for
+nonlinear static and full transient analyses).</p>
+</dd>
+<dt>N</dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">N</span></code> is positive, write the <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> file every Nth substep of a load step. If <code class="docutils literal notranslate"><span class="pre">N</span></code>
+is negative, write <code class="docutils literal notranslate"><span class="pre">N</span></code> equally spaced <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files within a load step.</p>
+<p>In nonlinear static and full transient analyses, negative <code class="docutils literal notranslate"><span class="pre">N</span></code> is valid only when <code class="docutils literal notranslate"><span class="pre">AUTOTS,ON</span></code>.
+In mode-superposition analyses, negative <code class="docutils literal notranslate"><span class="pre">N</span></code> is always valid.</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>maxfiles</strong></dt><dd><p>Maximum number of <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files to save for Ldstep.</p>
+<dl>
+<dt>-1</dt><dd><p>Overwrite existing <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files (default). The total maximum number of <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code>
+files for one run is 999. If this number is reached before the analysis is complete,
+the program will reset the <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> file numbering back to 1 and continue to write
+<code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files; the program keeps the newest 999 restart files and overwrites the
+oldest restart files.</p>
+</dd>
+<dt>0</dt><dd><p>Do not overwrite any existing <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files. The total maximum number of <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code>
+files for one run is 999. If this number is reached before the
+analysis is complete, the analysis continues but no longer
+writes any <code class="docutils literal notranslate"><span class="pre">.Xnnn</span></code> files.</p>
+</dd>
+<dt>N</dt><dd><p>Maximum number of <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> files to keep for each load step. When <code class="docutils literal notranslate"><span class="pre">N.xnnn</span></code> files have
+been written for a load step, the program overwrites the first <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> file of that load step
+for subsequent substeps.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">N</span></code> must be &lt;= 999. If a total of 999 restart files is reached before
+the analysis is complete, the analysis continues but writes no additional <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> files.</p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt><strong>maxtotalfiles</strong></dt><dd><p>Total number of restart files to keep. <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">=</span> <span class="pre">999</span></code> for <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> files and 99 for <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> files. This
+option is valid only when <code class="docutils literal notranslate"><span class="pre">MAXFILES</span></code> = -1 (default).
+Valid <code class="docutils literal notranslate"><span class="pre">maxtotalfiles</span></code> values are 1 through 999 for <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> files, and 1 through 99 for <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> files.</p>
+<p>When the total number of restart files written exceeds <code class="docutils literal notranslate"><span class="pre">maxtotalfiles</span></code>, the program resets the
+<code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> or <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> file numbering back to 1 and continues to write <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> or <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> files. The
+newest files are retained and the oldest files are overwritten.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">maxtotalfiles</span></code> value specified applies to all subsequent load steps. To reset it to the default,
+reissue the command with <code class="docutils literal notranslate"><span class="pre">maxtotalfiles</span></code> = 0 or some negative value.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">maxtotalfiles</span></code> is set to different values at different load steps, and if the value of <code class="docutils literal notranslate"><span class="pre">maxtotalfiles</span></code>
+specified in the prior load step is larger than that of the current load step, the program can
+only overwrite the current number of maximum restart files up to the number <code class="docutils literal notranslate"><span class="pre">maxtotalfiles</span></code>
+currently specified (which is smaller than the previous number).</p>
+<p>The recommended way to control the maximum number of restart files is to specify <code class="docutils literal notranslate"><span class="pre">maxtotalfiles</span></code>
+at the first load step and not vary it in subsequent load steps. Also, <code class="docutils literal notranslate"><span class="pre">maxtotalfiles</span></code> is best used
+when Ldstep = -N or ALL.</p>
+</dd>
+<dt><strong>filetype</strong></dt><dd><p>The type of restart file to be controlled by this command. Valid only when Action = DEFINE:</p>
+<ul class="simple">
+<li><p><strong>XNNN</strong>: Control <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> files (default).</p></li>
+<li><p><strong>RDNN</strong>: Control <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> remeshing database files. Needed only for a nonlinear mesh adaptivity analysis.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p><strong>COMMAND DEFAULT</strong></p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">RESCONTROL</span></code> command is not issued during a structural analysis, the <code class="docutils literal notranslate"><span class="pre">.RDB</span></code> and <code class="docutils literal notranslate"><span class="pre">.LDHI</span></code> files are
+written as described in Restarting an Analysis.</p>
+<p><strong>For nonlinear static and full transient analysis:</strong></p>
+<p>The default behavior is multiframe restart: <code class="docutils literal notranslate"><span class="pre">RESCONTROL,DEFINE,LAST,LAST</span></code>
+The <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> file is written at the last substep of the last load step. An <code class="docutils literal notranslate"><span class="pre">.rnnn</span></code> file is also written at
+the iteration prior to the abort point of the run if a <code class="docutils literal notranslate"><span class="pre">jobname.abt</span></code> file was used (or the <strong>Stop</strong> button
+was pressed in the GUI), or if the job terminated because of a failure to reach convergence or some
+other solution error. No information at the aborted substep is saved to the <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> file.</p>
+<p><strong>For nonlinear mesh adaptivity analysis:</strong></p>
+<p>The default behavior for <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> files written is: <code class="docutils literal notranslate"><span class="pre">RESCONTROL,DEFINE,ALL,LAST,,,,RDNN</span></code>
+The <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> file is written at the last remesh of every load step by default.
+The <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> and <code class="docutils literal notranslate"><span class="pre">.rnnn</span></code> files interact with each other. Generally, <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> file writing is superior to
+that of <code class="docutils literal notranslate"><span class="pre">.rnnn</span></code> file writing. For example, if no RESCONTROL,DEFINE command is issued, the default
+behavior is that both <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> and <code class="docutils literal notranslate"><span class="pre">.rnnn</span></code> files are written at the last occurrence of every load step
+(equivalent to <code class="docutils literal notranslate"><span class="pre">RESCONTROL,DEFINE,ALL,LAST</span></code> and <code class="docutils literal notranslate"><span class="pre">RESCONTROL,DEFINE,ALL,LAST,,,,RDNN</span></code>)</p>
+<p><strong>NOTES</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">RESCONTROL</span></code> sets up the restart parameters for a multiframe restart, enabling you to restart an analysis
+from any load step and substep for which there is an <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> file. You can perform a multiframe restart
+for static and transient (full or mode-superposition method) analyses only. For more information about
+multiframe restarts and descriptions of the contents of the files used, see <em>Restarting an Analysis</em> in the
+<em>Basic Analysis Guide</em>.</p>
+<p><strong>Syntax</strong></p>
+<p>Multiframe restart files are generically indicated here as <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> files. They correspond to .rnnn
+files for nonlinear static and full transient analyses, and <code class="docutils literal notranslate"><span class="pre">.mnnn</span></code> files for mode-superposition
+analyses.
+Remeshing database files are indicated as <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> files. This type of restart file is needed only
+after remeshing during a <em>nonlinear mesh adaptivity</em> analysis.
+When <code class="docutils literal notranslate"><span class="pre">Action</span> <span class="pre">=</span> <span class="pre">DEFINE</span></code>, the specified Filetype determines the type of file (<code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> or
+<code class="docutils literal notranslate"><span class="pre">.rdnn</span></code>) controlled by this command.</p>
+<p><strong>Number of Restart Files Allowed</strong></p>
+<p>The total number of restart files for any analysis cannot exceed 999 (for example, <code class="docutils literal notranslate"><span class="pre">jobname.r001</span></code>
+to <code class="docutils literal notranslate"><span class="pre">jobname.r999</span></code>).
+The total number of remeshing database files cannot exceed 99 (for example, <code class="docutils literal notranslate"><span class="pre">jobname.rd01</span></code>
+to <code class="docutils literal notranslate"><span class="pre">jobname.rd99</span></code>).</p>
+<p><strong>Considerations for Nonlinear Mesh Adaptivity Analysis</strong></p>
+<p>To control both <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> and <code class="docutils literal notranslate"><span class="pre">.rdnn</span></code> file writing (<code class="docutils literal notranslate"><span class="pre">Filetype</span> <span class="pre">=</span> <span class="pre">XNNN</span></code> and <code class="docutils literal notranslate"><span class="pre">Filetype</span> <span class="pre">=</span> <span class="pre">RDNN</span></code>,
+respectively), separate <code class="docutils literal notranslate"><span class="pre">RESCONTROL</span></code> commands are necessary.
+<code class="docutils literal notranslate"><span class="pre">Action</span> <span class="pre">=</span> <span class="pre">NORESTART</span></code> and <code class="docutils literal notranslate"><span class="pre">Ldstep</span> <span class="pre">=</span> <span class="pre">NONE</span></code> are not valid and will cause the analysis to fail.
+<code class="docutils literal notranslate"><span class="pre">Ldstep</span> <span class="pre">=</span> <span class="pre">-N</span></code> is not valid for controlling <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> files.</p>
+<p><strong>Limiting the Number of Files Saved</strong></p>
+<p>If you have many substeps for each load step and are writing <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> files frequently, you may
+want to set <code class="docutils literal notranslate"><span class="pre">maxfiles</span></code> to limit the number of <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> files saved, as they can fill your disk
+quickly.
+You can specify <code class="docutils literal notranslate"><span class="pre">maxfiles</span></code> and <code class="docutils literal notranslate"><span class="pre">Frequency</span></code> for individual load steps. These arguments take
+on the default value or the value defined by <code class="docutils literal notranslate"><span class="pre">RESCONTROL,,ALL,Frequency,maxfiles</span></code> if they
+are not explicitly defined for a specific load step.
+When <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> files are written over many load steps, you may want to further limit the number
+of <code class="docutils literal notranslate"><span class="pre">.xnnn</span></code> files by setting <code class="docutils literal notranslate"><span class="pre">maxtotalfiles</span></code>.</p>
+<p><strong>Maximum Number of Load Steps</strong></p>
+<p>You can specify a maximum of ten load steps; that is, you can issue the <code class="docutils literal notranslate"><span class="pre">RESCONTROL,,N</span></code>
+command a maximum of ten times. Specified load steps cannot be changed in a restart.</p>
+<p><strong>Specifying Ldstep = LAST or Ldstep = -N</strong></p>
+<p>The program accepts only one occurrence of <code class="docutils literal notranslate"><span class="pre">RESCONTROL</span></code> with <code class="docutils literal notranslate"><span class="pre">Ldstep</span> <span class="pre">=</span> <span class="pre">LAST</span></code>. If you issue
+<code class="docutils literal notranslate"><span class="pre">RESCONTROL,,LAST,Frequency,maxfiles</span></code> multiple times, the last specification overwrites
+the previous one.
+The program accepts only one occurrence of <code class="docutils literal notranslate"><span class="pre">RESCONTROL</span></code> with a negative <code class="docutils literal notranslate"><span class="pre">Ldstep</span></code> value
+(<code class="docutils literal notranslate"><span class="pre">RESCONTROL,,N</span></code> where <code class="docutils literal notranslate"><span class="pre">N</span></code> is a negative number). If you issue <code class="docutils literal notranslate"><span class="pre">RESCONTROL</span></code> multiple times
+with a negative <code class="docutils literal notranslate"><span class="pre">Ldstep</span></code> value, the last specification overwrites the previous one.</p>
+</dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../../_sources/mapdl_commands/solution/_autosummary/ansys.mapdl.core.Mapdl.rescontrol.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

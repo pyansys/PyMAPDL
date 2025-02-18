@@ -1,0 +1,6 @@
+next
+====
+
+.. currentmodule:: ansys.mapdl.core.pool
+
+.. automethod:: MapdlPool.next

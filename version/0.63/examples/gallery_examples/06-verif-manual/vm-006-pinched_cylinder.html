@@ -1,0 +1,1848 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Pinched Cylinder &#8212; PyMAPDL</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    
+        <link href="../../../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/06-verif-manual/vm-006-pinched_cylinder';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.63';
+        </script>
+    <link rel="shortcut icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Plastic Compression of a Pipe Assembly" href="vm-007-plastic_compression_of_a_pipe_assembly.html" />
+    <link rel="prev" title="Statically Indeterminate Reaction Force Analysis" href="vm-005-laterally_loaded_tapered_support_structure.html" />
+<link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/gallery_examples/06-verif-manual/vm-006-pinched_cylinder.html" />
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      <!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+    
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../learning/index.html">
+                        Learning PyMAPDL
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../troubleshoot/index.html">
+                        Troubleshooting
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contribution_and_api/index.html">
+                        Contributing and API
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.63  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../../../index.html">PyMAPDL</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Examples</a> » </li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Verification Manual Examples</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Pinched Cylinder</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../learning/index.html">
+                        Learning PyMAPDL
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../troubleshoot/index.html">
+                        Troubleshooting
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contribution_and_api/index.html">
+                        Contributing and API
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.63  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/index.html">Full Examples Using PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-apdlmath-examples/index.html">PyMAPDL Math Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-geometry/index.html">Geometry Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-tips-n-tricks/index.html">Miscellaneous Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-general-fea/index.html">Academic Finite Element Examples</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Verification Manual Examples</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vm-001-statically_indeterminate_reaction_force_analysis.html">Statically Indeterminate Reaction Force Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-002-beam_stresses_and_deflections.html">Beam Stresses and Deflections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-003-thermally_loaded_support_structure.html">Thermally Loaded Support Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-004-deflection_of_a_hinged_support.html">Deflection of a Hinged Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-005-laterally_loaded_tapered_support_structure.html">Statically Indeterminate Reaction Force Analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pinched Cylinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-007-plastic_compression_of_a_pipe_assembly.html">Plastic Compression of a Pipe Assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-008-parametric_calculation.html">Parametric Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-009-large_lateral_deflection_of_unequal_stiffness_springs.html">Large Lateral Deflection of Unequal Stiffness Springs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-010-bending_of_a_t-shaped_beam.html">Bending of a Tee-Shaped Beam</a></li>
+</ul>
+</li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../technology_showcase_examples/techdemo-1/ex_0-tecbrakesqueal.html">Brake Squeal Analysis</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../technology_showcase_examples/techdemo-20/20-example-technology-showcase-dynamic-simulation-PCB.html">Dynamic simulation of a printed circuit board assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technology_showcase_examples/techdemo-28/ex_28-tecfricstir.html">Friction Stir Welding (FSW) Simulation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://pyansys.github.io/ml-rl-cartpole/ml-rl-notebook.html">Cart-Pole Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/ex_01-gmsh_example/ex_01-gmsh_example.html">Gmsh Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/Python_UPF/python_upf_examples.html">UPF in PyMAPDL</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-gallery-examples-06-verif-manual-vm-006-pinched-cylinder-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="pinched-cylinder">
+<span id="ref-vm6-example"></span><span id="sphx-glr-examples-gallery-examples-06-verif-manual-vm-006-pinched-cylinder-py"></span><h1>Pinched Cylinder<a class="headerlink" href="#pinched-cylinder" title="Permalink to this heading">#</a></h1>
+<dl class="simple">
+<dt>Problem Description:</dt><dd><ul class="simple">
+<li><p>A thin-walled cylinder is pinched by a force <span class="math notranslate nohighlight">\(F\)</span> at the middle
+of the cylinder length. Determine the radial displacement <span class="math notranslate nohighlight">\(\delta\)</span>
+at the point where the force <span class="math notranslate nohighlight">\(F\)</span> is applied.
+The ends of the cylinder are free edges.</p></li>
+</ul>
+</dd>
+<dt>Reference:</dt><dd><ul class="simple">
+<li><p>R. D. Cook, Concepts and Applications of Finite Element Analysis, 2nd Edition,
+John Wiley and Sons, Inc., New York, NY, 1981, pp. 284-287.
+H. Takemoto, R. D. Cook, “Some Modifications of an Isoparametric Shell
+Element”, International Journal for Numerical Methods in Engineering, Vol.7
+No. 3, 1973.</p></li>
+</ul>
+</dd>
+<dt>Analysis Type(s):</dt><dd><ul class="simple">
+<li><p>Static Analysis <code class="docutils literal notranslate"><span class="pre">ANTYPE=0</span></code></p></li>
+</ul>
+</dd>
+<dt>Element Type(s):</dt><dd><ul class="simple">
+<li><p>4-Node Finite Strain Shell Elements (SHELL181)</p></li>
+<li><p>8-Node Finite Strain Shell Elements (SHELL281)</p></li>
+</ul>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="../../../_images/vm6_setup.png"><img alt="VM6 Pinched Cylinder Problem Sketch" src="../../../_images/vm6_setup.png" style="width: 400px;" /></a>
+<dl class="simple">
+<dt>Material Properties</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E = 10.5 \cdot 10^6 psi\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\nu = 0.3125\)</span></p></li>
+</ul>
+</dd>
+<dt>Geometric Properties:</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(l = 10.35  in\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r = 4.953  in\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(t = 0.094  in\)</span></p></li>
+</ul>
+</dd>
+<dt>Loading:</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(F = 100  lb\)</span></p></li>
+</ul>
+</dd>
+<dt>Analysis Assumptions and Modeling Notes:</dt><dd><ul class="simple">
+<li><p>A one-eighth symmetry model is used. One-fourth of the load is applied
+due to symmetry.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sphinx_gallery_thumbnail_path = &#39;_static/vm6_setup.png&#39;</span>
+</pre></div>
+</div>
+<section id="start-mapdl">
+<h2>Start MAPDL<a class="headerlink" href="#start-mapdl" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+
+<span class="c1"># Start mapdl.</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="initiate-pre-processing">
+<h2>Initiate Pre-Processing<a class="headerlink" href="#initiate-pre-processing" title="Permalink to this heading">#</a></h2>
+<p>Enter verification example mode and the pre-processing routine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">start_prep7</span><span class="p">():</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">verify</span><span class="p">()</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+
+
+<span class="n">start_prep7</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="define-element-type">
+<h2>Define Element Type<a class="headerlink" href="#define-element-type" title="Permalink to this heading">#</a></h2>
+<p>Set up the element type (a shell-type).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the element type number.</span>
+<span class="k">def</span> <span class="nf">define_element</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a><span class="p">):</span>
+    <span class="c1"># Type of analysis: Static.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s2">&quot;STATIC&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Define the element type number.</span>
+    <span class="n">elem_num</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a> <span class="o">==</span> <span class="s2">&quot;SHELL181&quot;</span><span class="p">:</span>
+
+        <span class="c1"># Element type: SHELL181.</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="n">elem_num</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a><span class="p">)</span>
+
+        <span class="c1"># Special Features are defined by keyoptions of shell element:</span>
+
+        <span class="c1"># KEYOPT(3)</span>
+        <span class="c1"># Integration option:</span>
+        <span class="c1"># Full integration with incompatible modes.</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">keyopt</span><span class="p">(</span><span class="n">elem_num</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Cubic shape function</span>
+
+    <span class="k">elif</span> <a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a> <span class="o">==</span> <span class="s2">&quot;SHELL281&quot;</span><span class="p">:</span>
+
+        <span class="c1"># Element type: SHELL181.</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="n">elem_num</span><span class="p">,</span> <span class="s2">&quot;SHELL281&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a><span class="p">,</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">etlist</span><span class="p">()</span>
+
+
+<span class="c1"># Return the number of the element type.</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a><span class="p">,</span> <span class="n">elem_type_list</span> <span class="o">=</span> <span class="n">define_element</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a><span class="o">=</span><span class="s2">&quot;SHELL181&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;Selected element type is: </span><span class="si">{</span><a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a><span class="si">}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;Printout the element list with its own properties:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">elem_type_list</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Selected element type is: SHELL181,
+Printout the element list with its own properties:
+ ELEMENT TYPE        1 IS SHELL181     4-NODE SHELL
+  KEYOPT( 1- 6)=        0      0      2        0      0      0
+  KEYOPT( 7-12)=        0      0      0        0      0      0
+  KEYOPT(13-18)=        0      0      0        0      0      0
+
+ CURRENT NODAL DOF SET IS  UX    UY    UZ    ROTX  ROTY  ROTZ
+  THREE-DIMENSIONAL MODEL
+</pre></div>
+</div>
+</section>
+<section id="define-material">
+<h2>Define Material<a class="headerlink" href="#define-material" title="Permalink to this heading">#</a></h2>
+<p>Set up the material properties, where:
+Young Modulus is <span class="math notranslate nohighlight">\(E = 10.5 \cdot 10^6 psi\)</span>,
+Poisson’s ratio is <span class="math notranslate nohighlight">\(\nu = 0.3125\)</span>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define material number.</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mat_num</span></a> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Define material properties.</span>
+<span class="k">def</span> <span class="nf">define_material</span><span class="p">():</span>
+    <span class="c1"># Define material properties.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;EX&quot;</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mat_num</span></a><span class="p">,</span> <span class="mf">10.5e6</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;NUXY&quot;</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mat_num</span></a><span class="p">,</span> <span class="mf">0.3125</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">mplist</span><span class="p">()</span>
+
+
+<span class="n">material_list</span> <span class="o">=</span> <span class="n">define_material</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">material_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>MATERIAL NUMBER        1
+
+      TEMP        EX
+               0.1050000E+08
+
+      TEMP        NUXY
+               0.3125000
+</pre></div>
+</div>
+</section>
+<section id="define-section">
+<h2>Define Section<a class="headerlink" href="#define-section" title="Permalink to this heading">#</a></h2>
+<p>Set up the cross-section properties for a shell element.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define cross-section number and thickness of the shell element.</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sec_num</span></a> <span class="o">=</span> <span class="mi">1</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">t</span></a> <span class="o">=</span> <span class="mf">0.094</span>
+
+<span class="c1"># Define shell cross-section.</span>
+<span class="k">def</span> <span class="nf">define_section</span><span class="p">():</span>
+    <span class="c1"># Define shell cross-section.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">sectype</span><span class="p">(</span><span class="n">secid</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sec_num</span></a><span class="p">,</span> <span class="n">type_</span><span class="o">=</span><span class="s2">&quot;SHELL&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;shell181&quot;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">secdata</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">t</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">mat_num</span></a><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">slist</span><span class="p">()</span>
+
+
+<span class="n">section_list</span> <span class="o">=</span> <span class="n">define_section</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">section_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****MAPDL VERIFICATION RUN ONLY*****
+     DO NOT USE RESULTS FOR PRODUCTION
+
+   SECTION ID NUMBER:             1
+   SHELL SECTION TYPE:
+   SHELL SECTION NAME IS:     shell181
+   SHELL SECTION DATA SUMMARY:
+    Number of Layers    =      1
+    Total Thickness     =     0.094000
+
+  Layer      Thickness   MatID   Ori. Angle  Num Intg. Pts
+
+      1        0.0940     1        0.0000     5
+
+    Shell Section is offset to MID surface of Shell
+
+    Section Solution Controls
+    User Transverse Shear Stiffness (11)=  0.0000
+                                    (22)=  0.0000
+                                    (12)=  0.0000
+    Added Mass Per Unit Area            =  0.0000
+    Hourglass Scale Factor; Membrane    =  1.0000
+                            Bending     =  1.0000
+    Drill Stiffness Scale Factor        =  1.0000
+</pre></div>
+</div>
+</section>
+<section id="define-geometry">
+<h2>Define Geometry<a class="headerlink" href="#define-geometry" title="Permalink to this heading">#</a></h2>
+<p>Set up the keypoints and create the area through the keypoints.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define geometry of the simplified mathematical model.</span>
+<span class="k">def</span> <span class="nf">define_geometry</span><span class="p">():</span>
+    <span class="c1"># Change active coordinate system</span>
+    <span class="c1"># to the global cylindrical coordinate system.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Define keypoints by coordinates.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">4.953</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mf">4.953</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mf">5.175</span><span class="p">)</span>
+
+    <span class="c1"># Generate additional keypoints from a pattern of keypoints.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">kgen</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+
+    <span class="c1"># Create an area through keypoints.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="k">if</span> <a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a> <span class="o">==</span> <span class="s2">&quot;SHELL181&quot;</span><span class="p">:</span>
+        <span class="c1"># Plot the lines.</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">lplot</span><span class="p">(</span><span class="n">color_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;iso&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Plot the area using PyVista parameters.</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">aplot</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Display the selected area&quot;</span><span class="p">,</span>
+            <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;iso&quot;</span><span class="p">,</span>
+            <span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#06C2AC&quot;</span><span class="p">,</span>
+            <span class="n">show_line_numbering</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">show_area_numbering</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">show_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+<span class="n">define_geometry</span><span class="p">()</span>
+
+
+<span class="c1"># Define the number of the keypoint where F is applied using inline function.</span>
+<span class="k">def</span> <span class="nf">keypoint_number</span><span class="p">(</span><span class="n">mapdl</span><span class="p">):</span>
+    <span class="n">keypoint_num</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">queries</span><span class="o">.</span><span class="n">kp</span><span class="p">(</span><span class="mf">4.953</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">keypoint_num</span>
+
+
+<span class="c1"># Call the function to get the number of keypoint.</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">top_keypoint</span></a> <span class="o">=</span> <span class="n">keypoint_number</span><span class="p">(</span><span class="n">mapdl</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The number of the keypoint where F is applied: </span><span class="si">{</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">top_keypoint</span></a><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="sphx-glr-horizontal">
+<li><img src="../../../_images/sphx_glr_vm-006-pinched_cylinder_001.png" srcset="../../../_images/sphx_glr_vm-006-pinched_cylinder_001.png" alt="vm 006 pinched cylinder" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../../_images/sphx_glr_vm-006-pinched_cylinder_002.png" srcset="../../../_images/sphx_glr_vm-006-pinched_cylinder_002.png" alt="vm 006 pinched cylinder" class = "sphx-glr-multi-img"/></li>
+</ul>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>The number of the keypoint where F is applied: 3
+</pre></div>
+</div>
+</section>
+<section id="meshing">
+<h2>Meshing<a class="headerlink" href="#meshing" title="Permalink to this heading">#</a></h2>
+<p>Define line division of the lines, then mesh the area with shell elements.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define mesh properties and create the mesh with shell elements.</span>
+<span class="k">def</span> <span class="nf">meshing</span><span class="p">():</span>
+    <span class="c1"># Specify the default number of line divisions.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">ndiv</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="c1"># Mesh the area.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">amesh</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Define global cartesian coordinate system.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">if</span> <a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a> <span class="o">==</span> <span class="s2">&quot;SHELL181&quot;</span><span class="p">:</span>
+        <span class="c1"># Plot the mesh.</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Plot of the currently selected elements&quot;</span><span class="p">,</span>
+            <span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;iso&quot;</span><span class="p">,</span>
+            <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">edge_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>
+            <span class="n">show_node_numbering</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Print the list of elements.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">elist</span><span class="p">())</span>
+
+    <span class="c1"># Plot the nodes using VTK.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nplot</span><span class="p">(</span>
+        <span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nnum</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;iso&quot;</span><span class="p">,</span> <span class="n">show_bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">point_size</span><span class="o">=</span><span class="mi">10</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Print the list of nodes.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">nlist</span><span class="p">())</span>
+
+
+<span class="n">meshing</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="sphx-glr-horizontal">
+<li><img src="../../../_images/sphx_glr_vm-006-pinched_cylinder_003.png" srcset="../../../_images/sphx_glr_vm-006-pinched_cylinder_003.png" alt="vm 006 pinched cylinder" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../../_images/sphx_glr_vm-006-pinched_cylinder_004.png" srcset="../../../_images/sphx_glr_vm-006-pinched_cylinder_004.png" alt="vm 006 pinched cylinder" class = "sphx-glr-multi-img"/></li>
+</ul>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>LIST ALL SELECTED ELEMENTS.  (LIST NODES)
+       1   1   1   1   0   1      1     3    33    32
+       2   1   1   1   0   1      3     4    40    33
+       3   1   1   1   0   1      4     5    47    40
+       4   1   1   1   0   1      5     6    54    47
+       5   1   1   1   0   1      6     7    61    54
+       6   1   1   1   0   1      7     8    68    61
+       7   1   1   1   0   1      8     9    75    68
+       8   1   1   1   0   1      9     2    11    75
+       9   1   1   1   0   1     32    33    34    31
+      10   1   1   1   0   1     33    40    41    34
+      11   1   1   1   0   1     40    47    48    41
+      12   1   1   1   0   1     47    54    55    48
+      13   1   1   1   0   1     54    61    62    55
+      14   1   1   1   0   1     61    68    69    62
+      15   1   1   1   0   1     68    75    76    69
+      16   1   1   1   0   1     75    11    12    76
+      17   1   1   1   0   1     31    34    35    30
+      18   1   1   1   0   1     34    41    42    35
+      19   1   1   1   0   1     41    48    49    42
+      20   1   1   1   0   1     48    55    56    49
+      21   1   1   1   0   1     55    62    63    56
+      22   1   1   1   0   1     62    69    70    63
+      23   1   1   1   0   1     69    76    77    70
+      24   1   1   1   0   1     76    12    13    77
+      25   1   1   1   0   1     30    35    36    29
+      26   1   1   1   0   1     35    42    43    36
+      27   1   1   1   0   1     42    49    50    43
+      28   1   1   1   0   1     49    56    57    50
+      29   1   1   1   0   1     56    63    64    57
+      30   1   1   1   0   1     63    70    71    64
+      31   1   1   1   0   1     70    77    78    71
+      32   1   1   1   0   1     77    13    14    78
+      33   1   1   1   0   1     29    36    37    28
+      34   1   1   1   0   1     36    43    44    37
+      35   1   1   1   0   1     43    50    51    44
+      36   1   1   1   0   1     50    57    58    51
+      37   1   1   1   0   1     57    64    65    58
+      38   1   1   1   0   1     64    71    72    65
+      39   1   1   1   0   1     71    78    79    72
+      40   1   1   1   0   1     78    14    15    79
+      41   1   1   1   0   1     28    37    38    27
+      42   1   1   1   0   1     37    44    45    38
+      43   1   1   1   0   1     44    51    52    45
+      44   1   1   1   0   1     51    58    59    52
+      45   1   1   1   0   1     58    65    66    59
+      46   1   1   1   0   1     65    72    73    66
+      47   1   1   1   0   1     72    79    80    73
+      48   1   1   1   0   1     79    15    16    80
+      49   1   1   1   0   1     27    38    39    26
+      50   1   1   1   0   1     38    45    46    39
+      51   1   1   1   0   1     45    52    53    46
+      52   1   1   1   0   1     52    59    60    53
+      53   1   1   1   0   1     59    66    67    60
+      54   1   1   1   0   1     66    73    74    67
+      55   1   1   1   0   1     73    80    81    74
+      56   1   1   1   0   1     80    16    17    81
+      57   1   1   1   0   1     26    39    25    18
+      58   1   1   1   0   1     39    46    24    25
+      59   1   1   1   0   1     46    53    23    24
+      60   1   1   1   0   1     53    60    22    23
+      61   1   1   1   0   1     60    67    21    22
+      62   1   1   1   0   1     67    74    20    21
+      63   1   1   1   0   1     74    81    19    20
+      64   1   1   1   0   1     81    17    10    19
+1   4.9530        0.0000        0.0000          0.00     0.00     0.00
+        2   4.9530        0.0000        5.1750          0.00     0.00     0.00
+        3   4.9530        0.0000       0.64687          0.00     0.00     0.00
+        4   4.9530        0.0000        1.2937          0.00     0.00     0.00
+        5   4.9530        0.0000        1.9406          0.00     0.00     0.00
+        6   4.9530        0.0000        2.5875          0.00     0.00     0.00
+        7   4.9530        0.0000        3.2344          0.00     0.00     0.00
+        8   4.9530        0.0000        3.8812          0.00     0.00     0.00
+        9   4.9530        0.0000        4.5281          0.00     0.00     0.00
+       10   0.0000        4.9530        5.1750          0.00     0.00     0.00
+       11   4.8578       0.96628        5.1750          0.00     0.00     0.00
+       12   4.5760        1.8954        5.1750          0.00     0.00     0.00
+       13   4.1183        2.7517        5.1750          0.00     0.00     0.00
+       14   3.5023        3.5023        5.1750          0.00     0.00     0.00
+       15   2.7517        4.1183        5.1750          0.00     0.00     0.00
+       16   1.8954        4.5760        5.1750          0.00     0.00     0.00
+       17  0.96628        4.8578        5.1750          0.00     0.00     0.00
+       18   0.0000        4.9530        0.0000          0.00     0.00     0.00
+       19   0.0000        4.9530        4.5281          0.00     0.00     0.00
+       20   0.0000        4.9530        3.8812          0.00     0.00     0.00
+       21   0.0000        4.9530        3.2344          0.00     0.00     0.00
+       22   0.0000        4.9530        2.5875          0.00     0.00     0.00
+       23   0.0000        4.9530        1.9406          0.00     0.00     0.00
+       24   0.0000        4.9530        1.2937          0.00     0.00     0.00
+       25   0.0000        4.9530       0.64688          0.00     0.00     0.00
+       26  0.96628        4.8578        0.0000          0.00     0.00     0.00
+       27   1.8954        4.5760        0.0000          0.00     0.00     0.00
+       28   2.7517        4.1183        0.0000          0.00     0.00     0.00
+       29   3.5023        3.5023        0.0000          0.00     0.00     0.00
+       30   4.1183        2.7517        0.0000          0.00     0.00     0.00
+       31   4.5760        1.8954        0.0000          0.00     0.00     0.00
+       32   4.8578       0.96628        0.0000          0.00     0.00     0.00
+       33   4.8578       0.96628       0.64687          0.00     0.00     0.00
+       34   4.5760        1.8954       0.64688          0.00     0.00     0.00
+       35   4.1183        2.7517       0.64688          0.00     0.00     0.00
+       36   3.5023        3.5023       0.64688          0.00     0.00     0.00
+       37   2.7517        4.1183       0.64688          0.00     0.00     0.00
+       38   1.8954        4.5760       0.64688          0.00     0.00     0.00
+       39  0.96628        4.8578       0.64688          0.00     0.00     0.00
+       40   4.8578       0.96628        1.2937          0.00     0.00     0.00
+       41   4.5760        1.8954        1.2937          0.00     0.00     0.00
+       42   4.1183        2.7517        1.2937          0.00     0.00     0.00
+       43   3.5023        3.5023        1.2937          0.00     0.00     0.00
+       44   2.7517        4.1183        1.2938          0.00     0.00     0.00
+       45   1.8954        4.5760        1.2938          0.00     0.00     0.00
+       46  0.96628        4.8578        1.2937          0.00     0.00     0.00
+       47   4.8578       0.96628        1.9406          0.00     0.00     0.00
+       48   4.5760        1.8954        1.9406          0.00     0.00     0.00
+       49   4.1183        2.7517        1.9406          0.00     0.00     0.00
+       50   3.5023        3.5023        1.9406          0.00     0.00     0.00
+       51   2.7517        4.1183        1.9406          0.00     0.00     0.00
+       52   1.8954        4.5760        1.9406          0.00     0.00     0.00
+       53  0.96628        4.8578        1.9406          0.00     0.00     0.00
+       54   4.8578       0.96628        2.5875          0.00     0.00     0.00
+       55   4.5760        1.8954        2.5875          0.00     0.00     0.00
+       56   4.1183        2.7517        2.5875          0.00     0.00     0.00
+       57   3.5023        3.5023        2.5875          0.00     0.00     0.00
+       58   2.7517        4.1183        2.5875          0.00     0.00     0.00
+       59   1.8954        4.5760        2.5875          0.00     0.00     0.00
+       60  0.96628        4.8578        2.5875          0.00     0.00     0.00
+       61   4.8578       0.96628        3.2344          0.00     0.00     0.00
+       62   4.5760        1.8954        3.2344          0.00     0.00     0.00
+       63   4.1183        2.7517        3.2344          0.00     0.00     0.00
+       64   3.5023        3.5023        3.2344          0.00     0.00     0.00
+       65   2.7517        4.1183        3.2344          0.00     0.00     0.00
+       66   1.8954        4.5760        3.2344          0.00     0.00     0.00
+       67  0.96628        4.8578        3.2344          0.00     0.00     0.00
+       68   4.8578       0.96628        3.8812          0.00     0.00     0.00
+       69   4.5760        1.8954        3.8812          0.00     0.00     0.00
+       70   4.1183        2.7517        3.8813          0.00     0.00     0.00
+       71   3.5023        3.5023        3.8813          0.00     0.00     0.00
+       72   2.7517        4.1183        3.8813          0.00     0.00     0.00
+       73   1.8954        4.5760        3.8813          0.00     0.00     0.00
+       74  0.96628        4.8578        3.8813          0.00     0.00     0.00
+       75   4.8578       0.96628        4.5281          0.00     0.00     0.00
+       76   4.5760        1.8954        4.5281          0.00     0.00     0.00
+       77   4.1183        2.7517        4.5281          0.00     0.00     0.00
+       78   3.5023        3.5023        4.5281          0.00     0.00     0.00
+       79   2.7517        4.1183        4.5281          0.00     0.00     0.00
+       80   1.8954        4.5760        4.5281          0.00     0.00     0.00
+       81  0.96628        4.8578        4.5281          0.00     0.00     0.00
+</pre></div>
+</div>
+</section>
+<section id="define-boundary-conditions">
+<h2>Define Boundary Conditions<a class="headerlink" href="#define-boundary-conditions" title="Permalink to this heading">#</a></h2>
+<p>Application of symmetric boundary conditions for simplified model.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select nodes by location and apply BC.</span>
+<span class="k">def</span> <span class="nf">define_bc</span><span class="p">():</span>
+    <span class="c1"># Select nodes by location and apply BC.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">dsym</span><span class="p">(</span><span class="s2">&quot;SYMM&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">dsym</span><span class="p">(</span><span class="s2">&quot;SYMM&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">dsym</span><span class="p">(</span><span class="s2">&quot;SYMM&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+
+
+<span class="n">define_bc</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="define-distributed-loads">
+<h2>Define Distributed Loads<a class="headerlink" href="#define-distributed-loads" title="Permalink to this heading">#</a></h2>
+<p>Apply the force of <span class="math notranslate nohighlight">\(F = (100/4) lb\)</span> in the y-direction.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define loads.</span>
+<span class="k">def</span> <span class="nf">define_loads</span><span class="p">():</span>
+    <span class="c1"># Parametrization of the :math:`F` load for the quarter of the model.</span>
+    <span class="n">force</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">/</span> <span class="mi">4</span>
+
+    <span class="c1"># Application of the load to the model.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">fk</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">top_keypoint</span></a><span class="p">,</span> <span class="s2">&quot;FY&quot;</span><span class="p">,</span> <span class="o">-</span><span class="n">force</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+
+
+<span class="n">define_loads</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="solve">
+<h2>Solve<a class="headerlink" href="#solve" title="Permalink to this heading">#</a></h2>
+<p>Enter solution mode and solve the system. Print the solver output.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">solve_procedure</span><span class="p">():</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/solu&quot;</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="n">simulation_info</span> <span class="o">=</span> <span class="n">solve_procedure</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">simulation_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
+
+ TRANSFER SOLID MODEL BOUNDARY CONDITIONS TO FINITE ELEMENT MODEL
+      FORCES         TRANSFERRED FROM KEYPOINTS     =      1
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ There is no title defined for this analysis.
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+                ---GIVE SUGGESTIONS ONLY---
+
+ ELEMENT TYPE         1 IS SHELL181. IT IS ASSOCIATED WITH ELASTOPLASTIC
+ MATERIALS ONLY. KEYOPT(8)=2 IS SUGGESTED AND KEYOPT(3)=2 IS SUGGESTED FOR
+ HIGHER ACCURACY OF MEMBRANE STRESSES; OTHERWISE, KEYOPT(3)=0 IS SUGGESTED.
+
+
+   *****MAPDL VERIFICATION RUN ONLY*****
+     DO NOT USE RESULTS FOR PRODUCTION
+
+                       S O L U T I O N   O P T I O N S
+
+   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D
+   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ
+   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
+   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Present time 0 is less than or equal to the previous time.  Time will
+ default to 1.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ The conditions for direct assembly have been met.  No .emat or .erot
+ files will be produced.
+
+                      L O A D   S T E P   O P T I O N S
+
+   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1
+   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000
+   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1
+   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO
+   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT
+   DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN
+                                                  FOR THE LAST SUBSTEP
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Predictor is ON by default for structural elements with rotational
+ degrees of freedom.  Use the PRED,OFF command to turn the predictor
+ OFF if it adversely affects the convergence.
+
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 596623.888 at element 0.
+ Minimum = 596623.886 at element 0.
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        64  SHELL181      0.000   0.000000
+ Time at end of element matrix formulation CP = 0.
+
+ SPARSE MATRIX DIRECT SOLVER.
+  Number of equations =         407,    Maximum wavefront =      0
+  Memory available (MB) =    0.0    ,  Memory required (MB) =    0.0
+
+ Sparse solver maximum pivot= 0 at node 0 .
+ Sparse solver minimum pivot= 0 at node 0 .
+ Sparse solver minimum pivot in absolute value= 0 at node 0 .
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        64  SHELL181      0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        64  SHELL181      0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+</pre></div>
+</div>
+</section>
+<section id="post-processing">
+<h2>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this heading">#</a></h2>
+<p>Enter post-processing for the model with elements <code class="docutils literal notranslate"><span class="pre">shell181</span></code>.
+Plotting nodal displacement.
+Get the the radial displacement at the node where force F is applied.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start post-processing mode.</span>
+<span class="k">def</span> <span class="nf">post_processing</span><span class="p">():</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">post_processing</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="plotting">
+<h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this heading">#</a></h2>
+<p>Plot nodal displacement using PyVista.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_nodal_disp</span><span class="p">():</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Nodal Displacements&quot;</span><span class="p">,</span>
+        <span class="n">component</span><span class="o">=</span><span class="s2">&quot;Y&quot;</span><span class="p">,</span>
+        <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;zx&quot;</span><span class="p">,</span>
+        <span class="n">scalar_bar_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Nodal Displacements&quot;</span><span class="p">,</span> <span class="s2">&quot;vertical&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="n">show_node_numbering</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">show_axes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="n">plot_nodal_disp</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_vm-006-pinched_cylinder_005.png" srcset="../../../_images/sphx_glr_vm-006-pinched_cylinder_005.png" alt="vm 006 pinched cylinder" class = "sphx-glr-single-img"/></section>
+<section id="getting-the-radial-displacements">
+<h2>Getting the radial displacements<a class="headerlink" href="#getting-the-radial-displacements" title="Permalink to this heading">#</a></h2>
+<p>To determine the radial displacement <span class="math notranslate nohighlight">\(\delta\)</span> at the point
+where F is applied, we can use <a class="reference internal" href="../../../contribution_and_api/_autosummary/ansys.mapdl.core.Mapdl.get_value.html#ansys.mapdl.core.Mapdl.get_value" title="ansys.mapdl.core.Mapdl.get_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Mapdl.get_value</span></code></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_displacements</span><span class="p">():</span>
+    <span class="c1"># Select keypoint by its number ``top_keypoint``.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">ksel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="s2">&quot;top_keypoint&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Select the node associated with the selected keypoint.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nslk</span><span class="p">()</span>
+
+    <span class="c1"># Get the number of the selected node by :meth:`Mapdl.get &lt;ansys.mapdl.core.Mapdl.get&gt;`</span>
+    <span class="n">top_node</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">))</span>
+
+    <span class="c1"># Define radial displacement at the node where F is applied.</span>
+    <span class="n">deflect_shell</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span>
+        <span class="n">entity</span><span class="o">=</span><span class="s2">&quot;node&quot;</span><span class="p">,</span> <span class="n">entnum</span><span class="o">=</span><span class="n">top_node</span><span class="p">,</span> <span class="n">item1</span><span class="o">=</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="n">it1num</span><span class="o">=</span><span class="s2">&quot;y&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">top_node</span><span class="p">,</span> <span class="n">deflect_shell</span>
+
+
+<span class="c1"># Call the function and get the value of the deflection.</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">top_node_181</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_shell_181</span></a> <span class="o">=</span> <span class="n">get_displacements</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;Number of the node attached to the top keypoint: </span><span class="si">{</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">top_node_181</span></a><span class="si">}</span><span class="s2">,</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">&quot;Radial displacement: </span><span class="si">{</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_shell_181</span></a><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Number of the node attached to the top keypoint: 18,
+Radial displacement: -0.11
+</pre></div>
+</div>
+</section>
+<section id="rerun-model-with-shell281">
+<h2>Rerun Model with SHELL281<a class="headerlink" href="#rerun-model-with-shell281" title="Permalink to this heading">#</a></h2>
+<p>Perform the simulation again using the element type SHELL281.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Restart pre-processing routine.</span>
+<span class="n">start_prep7</span><span class="p">()</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a> <span class="o">=</span> <span class="n">define_element</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="builtins.tuple" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">elem_type</span></a><span class="o">=</span><span class="s2">&quot;SHELL281&quot;</span><span class="p">)</span>
+<span class="n">define_material</span><span class="p">()</span>
+<span class="n">define_section</span><span class="p">()</span>
+<span class="n">define_geometry</span><span class="p">()</span>
+<span class="n">meshing</span><span class="p">()</span>
+<span class="n">define_bc</span><span class="p">()</span>
+<span class="n">define_loads</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_vm-006-pinched_cylinder_006.png" srcset="../../../_images/sphx_glr_vm-006-pinched_cylinder_006.png" alt="vm 006 pinched cylinder" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>LIST ALL SELECTED ELEMENTS.  (LIST NODES)
+       1   1   1   1   0   1      1     4    73    63     3    72    65    64
+       2   1   1   1   0   1      4     6    95    73     5    94    87    72
+       3   1   1   1   0   1      6     8   117    95     7   116   109    94
+       4   1   1   1   0   1      8    10   139   117     9   138   131   116
+       5   1   1   1   0   1     10    12   161   139    11   160   153   138
+       6   1   1   1   0   1     12    14   183   161    13   182   175   160
+       7   1   1   1   0   1     14    16   205   183    15   204   197   182
+       8   1   1   1   0   1     16     2    20   205    17    19   219   204
+       9   1   1   1   0   1     63    73    75    61    65    74    66    62
+      10   1   1   1   0   1     73    95    97    75    87    96    88    74
+      11   1   1   1   0   1     95   117   119    97   109   118   110    96
+      12   1   1   1   0   1    117   139   141   119   131   140   132   118
+      13   1   1   1   0   1    139   161   163   141   153   162   154   140
+      14   1   1   1   0   1    161   183   185   163   175   184   176   162
+      15   1   1   1   0   1    183   205   207   185   197   206   198   184
+      16   1   1   1   0   1    205    20    22   207   219    21   220   206
+      17   1   1   1   0   1     61    75    77    59    66    76    67    60
+      18   1   1   1   0   1     75    97    99    77    88    98    89    76
+      19   1   1   1   0   1     97   119   121    99   110   120   111    98
+      20   1   1   1   0   1    119   141   143   121   132   142   133   120
+      21   1   1   1   0   1    141   163   165   143   154   164   155   142
+      22   1   1   1   0   1    163   185   187   165   176   186   177   164
+      23   1   1   1   0   1    185   207   209   187   198   208   199   186
+      24   1   1   1   0   1    207    22    24   209   220    23   221   208
+      25   1   1   1   0   1     59    77    79    57    67    78    68    58
+      26   1   1   1   0   1     77    99   101    79    89   100    90    78
+      27   1   1   1   0   1     99   121   123   101   111   122   112   100
+      28   1   1   1   0   1    121   143   145   123   133   144   134   122
+      29   1   1   1   0   1    143   165   167   145   155   166   156   144
+      30   1   1   1   0   1    165   187   189   167   177   188   178   166
+      31   1   1   1   0   1    187   209   211   189   199   210   200   188
+      32   1   1   1   0   1    209    24    26   211   221    25   222   210
+      33   1   1   1   0   1     57    79    81    55    68    80    69    56
+      34   1   1   1   0   1     79   101   103    81    90   102    91    80
+      35   1   1   1   0   1    101   123   125   103   112   124   113   102
+      36   1   1   1   0   1    123   145   147   125   134   146   135   124
+      37   1   1   1   0   1    145   167   169   147   156   168   157   146
+      38   1   1   1   0   1    167   189   191   169   178   190   179   168
+      39   1   1   1   0   1    189   211   213   191   200   212   201   190
+      40   1   1   1   0   1    211    26    28   213   222    27   223   212
+      41   1   1   1   0   1     55    81    83    53    69    82    70    54
+      42   1   1   1   0   1     81   103   105    83    91   104    92    82
+      43   1   1   1   0   1    103   125   127   105   113   126   114   104
+      44   1   1   1   0   1    125   147   149   127   135   148   136   126
+      45   1   1   1   0   1    147   169   171   149   157   170   158   148
+      46   1   1   1   0   1    169   191   193   171   179   192   180   170
+      47   1   1   1   0   1    191   213   215   193   201   214   202   192
+      48   1   1   1   0   1    213    28    30   215   223    29   224   214
+      49   1   1   1   0   1     53    83    85    51    70    84    71    52
+      50   1   1   1   0   1     83   105   107    85    92   106    93    84
+      51   1   1   1   0   1    105   127   129   107   114   128   115   106
+      52   1   1   1   0   1    127   149   151   129   136   150   137   128
+      53   1   1   1   0   1    149   171   173   151   158   172   159   150
+      54   1   1   1   0   1    171   193   195   173   180   194   181   172
+      55   1   1   1   0   1    193   215   217   195   202   216   203   194
+      56   1   1   1   0   1    215    30    32   217   224    31   225   216
+      57   1   1   1   0   1     51    85    48    34    71    86    49    50
+      58   1   1   1   0   1     85   107    46    48    93   108    47    86
+      59   1   1   1   0   1    107   129    44    46   115   130    45   108
+      60   1   1   1   0   1    129   151    42    44   137   152    43   130
+      61   1   1   1   0   1    151   173    40    42   159   174    41   152
+      62   1   1   1   0   1    173   195    38    40   181   196    39   174
+      63   1   1   1   0   1    195   217    36    38   203   218    37   196
+      64   1   1   1   0   1    217    32    18    36   225    33    35   218
+1   4.9530        0.0000        0.0000          0.00     0.00     0.00
+        2   4.9530        0.0000        5.1750          0.00     0.00     0.00
+        3   4.9530        0.0000       0.32344          0.00     0.00     0.00
+        4   4.9530        0.0000       0.64687          0.00     0.00     0.00
+        5   4.9530        0.0000       0.97031          0.00     0.00     0.00
+        6   4.9530        0.0000        1.2937          0.00     0.00     0.00
+        7   4.9530        0.0000        1.6172          0.00     0.00     0.00
+        8   4.9530        0.0000        1.9406          0.00     0.00     0.00
+        9   4.9530        0.0000        2.2641          0.00     0.00     0.00
+       10   4.9530        0.0000        2.5875          0.00     0.00     0.00
+       11   4.9530        0.0000        2.9109          0.00     0.00     0.00
+       12   4.9530        0.0000        3.2344          0.00     0.00     0.00
+       13   4.9530        0.0000        3.5578          0.00     0.00     0.00
+       14   4.9530        0.0000        3.8812          0.00     0.00     0.00
+       15   4.9530        0.0000        4.2047          0.00     0.00     0.00
+       16   4.9530        0.0000        4.5281          0.00     0.00     0.00
+       17   4.9530        0.0000        4.8516          0.00     0.00     0.00
+       18   0.0000        4.9530        5.1750          0.00     0.00     0.00
+       19   4.9291       0.48548        5.1750          0.00     0.00     0.00
+       20   4.8578       0.96628        5.1750          0.00     0.00     0.00
+       21   4.7397        1.4378        5.1750          0.00     0.00     0.00
+       22   4.5760        1.8954        5.1750          0.00     0.00     0.00
+       23   4.3682        2.3348        5.1750          0.00     0.00     0.00
+       24   4.1183        2.7517        5.1750          0.00     0.00     0.00
+       25   3.8287        3.1421        5.1750          0.00     0.00     0.00
+       26   3.5023        3.5023        5.1750          0.00     0.00     0.00
+       27   3.1421        3.8287        5.1750          0.00     0.00     0.00
+       28   2.7517        4.1183        5.1750          0.00     0.00     0.00
+       29   2.3348        4.3682        5.1750          0.00     0.00     0.00
+       30   1.8954        4.5760        5.1750          0.00     0.00     0.00
+       31   1.4378        4.7397        5.1750          0.00     0.00     0.00
+       32  0.96628        4.8578        5.1750          0.00     0.00     0.00
+       33  0.48548        4.9291        5.1750          0.00     0.00     0.00
+       34   0.0000        4.9530        0.0000          0.00     0.00     0.00
+       35   0.0000        4.9530        4.8516          0.00     0.00     0.00
+       36   0.0000        4.9530        4.5281          0.00     0.00     0.00
+       37   0.0000        4.9530        4.2047          0.00     0.00     0.00
+       38   0.0000        4.9530        3.8812          0.00     0.00     0.00
+       39   0.0000        4.9530        3.5578          0.00     0.00     0.00
+       40   0.0000        4.9530        3.2344          0.00     0.00     0.00
+       41   0.0000        4.9530        2.9109          0.00     0.00     0.00
+       42   0.0000        4.9530        2.5875          0.00     0.00     0.00
+       43   0.0000        4.9530        2.2641          0.00     0.00     0.00
+       44   0.0000        4.9530        1.9406          0.00     0.00     0.00
+       45   0.0000        4.9530        1.6172          0.00     0.00     0.00
+       46   0.0000        4.9530        1.2937          0.00     0.00     0.00
+       47   0.0000        4.9530       0.97031          0.00     0.00     0.00
+       48   0.0000        4.9530       0.64688          0.00     0.00     0.00
+       49   0.0000        4.9530       0.32344          0.00     0.00     0.00
+       50  0.48548        4.9291        0.0000          0.00     0.00     0.00
+       51  0.96628        4.8578        0.0000          0.00     0.00     0.00
+       52   1.4378        4.7397        0.0000          0.00     0.00     0.00
+       53   1.8954        4.5760        0.0000          0.00     0.00     0.00
+       54   2.3348        4.3682        0.0000          0.00     0.00     0.00
+       55   2.7517        4.1183        0.0000          0.00     0.00     0.00
+       56   3.1421        3.8287        0.0000          0.00     0.00     0.00
+       57   3.5023        3.5023        0.0000          0.00     0.00     0.00
+       58   3.8287        3.1421        0.0000          0.00     0.00     0.00
+       59   4.1183        2.7517        0.0000          0.00     0.00     0.00
+       60   4.3682        2.3348        0.0000          0.00     0.00     0.00
+       61   4.5760        1.8954        0.0000          0.00     0.00     0.00
+       62   4.7397        1.4378        0.0000          0.00     0.00     0.00
+       63   4.8578       0.96628        0.0000          0.00     0.00     0.00
+       64   4.9291       0.48548        0.0000          0.00     0.00     0.00
+       65   4.8578       0.96628       0.32344          0.00     0.00     0.00
+       66   4.5760        1.8954       0.32344          0.00     0.00     0.00
+       67   4.1183        2.7517       0.32344          0.00     0.00     0.00
+       68   3.5023        3.5023       0.32344          0.00     0.00     0.00
+       69   2.7517        4.1183       0.32344          0.00     0.00     0.00
+       70   1.8954        4.5760       0.32344          0.00     0.00     0.00
+       71  0.96628        4.8578       0.32344          0.00     0.00     0.00
+       72   4.9291       0.48548       0.64687          0.00     0.00     0.00
+       73   4.8578       0.96628       0.64687          0.00     0.00     0.00
+       74   4.7397        1.4378       0.64687          0.00     0.00     0.00
+       75   4.5760        1.8954       0.64687          0.00     0.00     0.00
+       76   4.3682        2.3348       0.64687          0.00     0.00     0.00
+       77   4.1183        2.7517       0.64688          0.00     0.00     0.00
+       78   3.8287        3.1421       0.64688          0.00     0.00     0.00
+       79   3.5023        3.5023       0.64688          0.00     0.00     0.00
+       80   3.1421        3.8287       0.64688          0.00     0.00     0.00
+       81   2.7517        4.1183       0.64688          0.00     0.00     0.00
+       82   2.3348        4.3682       0.64688          0.00     0.00     0.00
+       83   1.8954        4.5760       0.64688          0.00     0.00     0.00
+       84   1.4378        4.7397       0.64688          0.00     0.00     0.00
+       85  0.96628        4.8578       0.64688          0.00     0.00     0.00
+       86  0.48548        4.9291       0.64688          0.00     0.00     0.00
+       87   4.8578       0.96628       0.97031          0.00     0.00     0.00
+       88   4.5760        1.8954       0.97031          0.00     0.00     0.00
+       89   4.1183        2.7517       0.97031          0.00     0.00     0.00
+       90   3.5023        3.5023       0.97031          0.00     0.00     0.00
+       91   2.7517        4.1183       0.97031          0.00     0.00     0.00
+       92   1.8954        4.5760       0.97031          0.00     0.00     0.00
+       93  0.96628        4.8578       0.97031          0.00     0.00     0.00
+       94   4.9291       0.48548        1.2937          0.00     0.00     0.00
+       95   4.8578       0.96628        1.2937          0.00     0.00     0.00
+       96   4.7397        1.4378        1.2937          0.00     0.00     0.00
+       97   4.5760        1.8954        1.2937          0.00     0.00     0.00
+       98   4.3682        2.3348        1.2937          0.00     0.00     0.00
+       99   4.1183        2.7517        1.2937          0.00     0.00     0.00
+      100   3.8287        3.1421        1.2937          0.00     0.00     0.00
+      101   3.5023        3.5023        1.2937          0.00     0.00     0.00
+      102   3.1421        3.8287        1.2938          0.00     0.00     0.00
+      103   2.7517        4.1183        1.2938          0.00     0.00     0.00
+      104   2.3348        4.3682        1.2938          0.00     0.00     0.00
+      105   1.8954        4.5760        1.2937          0.00     0.00     0.00
+      106   1.4378        4.7397        1.2938          0.00     0.00     0.00
+      107  0.96628        4.8578        1.2938          0.00     0.00     0.00
+      108  0.48548        4.9291        1.2938          0.00     0.00     0.00
+      109   4.8578       0.96628        1.6172          0.00     0.00     0.00
+      110   4.5760        1.8954        1.6172          0.00     0.00     0.00
+      111   4.1183        2.7517        1.6172          0.00     0.00     0.00
+      112   3.5023        3.5023        1.6172          0.00     0.00     0.00
+      113   2.7517        4.1183        1.6172          0.00     0.00     0.00
+      114   1.8954        4.5760        1.6172          0.00     0.00     0.00
+      115  0.96628        4.8578        1.6172          0.00     0.00     0.00
+      116   4.9291       0.48548        1.9406          0.00     0.00     0.00
+      117   4.8578       0.96628        1.9406          0.00     0.00     0.00
+      118   4.7397        1.4378        1.9406          0.00     0.00     0.00
+      119   4.5760        1.8954        1.9406          0.00     0.00     0.00
+      120   4.3682        2.3348        1.9406          0.00     0.00     0.00
+      121   4.1183        2.7517        1.9406          0.00     0.00     0.00
+      122   3.8287        3.1421        1.9406          0.00     0.00     0.00
+      123   3.5023        3.5023        1.9406          0.00     0.00     0.00
+      124   3.1421        3.8287        1.9406          0.00     0.00     0.00
+      125   2.7517        4.1183        1.9406          0.00     0.00     0.00
+      126   2.3348        4.3682        1.9406          0.00     0.00     0.00
+      127   1.8954        4.5760        1.9406          0.00     0.00     0.00
+      128   1.4378        4.7397        1.9406          0.00     0.00     0.00
+      129  0.96628        4.8578        1.9406          0.00     0.00     0.00
+      130  0.48548        4.9291        1.9406          0.00     0.00     0.00
+      131   4.8578       0.96628        2.2641          0.00     0.00     0.00
+      132   4.5760        1.8954        2.2641          0.00     0.00     0.00
+      133   4.1183        2.7517        2.2641          0.00     0.00     0.00
+      134   3.5023        3.5023        2.2641          0.00     0.00     0.00
+      135   2.7517        4.1183        2.2641          0.00     0.00     0.00
+      136   1.8954        4.5760        2.2641          0.00     0.00     0.00
+      137  0.96628        4.8578        2.2641          0.00     0.00     0.00
+      138   4.9291       0.48548        2.5875          0.00     0.00     0.00
+      139   4.8578       0.96628        2.5875          0.00     0.00     0.00
+      140   4.7397        1.4378        2.5875          0.00     0.00     0.00
+      141   4.5760        1.8954        2.5875          0.00     0.00     0.00
+      142   4.3682        2.3348        2.5875          0.00     0.00     0.00
+      143   4.1183        2.7517        2.5875          0.00     0.00     0.00
+      144   3.8287        3.1421        2.5875          0.00     0.00     0.00
+      145   3.5023        3.5023        2.5875          0.00     0.00     0.00
+      146   3.1421        3.8287        2.5875          0.00     0.00     0.00
+      147   2.7517        4.1183        2.5875          0.00     0.00     0.00
+      148   2.3348        4.3682        2.5875          0.00     0.00     0.00
+      149   1.8954        4.5760        2.5875          0.00     0.00     0.00
+      150   1.4378        4.7397        2.5875          0.00     0.00     0.00
+      151  0.96628        4.8578        2.5875          0.00     0.00     0.00
+      152  0.48548        4.9291        2.5875          0.00     0.00     0.00
+      153   4.8578       0.96628        2.9109          0.00     0.00     0.00
+      154   4.5760        1.8954        2.9109          0.00     0.00     0.00
+      155   4.1183        2.7517        2.9109          0.00     0.00     0.00
+      156   3.5023        3.5023        2.9109          0.00     0.00     0.00
+      157   2.7517        4.1183        2.9109          0.00     0.00     0.00
+      158   1.8954        4.5760        2.9109          0.00     0.00     0.00
+      159  0.96628        4.8578        2.9109          0.00     0.00     0.00
+      160   4.9291       0.48548        3.2344          0.00     0.00     0.00
+      161   4.8578       0.96628        3.2344          0.00     0.00     0.00
+      162   4.7397        1.4378        3.2344          0.00     0.00     0.00
+      163   4.5760        1.8954        3.2344          0.00     0.00     0.00
+      164   4.3682        2.3348        3.2344          0.00     0.00     0.00
+      165   4.1183        2.7517        3.2344          0.00     0.00     0.00
+      166   3.8287        3.1421        3.2344          0.00     0.00     0.00
+      167   3.5023        3.5023        3.2344          0.00     0.00     0.00
+      168   3.1421        3.8287        3.2344          0.00     0.00     0.00
+      169   2.7517        4.1183        3.2344          0.00     0.00     0.00
+      170   2.3348        4.3682        3.2344          0.00     0.00     0.00
+      171   1.8954        4.5760        3.2344          0.00     0.00     0.00
+      172   1.4378        4.7397        3.2344          0.00     0.00     0.00
+      173  0.96628        4.8578        3.2344          0.00     0.00     0.00
+      174  0.48548        4.9291        3.2344          0.00     0.00     0.00
+      175   4.8578       0.96628        3.5578          0.00     0.00     0.00
+      176   4.5760        1.8954        3.5578          0.00     0.00     0.00
+      177   4.1183        2.7517        3.5578          0.00     0.00     0.00
+      178   3.5023        3.5023        3.5578          0.00     0.00     0.00
+      179   2.7517        4.1183        3.5578          0.00     0.00     0.00
+      180   1.8954        4.5760        3.5578          0.00     0.00     0.00
+      181  0.96628        4.8578        3.5578          0.00     0.00     0.00
+      182   4.9291       0.48548        3.8812          0.00     0.00     0.00
+      183   4.8578       0.96628        3.8812          0.00     0.00     0.00
+      184   4.7397        1.4378        3.8812          0.00     0.00     0.00
+      185   4.5760        1.8954        3.8812          0.00     0.00     0.00
+      186   4.3682        2.3348        3.8812          0.00     0.00     0.00
+      187   4.1183        2.7517        3.8812          0.00     0.00     0.00
+      188   3.8287        3.1421        3.8813          0.00     0.00     0.00
+      189   3.5023        3.5023        3.8813          0.00     0.00     0.00
+      190   3.1421        3.8287        3.8813          0.00     0.00     0.00
+      191   2.7517        4.1183        3.8813          0.00     0.00     0.00
+      192   2.3348        4.3682        3.8813          0.00     0.00     0.00
+      193   1.8954        4.5760        3.8813          0.00     0.00     0.00
+      194   1.4378        4.7397        3.8813          0.00     0.00     0.00
+      195  0.96628        4.8578        3.8813          0.00     0.00     0.00
+      196  0.48548        4.9291        3.8813          0.00     0.00     0.00
+      197   4.8578       0.96628        4.2047          0.00     0.00     0.00
+      198   4.5760        1.8954        4.2047          0.00     0.00     0.00
+      199   4.1183        2.7517        4.2047          0.00     0.00     0.00
+      200   3.5023        3.5023        4.2047          0.00     0.00     0.00
+      201   2.7517        4.1183        4.2047          0.00     0.00     0.00
+      202   1.8954        4.5760        4.2047          0.00     0.00     0.00
+      203  0.96628        4.8578        4.2047          0.00     0.00     0.00
+      204   4.9291       0.48548        4.5281          0.00     0.00     0.00
+      205   4.8578       0.96628        4.5281          0.00     0.00     0.00
+      206   4.7397        1.4378        4.5281          0.00     0.00     0.00
+      207   4.5760        1.8954        4.5281          0.00     0.00     0.00
+      208   4.3682        2.3348        4.5281          0.00     0.00     0.00
+      209   4.1183        2.7517        4.5281          0.00     0.00     0.00
+      210   3.8287        3.1421        4.5281          0.00     0.00     0.00
+      211   3.5023        3.5023        4.5281          0.00     0.00     0.00
+      212   3.1421        3.8287        4.5281          0.00     0.00     0.00
+      213   2.7517        4.1183        4.5281          0.00     0.00     0.00
+      214   2.3348        4.3682        4.5281          0.00     0.00     0.00
+      215   1.8954        4.5760        4.5281          0.00     0.00     0.00
+      216   1.4378        4.7397        4.5281          0.00     0.00     0.00
+      217  0.96628        4.8578        4.5281          0.00     0.00     0.00
+      218  0.48548        4.9291        4.5281          0.00     0.00     0.00
+      219   4.8578       0.96628        4.8516          0.00     0.00     0.00
+      220   4.5760        1.8954        4.8516          0.00     0.00     0.00
+      221   4.1183        2.7517        4.8516          0.00     0.00     0.00
+      222   3.5023        3.5023        4.8516          0.00     0.00     0.00
+      223   2.7517        4.1183        4.8516          0.00     0.00     0.00
+      224   1.8954        4.5760        4.8516          0.00     0.00     0.00
+      225  0.96628        4.8578        4.8516          0.00     0.00     0.00
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h2>Solve<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>Enter solution mode and solve the system. Print the solver output.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">solve_procedure</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  MAPDL SOLVE    COMMAND  *****
+
+ TRANSFER SOLID MODEL BOUNDARY CONDITIONS TO FINITE ELEMENT MODEL
+      FORCES         TRANSFERRED FROM KEYPOINTS     =      1
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ There is no title defined for this analysis.
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+                ---GIVE SUGGESTIONS ONLY---
+
+ ELEMENT TYPE         1 IS SHELL281. IT IS ASSOCIATED WITH ELASTOPLASTIC
+ MATERIALS ONLY. KEYOPT(8)=2 IS SUGGESTED.
+
+
+   *****MAPDL VERIFICATION RUN ONLY*****
+     DO NOT USE RESULTS FOR PRODUCTION
+
+                       S O L U T I O N   O P T I O N S
+
+   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D
+   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ
+   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
+   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Present time 0 is less than or equal to the previous time.  Time will
+ default to 1.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ The conditions for direct assembly have been met.  No .emat or .erot
+ files will be produced.
+
+                      L O A D   S T E P   O P T I O N S
+
+   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1
+   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000
+   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1
+   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO
+   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT
+   DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN
+                                                  FOR THE LAST SUBSTEP
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Predictor is ON by default for structural elements with rotational
+ degrees of freedom.  Use the PRED,OFF command to turn the predictor
+ OFF if it adversely affects the convergence.
+
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 3034922.21 at element 0.
+ Minimum = 3034922.21 at element 0.
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        64  SHELL281      0.000   0.000000
+ Time at end of element matrix formulation CP = 0.
+
+ SPARSE MATRIX DIRECT SOLVER.
+  Number of equations =        1199,    Maximum wavefront =      0
+  Memory available (MB) =    0.0    ,  Memory required (MB) =    0.0
+
+ Sparse solver maximum pivot= 0 at node 0 .
+ Sparse solver minimum pivot= 0 at node 0 .
+ Sparse solver minimum pivot in absolute value= 0 at node 0 .
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        64  SHELL281      0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        64  SHELL281      0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>Post-processing<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>Enter post-processing for the model with elements <code class="docutils literal notranslate"><span class="pre">shell281</span></code>.
+Plotting nodal displacement.
+Get the the radial displacement at the node where force F is applied.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">post_processing</span><span class="p">()</span>
+<span class="n">plot_nodal_disp</span><span class="p">()</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">top_node_281</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_shell_281</span></a> <span class="o">=</span> <span class="n">get_displacements</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_vm-006-pinched_cylinder_007.png" srcset="../../../_images/sphx_glr_vm-006-pinched_cylinder_007.png" alt="vm 006 pinched cylinder" class = "sphx-glr-single-img"/></section>
+<section id="check-results">
+<h2>Check Results<a class="headerlink" href="#check-results" title="Permalink to this heading">#</a></h2>
+<p>Now we have the deflections, we can compare them to the expected values
+of radial deflection at the node where force <span class="math notranslate nohighlight">\(F\)</span> was applied
+for both simulations. The expected value for <span class="math notranslate nohighlight">\(\delta_{\mathrm{shell181}}\)</span> is 0.1139,
+and <span class="math notranslate nohighlight">\(\delta_{\mathrm{shell281}}\)</span> is 0.1139.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Results obtained by hand-calculations.</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_target_181</span></a> <span class="o">=</span> <span class="mf">0.1139</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_target_281</span></a> <span class="o">=</span> <span class="mf">0.1139</span>
+
+<span class="c1"># Calculate the deviation.</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_ratio_shell_181</span></a> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_shell_181</span></a><span class="p">)</span> <span class="o">/</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_target_181</span></a>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_ratio_shell_281</span></a> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_shell_281</span></a><span class="p">)</span> <span class="o">/</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_target_281</span></a>
+
+<span class="c1"># Print output results.</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">output</span></a> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">----------------------------------------------------------------------------</span>
+<span class="s2">------------------------- VM3 RESULTS COMPARISON ---------------------------</span>
+<span class="s2">----------------------------------------------------------------------------</span>
+<span class="s2">                            |   TARGET   |   Mechanical APDL   |   RATIO   |</span>
+<span class="s2">----------------------------------------------------------------------------</span>
+<span class="s2">    Deflection, in SHELL181</span><span class="si">{</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_target_181</span></a><span class="si">:</span><span class="s2">11.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_shell_181</span></a><span class="p">)</span><span class="si">:</span><span class="s2">17.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_ratio_shell_181</span></a><span class="si">:</span><span class="s2">15.3f</span><span class="si">}</span>
+<span class="s2">    Deflection, in SHELL281</span><span class="si">{</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_target_281</span></a><span class="si">:</span><span class="s2">11.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_shell_281</span></a><span class="p">)</span><span class="si">:</span><span class="s2">17.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">deflect_ratio_shell_281</span></a><span class="si">:</span><span class="s2">15.3f</span><span class="si">}</span>
+<span class="s2">----------------------------------------------------------------------------</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">output</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>----------------------------------------------------------------------------
+------------------------- VM3 RESULTS COMPARISON ---------------------------
+----------------------------------------------------------------------------
+                            |   TARGET   |   Mechanical APDL   |   RATIO   |
+----------------------------------------------------------------------------
+    Deflection, in SHELL181     0.1139            0.1100           0.965
+    Deflection, in SHELL281     0.1139            0.1137           0.998
+----------------------------------------------------------------------------
+</pre></div>
+</div>
+<p>stop mapdl</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  3.479 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-06-verif-manual-vm-006-pinched-cylinder-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/67d392adcde641261b383b6161b41103/vm-006-pinched_cylinder.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">vm-006-pinched_cylinder.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/c775f17538808920f0566b2dde422875/vm-006-pinched_cylinder.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">vm-006-pinched_cylinder.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-mapdl">
+   Start MAPDL
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initiate-pre-processing">
+   Initiate Pre-Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-element-type">
+   Define Element Type
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-material">
+   Define Material
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-section">
+   Define Section
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-geometry">
+   Define Geometry
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#meshing">
+   Meshing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-boundary-conditions">
+   Define Boundary Conditions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-distributed-loads">
+   Define Distributed Loads
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solve">
+   Solve
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing">
+   Post-processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting">
+   Plotting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-the-radial-displacements">
+   Getting the radial displacements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rerun-model-with-shell281">
+   Rerun Model with SHELL281
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Solve
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   Post-processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#check-results">
+   Check Results
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../../_sources/examples/gallery_examples/06-verif-manual/vm-006-pinched_cylinder.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+
+:orphan:
+
+.. _sphx_glr_examples_gallery_examples_03-tips-n-tricks_sg_execution_times:
+
+
+Computation times
+=================
+**00:05.183** total execution time for **examples_gallery_examples_03-tips-n-tricks** files:
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_03-tips-n-tricks_01-smoothing-element-size-transitions.py` (``01-smoothing-element-size-transitions.py``) | 00:01.697 | 0.0 MB |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_03-tips-n-tricks_03-using_inline_functions_and_Query.py` (``03-using_inline_functions_and_Query.py``)     | 00:01.509 | 0.0 MB |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_03-tips-n-tricks_04-rotational-displacement.py` (``04-rotational-displacement.py``)                       | 00:01.030 | 0.0 MB |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_03-tips-n-tricks_00-example-template.py` (``00-example-template.py``)                                     | 00:00.947 | 0.0 MB |
++----------------------------------------------------------------------------------------------------------------------------------------------------+-----------+--------+

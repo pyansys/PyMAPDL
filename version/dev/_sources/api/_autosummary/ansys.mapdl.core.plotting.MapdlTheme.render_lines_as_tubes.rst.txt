@@ -1,0 +1,6 @@
+render\_lines\_as\_tubes
+========================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.render_lines_as_tubes

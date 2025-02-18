@@ -1,0 +1,6 @@
+﻿bsax
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.bsax

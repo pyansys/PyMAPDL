@@ -1,0 +1,6 @@
+trame
+=====
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.trame

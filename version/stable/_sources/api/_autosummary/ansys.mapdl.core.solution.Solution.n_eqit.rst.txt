@@ -1,0 +1,6 @@
+n\_eqit
+=======
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.n_eqit

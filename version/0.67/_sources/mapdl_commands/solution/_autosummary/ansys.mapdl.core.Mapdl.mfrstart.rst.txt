@@ -1,0 +1,6 @@
+﻿mfrstart
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.mfrstart

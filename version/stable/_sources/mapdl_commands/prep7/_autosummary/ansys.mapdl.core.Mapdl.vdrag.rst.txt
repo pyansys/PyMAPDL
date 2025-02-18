@@ -1,0 +1,6 @@
+﻿vdrag
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.vdrag

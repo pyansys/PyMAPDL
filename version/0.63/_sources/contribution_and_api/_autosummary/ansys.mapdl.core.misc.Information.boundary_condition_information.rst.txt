@@ -1,0 +1,6 @@
+﻿boundary\_condition\_information
+================================
+
+.. currentmodule:: ansys.mapdl.core.misc
+
+.. autoproperty:: Information.boundary_condition_information

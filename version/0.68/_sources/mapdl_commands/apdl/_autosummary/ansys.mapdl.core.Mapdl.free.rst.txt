@@ -1,0 +1,6 @@
+﻿free
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.free

@@ -1,0 +1,6 @@
+﻿plnear
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.plnear

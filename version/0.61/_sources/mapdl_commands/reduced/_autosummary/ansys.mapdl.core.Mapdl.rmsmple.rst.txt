@@ -1,0 +1,6 @@
+﻿rmsmple
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.rmsmple

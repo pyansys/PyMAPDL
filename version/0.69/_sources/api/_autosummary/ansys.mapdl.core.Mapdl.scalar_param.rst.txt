@@ -1,0 +1,6 @@
+﻿scalar\_param
+=============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.scalar_param

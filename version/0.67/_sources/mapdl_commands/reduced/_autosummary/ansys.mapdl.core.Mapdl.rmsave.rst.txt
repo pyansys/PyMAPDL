@@ -1,0 +1,6 @@
+﻿rmsave
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.rmsave

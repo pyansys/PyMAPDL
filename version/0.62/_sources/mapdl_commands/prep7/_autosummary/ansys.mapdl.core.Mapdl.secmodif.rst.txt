@@ -1,0 +1,6 @@
+﻿secmodif
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.secmodif

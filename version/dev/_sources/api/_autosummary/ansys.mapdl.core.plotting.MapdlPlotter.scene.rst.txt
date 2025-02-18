@@ -1,0 +1,6 @@
+scene
+=====
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlPlotter.scene

@@ -1,0 +1,44 @@
+
+
+.. _sphx_glr_examples_gallery_examples_04-general-fea:
+
+Academic Finite Element Examples
+================================
+These examples demonstrate finite element method as applicable to
+Python and MAPDL while emphasising Python libaries such as `matplotlib
+<https://matplotlib.org/>`_
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="To illustrate it with a concrete example, we take a 2D element described by the following (x, y...">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/04-general-fea/images/thumb/sphx_glr_00-how_finite_element_works_thumb.png
+    :alt: Build a Finite Element
+
+  :ref:`sphx_glr_examples_gallery_examples_04-general-fea_00-how_finite_element_works.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Build a Finite Element</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/gallery_examples/04-general-fea/00-how_finite_element_works
+

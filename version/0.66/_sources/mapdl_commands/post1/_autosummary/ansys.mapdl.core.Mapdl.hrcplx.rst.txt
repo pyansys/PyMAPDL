@@ -1,0 +1,6 @@
+﻿hrcplx
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.hrcplx

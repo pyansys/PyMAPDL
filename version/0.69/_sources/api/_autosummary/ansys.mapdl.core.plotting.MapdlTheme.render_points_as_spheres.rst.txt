@@ -1,0 +1,6 @@
+render\_points\_as\_spheres
+===========================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.render_points_as_spheres

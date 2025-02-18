@@ -1,0 +1,6 @@
+﻿calc
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.calc

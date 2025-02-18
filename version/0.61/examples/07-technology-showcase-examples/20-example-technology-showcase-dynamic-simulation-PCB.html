@@ -1,0 +1,2251 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Dynamic simulation of a printed circuit board assembly &#8212; PyMAPDL</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    
+        <link href="../../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/07-technology-showcase-examples/20-example-technology-showcase-dynamic-simulation-PCB';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.61';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Contributing" href="../../contributing.html" />
+    <link rel="prev" title="Bending of a Tee-Shaped Beam" href="../06-verif-manual/vm-010-bending_of_a_t-shaped_beam.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="None">
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/07-technology-showcase-examples/20-example-technology-showcase-dynamic-simulation-PCB.html" />
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      <!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+    
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.61  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../../index.html">PyMAPDL</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Examples</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Dynamic simulation of a printed circuit board assembly</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.61  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/2d_plate_with_a_hole.html">MAPDL 2D Plane Stress Concentration Analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/2d_pressure_vessel.html">2D Pressure Vessel</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/3d_plate_thermal.html">Basic Thermal Analysis with pyMAPDL</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/contact_elements.html">Contact Element Example</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/geometry.html">Plotting and Mesh Access</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/path_operations.html">Path Operations within pyMAPDL and MAPDL</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/pressure_vessel.html">Pressure Vessel</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/pyvista_mesh.html">PyVista Mesh Integration</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/transient_thermal.html">Example Thermal Transient Analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-apdlmath-examples/basic_operations.html">PyMAPDL APDLMath Basic Operations</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-apdlmath-examples/eigen_solve.html">Using APDLMath to solve Eigenproblems</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-apdlmath-examples/explore_mapdl_files.html">Binary MAPDL File Explorer</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-apdlmath-examples/mapdl_vs_scipy.html">Compute Eigenvalues using MAPDL or SciPy</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-apdlmath-examples/scipy_sparse_matrix.html">Transfer APDLMath Sparse Matrices to and from SciPy Sparse Matrices</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-apdlmath-examples/solve_dense_matrix.html">Use APDLMath to Solve a Dense Matrix Linear System</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-apdlmath-examples/solve_sparse_matrix.html">Use APDLMath To Perform Sparse Factorization and Solve Operations</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-apdlmath-examples/use_numpy_arrays.html">Manipulate APDLMath vectors or dense matrices as NumPy Arrays</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-geometry/00-keypoints.html">Keypoints</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-geometry/01-lines.html">Lines</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-geometry/02-areas.html">Areas</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-geometry/03-volumes.html">Volumes</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02-geometry/04-primitives.html">Primitives</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03-tips-n-tricks/00-example-template.html">Adding a New Gallery Example</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03-tips-n-tricks/01-smoothing-element-size-transitions.html">MAPDL Element Size Transition Example</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03-tips-n-tricks/03-using_inline_functions_and_Query.html">Using Inline Functions (Query)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../03-tips-n-tricks/04-rotational-displacement.html">Generating and Extracting Rotational Displacement</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../04-general-fea/00-how_finite_element_works.html">Build a Finite Element</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../06-verif-manual/vm-001-statically_indeterminate_reaction_force_analysis.html">Statically Indeterminate Reaction Force Analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../06-verif-manual/vm-002-beam_stresses_and_deflections.html">Beam Stresses and Deflections</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../06-verif-manual/vm-003-thermally_loaded_support_structure.html">Thermally Loaded Support Structure</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../06-verif-manual/vm-004-deflection_of_a_hinged_support.html">Deflection of a Hinged Support</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../06-verif-manual/vm-005-laterally_loaded_tapered_support_structure.html">Statically Indeterminate Reaction Force Analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../06-verif-manual/vm-006-pinched_cylinder.html">Pinched Cylinder</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../06-verif-manual/vm-007-plastic_compression_of_a_pipe_assembly.html">Plastic Compression of a Pipe Assembly</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../06-verif-manual/vm-008-parametric_calculation.html">Parametric Calculation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../06-verif-manual/vm-009-large_lateral_deflection_of_unequal_stiffness_springs.html">Large Lateral Deflection of Unequal Stiffness Springs</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../06-verif-manual/vm-010-bending_of_a_t-shaped_beam.html">Bending of a Tee-Shaped Beam</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Dynamic simulation of a printed circuit board assembly</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-07-technology-showcase-examples-20-example-technology-showcase-dynamic-simulation-pcb-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="dynamic-simulation-of-a-printed-circuit-board-assembly">
+<span id="ref-dynamic-simulation-printed-circuit-board"></span><span id="sphx-glr-examples-07-technology-showcase-examples-20-example-technology-showcase-dynamic-simulation-pcb-py"></span><h1>Dynamic simulation of a printed circuit board assembly<a class="headerlink" href="#dynamic-simulation-of-a-printed-circuit-board-assembly" title="Permalink to this headline">#</a></h1>
+<p>This examples shows how to use PyMAPDL to import an existing FE model and to
+run a modal and PSD analysis. PyDPF modules are also used for post-processing.</p>
+<p>This example is inspired from the model and analysis defined in Chapter 20 of
+the Mechanical APDL Technology Showcase Manual.</p>
+<section id="additional-packages-used">
+<h2>Additional Packages Used<a class="headerlink" href="#additional-packages-used" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://matplotlib.org">Matplotlib</a> is used for plotting purposes.</p></li>
+</ul>
+</section>
+<section id="starting-mapdl-as-a-service-and-importing-an-external-model">
+<h2>Starting MAPDL as a service and importing an external model<a class="headerlink" href="#starting-mapdl-as-a-service-and-importing-an-external-model" title="Permalink to this headline">#</a></h2>
+<p>The original FE model is given in the Ansys Mechanical APDL Technology
+Showcase Manual.  The .cdb contains a FE model of a single circuit board. The
+model is meshed with SOLID186, SHELL181 and BEAM188 elements. All components
+of the PCB model is assigned with linear elastic isotropic materials. Bonded
+and flexible surface-to-surface contact pairs are used to define the contact
+between the IC packages and the circuit board.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core.examples</span> <span class="kn">import</span> <span class="n">download_tech_demo_data</span>
+
+<span class="c1"># start MAPDL as a service</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="p">)</span>
+
+<span class="c1"># read model of single circuit board</span>
+<span class="c1"># download the cdb file</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pcb_mesh_file</span></a> <span class="o">=</span> <span class="n">download_tech_demo_data</span><span class="p">(</span><span class="s2">&quot;td-20&quot;</span><span class="p">,</span> <span class="s2">&quot;pcb_mesh_file.cdb&quot;</span><span class="p">)</span>
+
+<span class="c1"># enter preprocessor and read in cdb</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cdread</span><span class="p">(</span><span class="s2">&quot;COMB&quot;</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pcb_mesh_file</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_001.png" srcset="../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_001.png" alt="20 example technology showcase dynamic simulation PCB" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Product:             Ansys Mechanical Enterprise
+MAPDL Version:       21.2
+ansys.mapdl Version: 0.61.7
+
+
+&#39;ALSO SELECT ALL COMPONENTS&#39;
+</pre></div>
+</div>
+</section>
+<section id="creating-the-complete-layered-model">
+<h2>Creating the complete layered model<a class="headerlink" href="#creating-the-complete-layered-model" title="Permalink to this headline">#</a></h2>
+<p>The original model will be duplicated to create a layered PCB of three layers
+that are binded together.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># duplicate single PCB to get three layers</span>
+<span class="c1"># get the maximum node number for the single layers PCB in the input file</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">max_nodenum</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max_nodenum&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">)</span>
+
+<span class="c1"># generate additional PCBs offset by 20 mm in the -y direction</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">egen</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">max_nodenum</span></a><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">dy</span><span class="o">=-</span><span class="mi">20</span><span class="p">)</span>
+
+
+<span class="c1"># bind the three layers together</span>
+<span class="c1"># select components of interest</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;N_JOINT_BOARD&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;N_JOINT_LEGS&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;N_BASE&quot;</span><span class="p">)</span>
+
+<span class="c1"># get number of currently selected nodes</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nb_selected_nodes</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">n_node</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">current_node</span></a> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">queries</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">queries</span>
+
+<span class="c1"># also select similar nodes for copies of the single PCB</span>
+<span class="c1"># and couple all dofs at the interface</span>
+<span class="k">for</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">node_id</span></a> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nb_selected_nodes</span></a> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">current_node</span></a> <span class="o">=</span> <span class="n">queries</span><span class="o">.</span><span class="n">ndnext</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">current_node</span></a><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">current_node</span></a> <span class="o">+</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">max_nodenum</span></a><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">current_node</span></a> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">max_nodenum</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cpintf</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+
+<span class="c1"># define fixed support boundary condition</span>
+<span class="c1"># get max coupled set number</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cp_max</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cp_max&quot;</span><span class="p">,</span> <span class="s2">&quot;cp&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">)</span>
+
+<span class="c1"># unselect nodes scoped in CP equations</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;cp&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;cp_max&quot;</span><span class="p">)</span>
+
+<span class="c1"># create named selection for base excitation</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cm</span><span class="p">(</span><span class="s2">&quot;n_base_excite&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">)</span>
+
+<span class="c1"># fix displacement for base excitation nodes</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>
+
+<span class="c1"># select all and plot the model using MAPDL&#39;s plotter and VTK&#39;s</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">graphics</span><span class="p">(</span><span class="s2">&quot;power&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">triad</span><span class="p">(</span><span class="s2">&quot;rbot&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pnum</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">number</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">hbc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;on&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pbc</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_002.png" srcset="../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_002.png" alt="20 example technology showcase dynamic simulation PCB" class = "sphx-glr-single-img"/></section>
+<section id="run-modal-analysis">
+<h2>Run modal analysis<a class="headerlink" href="#run-modal-analysis" title="Permalink to this headline">#</a></h2>
+<p>A modal analysis is run using Block Lanzos.
+Only 10 modes are extracted for the sake of run times, but using a higher
+number of nodes is recommended (suggestion: 300 modes).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># enter solution processor and define analysis settings</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s2">&quot;modal&quot;</span><span class="p">)</span>
+<span class="c1"># set number of modes to extract</span>
+<span class="c1"># using a higher number of modes is recommended</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nb_modes</span></a> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># use Block Lanzos to extract specified number of modes</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">modopt</span><span class="p">(</span><span class="s2">&quot;lanb&quot;</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nb_modes</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mxpand</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nb_modes</span></a><span class="p">)</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">output</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">output</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  ANSYS SOLVE    COMMAND  *****
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ There is no title defined for this analysis.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ To view 3-D mode shapes of beam or pipe elements, expand the modes with
+ element results calculation active via the MXPAND command&#39;s
+ Elcalc=YES.
+
+ *** WARNING ***                         CP =       0.000   TIME= 00:00:00
+ Previous testing revealed that 3 of the 26046 selected elements violate
+ shape warning limits.  To review warning messages, please see the
+ output or error file, or issue the CHECK command.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ The model data was checked and warning messages were found.
+  Please review output or errors file ( ) for these warning messages.
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+                ---GIVE SUGGESTIONS ONLY---
+
+ ELEMENT TYPE         1 IS BEAM188 . KEYOPT(3) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         1 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         2 IS BEAM188 . KEYOPT(3) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         2 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         3 IS BEAM188 . KEYOPT(3) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         3 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         4 IS BEAM188 . KEYOPT(3) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         4 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         5 IS BEAM188 . KEYOPT(3) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         5 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         6 IS SHELL181. IT IS ASSOCIATED WITH ELASTOPLASTIC
+ MATERIALS ONLY. KEYOPT(8)=2 IS SUGGESTED AND KEYOPT(3)=2 IS SUGGESTED FOR
+ HIGHER ACCURACY OF MEMBRANE STRESSES; OTHERWISE, KEYOPT(3)=0 IS SUGGESTED.
+
+ ELEMENT TYPE         6 HAS KEYOPT(3)=2. FOR THE SPECIFIED ANALYSIS TYPE, LUMPED MASS
+ MATRIX OPTION (LUMPM, ON) IS SUGGESTED.
+
+ ELEMENT TYPE         7 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE         8 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE         9 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        10 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        11 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        12 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        13 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        14 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        15 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        16 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        17 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        18 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        19 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        20 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        21 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+
+   *****ANSYS VERIFICATION RUN ONLY*****
+     DO NOT USE RESULTS FOR PRODUCTION
+
+                       S O L U T I O N   O P T I O N S
+
+   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D
+   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ
+   ANALYSIS TYPE . . . . . . . . . . . . . . . . .MODAL
+      EXTRACTION METHOD. . . . . . . . . . . . . .BLOCK LANCZOS
+   NUMBER OF MODES TO EXTRACT. . . . . . . . . . .    10
+   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
+   NUMBER OF MODES TO EXPAND . . . . . . . . . . .    10
+   ELEMENT RESULTS CALCULATION . . . . . . . . . .OFF
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ SHELL181 and SHELL281 will not support real constant input at a future
+ release.  Please move to section input.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ The conditions for direct assembly have been met.  No .emat or .erot
+ files will be produced.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Internal nodes from 43998 to 44297 are created.
+ 300 internal nodes are used for quadratic and/or cubic options of
+ BEAM188, PIPE288, and/or SHELL208.
+
+                      L O A D   S T E P   O P T I O N S
+
+   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1
+   THERMAL STRAINS INCLUDED IN THE LOAD VECTOR . .   YES
+   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT
+   DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 22 and contact element type 22 has been set up.  The
+ companion pair has real constant set ID 23.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.0609
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 23 and contact element type 22 has been set up.  The
+ companion pair has real constant set ID 22.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.6035
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 24 and contact element type 24 has been set up.  The
+ companion pair has real constant set ID 25.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.7893
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 25 and contact element type 24 has been set up.  The
+ companion pair has real constant set ID 24.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.6670
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 26 and contact element type 26 has been set up.  The
+ companion pair has real constant set ID 27.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.4344
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 27 and contact element type 26 has been set up.  The
+ companion pair has real constant set ID 26.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.2769
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 28 and contact element type 28 has been set up.  The
+ companion pair has real constant set ID 29.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.2044
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 29 and contact element type 28 has been set up.  The
+ companion pair has real constant set ID 28.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.8833
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 30 and contact element type 30 has been set up.  The
+ companion pair has real constant set ID 31.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.6992
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 31 and contact element type 30 has been set up.  The
+ companion pair has real constant set ID 30.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.7212
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 32 and contact element type 32 has been set up.  The
+ companion pair has real constant set ID 33.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.1818
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 33 and contact element type 32 has been set up.  The
+ companion pair has real constant set ID 32.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.7511
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 34 and contact element type 34 has been set up.  The
+ companion pair has real constant set ID 35.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.2093
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 35 and contact element type 34 has been set up.  The
+ companion pair has real constant set ID 34.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.7849
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 36 and contact element type 36 has been set up.  The
+ companion pair has real constant set ID 37.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.8622
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 37 and contact element type 36 has been set up.  The
+ companion pair has real constant set ID 36.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.7993
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 38 and contact element type 38 has been set up.  The
+ companion pair has real constant set ID 39.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.2658
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 39 and contact element type 38 has been set up.  The
+ companion pair has real constant set ID 38.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.8514
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 40 and contact element type 40 has been set up.  The
+ companion pair has real constant set ID 41.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.8593
+ Average contact pair depth                    4.0000
+ Pinball region factor PINB                    1.0000
+ The resulting pinball region                  4.0000
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ One of the contact searching regions contains at least 63 target
+ elements.  You may reduce the pinball radius.
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 41 and contact element type 40 has been set up.  The
+ companion pair has real constant set ID 40.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                1.8845
+ Average contact pair depth                    2.5000
+ Pinball region factor PINB                    1.0000
+ The resulting pinball region                  2.5000
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 42 and contact element type 42 has been set up.  The
+ companion pair has real constant set ID 43.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.2391
+ Average contact pair depth                    4.0000
+ Pinball region factor PINB                    1.0000
+ The resulting pinball region                  4.0000
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 43 and contact element type 42 has been set up.  The
+ companion pair has real constant set ID 42.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.4761
+ Average contact pair depth                    2.5000
+ Pinball region factor PINB                    1.0000
+ The resulting pinball region                  2.5000
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 44 and contact element type 44 has been set up.  The
+ companion pair has real constant set ID 45.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.3552
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 45 and contact element type 44 has been set up.  The
+ companion pair has real constant set ID 44.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.7967
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 46 and contact element type 46 has been set up.  The
+ companion pair has real constant set ID 47.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.1237
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 47 and contact element type 46 has been set up.  The
+ companion pair has real constant set ID 46.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.5685
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 48 and contact element type 48 has been set up.  The
+ companion pair has real constant set ID 49.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.0637
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 49 and contact element type 48 has been set up.  The
+ companion pair has real constant set ID 48.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.8027
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 50 and contact element type 50 has been set up.  The
+ companion pair has real constant set ID 51.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.2471
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 51 and contact element type 50 has been set up.  The
+ companion pair has real constant set ID 50.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.6964
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       0.000   TIME= 00:00:00
+ Max.  Initial penetration 0 was detected between contact element 0 and
+ target element 0.
+ ****************************************
+
+
+
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.25166E-03    0.0000        0.0000     |     0.0000       0.34581E-01   0.50068E-02
+         0.0000       0.25166E-03    0.0000     |   -0.34581E-01    0.0000       0.25711E-01
+         0.0000        0.0000       0.25166E-03 |   -0.50068E-02  -0.25711E-01    0.0000
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |     6.4515       0.51185       -3.5215
+                                                |    0.51185        9.6801       0.68875
+                                                |    -3.5215       0.68875        3.5678
+
+   TOTAL MASS = 0.25166E-03
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    102.17       -19.895        137.41
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+         1.5999       0.32438E-03   0.11573E-01
+        0.32438E-03    2.3014       0.74412E-03
+        0.11573E-01   0.74412E-03   0.84133
+
+   PRINCIPAL INERTIAS =    1.6001        2.3014       0.84115
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 1.000,-0.000, 0.015) ( 0.000, 1.000, 0.001) (-0.015,-0.001, 1.000)
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.326079E-05
+     2  0.326079E-05
+     3  0.326079E-05
+     4  0.326079E-05
+     5  0.326079E-05
+     6  0.159600E-03
+     7  0.429027E-05
+     8  0.777647E-05
+     9  0.197978E-05
+    10  0.735761E-05
+    11  0.186775E-05
+    12  0.704400E-05
+    13  0.696150E-05
+    14  0.368481E-05
+    15  0.459882E-05
+    16  0.330798E-05
+    17  0.197978E-05
+    18  0.111823E-04
+    19  0.391721E-05
+    20  0.411780E-05
+    21  0.568872E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 11792803.9 at element 0.
+ Minimum = 528.07874 at element 0.
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        60  BEAM188       0.000   0.000000
+        2        60  BEAM188       0.000   0.000000
+        3        60  BEAM188       0.000   0.000000
+        4        60  BEAM188       0.000   0.000000
+        5        60  BEAM188       0.000   0.000000
+        6     13038  SHELL181      0.000   0.000000
+        7       252  SOLID186      0.000   0.000000
+        8       432  SOLID186      0.000   0.000000
+        9       168  SOLID186      0.000   0.000000
+       10       396  SOLID186      0.000   0.000000
+       11       108  SOLID186      0.000   0.000000
+       12       384  SOLID186      0.000   0.000000
+       13       384  SOLID186      0.000   0.000000
+       14       210  SOLID186      0.000   0.000000
+       15       270  SOLID186      0.000   0.000000
+       16       408  SOLID186      0.000   0.000000
+       17       150  SOLID186      0.000   0.000000
+       18       588  SOLID186      0.000   0.000000
+       19       240  SOLID186      0.000   0.000000
+       20       216  SOLID186      0.000   0.000000
+       21       324  SOLID186      0.000   0.000000
+       22       228  CONTA174      0.000   0.000000
+       23       228  TARGE170      0.000   0.000000
+       24       435  CONTA174      0.000   0.000000
+       25       435  TARGE170      0.000   0.000000
+       26       156  CONTA174      0.000   0.000000
+       27       156  TARGE170      0.000   0.000000
+       28       354  CONTA174      0.000   0.000000
+       29       354  TARGE170      0.000   0.000000
+       30       108  CONTA174      0.000   0.000000
+       31       108  TARGE170      0.000   0.000000
+       32       348  CONTA174      0.000   0.000000
+       33       348  TARGE170      0.000   0.000000
+       34       342  CONTA174      0.000   0.000000
+       35       342  TARGE170      0.000   0.000000
+       36       204  CONTA174      0.000   0.000000
+       37       204  TARGE170      0.000   0.000000
+       38       234  CONTA174      0.000   0.000000
+       39       234  TARGE170      0.000   0.000000
+       40       300  CONTA174      0.000   0.000000
+       41       300  TARGE170      0.000   0.000000
+       42       159  CONTA174      0.000   0.000000
+       43       159  TARGE170      0.000   0.000000
+       44       519  CONTA174      0.000   0.000000
+       45       519  TARGE170      0.000   0.000000
+       46       210  CONTA174      0.000   0.000000
+       47       210  TARGE170      0.000   0.000000
+       48       204  CONTA174      0.000   0.000000
+       49       204  TARGE170      0.000   0.000000
+       50       288  CONTA174      0.000   0.000000
+       51       288  TARGE170      0.000   0.000000
+ Time at end of element matrix formulation CP = 0.
+
+  BLOCK LANCZOS CALCULATION OF UP TO    10 EIGENVECTORS.
+  NUMBER OF EQUATIONS              =       159678
+  MAXIMUM WAVEFRONT                =            0
+  MAXIMUM MODES STORED             =           10
+  MINIMUM EIGENVALUE               =  0.00000E+00
+  MAXIMUM EIGENVALUE               =  0.10000E+31
+
+  Memory available (MB) =    0.0    ,  Memory required (MB) =    0.0
+
+   *****ANSYS VERIFICATION RUN ONLY*****
+     DO NOT USE RESULTS FOR PRODUCTION
+
+ *** FREQUENCIES FROM BLOCK LANCZOS ITERATION ***
+
+  MODE    FREQUENCY (HERTZ)
+
+
+    1     21.68428282375
+    2     21.69024199086
+    3     21.69131650854
+    4     33.82973502134
+    5     33.83798485488
+    6     33.83938717689
+    7     37.06064329411
+    8     37.07091158497
+    9     37.07187102346
+   10     43.83753551689
+</pre></div>
+</div>
+</section>
+<section id="post-processing-the-modal-results">
+<h2>Post-processing the modal results<a class="headerlink" href="#post-processing-the-modal-results" title="Permalink to this headline">#</a></h2>
+<p>This sections illustrates different methods to post-process the results of the
+modal analysis : PyMAPDL method, PyMAPDL result reader, PyDPF-Post
+and PyDPF-Core. All methods lead to the same result and are just given as an
+example of how each module can be used.
+The methods using DPF modules are commented in the code due to CI/CD issues
+but will run locally if uncommented.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># using MAPDL methods</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">plnsol</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+
+<span class="c1"># using PyMAPDL result reader</span>
+<span class="n">mapdl_result</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">result</span>
+<span class="n">mapdl_result</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Using DPF-Post</span>
+
+<span class="c1"># from ansys.dpf import post</span>
+<span class="c1"># solution_path = &#39;file.rst&#39;</span>
+<span class="c1"># solution = post.load_solution(solution_path)</span>
+<span class="c1"># print(solution)</span>
+<span class="c1"># displacement = solution.displacement(time_scoping=1)</span>
+<span class="c1"># total_deformation = displacement.norm</span>
+<span class="c1"># total_deformation.plot_contour(show_edges=True)</span>
+
+<span class="c1"># Using DPF-Core</span>
+
+<span class="c1"># from ansys.dpf import core</span>
+<span class="c1"># model = core.Model(solution_path)</span>
+<span class="c1"># results = model.results</span>
+<span class="c1"># print(results)</span>
+<span class="c1"># displacements = results.displacement()</span>
+<span class="c1"># total_def = core.operators.math.norm_fc(displacements)</span>
+<span class="c1"># total_def_container = total_def.outputs.fields_container()</span>
+<span class="c1"># mesh = model.metadata.meshed_region</span>
+<span class="c1"># mesh.plot(total_def_container.get_field_by_time_id(1))</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_003.png" srcset="../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_003.png" alt="20 example technology showcase dynamic simulation PCB" class = "sphx-glr-single-img"/></section>
+<section id="run-psd-analysis">
+<h2>Run PSD analysis<a class="headerlink" href="#run-psd-analysis" title="Permalink to this headline">#</a></h2>
+<p>The response spectrum analysis is defined, solved and post-processed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># define PSD analysis with input spectrum</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s2">&quot;spectr&quot;</span><span class="p">)</span>
+
+<span class="c1"># power spectral density</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">spopt</span><span class="p">(</span><span class="s2">&quot;psd&quot;</span><span class="p">)</span>
+
+<span class="c1"># use input table 1 with acceleration spectrum in terms of acceleration due to gravity</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdunit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;accg&quot;</span><span class="p">,</span> <span class="mf">9.81</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># define the frequency points in the input table 1</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdfrq</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">70.71678</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">900</span><span class="p">)</span>
+
+<span class="c1"># define the PSD values in the input table 1</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># set the damping ratio as 5%</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">dmprat</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># apply base excitation on the set of nodes N_BASE_EXCITE in the y-direction from table 1</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;N_BASE_EXCITE&quot;</span><span class="p">,</span> <span class="s2">&quot;uy&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># calculate the participation factor for PSD with base excitation from input table 1</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pfact</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;base&quot;</span><span class="p">)</span>
+
+<span class="c1"># write the displacent solution relative to the base excitation to the results file from the PSD analysis</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdres</span><span class="p">(</span><span class="s2">&quot;disp&quot;</span><span class="p">,</span> <span class="s2">&quot;rel&quot;</span><span class="p">)</span>
+
+<span class="c1"># write the absolute velocity solution to the results file from the PSD analysis</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdres</span><span class="p">(</span><span class="s2">&quot;velo&quot;</span><span class="p">,</span> <span class="s2">&quot;abs&quot;</span><span class="p">)</span>
+
+<span class="c1"># write the absolute acceleration solution to the results file from the PSD analysis</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdres</span><span class="p">(</span><span class="s2">&quot;acel&quot;</span><span class="p">,</span> <span class="s2">&quot;abs&quot;</span><span class="p">)</span>
+
+<span class="c1"># combine only those modes whose significance level exceeds 0.0001</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdcom</span><span class="p">()</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">output</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">output</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  ANSYS SOLVE    COMMAND  *****
+
+ Time at start of random vibration closed-form solution CP= 0.
+
+
+ FREQUENCIES USED FOR RANDOM VIBRATION SOLUTION
+
+  MODE   FREQUENCY
+
+     1    21.6843
+     2    21.6902
+     3    21.6913
+     4    33.8297
+     5    33.8380
+     6    33.8394
+     7    37.0606
+     8    37.0709
+     9    37.0719
+    10    43.8375
+
+ PERFORM INTEGRATION FOR DISPLACEMENT-TYPE QUANTITIES
+
+ PERFORM INTEGRATION FOR VELOCITY-TYPE QUANTITIES
+
+ PERFORM INTEGRATION FOR ACCELERATION-TYPE QUANTITIES
+
+ Modal covariance matrix computed CP= 0.
+
+ Quasi-static modal covariance matrix computed CP= 0.
+
+ Covariant-modal covariance matrix computed CP= 0.
+
+ Psd file created.  CP= 0.
+
+ Time at start of random vibration mode combinations CP= 0.
+
+  BASE EXCITATION PROBLEM
+
+
+ ***** SUMMARY OF OUTPUT QUANTITIES COMPUTED *****
+           AND WRITTEN ON RESULTS FILE
+
+     DISPLACEMENT-TYPE QUANTITIES COMPUTED
+      AND WRITTEN ON RESULTS FILE AS LOAD STEP  3
+      VALUES ARE RELATIVE TO BASE
+
+      THESE ARE STATISTICAL QUANTITIES WHICH
+      CANNOT BE COMBINED OR TRANSFORMED IN ANY
+      VECTORIAL SENSE
+
+
+     VELOCITY-TYPE QUANTITIES COMPUTED
+      AND WRITTEN ON RESULTS FILE AS LOAD STEP  4
+      VALUES ARE ABSOLUTE
+
+      THESE ARE STATISTICAL QUANTITIES WHICH
+      CANNOT BE COMBINED OR TRANSFORMED IN ANY
+      VECTORIAL SENSE
+
+
+     ACCELERATION-TYPE QUANTITIES COMPUTED
+      AND WRITTEN ON RESULTS FILE AS LOAD STEP  5
+      VALUES ARE ABSOLUTE
+
+      THESE ARE STATISTICAL QUANTITIES WHICH
+      CANNOT BE COMBINED OR TRANSFORMED IN ANY
+      VECTORIAL SENSE
+</pre></div>
+</div>
+</section>
+<section id="post-process-psd-analysis">
+<h2>Post-process PSD analysis<a class="headerlink" href="#post-process-psd-analysis" title="Permalink to this headline">#</a></h2>
+<p>The response spectrum analysis is post-processed. First, the standard
+MAPDL POST1 postprocessor is used. Then, the MAPDL time-history
+POST26 postprocessor is used to generate the response power spectral
+density.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The graph generated through POST26 is exported as a picture in the working
+directory. Finally, the results from POST26 are saved to Python variables
+to be plotted in the Python environment with the use of Matplotlib
+library.</p>
+</div>
+</section>
+<section id="post-process-psd-analysis-in-post1">
+<h2>Post-process PSD analysis in POST1<a class="headerlink" href="#post-process-psd-analysis-in-post1" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">plnsol</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">plnsol</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="post-process-psd-analysis-in-post26-time-history-post-processing">
+<h2>Post-process PSD analysis in POST26 (time-history post-processing)<a class="headerlink" href="#post-process-psd-analysis-in-post26-time-history-post-processing" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post26</span><span class="p">()</span>
+
+<span class="c1"># allow storage for 200 variables</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">numvar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;MY_MONITOR&quot;</span><span class="p">)</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">monitored_node</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">queries</span><span class="o">.</span><span class="n">ndnext</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="s2">&quot;psd&quot;</span><span class="p">)</span>
+
+<span class="c1"># store the psd analysis u_y data for the node MYMONITOR as the reference no 2</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsol</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">monitored_node</span></a><span class="p">,</span> <span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+<span class="c1"># compute the response power spectral density for displacement associated with variable 2</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">rpsd</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">&quot;png&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot the variable 3</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">plvar</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># print the variable 3</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prvar</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># x-axis is set for Log X scale</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">gropt</span><span class="p">(</span><span class="s2">&quot;logx&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># y-axis is set for Log X scale</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">gropt</span><span class="p">(</span><span class="s2">&quot;logy&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># plot the variable 3</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">plvar</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="post-process-psd-analysis-using-matplotlib">
+<h2>Post-process PSD analysis using Matplotlib<a class="headerlink" href="#post-process-psd-analysis-using-matplotlib" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># store MAPDL results to python variables</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">dim</span><span class="p">(</span><span class="s2">&quot;frequencies&quot;</span><span class="p">,</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">dim</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">,</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vget</span><span class="p">(</span><span class="s2">&quot;frequencies(1)&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vget</span><span class="p">(</span><span class="s2">&quot;response(1)&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">frequencies</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;frequencies&quot;</span><span class="p">]</span>
+<a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">response</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;response&quot;</span><span class="p">]</span>
+
+<span class="c1"># use Matplotlib to create graph</span>
+<a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure" title="matplotlib.pyplot.figure" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.add_subplot" title="matplotlib.figure.Figure.add_subplot" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span></a><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xscale.html#matplotlib.pyplot.xscale" title="matplotlib.pyplot.xscale" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">xscale</span></a><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.yscale.html#matplotlib.pyplot.yscale" title="matplotlib.pyplot.yscale" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">yscale</span></a><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot" title="matplotlib.axes.Axes.plot" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">frequencies</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">response</span></a><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html#matplotlib.axes.Axes.set_xlabel" title="matplotlib.axes.Axes.set_xlabel" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span></a><span class="p">(</span><span class="s2">&quot;Frequencies&quot;</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html#matplotlib.axes.Axes.set_ylabel" title="matplotlib.axes.Axes.set_ylabel" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span></a><span class="p">(</span><span class="s2">&quot;Response power spectral density&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_004.png" srcset="../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_004.png" alt="20 example technology showcase dynamic simulation PCB" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Text(31.226314019097217, 0.5, &#39;Response power spectral density&#39;)
+</pre></div>
+</div>
+<p>Exit MAPDL</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  56.845 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-07-technology-showcase-examples-20-example-technology-showcase-dynamic-simulation-pcb-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/c4ede7a870ebd23031aa64003acee0cd/20-example-technology-showcase-dynamic-simulation-PCB.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">20-example-technology-showcase-dynamic-simulation-PCB.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/2c26076cb3ced14b8dca81fbcd009ef6/20-example-technology-showcase-dynamic-simulation-PCB.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">20-example-technology-showcase-dynamic-simulation-PCB.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-packages-used">
+   Additional Packages Used
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#starting-mapdl-as-a-service-and-importing-an-external-model">
+   Starting MAPDL as a service and importing an external model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-the-complete-layered-model">
+   Creating the complete layered model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-modal-analysis">
+   Run modal analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing-the-modal-results">
+   Post-processing the modal results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-psd-analysis">
+   Run PSD analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-process-psd-analysis">
+   Post-process PSD analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-process-psd-analysis-in-post1">
+   Post-process PSD analysis in POST1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-process-psd-analysis-in-post26-time-history-post-processing">
+   Post-process PSD analysis in POST26 (time-history post-processing)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-process-psd-analysis-using-matplotlib">
+   Post-process PSD analysis using Matplotlib
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/examples/07-technology-showcase-examples/20-example-technology-showcase-dynamic-simulation-PCB.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

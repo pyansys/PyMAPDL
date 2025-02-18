@@ -1,0 +1,6 @@
+add\_points
+===========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. automethod:: MapdlPlotter.add_points

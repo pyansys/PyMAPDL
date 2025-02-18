@@ -1,0 +1,6 @@
+﻿cp
+==
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.cp

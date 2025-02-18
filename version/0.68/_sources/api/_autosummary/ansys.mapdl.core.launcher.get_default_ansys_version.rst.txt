@@ -1,0 +1,6 @@
+﻿get\_default\_ansys\_version
+============================
+
+.. currentmodule:: ansys.mapdl.core.launcher
+
+.. autofunction:: get_default_ansys_version

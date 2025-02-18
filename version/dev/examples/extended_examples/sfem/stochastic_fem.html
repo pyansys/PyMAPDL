@@ -1,0 +1,1827 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Stochastic finite element method with PyMAPDL &#8212; PyMAPDL</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css?v=572af1d6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css?v=0909a4fa" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=91007d66" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+
+  <!-- Include desired assets -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  
+
+  
+    <link href="../../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../../_static/documentation_options.js?v=e43aecd7"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/extended_examples/sfem/stochastic_fem';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="PyMAPDL Developer Portal articles" href="../../devportal.html" />
+    <link rel="prev" title="Genetic algorithms and PyMAPDL" href="../hpc/hpc_ml_ga.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.69.dev0" />
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/extended_examples/sfem/stochastic_fem.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyMAPDL - Home"/>
+    <img src="../../../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark pst-js-only" alt="PyMAPDL - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../changelog.html">
+    Release notes
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../changelog.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/index.html">Full examples using PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/01-geometry/index.html">Geometry examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/02-tips-n-tricks/index.html">Miscellaneous examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/03-general-fea/index.html">Academic finite element examples</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">Extended examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference external" href="http://cartpole.mapdl.docs.pyansys.com/ml-rl-notebook.html">Cart-Pole Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ex_01-gmsh_example/ex_01-gmsh_example.html">Gmsh example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Python_UPF/python_upf_examples.html">UPF in PyMAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Krylov/krylov_example.html">Harmonic analysis using the frequency-sweep Krylov method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dash/dash_example.html">Use Dash to build a PyMAPDL web app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../executable/executable.html">Create your own Python command-line app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gui/executable.html">Create a GUI app in Python with PySide6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hpc/hpc_ml_ga.html">Genetic algorithms and PyMAPDL</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Stochastic finite element method with PyMAPDL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devportal.html">PyMAPDL Developer Portal articles</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/verif-manual/index.html">Verification Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/technology_showcase_examples/index.html">Technology Showcases</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../../index.html" class="nav-link">Examples</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">Extended examples</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Stochastic finite element method with PyMAPDL</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="stochastic-finite-element-method-with-pymapdl">
+<span id="stochastic-fem-example"></span><h1>Stochastic finite element method with PyMAPDL<a class="headerlink" href="#stochastic-finite-element-method-with-pymapdl" title="Link to this heading">#</a></h1>
+<p>This example leverages PyMAPDL for stochastic finite element method (SFEM) analysis using the Monte Carlo simulation.
+This extended example demonstrates numerous advantages and workflow possibilities that PyMAPDL
+provides. It explains important theoretical concepts before presenting the example.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Often in a mechanical system, system parameters (such as geometry, materials, and loads) and response parameters
+(such as displacement, strain, and stress) are taken to be deterministic. This simplification, while sufficient for a
+wide range of engineering applications, results in a crude approximation of actual system behavior.</p>
+<p>To obtain a more accurate representation of a physical system, it is essential to consider the randomness
+in system parameters and loading conditions, along with the uncertainty in their estimation and their
+spatial variability. The finite element method is undoubtedly the most widely used tool for solving deterministic
+physical problems today. To account for randomness and uncertainty in the modeling of engineering systems,
+the SFEM was introduced.</p>
+<p>SFEM extends the classical deterministic finite element approach
+to a stochastic framework, offering various techniques for calculating response variability. Among these,
+Monte Carlo simulation (MCS) stands out as the most prominent method. Renowned for its versatility and
+ease of implementation, MCS can be applied to virtually any type of problem in stochastic analysis.</p>
+</section>
+<section id="random-variables-versus-stochastic-processes">
+<h2>Random variables versus stochastic processes<a class="headerlink" href="#random-variables-versus-stochastic-processes" title="Link to this heading">#</a></h2>
+<p>This section explains how random variables and stochastic processes differ. Because these
+concepts are used for modeling the system randomness, explaining them is important. Random variables are easier to
+understand from elementary probability theory, which isn’t the case for stochastic processes. If the following
+explanations are too brief, consult books on SFEM. Both <a class="footnote-reference brackets" href="#id6" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> and <a class="footnote-reference brackets" href="#id7" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> are recommended resources.</p>
+<section id="random-variables">
+<h3>Random variables<a class="headerlink" href="#random-variables" title="Link to this heading">#</a></h3>
+<p><strong>Definition:</strong> A random variable is a rule for assigning to every possible outcome <span class="math notranslate nohighlight">\(\theta\)</span> of an experiment a
+number <span class="math notranslate nohighlight">\(X(\theta)\)</span>. For notational convenience, the dependence on <span class="math notranslate nohighlight">\(\theta\)</span> is usually dropped and the
+random variable is written as <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<section id="practical-example">
+<h4>Practical example<a class="headerlink" href="#practical-example" title="Link to this heading">#</a></h4>
+<p>Imagine a beam with a concentrated load <span class="math notranslate nohighlight">\(P\)</span> applied at a specific point. The value of <span class="math notranslate nohighlight">\(P\)</span>
+is uncertain. It could vary due to manufacturing tolerances, loading conditions, or measurement errors. Here is a mathematical representation:</p>
+<div class="math notranslate nohighlight">
+\[P : \Theta \longrightarrow \mathbb{R}\]</div>
+<p>In the preceding equation, <span class="math notranslate nohighlight">\(\Theta\)</span> is the sample space of all possible loading scenarios, and <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> represents the set of
+possible load magnitudes. For example, <span class="math notranslate nohighlight">\(P\)</span> could be modeled as a random variable with a probability density
+function (PDF):</p>
+<div class="math notranslate nohighlight">
+\[f_P(p) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(p-\mu)^2}{2\sigma^2}},\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\mu\)</span> is the mean load, and <span class="math notranslate nohighlight">\(\sigma^2\)</span> is its variance.</p>
+</section>
+</section>
+<section id="stochastic-processes">
+<h3>Stochastic processes<a class="headerlink" href="#stochastic-processes" title="Link to this heading">#</a></h3>
+<p><strong>Definition:</strong>
+Recall that a random variable is defined as a rule that assigns a number <span class="math notranslate nohighlight">\(X\)</span> to every outcome <span class="math notranslate nohighlight">\(\theta\)</span>
+of an experiment. However, in some applications, the experiment evolves with respect to a deterministic parameter <span class="math notranslate nohighlight">\(t\)</span>,
+which belongs to an interval <span class="math notranslate nohighlight">\(I\)</span>. For example, this occurs in an engineering system subjected to random dynamic loads
+over a time interval <span class="math notranslate nohighlight">\(I \subseteq \mathbb{R}^+\)</span>. In such cases, the system’s response at a specific material point is
+described not by a single random variable but by a collection of random variables <span class="math notranslate nohighlight">\(\{X(t)\}\)</span> indexed by <span class="math notranslate nohighlight">\(t \in I\)</span>.</p>
+<p>This <cite>infinite</cite> collection of random variables over the interval <span class="math notranslate nohighlight">\(I\)</span> is called a stochastic process and is denoted as
+<span class="math notranslate nohighlight">\(\{X(t), t \in I\}\)</span> or simply <span class="math notranslate nohighlight">\(X\)</span>. In this way, a stochastic process generalizes the concept of a random variable
+as it assigns to each outcome <span class="math notranslate nohighlight">\(\theta\)</span> of the experiment a function <span class="math notranslate nohighlight">\(X(t, \theta)\)</span>, known as a realization or sample
+function. Lastly, if <span class="math notranslate nohighlight">\(X\)</span> is indexed by some spatial coordinate <span class="math notranslate nohighlight">\(s \in D \subseteq \mathbb{R}^n\)</span> rather than time <span class="math notranslate nohighlight">\(t\)</span>,
+then <span class="math notranslate nohighlight">\(\{X(s), s \in D\}\)</span> is called a random field.</p>
+<section id="id3">
+<h4>Practical example<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>Consider the material property of the beam, such as Young’s modulus <span class="math notranslate nohighlight">\(E(x)\)</span>, which may vary randomly along
+the length of the beam <span class="math notranslate nohighlight">\(x\)</span>.  Instead of being a single random value, <span class="math notranslate nohighlight">\(E(x)\)</span> is a random field. Its value
+is uncertain at each point along the domain, and it changes continuously across the beam. Mathematically, <span class="math notranslate nohighlight">\(E(x)\)</span>
+is a random field:</p>
+<div class="math notranslate nohighlight">
+\[E(x) : x \in [0,L] \longrightarrow \mathbb{R}\]</div>
+<p>Here:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> is the spatial coordinate along the length of the beam (<span class="math notranslate nohighlight">\(x \in [0,L]\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(E(x)\)</span> is a random variable at each point <span class="math notranslate nohighlight">\(x\)</span>, and its randomness is described
+by a covariance function or an autocorrelation function.</p></li>
+</ul>
+<p>For example, <span class="math notranslate nohighlight">\(E(x)\)</span> could be a Gaussian random field, in which case it has the stationarity
+property, making its statistics completely defined by its mean (<span class="math notranslate nohighlight">\(\mu_E\)</span>), standard deviation
+(<span class="math notranslate nohighlight">\(\sigma_E\)</span>), and covariance function <span class="math notranslate nohighlight">\(C_E(x_i,x_j)\)</span>. This <cite>stationarity</cite> simply means
+that the mean and standard deviation of every random variable <span class="math notranslate nohighlight">\(E(x)\)</span> is constant and equal to
+<span class="math notranslate nohighlight">\(\mu_E\)</span> and <span class="math notranslate nohighlight">\(\sigma_E\)</span> respectively. <span class="math notranslate nohighlight">\(C_E(x_i,x_j)\)</span> describes how random variables
+<span class="math notranslate nohighlight">\(E(x_i)\)</span> and <span class="math notranslate nohighlight">\(E(x_j)\)</span> are related. For a zero-mean Gaussian random field, the covariance function is given by
+this equation:</p>
+<div class="math notranslate nohighlight">
+\[C_E(x_i,x_j) = \sigma_E^2e^{-\frac{\lvert x_i-x_j \rvert}{\ell}}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\sigma_E^2\)</span> is the variance, and <span class="math notranslate nohighlight">\(\ell\)</span> is the correlation length parameter.</p>
+<p>To aid understanding, the figure following diagram depicts two equivalent ways of visualizing a
+stochastic process or random field, that is, as an infinite collection of random variables or as a
+realization or sample function assigned to each outcome of an experiment.</p>
+<figure class="align-default" id="id11">
+<img alt="../../../_images/realizations.png" src="../../../_images/realizations.png" />
+<figcaption>
+<p><span class="caption-text">A random field <span class="math notranslate nohighlight">\(E(x)\)</span> viewed as a collection of random variables or as realizations.</span><a class="headerlink" href="#id11" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The concepts in the preceding topics generalize to more dimensions, for example, a random vector instead of a random
+variable, or an <span class="math notranslate nohighlight">\(\mathbb{R}^d\)</span>-valued stochastic process. A detailed discussion of these generalizations can be
+found in <a class="footnote-reference brackets" href="#id6" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> and <a class="footnote-reference brackets" href="#id7" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="series-expansion-of-stochastic-processes">
+<h2>Series expansion of stochastic processes<a class="headerlink" href="#series-expansion-of-stochastic-processes" title="Link to this heading">#</a></h2>
+<p>Since a stochastic process involves an infinite number of random variables, most engineering applications
+involving stochastic processes are mathematically and computationally intractable if there isn’t a way of
+approximating them with a series of a finite number of random variables. The next topic explains
+the series expansion method used in this example.</p>
+<section id="karhunen-loeve-k-l-series-expansion-for-a-gaussian-process">
+<h3>Karhunen-Loève (K-L) series expansion for a Gaussian process<a class="headerlink" href="#karhunen-loeve-k-l-series-expansion-for-a-gaussian-process" title="Link to this heading">#</a></h3>
+<p>The K-L expansion of any process is based on a spectral decomposition of its covariance function. Analytical
+solutions are possible in a few cases, and such is the case of a Gaussian process.</p>
+<p>For a zero-mean stationary Gaussian process, <span class="math notranslate nohighlight">\(X(t)\)</span>, with covariance function
+<span class="math notranslate nohighlight">\(C_X(t_i,t_j)=\sigma_X^2e^{-\frac{\lvert t_i-t_j \rvert}{b}}\)</span> defined on a symmetric domain <span class="math notranslate nohighlight">\(\mathbb{D}=[-a,a]\)</span>,
+the K-L series expansion is given by this equation:</p>
+<div class="math notranslate nohighlight" id="equation-k-l-expansion">
+<span class="eqno">(1)<a class="headerlink" href="#equation-k-l-expansion" title="Link to this equation">#</a></span>\[X(t) = \sum_{n=1}^\infty \sqrt{\lambda_{c,n}}\cdot\varphi_{c,n}(t)\cdot\xi_{c,n} + \sum_{n=1}^\infty \sqrt{\lambda_{s,n}}\cdot\varphi_{s,n}(t)\cdot\xi_{s,n},\quad t\in\mathbb{D}\]</div>
+<p>The terms in the first summation are given by</p>
+<div class="math notranslate nohighlight" id="equation-cosine-terms">
+<span class="eqno">(2)<a class="headerlink" href="#equation-cosine-terms" title="Link to this equation">#</a></span>\[ \begin{align}\begin{aligned}\lambda_{c,n} = \frac{2b}{1+\omega_{c,n}^2\cdot b^2},\quad \varphi_{c,n}(t) = k_{c,n}\cos(\omega_{c,n}\cdot t)\\k_{c,n} = \frac{1}{\sqrt{a+\frac{\sin(2\omega_{c,n}\cdot a)}{2\omega_{c,n}}}}\end{aligned}\end{align} \]</div>
+<p>In the preceding terms, <span class="math notranslate nohighlight">\(\omega_{c,n}\)</span> is obtained as the solution of</p>
+<div class="math notranslate nohighlight" id="equation-cosine-equation">
+<span class="eqno">(3)<a class="headerlink" href="#equation-cosine-equation" title="Link to this equation">#</a></span>\[\frac{1}{b} - \omega_{c,n}\cdot\tan(\omega_{c,n}\cdot a) = 0 \quad \text{in the range} \quad \biggl[(n-1)\frac{\pi}{a}, (n-\frac{1}{2})\frac{\pi}{a}\biggr]\]</div>
+<p>The terms in the second summation are given by</p>
+<div class="math notranslate nohighlight" id="equation-sine-terms">
+<span class="eqno">(4)<a class="headerlink" href="#equation-sine-terms" title="Link to this equation">#</a></span>\[ \begin{align}\begin{aligned}\lambda_{s,n} = \frac{2b}{1+\omega_{s,n}^2\cdot b^2},\quad \varphi_{s,n}(t) = k_{s,n}\sin(\omega_{s,n}\cdot t)\\k_{s,n} = \frac{1}{\sqrt{a-\frac{\sin(2\omega_{s,n}\cdot a)}{2\omega_{s,n}}}}\end{aligned}\end{align} \]</div>
+<p>In the preceding terms, <span class="math notranslate nohighlight">\(\omega_{s,n}\)</span> is obtained as the solution of</p>
+<div class="math notranslate nohighlight" id="equation-sine-equation">
+<span class="eqno">(5)<a class="headerlink" href="#equation-sine-equation" title="Link to this equation">#</a></span>\[\frac{1}{b}\cdot\tan(\omega_{s,n}\cdot a) + \omega_{s,n} = 0 \quad \text{in the range} \quad \biggl[(n-\frac{1}{2})\frac{\pi}{a}, n\frac{\pi}{a}\biggr]\]</div>
+<p>It is worth mentioning that <span class="math notranslate nohighlight">\(\lambda\)</span> and <span class="math notranslate nohighlight">\(\omega\)</span> in the series expansion are referred to as eigenvalue and frequency respectively.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the case of an asymmetric domain, such as <span class="math notranslate nohighlight">\(\mathbb{D}=[-t_{min},t_{max}]\)</span>, a shift parameter <span class="math notranslate nohighlight">\(T = (t_{min}+t_{max})/2\)</span> is required and the corresponding
+symmetric domain becomes defined by this equation:</p>
+<div class="math notranslate nohighlight">
+\[D' = D - T = \biggl[\frac{t_{min}-t_{max}}{2}, \frac{t_{max}-t_{min}}{2} \biggr]\]</div>
+<p>The series expansion is then defined by this equation:</p>
+<div class="math notranslate nohighlight">
+\[X(t) = \sum_{n=1}^\infty \sqrt{\lambda_{c,n}}\cdot\varphi_{c,n}(t-T)\cdot\xi_{c,n} + \sum_{n=1}^\infty \sqrt{\lambda_{s,n}}\cdot\varphi_{s,n}(t-T)\cdot\xi_{s,n},\quad t\in\mathbb{D}\]</div>
+</div>
+<p>The K-L expansion of a Gaussian process has the property that <span class="math notranslate nohighlight">\(\xi_{c,n}\)</span> and <span class="math notranslate nohighlight">\(\xi_{s,n}\)</span> are independent
+standard normal variables, that is they follow the <span class="math notranslate nohighlight">\(\mathcal{N}(0,1)\)</span> distribution. Another property is
+that <span class="math notranslate nohighlight">\(\lambda_{c,n}\)</span> and <span class="math notranslate nohighlight">\(\lambda_{s,n}\)</span> converge to zero fast (in the mean square sense). For practical implementation,
+this means that the infinite series of the K-L expansion is truncated after a finite number of terms, giving the approximation:</p>
+<div class="math notranslate nohighlight" id="equation-approximation">
+<span class="eqno">(6)<a class="headerlink" href="#equation-approximation" title="Link to this equation">#</a></span>\[X(t) \approx \hat{X}(t) = \sum_{n=1}^P \sqrt{\lambda_{c,n}}\cdot\varphi_{c,n}(t)\cdot\xi_{c,n} + \sum_{n=1}^Q \sqrt{\lambda_{s,n}}\cdot\varphi_{s,n}(t)\cdot\xi_{s,n}\]</div>
+<p>Equation <a class="reference internal" href="#equation-approximation">(6)</a> is computationally feasible to handle. A summary of how to use it to generate realizations of <span class="math notranslate nohighlight">\(X(t)\)</span> follows:</p>
+<ol class="arabic simple">
+<li><p>To generate the j-th realization, draw a random value for each <span class="math notranslate nohighlight">\(\xi_{c,n}, n=1,\dots ,P, \quad \xi_{s,n}, n=1,\dots ,Q\)</span> from the standard
+normal distribution <span class="math notranslate nohighlight">\(\mathcal{N}(0,1)\)</span> and obtain <span class="math notranslate nohighlight">\(\xi_{c,1}^j,\dots ,\xi_{c,P}^j, \quad \xi_{s,1}^j,\dots ,\xi_{s,P}^j\)</span></p></li>
+<li><p>Insert these values into equation <a class="reference internal" href="#equation-approximation">(6)</a> in other to obtain the j-th realization:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\hat{X}^j(t) = \sum_{n=1}^P \sqrt{\lambda_{c,n}}\cdot\varphi_{c,n}(t)\cdot\xi_{c,n}^j + \sum_{n=1}^Q \sqrt{\lambda_{s,n}}\cdot\varphi_{s,n}(t)\cdot\xi_{s,n}^j\]</div>
+<ol class="arabic simple" start="3">
+<li><p>To generate additional realizations, simply draw new random values for <span class="math notranslate nohighlight">\(\xi_{c,n}, n=1,\dots ,P, \quad \xi_{s,n}, n=1,\dots ,Q\)</span> each from <span class="math notranslate nohighlight">\(\mathcal{N}(0,1)\)</span>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this case of a field, the preceding discussion applies as the only difference is a change in notation (for example <span class="math notranslate nohighlight">\(t\)</span> to <span class="math notranslate nohighlight">\(x\)</span>).</p>
+</div>
+</section>
+</section>
+<section id="monte-carlo-simulation">
+<h2>Monte Carlo simulation<a class="headerlink" href="#monte-carlo-simulation" title="Link to this heading">#</a></h2>
+<p>For linear static problems in the context of FEM, the system equations that must be solved change. The well-known deterministic equation defined by:</p>
+<div class="math notranslate nohighlight">
+\[\pmb{K}\pmb{U} = \pmb{F}\]</div>
+<p>changes to</p>
+<div class="math notranslate nohighlight">
+\[\pmb{K}(\pmb{\xi})\pmb{U}(\pmb{\xi}) = \pmb{F}(\pmb{\xi})\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\pmb{\xi}\)</span> collects sources of system randomness. The Monte Carlo simulation for solving the preceding equation
+consists of generating a large number of <span class="math notranslate nohighlight">\(N_{sim}\)</span> of samples <span class="math notranslate nohighlight">\(\pmb{\xi}, i=1,\dots ,N_{sim}\)</span> from their probability
+distribution and for each of these samples solving the deterministic problem:</p>
+<div class="math notranslate nohighlight">
+\[\pmb{K}(\pmb{\xi}_{(i)})\pmb{U}(\pmb{\xi}_{(i)}) = \pmb{F}(\pmb{\xi}_{(i)})\]</div>
+<p>The next step is to collect the <span class="math notranslate nohighlight">\(N_{sim}\)</span> response vectors <span class="math notranslate nohighlight">\(\pmb{U_i} := \pmb{U}(\pmb{\xi}_{(i)})\)</span> and perform a statistical
+postprocessing to extract useful information such as mean value, variance, histogram, and
+empirical PDF.</p>
+</section>
+<section id="problem-description">
+<h2>Problem description<a class="headerlink" href="#problem-description" title="Link to this heading">#</a></h2>
+<p>The following plane stress problem shows a two-dimensional cantilever structure under a point load.</p>
+<figure class="align-default" id="id12">
+<img alt="../../../_images/problem.png" src="../../../_images/problem.png" />
+<figcaption>
+<p><span class="caption-text">A two-dimensional cantilever structure under a point load.</span><a class="headerlink" href="#id12" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p><span class="math notranslate nohighlight">\(P\)</span> is a random variable following the Gaussian distribution <span class="math notranslate nohighlight">\(\mathcal{N}(10,2)\)</span> (kN), and the modulus of elasticity is a
+random field given by this expression:</p>
+<div class="math notranslate nohighlight">
+\[E(x) = 10^5(1+0.10f(x)) (kN/m^2)\]</div>
+<p>Here <span class="math notranslate nohighlight">\(f(x)\)</span> is a zero mean stationary Gaussian field with unit variance. The covariance function for <span class="math notranslate nohighlight">\(f\)</span> is <span class="math notranslate nohighlight">\(C_f(x_r,x_s)=e^{-\frac{\lvert x_r-x_s \rvert}{3}}\)</span>.</p>
+<ol class="arabic simple">
+<li><p>Using the K-L series expansion, generate 5000 realizations for <span class="math notranslate nohighlight">\(E(x)\)</span> and perform Monte
+Carlo simulation to determine the PDF of the response <span class="math notranslate nohighlight">\(u\)</span>, at the bottom right corner
+of the cantilever.</p></li>
+<li><p>If some design code stipulates that the displacement <span class="math notranslate nohighlight">\(u\)</span> must not exceed <span class="math notranslate nohighlight">\(0.2 \: m\)</span>, how confident can
+you be that the structure meets this requirement?</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This example strongly emphasizes how PyMAPDL can help to supercharge workflows. At a very high level, subsequent topics
+use Python libraries to handle computations related to the stochasticity of the problem and use MAPDL to
+run the necessary simulations all within the comfort of a Python environment.</p>
+</div>
+<section id="evaluating-the-young-s-modulus">
+<h3>Evaluating the Young’s modulus<a class="headerlink" href="#evaluating-the-young-s-modulus" title="Link to this heading">#</a></h3>
+<p>Code that allows representation of the zero-mean Gaussian field <span class="math notranslate nohighlight">\(f\)</span> is implemented. This simply means solving
+the <a class="reference internal" href="#equation-cosine-equation">(3)</a> and <a class="reference internal" href="#equation-sine-equation">(5)</a> and then substituting calculated values into
+<a class="reference internal" href="#equation-cosine-terms">(2)</a> and <a class="reference internal" href="#equation-sine-terms">(4)</a> to obtain the constant terms in those equations. The
+number of retained terms <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> in <a class="reference internal" href="#equation-approximation">(6)</a> can be automatically determined
+by structuring the code to stop computing values when <span class="math notranslate nohighlight">\(\lambda_{c,n}, \lambda_{s,n}\)</span> become lower than a
+desired accuracy level. The implementation follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">find_solution</span><span class="p">(</span>
+    <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">derivative_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">acceptable_solution_error</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">solution_range</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Find the solution of g(x) = 0 within a solution range where g(x) is non-linear.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    func : Callable[float, float]</span>
+<span class="sd">        Definition of the function.</span>
+<span class="sd">    derivative_func : Callable[float, float]</span>
+<span class="sd">        Derivative of the preceding function.</span>
+<span class="sd">    acceptable_solution_error : float</span>
+<span class="sd">        Error the solution is acceptable at.</span>
+<span class="sd">    solution_range : Tuple[float, float]</span>
+<span class="sd">        Range for searching for the solution.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Solution to g(x) = 0.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">current_guess</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">*</span><span class="n">solution_range</span><span class="p">)</span>
+    <span class="n">iteration_counter</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">iteration_counter</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="n">iteration_counter</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">current_guess</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">*</span><span class="n">solution_range</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="n">updated_guess</span> <span class="o">=</span> <span class="n">current_guess</span> <span class="o">-</span> <span class="n">func</span><span class="p">(</span><span class="n">current_guess</span><span class="p">)</span> <span class="o">/</span> <span class="n">derivative_func</span><span class="p">(</span>
+            <span class="n">current_guess</span>
+        <span class="p">)</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">updated_guess</span> <span class="o">-</span> <span class="n">current_guess</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">&lt;</span> <span class="n">acceptable_solution_error</span> <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span>
+            <span class="n">solution_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">updated_guess</span> <span class="o">&lt;</span> <span class="n">solution_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">):</span>
+            <span class="n">current_guess</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">*</span><span class="n">solution_range</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">elif</span> <span class="n">error</span> <span class="o">&lt;</span> <span class="n">acceptable_solution_error</span> <span class="ow">and</span> <span class="p">(</span>
+            <span class="n">solution_range</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">updated_guess</span> <span class="o">&lt;</span> <span class="n">solution_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">):</span>
+            <span class="k">return</span> <span class="n">updated_guess</span>
+
+        <span class="n">current_guess</span> <span class="o">=</span> <span class="n">updated_guess</span>
+        <span class="n">iteration_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_KL_cosine_terms</span><span class="p">(</span>
+    <span class="n">domain</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">correl_length_param</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">min_eigen_value</span><span class="p">:</span> <span class="nb">float</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build array of eigenvalues and constants of the cosine terms in the KL expansion of a Gaussian stochastic process.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    domain : Tuple[float, float]</span>
+<span class="sd">        Domain for finding the KL representation of the stochastic process.</span>
+<span class="sd">    correl_length_param : float</span>
+<span class="sd">        Correlation length parameter of the autocorrelation function of the process.</span>
+<span class="sd">    min_eigen_value : float</span>
+<span class="sd">        Minimum eigenvalue to achieve required accuracy.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Tuple[np.ndarray, np.ndarray, np.ndarray]</span>
+<span class="sd">        Arrays of frequencies, eigenvalues, and constants of the retained cosine terms (P in total) in the KL expansion.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># Symmetric domain parameter -&gt; [-A, A]</span>
+
+    <span class="n">frequency_array</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cosine_eigen_values_array</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cosine_constants_array</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Define the functions related to the sine terms</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">w_n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">correl_length_param</span> <span class="o">-</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">w_n</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">deriv_func</span><span class="p">(</span><span class="n">w_n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">w_n</span> <span class="o">*</span> <span class="n">A</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">w_n</span> <span class="o">*</span> <span class="n">correl_length_param</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">w_n</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">eigen_value</span><span class="p">(</span><span class="n">w_n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">correl_length_param</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">correl_length_param</span> <span class="o">*</span> <span class="n">w_n</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">cosine_constant</span><span class="p">(</span><span class="n">w_n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">w_n</span><span class="p">)))</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+    <span class="c1"># Build the array of eigenvalues and constant terms for the accuracy required</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+        <span class="c1"># start solving here</span>
+        <span class="n">acceptable_solution_error</span> <span class="o">=</span> <span class="mf">1e-10</span>
+        <span class="n">solution_range</span> <span class="o">=</span> <span class="p">[(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">A</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">A</span><span class="p">]</span>
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">find_solution</span><span class="p">(</span>
+            <span class="n">func</span><span class="p">,</span> <span class="n">deriv_func</span><span class="p">,</span> <span class="n">acceptable_solution_error</span><span class="p">,</span> <span class="n">solution_range</span>
+        <span class="p">)</span>
+
+        <span class="n">frequency_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+        <span class="n">cosine_eigen_values_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eigen_value</span><span class="p">(</span><span class="n">solution</span><span class="p">))</span>
+        <span class="n">cosine_constants_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cosine_constant</span><span class="p">(</span><span class="n">solution</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">eigen_value</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">min_eigen_value</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">frequency_array</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cosine_eigen_values_array</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cosine_constants_array</span><span class="p">),</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_KL_sine_terms</span><span class="p">(</span>
+    <span class="n">domain</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">correl_length_param</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">min_eigen_value</span><span class="p">:</span> <span class="nb">float</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Build an array of eigenvalues and constants of the sine terms in the KL expansion of a gaussian stochastic process.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    domain : Tuple[float, float]</span>
+<span class="sd">        Domain for finding the KL representation of the stochastic process.</span>
+<span class="sd">    correl_length_param : float</span>
+<span class="sd">        Correlation length parameter of the autocorrelation function of the process.</span>
+<span class="sd">    min_eigen_value : float</span>
+<span class="sd">        Minimum eigenvalue to achieve required accuracy.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Tuple[np.ndarray, np.ndarray, np.ndarray]</span>
+<span class="sd">        Arrays of frequencies, eigenvalues, and constants of the retained sine terms (Q in total) in the KL expansion.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># Symmetric domain parameter -&gt; [-A, A]</span>
+
+    <span class="n">frequency_array</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sine_eigen_values_array</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sine_constants_array</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Define functions related to the sine terms</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">w_n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">correl_length_param</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">w_n</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">+</span> <span class="n">w_n</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">deriv_func</span><span class="p">(</span><span class="n">w_n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">A</span> <span class="o">/</span> <span class="p">(</span><span class="n">correl_length_param</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">w_n</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">eigen_value</span><span class="p">(</span><span class="n">w_n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">correl_length_param</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">correl_length_param</span> <span class="o">*</span> <span class="n">w_n</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">sine_constant</span><span class="p">(</span><span class="n">w_n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">w_n</span><span class="p">)))</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+    <span class="c1"># Build the array of eigenvalues and constant terms for the accuracy required</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+        <span class="c1"># start solving here</span>
+        <span class="n">acceptable_solution_error</span> <span class="o">=</span> <span class="mf">1e-10</span>
+        <span class="n">solution_range</span> <span class="o">=</span> <span class="p">[(</span><span class="n">n</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">A</span><span class="p">,</span> <span class="n">n</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">A</span><span class="p">]</span>
+        <span class="n">solution</span> <span class="o">=</span> <span class="n">find_solution</span><span class="p">(</span>
+            <span class="n">func</span><span class="p">,</span> <span class="n">deriv_func</span><span class="p">,</span> <span class="n">acceptable_solution_error</span><span class="p">,</span> <span class="n">solution_range</span>
+        <span class="p">)</span>
+
+        <span class="n">frequency_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
+        <span class="n">sine_eigen_values_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eigen_value</span><span class="p">(</span><span class="n">solution</span><span class="p">))</span>
+        <span class="n">sine_constants_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sine_constant</span><span class="p">(</span><span class="n">solution</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">eigen_value</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">min_eigen_value</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">frequency_array</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sine_eigen_values_array</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sine_constants_array</span><span class="p">),</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>The next step is to put this all together in a function that expresses the <span class="math notranslate nohighlight">\(f\)</span> using the <a class="reference internal" href="#equation-approximation">(6)</a> equation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">stochastic_field_realization</span><span class="p">(</span>
+    <span class="n">cosine_frequency_array</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">cosine_eigen_values</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">cosine_constants</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">cosine_random_variables_set</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">sine_frequency_array</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">sine_eigen_values</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">sine_constants</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">sine_random_variables_set</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">domain</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="n">evaluation_point</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Realization of the Gaussian field f(x).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    cosine_frequency_array : np.ndarray</span>
+<span class="sd">        Array of length P, containing the frequencies associated with the retained cosine terms.</span>
+<span class="sd">    cosine_eigen_values : np.ndarray</span>
+<span class="sd">        Array of length P, containing the eigenvalues associated with the retained cosine terms.</span>
+<span class="sd">    cosine_constants : np.ndarray</span>
+<span class="sd">        Array of length P, containing constants associated with the retained cosine terms.</span>
+<span class="sd">    cosine_random_variables_set : np.ndarray</span>
+<span class="sd">        Array of length P, containing the random variables drawn from N(0,1) for the cosine terms.</span>
+<span class="sd">    sine_frequency_array : np.ndarray</span>
+<span class="sd">        Array of length Q, containing the frequencies associated with the retained sine terms.</span>
+<span class="sd">    sine_eigen_values : np.ndarray</span>
+<span class="sd">        Array of length Q, containing eigenvalues associated with retained sine terms.</span>
+<span class="sd">    sine_constants : np.ndarray</span>
+<span class="sd">         Array of length Q, containing the constants associated with the retained sine terms.</span>
+<span class="sd">    sine_random_variables_set : np.ndarray</span>
+<span class="sd">         Array of length P, containing the random variable drawn from N(0,1) for the sine terms.</span>
+<span class="sd">    domain : Tuple[float, float]</span>
+<span class="sd">        Domain for finding the KL representation of the stochastic process.</span>
+<span class="sd">    evaluation_point : float</span>
+<span class="sd">        Point within the domain at which the value of a realization is required.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Value of the realization at a given point within the domain.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Shift parameter -&gt; Because terms are solved in a symmetric domain [-A, A]</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="c1"># Using the array operation provided by the numpy package is much simpler for expressing the stochastic process</span>
+    <span class="n">cosine_function_terms</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cosine_eigen_values</span><span class="p">)</span>
+        <span class="o">*</span> <span class="n">cosine_constants</span>
+        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">evaluation_point</span> <span class="o">-</span> <span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">cosine_frequency_array</span><span class="p">)</span>
+        <span class="o">*</span> <span class="n">cosine_random_variables_set</span>
+    <span class="p">)</span>
+
+    <span class="n">sine_function_terms</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sine_eigen_values</span><span class="p">)</span>
+        <span class="o">*</span> <span class="n">sine_constants</span>
+        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">evaluation_point</span> <span class="o">-</span> <span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">sine_frequency_array</span><span class="p">)</span>
+        <span class="o">*</span> <span class="n">sine_random_variables_set</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">cosine_function_terms</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sine_function_terms</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The function for evaluating the Young’s modulus itself is straight forward:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">young_modulus_realization</span><span class="p">(</span>
+    <span class="n">cosine_frequency_list</span><span class="p">,</span>
+    <span class="n">cosine_eigen_values</span><span class="p">,</span>
+    <span class="n">cosine_constants</span><span class="p">,</span>
+    <span class="n">cosine_random_variables_set</span><span class="p">,</span>
+    <span class="n">sine_frequency_list</span><span class="p">,</span>
+    <span class="n">sine_eigen_values</span><span class="p">,</span>
+    <span class="n">sine_constants</span><span class="p">,</span>
+    <span class="n">sine_random_variables_set</span><span class="p">,</span>
+    <span class="n">domain</span><span class="p">,</span>
+    <span class="n">evaluation_point</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1e5</span> <span class="o">*</span> <span class="p">(</span>
+        <span class="mi">1</span>
+        <span class="o">+</span> <span class="mf">0.1</span>
+        <span class="o">*</span> <span class="n">stochastic_field_realization</span><span class="p">(</span>
+            <span class="n">cosine_frequency_list</span><span class="p">,</span>
+            <span class="n">cosine_eigen_values</span><span class="p">,</span>
+            <span class="n">cosine_constants</span><span class="p">,</span>
+            <span class="n">cosine_random_variables_set</span><span class="p">,</span>
+            <span class="n">sine_frequency_list</span><span class="p">,</span>
+            <span class="n">sine_eigen_values</span><span class="p">,</span>
+            <span class="n">sine_constants</span><span class="p">,</span>
+            <span class="n">sine_random_variables_set</span><span class="p">,</span>
+            <span class="n">domain</span><span class="p">,</span>
+            <span class="n">evaluation_point</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<section id="realizations-of-the-young-s-modulus">
+<h4>Realizations of the Young’s modulus<a class="headerlink" href="#realizations-of-the-young-s-modulus" title="Link to this heading">#</a></h4>
+<p>You can now generate sample realizations of the Young’s modulus to see what they look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate K-L expansion parameters</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">correl_length_param</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">min_eigen_value</span> <span class="o">=</span> <span class="mf">0.001</span>
+
+<span class="n">cosine_frequency_array</span><span class="p">,</span> <span class="n">cosine_eigen_values</span><span class="p">,</span> <span class="n">cosine_constants</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">evaluate_KL_cosine_terms</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">correl_length_param</span><span class="p">,</span> <span class="n">min_eigen_value</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">sine_frequency_array</span><span class="p">,</span> <span class="n">sine_eigen_values</span><span class="p">,</span> <span class="n">sine_constants</span> <span class="o">=</span> <span class="n">evaluate_KL_sine_terms</span><span class="p">(</span>
+    <span class="n">domain</span><span class="p">,</span> <span class="n">correl_length_param</span><span class="p">,</span> <span class="n">min_eigen_value</span>
+<span class="p">)</span>
+
+<span class="c1"># See what the realizations looks like</span>
+<span class="n">no_of_realizations</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">101</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x \: (m)$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Realizations of $E$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_realizations</span><span class="p">):</span>
+    <span class="n">cosine_random_variables_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+        <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">cosine_frequency_array</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">sine_random_variables_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sine_frequency_array</span><span class="p">))</span>
+
+    <span class="n">realization</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">young_modulus_realization</span><span class="p">(</span>
+                <span class="n">cosine_frequency_array</span><span class="p">,</span>
+                <span class="n">cosine_eigen_values</span><span class="p">,</span>
+                <span class="n">cosine_constants</span><span class="p">,</span>
+                <span class="n">cosine_random_variables_set</span><span class="p">,</span>
+                <span class="n">sine_frequency_array</span><span class="p">,</span>
+                <span class="n">sine_eigen_values</span><span class="p">,</span>
+                <span class="n">sine_constants</span><span class="p">,</span>
+                <span class="n">sine_random_variables_set</span><span class="p">,</span>
+                <span class="n">domain</span><span class="p">,</span>
+                <span class="n">evaluation_point</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">evaluation_point</span> <span class="ow">in</span> <span class="n">x</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">realization</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id13">
+<img alt="../../../_images/young_modulus_realizations.png" src="../../../_images/young_modulus_realizations.png" />
+<figcaption>
+<p><span class="caption-text">10 realizations of the Young’s modulus depict randomness from one realization to another.</span><a class="headerlink" href="#id13" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="verification-of-the-implementation">
+<h4>Verification of the implementation<a class="headerlink" href="#verification-of-the-implementation" title="Link to this heading">#</a></h4>
+<p>You can compute the theoretical mean and variance of the Young’s modulus and then use
+them to verify the correctness of the implemented code.</p>
+<p>For the mean:</p>
+<div class="math notranslate nohighlight" id="equation-theoretical-mean">
+<span class="eqno">(7)<a class="headerlink" href="#equation-theoretical-mean" title="Link to this equation">#</a></span>\[ \begin{align}\begin{aligned}\mathbb{E}(E) = \mathbb{E}(10^5(1+0.10f))\\\mathbb{E}(E) = 10^5(1 + 0.1\mathbb{E}(f))\\\mathbb{E}(E) = 10^5(1 + 0.1(0)) = 10^5 \: kN/m^2\end{aligned}\end{align} \]</div>
+<p>For the variance:</p>
+<div class="math notranslate nohighlight" id="equation-theoretical-variance">
+<span class="eqno">(8)<a class="headerlink" href="#equation-theoretical-variance" title="Link to this equation">#</a></span>\[ \begin{align}\begin{aligned}Var(E) = \mathbb{E}(E^2) - [\mathbb{E}(E)]^2\\Var(E) = \mathbb{E}[10^{10}(1 + 0.2f + 0.01f^2)] - 10^{10}\\Var(E) = 10^{10}[1 + 0.2\mathbb{E}(f) + 0.01\mathbb{E}(f^2)] - 10^{10}\\Var(E) = 10^{10}[0.2(0) + 0.01(1)]\\Var(E) = 10^8 \: {kN}^2/m^4\end{aligned}\end{align} \]</div>
+<p>It is expected that as the number of realizations increase indefinitely, the ensemble mean and
+variance should converge towards theoretical values calculated in <a class="reference internal" href="#equation-theoretical-mean">(7)</a> and <a class="reference internal" href="#equation-theoretical-variance">(8)</a>.</p>
+<p>Firstly, several realizations are generated. 5000 is enough, which is the same as the number of simulations to be run later on. Statistical processing
+is then performed on these realizations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify that the previous implementation represents the Young&#39;s modulus</span>
+<span class="n">no_of_realizations</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">domain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">realization_collection</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">no_of_realizations</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_realizations</span><span class="p">):</span>
+    <span class="n">cosine_random_variables_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+        <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">cosine_frequency_array</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">sine_random_variables_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sine_frequency_array</span><span class="p">))</span>
+
+    <span class="n">realization</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">young_modulus_realization</span><span class="p">(</span>
+                <span class="n">cosine_frequency_array</span><span class="p">,</span>
+                <span class="n">cosine_eigen_values</span><span class="p">,</span>
+                <span class="n">cosine_constants</span><span class="p">,</span>
+                <span class="n">cosine_random_variables_set</span><span class="p">,</span>
+                <span class="n">sine_frequency_array</span><span class="p">,</span>
+                <span class="n">sine_eigen_values</span><span class="p">,</span>
+                <span class="n">sine_constants</span><span class="p">,</span>
+                <span class="n">sine_random_variables_set</span><span class="p">,</span>
+                <span class="n">domain</span><span class="p">,</span>
+                <span class="n">evaluation_point</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">evaluation_point</span> <span class="ow">in</span> <span class="n">x</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">realization_collection</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span> <span class="o">=</span> <span class="n">realization</span>
+
+<span class="n">ensemble_mean_with_realization</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">realization_collection</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ensemble_var_with_realization</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">realization_collection</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">realization_collection</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">ensemble_mean_with_realization</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">realization_collection</span><span class="p">[:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
+    <span class="n">ensemble_var_with_realization</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">realization_collection</span><span class="p">[:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+<p>You can generate a plot of the mean versus the number of realizations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the ensemble mean</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ensemble_mean_with_realization</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Computed mean&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">1e5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Actual mean&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;No of realizations&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Ensemble mean of $E$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">no_of_realizations</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id14">
+<img alt="../../../_images/mean.png" src="../../../_images/mean.png" />
+<figcaption>
+<p><span class="caption-text">The mean converges to the true value as the number of realizations is increased.</span><a class="headerlink" href="#id14" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>You can also generate a plot of the variance versus the number of realizations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot of ensemble variance</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ensemble_var_with_realization</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Computed variance&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">1e8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Actual variance&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;No of realizations&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Ensemble varianc of $E$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">no_of_realizations</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id15">
+<img alt="../../../_images/variance.png" src="../../../_images/variance.png" />
+<figcaption>
+<p><span class="caption-text">The variance converges to the true value as the number of realizations is increased.</span><a class="headerlink" href="#id15" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The preceding plots confirm that the implementation is correct. If you desire more accuracy, you can further decrease the minimum eigenvalue, but the value already chosen is sufficient.</p>
+</section>
+</section>
+<section id="running-the-simulations">
+<h3>Running the simulations<a class="headerlink" href="#running-the-simulations" title="Link to this heading">#</a></h3>
+<p>Focus now shifts to the PyMAPDL part of this example. Remember that the problem requires running 5000 simulations. Therefore,
+you must write a workflow that performs these actions:</p>
+<ol class="arabic simple">
+<li><p>Create the geometry of the cantilever model.</p></li>
+<li><p>Mesh the model. The following code uses the four-node PLANE182 elements.</p></li>
+<li><p>For each simulation, generate one realization of <span class="math notranslate nohighlight">\(E\)</span> and one sample of <span class="math notranslate nohighlight">\(P\)</span>.</p></li>
+<li><p>For each simulation, loop through the elements and for each element, use the generated
+realization to assign the value of the Young’s modulus. Also assign the load for each simulation.</p></li>
+<li><p>Solve the model and store <span class="math notranslate nohighlight">\(u\)</span> for each simulation.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One realization continuously varies with <span class="math notranslate nohighlight">\(x\)</span>, but a plane stress element like PLANE182 can only have a constant
+Young’s modulus assigned. Therefore, for an element whose <span class="math notranslate nohighlight">\(x\)</span>-coordinates are between <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>, you can simply
+assign the average value of <span class="math notranslate nohighlight">\(E\)</span> between these two values or assign the value of <span class="math notranslate nohighlight">\(E\)</span> at the centroid. The later is
+chosen for this implementation. The method chosen becomes insignificant with a finer mesh as both methods should produce similar
+results.</p>
+</div>
+<p>This function implements the preceding steps:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Single-threaded approach</span>
+<span class="c1"># Function for running the simulations</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_simulations</span><span class="p">(</span>
+    <span class="n">length</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">height</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">thickness</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">mesh_size</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">no_of_simulations</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run desired number of simulations to obtain response data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    length : float</span>
+<span class="sd">        Length of the cantilever structure.</span>
+<span class="sd">    height : float</span>
+<span class="sd">        Height of the cantilever structure.</span>
+<span class="sd">    thickness : float</span>
+<span class="sd">        Thickness of the cantilever structure.</span>
+<span class="sd">    mesh_size : float</span>
+<span class="sd">        Desired mesh size.</span>
+<span class="sd">    no_of_simulations : int</span>
+<span class="sd">       Number of simulations to run.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        Array containing simulation results.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ansys.mapdl.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">launch_mapdl</span>
+
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+    <span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="n">domain</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">]</span>
+    <span class="n">correl_length_param</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">min_eigen_value</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="n">poisson_ratio</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>  <span class="c1"># Enter preprocessor</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="n">r1</span><span class="o">=</span><span class="n">thickness</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;PLANE182&quot;</span><span class="p">,</span> <span class="n">kop3</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">kop6</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">rectng</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mshkey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mshape</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;2D&quot;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><span class="n">mesh_size</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">amesh</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Fixed edge</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">cm</span><span class="p">(</span><span class="s2">&quot;FIXED_END&quot;</span><span class="p">,</span> <span class="s2">&quot;NODE&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Load application node</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">cm</span><span class="p">(</span><span class="s2">&quot;LOAD_APPLICATION_POINT&quot;</span><span class="p">,</span> <span class="s2">&quot;NODE&quot;</span><span class="p">)</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>  <span class="c1"># Exit preprocessor</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>  <span class="c1"># Enter solution processor</span>
+
+    <span class="n">element_ids</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">esel</span><span class="p">(</span>
+        <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;CENT&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mesh_size</span>
+    <span class="p">)</span>  <span class="c1"># Select bottom row elements and store the ids</span>
+
+    <span class="c1"># Generate quantities required to define the Young&#39;s modulus stochastic process</span>
+    <span class="n">cosine_frequency_list</span><span class="p">,</span> <span class="n">cosine_eigen_values</span><span class="p">,</span> <span class="n">cosine_constants</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">evaluate_KL_cosine_terms</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">correl_length_param</span><span class="p">,</span> <span class="n">min_eigen_value</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">sine_frequency_list</span><span class="p">,</span> <span class="n">sine_eigen_values</span><span class="p">,</span> <span class="n">sine_constants</span> <span class="o">=</span> <span class="n">evaluate_KL_sine_terms</span><span class="p">(</span>
+        <span class="n">domain</span><span class="p">,</span> <span class="n">correl_length_param</span><span class="p">,</span> <span class="n">min_eigen_value</span>
+    <span class="p">)</span>
+
+    <span class="n">simulation_results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">no_of_simulations</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">simulation</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_simulations</span><span class="p">):</span>
+        <span class="c1"># Generate random variables and load needed for one realization of the process</span>
+        <span class="n">cosine_random_variables_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">cosine_frequency_list</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">sine_random_variables_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sine_frequency_list</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">load</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># Generate a random load</span>
+
+        <span class="n">material_property</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initialize material property ID</span>
+        <span class="k">for</span> <span class="n">element_id</span> <span class="ow">in</span> <span class="n">element_ids</span><span class="p">:</span>
+            <span class="n">material_property</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">mapdl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ELEMENT_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;ELEM&quot;</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="s2">&quot;CENT&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">)</span>
+            <span class="n">element_centroid_x_coord</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;ELEMENT_ID&quot;</span><span class="p">]</span>
+            <span class="n">mapdl</span><span class="o">.</span><span class="n">esel</span><span class="p">(</span>
+                <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;CENT&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="n">element_centroid_x_coord</span>
+            <span class="p">)</span>  <span class="c1"># Select all elements having this coordinate as centroid</span>
+
+            <span class="c1"># Evaluate Young&#39;s modulus at this material point</span>
+            <span class="n">young_modulus_value</span> <span class="o">=</span> <span class="n">young_modulus_realization</span><span class="p">(</span>
+                <span class="n">cosine_frequency_list</span><span class="p">,</span>
+                <span class="n">cosine_eigen_values</span><span class="p">,</span>
+                <span class="n">cosine_constants</span><span class="p">,</span>
+                <span class="n">cosine_random_variables_set</span><span class="p">,</span>
+                <span class="n">sine_frequency_list</span><span class="p">,</span>
+                <span class="n">sine_eigen_values</span><span class="p">,</span>
+                <span class="n">sine_constants</span><span class="p">,</span>
+                <span class="n">sine_random_variables_set</span><span class="p">,</span>
+                <span class="n">domain</span><span class="p">,</span>
+                <span class="n">element_centroid_x_coord</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span>
+                <span class="s2">&quot;EX&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">material_property</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">young_modulus_value</span>
+            <span class="p">)</span>  <span class="c1"># Define property ID and assign Young&#39;s modulus</span>
+            <span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span>
+                <span class="s2">&quot;NUXY&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">material_property</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">poisson_ratio</span>
+            <span class="p">)</span>  <span class="c1"># Assign poisson ratio</span>
+            <span class="n">mapdl</span><span class="o">.</span><span class="n">mpchg</span><span class="p">(</span>
+                <span class="n">material_property</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span>
+            <span class="p">)</span>  <span class="c1"># Assign property to selected elements</span>
+
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;FIXED_END&quot;</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="s2">&quot;UX&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lab2</span><span class="o">=</span><span class="s2">&quot;UY&quot;</span><span class="p">)</span>  <span class="c1"># Apply fixed end BC</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;LOAD_APPLICATION_POINT&quot;</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="s2">&quot;FY&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">load</span><span class="p">)</span>  <span class="c1"># Apply load BC</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+        <span class="c1"># Displacement probe point - where Uy results are to be extracted</span>
+        <span class="n">displacement_probe_point</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">queries</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">displacement</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s2">&quot;NODE&quot;</span><span class="p">,</span> <span class="n">displacement_probe_point</span><span class="p">,</span> <span class="s2">&quot;U&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+
+        <span class="n">simulation_results</span><span class="p">[</span><span class="n">simulation</span><span class="p">]</span> <span class="o">=</span> <span class="n">displacement</span>
+
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">mpdele</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">simulation</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Completed </span><span class="si">{</span><span class="n">simulation</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> simulations.&quot;</span><span class="p">)</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All simulations completed.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">simulation_results</span>
+</pre></div>
+</div>
+<p>You can pass the required arguments to the defined function to run the simulations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the simulations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">simulation_results</span> <span class="o">=</span> <span class="n">run_simulations</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Simulation took </span><span class="si">{}</span><span class="s2"> min </span><span class="si">{}</span><span class="s2"> s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="nb">int</span><span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">//</span> <span class="mi">60</span><span class="p">),</span> <span class="nb">int</span><span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">%</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="answering-problem-questions">
+<h3>Answering problem questions<a class="headerlink" href="#answering-problem-questions" title="Link to this heading">#</a></h3>
+<p>To determine the PDF of the response <span class="math notranslate nohighlight">\(u\)</span>, you can perform a statistical postprocessing of
+simulation results:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform statistical postprocessing and plot the PDF</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
+
+<span class="n">kde</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gaussian_kde</span><span class="p">(</span><span class="n">simulation_results</span><span class="p">)</span>  <span class="c1"># Kernel density estimate</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">x_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">simulation_results</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">simulation_results</span><span class="p">),</span> <span class="n">num</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">kde</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x_eval</span><span class="p">),</span> <span class="s2">&quot;r-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;PDF of response $u$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Displacement in (m)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id16">
+<img alt="../../../_images/pdf.png" src="../../../_images/pdf.png" />
+<figcaption>
+<p><span class="caption-text">The PDF of response <span class="math notranslate nohighlight">\(u\)</span>.</span><a class="headerlink" href="#id16" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>To determine whether the structure meets the requirement of the design code, simply evaluate the
+probability that the response <span class="math notranslate nohighlight">\(u\)</span> is less than
+<span class="math notranslate nohighlight">\(0.2 \: m\)</span>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Proceed to evaluate the probability that the response u is less than 0.2 m</span>
+<span class="n">probability</span> <span class="o">=</span> <span class="n">kde</span><span class="o">.</span><span class="n">integrate_box_1d</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">x_eval</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The probability that u is less than 0.2 m is </span><span class="si">{</span><span class="n">probability</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The computed probability is approximately 99%, which is a measure of how well the structure satisfies the design
+requirement.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Splitting the overall implementation of this example into several functions lets you modify practically any aspect of the problem
+statement with minimal edits to the code for testing out other scenarios. For example, you can use a different structural geometry, mesh size, or loading condition.</p>
+</div>
+</section>
+<section id="improve-simulation-speed-using-multi-threading">
+<h3>Improve simulation speed using multi-threading<a class="headerlink" href="#improve-simulation-speed-using-multi-threading" title="Link to this heading">#</a></h3>
+<p>One of the main drawbacks of MCS is the number of simulations required. In this example, 5000 simulations can take quite
+some time to run on a single MAPDL instance. To speed things up, you can use the
+<a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.pool.MapdlPool.html#ansys.mapdl.core.pool.MapdlPool" title="ansys.mapdl.core.pool.MapdlPool"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapdlPool</span></code></a> class to run simulations across multiple
+MAPDL instances:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multi-threaded approach</span>
+<span class="c1"># Note that the number of instances should not be more than the number of available CPU cores on your PC</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_simulations_threaded</span><span class="p">(</span>
+    <span class="n">mapdl</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">mesh_size</span><span class="p">,</span> <span class="n">no_of_simulations</span><span class="p">,</span> <span class="n">instance_identifier</span>
+<span class="p">):</span>
+    <span class="n">domain</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">]</span>
+    <span class="n">correl_length_param</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">min_eigen_value</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="n">poisson_ratio</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>  <span class="c1"># Enter preprocessor</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="n">r1</span><span class="o">=</span><span class="n">thickness</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;PLANE182&quot;</span><span class="p">,</span> <span class="n">kop3</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">kop6</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">rectng</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mshkey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">mshape</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;2D&quot;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><span class="n">mesh_size</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">amesh</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Defined fixed edge</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">cm</span><span class="p">(</span><span class="s2">&quot;FIXED_END&quot;</span><span class="p">,</span> <span class="s2">&quot;NODE&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Load application node</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">cm</span><span class="p">(</span><span class="s2">&quot;LOAD_APPLICATION_POINT&quot;</span><span class="p">,</span> <span class="s2">&quot;NODE&quot;</span><span class="p">)</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>  <span class="c1"># Exit preprocessor</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>  <span class="c1"># Enter solution processor</span>
+
+    <span class="n">element_ids</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">esel</span><span class="p">(</span>
+        <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;CENT&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mesh_size</span>
+    <span class="p">)</span>  <span class="c1"># Select bottom row elements and store the IDs</span>
+
+    <span class="c1"># Generate quantities required to define the Young&#39;s modulus stochastic process</span>
+    <span class="n">cosine_frequency_list</span><span class="p">,</span> <span class="n">cosine_eigen_values</span><span class="p">,</span> <span class="n">cosine_constants</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">evaluate_KL_cosine_terms</span><span class="p">(</span><span class="n">domain</span><span class="p">,</span> <span class="n">correl_length_param</span><span class="p">,</span> <span class="n">min_eigen_value</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">sine_frequency_list</span><span class="p">,</span> <span class="n">sine_eigen_values</span><span class="p">,</span> <span class="n">sine_constants</span> <span class="o">=</span> <span class="n">evaluate_KL_sine_terms</span><span class="p">(</span>
+        <span class="n">domain</span><span class="p">,</span> <span class="n">correl_length_param</span><span class="p">,</span> <span class="n">min_eigen_value</span>
+    <span class="p">)</span>
+
+    <span class="n">simulation_results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">no_of_simulations</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">simulation</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_simulations</span><span class="p">):</span>
+        <span class="c1"># Generate random variables and the load needed for one realization of the process</span>
+        <span class="n">cosine_random_variables_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">cosine_frequency_list</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">sine_random_variables_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">sine_frequency_list</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">load</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># Generate a random load</span>
+
+        <span class="n">material_property</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initialize material property ID</span>
+        <span class="k">for</span> <span class="n">element_id</span> <span class="ow">in</span> <span class="n">element_ids</span><span class="p">:</span>
+            <span class="n">material_property</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">mapdl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ELEMENT_ID&quot;</span><span class="p">,</span> <span class="s2">&quot;ELEM&quot;</span><span class="p">,</span> <span class="n">element_id</span><span class="p">,</span> <span class="s2">&quot;CENT&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">)</span>
+            <span class="n">element_centroid_x_coord</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;ELEMENT_ID&quot;</span><span class="p">]</span>
+            <span class="n">mapdl</span><span class="o">.</span><span class="n">esel</span><span class="p">(</span>
+                <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;CENT&quot;</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="n">element_centroid_x_coord</span>
+            <span class="p">)</span>  <span class="c1"># Select all elements having this coordinate as centroid</span>
+
+            <span class="c1"># Evaluate Young&#39;s modulus at this material point</span>
+            <span class="n">young_modulus_value</span> <span class="o">=</span> <span class="n">young_modulus_realization</span><span class="p">(</span>
+                <span class="n">cosine_frequency_list</span><span class="p">,</span>
+                <span class="n">cosine_eigen_values</span><span class="p">,</span>
+                <span class="n">cosine_constants</span><span class="p">,</span>
+                <span class="n">cosine_random_variables_set</span><span class="p">,</span>
+                <span class="n">sine_frequency_list</span><span class="p">,</span>
+                <span class="n">sine_eigen_values</span><span class="p">,</span>
+                <span class="n">sine_constants</span><span class="p">,</span>
+                <span class="n">sine_random_variables_set</span><span class="p">,</span>
+                <span class="n">domain</span><span class="p">,</span>
+                <span class="n">element_centroid_x_coord</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span>
+                <span class="s2">&quot;EX&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">material_property</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">young_modulus_value</span>
+            <span class="p">)</span>  <span class="c1"># Define property ID and assign Young&#39;s modulus</span>
+            <span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span>
+                <span class="s2">&quot;NUXY&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">material_property</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">poisson_ratio</span>
+            <span class="p">)</span>  <span class="c1"># Assign Poisson ratio</span>
+            <span class="n">mapdl</span><span class="o">.</span><span class="n">mpchg</span><span class="p">(</span>
+                <span class="n">material_property</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span>
+            <span class="p">)</span>  <span class="c1"># Assign property to selected elements</span>
+
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;FIXED_END&quot;</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="s2">&quot;UX&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lab2</span><span class="o">=</span><span class="s2">&quot;UY&quot;</span><span class="p">)</span>  <span class="c1"># Apply fixed end BC</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;LOAD_APPLICATION_POINT&quot;</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="s2">&quot;FY&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">load</span><span class="p">)</span>  <span class="c1"># Apply load BC</span>
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+        <span class="c1"># Displacement probe point - where Uy results are to be extracted</span>
+        <span class="n">displacement_probe_point</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">queries</span><span class="o">.</span><span class="n">node</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">displacement</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s2">&quot;NODE&quot;</span><span class="p">,</span> <span class="n">displacement_probe_point</span><span class="p">,</span> <span class="s2">&quot;U&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">)</span>
+
+        <span class="n">simulation_results</span><span class="p">[</span><span class="n">simulation</span><span class="p">]</span> <span class="o">=</span> <span class="n">displacement</span>
+
+        <span class="n">mapdl</span><span class="o">.</span><span class="n">mpdele</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">simulation</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Completed </span><span class="si">{</span><span class="n">simulation</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> simulations in instance </span><span class="si">{</span><span class="n">instance_identifier</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;All simulations completed in instance </span><span class="si">{</span><span class="n">instance_identifier</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">instance_identifier</span><span class="p">,</span> <span class="n">no_of_simulations</span><span class="p">,</span> <span class="n">simulation_results</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_simulations_over_multple_instances</span><span class="p">(</span>
+    <span class="n">length</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">mesh_size</span><span class="p">,</span> <span class="n">no_of_simulations</span><span class="p">,</span> <span class="n">no_of_instances</span>
+<span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ansys.mapdl.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">MapdlPool</span>
+
+    <span class="c1"># Determine the number of simulations to run per instance</span>
+    <span class="k">if</span> <span class="n">no_of_simulations</span> <span class="o">%</span> <span class="n">no_of_instances</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Simulations can be split equally across instances</span>
+        <span class="n">simulations_per_instance</span> <span class="o">=</span> <span class="n">no_of_simulations</span> <span class="o">//</span> <span class="n">no_of_instances</span>
+        <span class="n">simulations_per_instance_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">simulations_per_instance</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_instances</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Simulations cannot be split equally across instances</span>
+        <span class="n">simulations_per_instance</span> <span class="o">=</span> <span class="n">no_of_simulations</span> <span class="o">//</span> <span class="n">no_of_instances</span>
+        <span class="n">simulations_per_instance_list</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">simulations_per_instance</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_instances</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">remaining_simulations</span> <span class="o">=</span> <span class="n">no_of_simulations</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">simulations_per_instance_list</span><span class="p">)</span>
+        <span class="n">simulations_per_instance_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">remaining_simulations</span><span class="p">)</span>
+
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">MapdlPool</span><span class="p">(</span><span class="n">no_of_instances</span><span class="p">,</span> <span class="n">nproc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">run_location</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">start_timeout</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">thickness</span><span class="p">,</span> <span class="n">mesh_size</span><span class="p">,</span> <span class="n">simulations</span><span class="p">,</span> <span class="nb">id</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">simulations</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">simulations_per_instance_list</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="n">overall_simulation_results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">run_simulations_threaded</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">overall_simulation_results</span>
+</pre></div>
+</div>
+<p>To run simulations over 10 MAPDL instances, call the preceding function with appropriate arguments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the simulations over several instances</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">simulation_results</span> <span class="o">=</span> <span class="n">run_simulations_over_multple_instances</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Simulation took </span><span class="si">{}</span><span class="s2"> min </span><span class="si">{}</span><span class="s2"> s&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="nb">int</span><span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">//</span> <span class="mi">60</span><span class="p">),</span> <span class="nb">int</span><span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">%</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Collect the results from each instance</span>
+<span class="n">combined_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">simulation_results</span><span class="p">]</span>
+<span class="n">combined_results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">combined_results</span><span class="p">)</span>
+
+<span class="c1"># Calculate the probability</span>
+<span class="n">kde</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gaussian_kde</span><span class="p">(</span><span class="n">combined_results</span><span class="p">)</span>  <span class="c1"># Kernel density estimate</span>
+<span class="n">probability</span> <span class="o">=</span> <span class="n">kde</span><span class="o">.</span><span class="n">integrate_box_1d</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">combined_results</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The probability that u is less than 0.2 m is </span><span class="si">{</span><span class="n">probability</span><span class="si">:</span><span class="s2">.0%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The simulations are completed much faster.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In a local test, using the <code class="docutils literal notranslate"><span class="pre">MapdlPool</span></code> approach (with 10 MAPDL instances) takes about 38 minutes to run, while a single instance runs
+for about 3 hours. The simulation speed depends on a multitude of factors, but this comparison provides an idea of the speed
+gain to expect when using multiple instances.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure there are enough licenses available to run multiple MAPDL instances concurrently.</p>
+</div>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id6" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id4">2</a>)</span>
+<p>Ioannis Kalogeris, “Advanced surrogate modeling and machine learning methods in computational stochastic mechanics,” PhD Dissertation</p>
+</aside>
+<aside class="footnote brackets" id="id7" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id5">2</a>)</span>
+<p>Dimitris G. Giovanis and Vissarion Papadopoulos, “Stochastic Finite Element Methods : An Introduction”</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables-versus-stochastic-processes">Random variables versus stochastic processes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variables">Random variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-example">Practical example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-processes">Stochastic processes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Practical example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series-expansion-of-stochastic-processes">Series expansion of stochastic processes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#karhunen-loeve-k-l-series-expansion-for-a-gaussian-process">Karhunen-Loève (K-L) series expansion for a Gaussian process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monte-carlo-simulation">Monte Carlo simulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-description">Problem description</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluating-the-young-s-modulus">Evaluating the Young’s modulus</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#realizations-of-the-young-s-modulus">Realizations of the Young’s modulus</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#verification-of-the-implementation">Verification of the implementation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-simulations">Running the simulations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#answering-problem-questions">Answering problem questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improve-simulation-speed-using-multi-threading">Improve simulation speed using multi-threading</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/examples/extended_examples/sfem/stochastic_fem.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+
+  <!-- Include desired assets -->
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../../../_static/search.json";
+</script>
+
+
+<script src="../../../_static/js/search.js"></script>
+  
+<footer class="bd-footer" font-size="4px">
+  <div class="bd-footer__inner bd-page-width">
+    <div class="footer-items__start">
+      <div class="footer-item">
+        <p class="copyright">
+          PyMAPDL 0.69.dev0 © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+          <br>
+        </p>
+      </div>
+    </div>
+    <div class="footer-items__end">
+      <div class="footer-item">
+        <p class="theme-version">
+          Built with the
+          <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a>
+          1.3.1. and
+           <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+          on <span id="date"></span>
+        </p>
+        <script>
+          var options = { day: "numeric", month: "long", year: "numeric" };
+          var lastModifiedDate = new Date(document.lastModified);
+          var date = lastModifiedDate.toLocaleDateString("en-US", options);
+          document.getElementById("date").innerHTML = date;
+        </script>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

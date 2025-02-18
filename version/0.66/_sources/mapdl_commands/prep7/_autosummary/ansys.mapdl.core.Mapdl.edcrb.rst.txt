@@ -1,0 +1,6 @@
+﻿edcrb
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edcrb

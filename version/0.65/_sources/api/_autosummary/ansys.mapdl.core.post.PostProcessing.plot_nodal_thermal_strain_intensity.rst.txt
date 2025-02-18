@@ -1,0 +1,6 @@
+plot\_nodal\_thermal\_strain\_intensity
+=======================================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.plot_nodal_thermal_strain_intensity

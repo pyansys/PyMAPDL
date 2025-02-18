@@ -1,0 +1,6 @@
+﻿vdele
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.vdele

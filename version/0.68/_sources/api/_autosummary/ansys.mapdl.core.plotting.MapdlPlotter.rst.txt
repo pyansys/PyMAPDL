@@ -1,0 +1,60 @@
+﻿MapdlPlotter
+============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoclass:: MapdlPlotter
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      MapdlPlotter.add_labels
+      
+      
+      MapdlPlotter.add_mesh
+      
+      
+      MapdlPlotter.add_points
+      
+      
+      MapdlPlotter.bc_nodes_plot
+      
+      
+      MapdlPlotter.bc_plot
+      
+      
+      MapdlPlotter.get_meshes_from_plotter
+      
+      
+      MapdlPlotter.plot
+      
+      
+      MapdlPlotter.plot_iter
+      
+      
+      MapdlPlotter.show
+      
+      
+      MapdlPlotter.switch_scene
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      MapdlPlotter.meshes
+      MapdlPlotter.scene
+   
+   

@@ -1,0 +1,6 @@
+﻿is\_local
+=========
+
+.. currentmodule:: ansys.mapdl.core.mapdl_grpc
+
+.. autoproperty:: MapdlGrpc.is_local

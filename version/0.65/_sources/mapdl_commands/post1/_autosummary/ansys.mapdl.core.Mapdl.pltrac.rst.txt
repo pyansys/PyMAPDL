@@ -1,0 +1,6 @@
+﻿pltrac
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.pltrac

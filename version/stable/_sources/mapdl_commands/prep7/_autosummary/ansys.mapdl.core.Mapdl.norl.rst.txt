@@ -1,0 +1,6 @@
+﻿norl
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.norl

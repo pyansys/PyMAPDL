@@ -1,0 +1,6 @@
+sub\_step
+=========
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. autoproperty:: PostProcessing.sub_step

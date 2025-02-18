@@ -1,0 +1,6 @@
+revision
+========
+
+.. currentmodule:: ansys.mapdl.core.parameters
+
+.. autoproperty:: Parameters.revision

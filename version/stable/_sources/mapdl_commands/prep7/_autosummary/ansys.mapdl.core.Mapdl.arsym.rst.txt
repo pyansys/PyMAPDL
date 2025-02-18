@@ -1,0 +1,6 @@
+﻿arsym
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.arsym

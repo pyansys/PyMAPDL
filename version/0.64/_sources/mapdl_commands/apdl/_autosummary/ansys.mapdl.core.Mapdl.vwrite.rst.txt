@@ -1,0 +1,6 @@
+﻿vwrite
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.vwrite

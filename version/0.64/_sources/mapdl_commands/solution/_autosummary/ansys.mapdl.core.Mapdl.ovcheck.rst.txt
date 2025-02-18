@@ -1,0 +1,6 @@
+﻿ovcheck
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ovcheck

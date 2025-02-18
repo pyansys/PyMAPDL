@@ -1,0 +1,6 @@
+camera
+======
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.camera

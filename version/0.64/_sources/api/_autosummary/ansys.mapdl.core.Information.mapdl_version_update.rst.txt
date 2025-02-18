@@ -1,0 +1,6 @@
+mapdl\_version\_update
+======================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Information.mapdl_version_update

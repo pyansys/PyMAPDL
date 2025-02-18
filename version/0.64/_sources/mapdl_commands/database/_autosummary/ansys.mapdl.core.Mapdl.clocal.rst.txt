@@ -1,0 +1,6 @@
+﻿clocal
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.clocal

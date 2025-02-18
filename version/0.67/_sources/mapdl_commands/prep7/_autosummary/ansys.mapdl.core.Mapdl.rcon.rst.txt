@@ -1,0 +1,6 @@
+﻿rcon
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.rcon

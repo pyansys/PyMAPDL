@@ -1,0 +1,6 @@
+﻿download\_project
+=================
+
+.. currentmodule:: ansys.mapdl.core.mapdl_grpc
+
+.. automethod:: MapdlGrpc.download_project

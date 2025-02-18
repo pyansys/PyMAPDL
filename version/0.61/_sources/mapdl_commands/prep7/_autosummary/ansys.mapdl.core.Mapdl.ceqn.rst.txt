@@ -1,0 +1,6 @@
+﻿ceqn
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ceqn

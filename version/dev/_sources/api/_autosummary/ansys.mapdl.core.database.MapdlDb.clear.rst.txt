@@ -1,0 +1,6 @@
+clear
+=====
+
+.. currentmodule:: ansys.mapdl.core.database
+
+.. automethod:: MapdlDb.clear

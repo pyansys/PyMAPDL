@@ -1,0 +1,6 @@
+﻿sph5
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sph5

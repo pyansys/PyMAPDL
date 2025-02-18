@@ -1,0 +1,6 @@
+﻿vfquery
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.vfquery

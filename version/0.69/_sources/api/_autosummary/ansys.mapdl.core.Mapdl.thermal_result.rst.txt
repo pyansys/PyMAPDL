@@ -1,0 +1,6 @@
+﻿thermal\_result
+===============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.thermal_result

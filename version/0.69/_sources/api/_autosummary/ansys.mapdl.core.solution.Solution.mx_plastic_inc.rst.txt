@@ -1,0 +1,6 @@
+mx\_plastic\_inc
+================
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.mx_plastic_inc

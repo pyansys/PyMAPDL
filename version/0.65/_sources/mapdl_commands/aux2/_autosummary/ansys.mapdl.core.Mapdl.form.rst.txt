@@ -1,0 +1,6 @@
+﻿form
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.form

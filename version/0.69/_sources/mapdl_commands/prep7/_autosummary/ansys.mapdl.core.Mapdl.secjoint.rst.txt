@@ -1,0 +1,6 @@
+﻿secjoint
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.secjoint

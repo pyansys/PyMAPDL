@@ -1,0 +1,6 @@
+print
+=====
+
+.. currentmodule:: ansys.mapdl.core.xpl
+
+.. automethod:: ansXpl.print

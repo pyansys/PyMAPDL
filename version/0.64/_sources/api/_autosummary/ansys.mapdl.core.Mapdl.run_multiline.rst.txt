@@ -1,0 +1,6 @@
+﻿run\_multiline
+==============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.run_multiline

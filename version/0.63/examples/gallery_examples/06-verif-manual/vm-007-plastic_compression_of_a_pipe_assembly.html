@@ -1,0 +1,1556 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Plastic Compression of a Pipe Assembly &#8212; PyMAPDL</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    
+        <link href="../../../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/06-verif-manual/vm-007-plastic_compression_of_a_pipe_assembly';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.63';
+        </script>
+    <link rel="shortcut icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Parametric Calculation" href="vm-008-parametric_calculation.html" />
+    <link rel="prev" title="Pinched Cylinder" href="vm-006-pinched_cylinder.html" />
+<link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/gallery_examples/06-verif-manual/vm-007-plastic_compression_of_a_pipe_assembly.html" />
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      <!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+    
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../learning/index.html">
+                        Learning PyMAPDL
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../troubleshoot/index.html">
+                        Troubleshooting
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contribution_and_api/index.html">
+                        Contributing and API
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.63  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../../../index.html">PyMAPDL</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Examples</a> » </li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Verification Manual Examples</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Plastic Compression of a Pipe Assembly</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../learning/index.html">
+                        Learning PyMAPDL
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../troubleshoot/index.html">
+                        Troubleshooting
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contribution_and_api/index.html">
+                        Contributing and API
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.63  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-mapdl-examples/index.html">Full Examples Using PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-apdlmath-examples/index.html">PyMAPDL Math Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-geometry/index.html">Geometry Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-tips-n-tricks/index.html">Miscellaneous Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-general-fea/index.html">Academic Finite Element Examples</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Verification Manual Examples</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vm-001-statically_indeterminate_reaction_force_analysis.html">Statically Indeterminate Reaction Force Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-002-beam_stresses_and_deflections.html">Beam Stresses and Deflections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-003-thermally_loaded_support_structure.html">Thermally Loaded Support Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-004-deflection_of_a_hinged_support.html">Deflection of a Hinged Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-005-laterally_loaded_tapered_support_structure.html">Statically Indeterminate Reaction Force Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-006-pinched_cylinder.html">Pinched Cylinder</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Plastic Compression of a Pipe Assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-008-parametric_calculation.html">Parametric Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-009-large_lateral_deflection_of_unequal_stiffness_springs.html">Large Lateral Deflection of Unequal Stiffness Springs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm-010-bending_of_a_t-shaped_beam.html">Bending of a Tee-Shaped Beam</a></li>
+</ul>
+</li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../technology_showcase_examples/techdemo-1/ex_0-tecbrakesqueal.html">Brake Squeal Analysis</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../technology_showcase_examples/techdemo-20/20-example-technology-showcase-dynamic-simulation-PCB.html">Dynamic simulation of a printed circuit board assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technology_showcase_examples/techdemo-28/ex_28-tecfricstir.html">Friction Stir Welding (FSW) Simulation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://pyansys.github.io/ml-rl-cartpole/ml-rl-notebook.html">Cart-Pole Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/ex_01-gmsh_example/ex_01-gmsh_example.html">Gmsh Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/Python_UPF/python_upf_examples.html">UPF in PyMAPDL</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-gallery-examples-06-verif-manual-vm-007-plastic-compression-of-a-pipe-assembly-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="plastic-compression-of-a-pipe-assembly">
+<span id="ref-vm7-example"></span><span id="sphx-glr-examples-gallery-examples-06-verif-manual-vm-007-plastic-compression-of-a-pipe-assembly-py"></span><h1>Plastic Compression of a Pipe Assembly<a class="headerlink" href="#plastic-compression-of-a-pipe-assembly" title="Permalink to this heading">#</a></h1>
+<dl class="simple">
+<dt>Problem Description:</dt><dd><ul class="simple">
+<li><p>Two coaxial tubes, the inner one of 1020 CR steel and cross-sectional
+area <span class="math notranslate nohighlight">\(A_{\mathrm{s}}\)</span>, and the outer one of 2024-T4 aluminum alloy
+and of area <span class="math notranslate nohighlight">\(A_{\mathrm{a}}\)</span>, are compressed between heavy, flat end plates,
+as shown below. Determine the load-deflection curve of the assembly
+as it is compressed into the plastic region by an axial displacement.
+Assume that the end plates are so stiff that both tubes are shortened by
+exactly the same amount.</p></li>
+</ul>
+</dd>
+<dt>Reference:</dt><dd><ul class="simple">
+<li><p>S. H. Crandall, N. C. Dahl, An Introduction to the Mechanics of Solids,
+McGraw-Hill Book Co., Inc., New York, NY, 1959, pg. 180, ex. 5.1.</p></li>
+</ul>
+</dd>
+<dt>Analysis Type(s):</dt><dd><ul class="simple">
+<li><p>Static, Plastic Analysis (<code class="docutils literal notranslate"><span class="pre">ANTYPE=0</span></code>)</p></li>
+</ul>
+</dd>
+<dt>Element Type(s):</dt><dd><ul class="simple">
+<li><p>Plastic Straight Pipe Element (PIPE288)</p></li>
+<li><p>4-Node Finite Strain Shell (SHELL181)</p></li>
+<li><p>3-D Structural Solid Elements (SOLID185)</p></li>
+</ul>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="../../../_images/vm7_setup_2.png"><img alt="VM7 Finite Element Models" src="../../../_images/vm7_setup_2.png" style="width: 400px;" /></a>
+<dl class="simple">
+<dt>Material Properties</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E_{\mathrm{s}} = 26875000\,psi\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_{\mathrm{(yp)s}} = 86000\,psi\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E_{\mathrm{a}} = 11000000\,psi\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma_{\mathrm{(yp)a}} = 55000\,psi\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\nu = 0.3\)</span></p></li>
+</ul>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="../../../_images/vm7_setup_1.png"><img alt="VM7 Material Model" src="../../../_images/vm7_setup_1.png" style="width: 300px;" /></a>
+<dl class="simple">
+<dt>Geometric Properties:</dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(l = 10\,in\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{\mathrm{s}} = 7\,in^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{\mathrm{a}} = 12\,in^2\)</span></p></li>
+</ul>
+</dd>
+<dt>Loading:</dt><dd><ul class="simple">
+<li><p>1st Load Step: <span class="math notranslate nohighlight">\(\delta = 0.032\,in\)</span></p></li>
+<li><p>2nd Load Step: <span class="math notranslate nohighlight">\(\delta = 0.050\,in\)</span></p></li>
+<li><p>3rd Load Step: <span class="math notranslate nohighlight">\(\delta = 0.100\,in\)</span></p></li>
+</ul>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="../../../_images/vm7_setup.png"><img alt="VM7 Problem Sketch" src="../../../_images/vm7_setup.png" style="width: 300px;" /></a>
+<dl class="simple">
+<dt>Analysis Assumptions and Modeling Notes:</dt><dd><ul class="simple">
+<li><p>The following tube dimensions, which provide the desired cross-sectional
+areas, are arbitrarily chosen:</p>
+<ul>
+<li><p>Inner (steel) tube: inside radius = 1.9781692 in., wall thickness = 0.5 in.</p></li>
+<li><p>Outer (aluminum) tube: inside radius = 3.5697185 in., wall thickness = 0.5 in.</p></li>
+</ul>
+</li>
+<li><p>The problem can be solved in three ways:</p>
+<ul>
+<li><p>using <code class="docutils literal notranslate"><span class="pre">PIPE288</span></code> - the plastic straight pipe element</p></li>
+<li><p>using <code class="docutils literal notranslate"><span class="pre">SOLID185</span></code> - the 3-D structural solid element</p></li>
+<li><p>using <code class="docutils literal notranslate"><span class="pre">SHELL181</span></code> - the 4-Node Finite Strain Shell</p></li>
+</ul>
+</li>
+<li><p>In the SOLID185 and SHELL181 cases, since the problem is axisymmetric,
+only a one element <span class="math notranslate nohighlight">\(\theta\)</span> -sector is modeled. A small angle <span class="math notranslate nohighlight">\(\theta = 6°\)</span>
+is arbitrarily chosen to reasonably approximate the circular boundary
+with straight sided elements.
+The nodes at the boundaries have the <code class="docutils literal notranslate"><span class="pre">UX</span></code> (radial) degree of freedom coupled.
+In the SHELL181 model, the nodes at the boundaries additionally have
+the <code class="docutils literal notranslate"><span class="pre">ROTY</span></code> degree of freedom coupled.</p></li>
+</ul>
+</dd>
+</dl>
+<section id="start-mapdl">
+<h2>Start MAPDL<a class="headerlink" href="#start-mapdl" title="Permalink to this heading">#</a></h2>
+<p>Start MAPDL and import Numpy and Pandas libraries.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sphinx_gallery_thumbnail_path = &#39;_static/vm7_setup.png&#39;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+
+<span class="c1"># Start MAPDL.</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="pre-processing">
+<h2>Pre-Processing<a class="headerlink" href="#pre-processing" title="Permalink to this heading">#</a></h2>
+<p>Enter verification example mode and the pre-processing routine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">verify</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">(</span><span class="n">mute</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parameterization">
+<h2>Parameterization<a class="headerlink" href="#parameterization" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Angle of the model sector.</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">theta</span></a> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="c1"># Deflection load steps.</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">defl_ls1</span></a> <span class="o">=</span> <span class="o">-</span><span class="mf">0.032</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">defl_ls2</span></a> <span class="o">=</span> <span class="o">-</span><span class="mf">0.05</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">defl_ls3</span></a> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span>
+</pre></div>
+</div>
+</section>
+<section id="define-element-type">
+<h2>Define Element Type<a class="headerlink" href="#define-element-type" title="Permalink to this heading">#</a></h2>
+<p>Set up the element types .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Element type PIPE288.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;PIPE288&quot;</span><span class="p">)</span>
+
+<span class="c1"># Special Features are defined by keyoptions of pipe element.</span>
+<span class="c1"># KEYOPT(4)(2)</span>
+<span class="c1"># Hoop strain treatment:</span>
+<span class="c1"># Thick pipe theory.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">keyopt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Cubic shape function</span>
+
+<span class="c1"># Element type SOLID185.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;SOLID185&quot;</span><span class="p">)</span>
+
+<span class="c1"># Element type SHELL181.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;SHELL181&quot;</span><span class="p">)</span>  <span class="c1"># FULL INTEGRATION</span>
+
+<span class="c1"># Special Features are defined by keyoptions of shell element.</span>
+<span class="c1"># KEYOPT(3)(2)</span>
+<span class="c1"># Integration option:</span>
+<span class="c1"># Full integration with incompatible modes.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">keyopt</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Print</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">etlist</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ELEMENT TYPE        1 IS PIPE288      3-D 2-NODE PIPE
+  KEYOPT( 1- 6)=        0      0      0        2      0      0
+  KEYOPT( 7-12)=        0      0      0        0      0      0
+  KEYOPT(13-18)=        0      0      0        0      0      0
+
+ ELEMENT TYPE        2 IS SOLID185     3-D 8-NODE STRUCTURAL SOLID
+  KEYOPT( 1- 6)=        0      0      0        0      0      0
+  KEYOPT( 7-12)=        0      0      0        0      0      0
+  KEYOPT(13-18)=        0      0      0        0      0      0
+
+ ELEMENT TYPE        3 IS SHELL181     4-NODE SHELL
+  KEYOPT( 1- 6)=        0      0      2        0      0      0
+  KEYOPT( 7-12)=        0      0      0        0      0      0
+  KEYOPT(13-18)=        0      0      0        0      0      0
+
+ CURRENT NODAL DOF SET IS  UX    UY    UZ    ROTX  ROTY  ROTZ
+  THREE-DIMENSIONAL MODEL
+</pre></div>
+</div>
+</section>
+<section id="define-material">
+<h2>Define Material<a class="headerlink" href="#define-material" title="Permalink to this heading">#</a></h2>
+<p>Set up the material properties.</p>
+<ul class="simple">
+<li><p>Young Modulus of steel is: <span class="math notranslate nohighlight">\(E_{\mathrm{s}} = 26875000\,psi\)</span>,</p></li>
+<li><p>Yield strength of steel is: <span class="math notranslate nohighlight">\(\sigma_{\mathrm{(yp)s}} = 86000\, psi\)</span>,</p></li>
+<li><p>Young Modulus of aluminum is: <span class="math notranslate nohighlight">\(E_{\mathrm{a}} = 11000000\,psi\)</span>,</p></li>
+<li><p>Yield strength of aluminum is: <span class="math notranslate nohighlight">\(\sigma_{\mathrm{(yp)a}} = 55000\,psi\)</span>,</p></li>
+<li><p>Poisson’s ratio is: <span class="math notranslate nohighlight">\(\nu = 0.3\)</span></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Steel material model.</span>
+<span class="c1"># Define Young&#39;s moulus and Poisson ratio for Steel.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;EX&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">26.875e6</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;PRXY&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Define non-linear material properties for Steel.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">tb</span><span class="p">(</span><span class="s2">&quot;BKIN&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">tbtemp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">tbdata</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">86000</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Aluminum material model.</span>
+<span class="c1"># Define Young&#39;s moulus and Poisson ratio for Aluminum.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;EX&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">11e6</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;PRXY&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Define non-linear material properties for Aluminum.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">tb</span><span class="p">(</span><span class="s2">&quot;BKIN&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">tbtemp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">tbdata</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">55000</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Print</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">mplist</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>MATERIAL NUMBER        1
+
+      TEMP        EX
+               0.2687500E+08
+
+      TEMP        PRXY
+               0.3000000
+
+ MATERIAL NUMBER        2
+
+      TEMP        EX
+               0.1100000E+08
+
+      TEMP        PRXY
+               0.3000000
+</pre></div>
+</div>
+</section>
+<section id="plot-stress-strain-curve">
+<h2>Plot Stress - Strain Curve<a class="headerlink" href="#plot-stress-strain-curve" title="Permalink to this heading">#</a></h2>
+<p>Use Matplotlib library to plot material model curves of steel and aluminum.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define stress - strain properties of the steel.</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">steel</span></a> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;stress_s&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">86000</span><span class="p">,</span> <span class="mi">86000</span><span class="p">,</span> <span class="mi">86000</span><span class="p">],</span> <span class="s2">&quot;strain_s&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.032</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]}</span>
+
+<span class="c1"># Define yielding strength point of the steel on the curve.</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">xp</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">steel</span></a><span class="p">[</span><span class="s2">&quot;strain_s&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">yp</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">steel</span></a><span class="p">[</span><span class="s2">&quot;stress_s&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Set up the settings of the steel curve.</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot" title="matplotlib.pyplot.plot" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span>
+    <a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">steel</span></a><span class="p">[</span><span class="s2">&quot;strain_s&quot;</span><span class="p">],</span>
+    <a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">steel</span></a><span class="p">[</span><span class="s2">&quot;stress_s&quot;</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;1020 CR STEEL&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;steelblue&quot;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot" title="matplotlib.pyplot.plot" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">xp</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">yp</span></a><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+
+<span class="c1"># Annotation settings</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.annotate.html#matplotlib.pyplot.annotate" title="matplotlib.pyplot.annotate" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">annotate</span></a><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">&quot;${(\sigma_</span><span class="si">{yp}</span><span class="s2">)_s}$&quot;</span><span class="p">,</span>
+    <span class="n">xy</span><span class="o">=</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">xp</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">yp</span></a><span class="p">),</span>
+    <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mi">75000</span><span class="p">),</span>
+    <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;steelblue&quot;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span>
+    <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;steelblue&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round, pad=1&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># Define stress - strain properties of the aluminum.</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">aluminum</span></a> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;stress_a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">55000</span><span class="p">,</span> <span class="mi">55000</span><span class="p">,</span> <span class="mi">55000</span><span class="p">],</span> <span class="s2">&quot;strain_a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]}</span>
+
+<span class="c1"># Define yielding strength point of the Aluminum on the curve.</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">xp</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">aluminum</span></a><span class="p">[</span><span class="s2">&quot;strain_a&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">yp</span></a> <span class="o">=</span> <a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">aluminum</span></a><span class="p">[</span><span class="s2">&quot;stress_a&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Set up the settings of the aluminum curve.</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot" title="matplotlib.pyplot.plot" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span>
+    <a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">aluminum</span></a><span class="p">[</span><span class="s2">&quot;strain_a&quot;</span><span class="p">],</span>
+    <a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">aluminum</span></a><span class="p">[</span><span class="s2">&quot;stress_a&quot;</span><span class="p">],</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;2024-T4 Aluminum&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;sandybrown&quot;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot" title="matplotlib.pyplot.plot" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">xp</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">yp</span></a><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+
+<span class="c1"># Annotation settings</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.annotate.html#matplotlib.pyplot.annotate" title="matplotlib.pyplot.annotate" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">annotate</span></a><span class="p">(</span>
+    <span class="sa">r</span><span class="s2">&quot;${(\sigma_</span><span class="si">{yp}</span><span class="s2">)_a}$&quot;</span><span class="p">,</span>
+    <span class="n">xy</span><span class="o">=</span><span class="p">(</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">xp</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">yp</span></a><span class="p">),</span>
+    <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">0.07</span><span class="p">,</span> <span class="mi">45000</span><span class="p">),</span>
+    <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;sandybrown&quot;</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.05</span><span class="p">),</span>
+    <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;sandybrown&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">boxstyle</span><span class="o">=</span><span class="s2">&quot;round, pad=1&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.grid.html#matplotlib.pyplot.grid" title="matplotlib.pyplot.grid" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">grid</span></a><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html#matplotlib.pyplot.legend" title="matplotlib.pyplot.legend" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span></a><span class="p">()</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.title.html#matplotlib.pyplot.title" title="matplotlib.pyplot.title" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">title</span></a><span class="p">(</span><span class="s2">&quot;Stress - Strain Curve&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_vm-007-plastic_compression_of_a_pipe_assembly_001.png" srcset="../../../_images/sphx_glr_vm-007-plastic_compression_of_a_pipe_assembly_001.png" alt="Stress - Strain Curve" class = "sphx-glr-single-img"/></section>
+<section id="define-section">
+<h2>Define Section<a class="headerlink" href="#define-section" title="Permalink to this heading">#</a></h2>
+<p>Set up the cross-section properties for a shell and pipe elements.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Shell cross-section for inside tube(steel).</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">sectype</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;SHELL&quot;</span><span class="p">)</span>
+
+<span class="c1"># Thickness (SHELL181)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">secdata</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Shell cross-section for outside tube(aluminum).</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">sectype</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;SHELL&quot;</span><span class="p">)</span>
+
+<span class="c1"># Thickness (SHELL181)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">secdata</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Define Pipe cross-section for inside tube(steel).</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">sectype</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;PIPE&quot;</span><span class="p">)</span>
+
+<span class="c1"># Outside diameter and wall thickness settings for inside tube(PIPE288).</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">secdata</span><span class="p">(</span><span class="mf">4.9563384</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Pipe cross-section for outside tube(aluminum) .</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">sectype</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;PIPE&quot;</span><span class="p">)</span>
+
+<span class="c1"># Outside diameter and wall thickness settings for outside tube (PIPE288).</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">secdata</span><span class="p">(</span><span class="mf">8.139437</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Print the section properties for all sections.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">slist</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****MAPDL VERIFICATION RUN ONLY*****
+     DO NOT USE RESULTS FOR PRODUCTION
+
+   SECTION ID NUMBER:             1
+   SHELL SECTION TYPE:
+   SHELL SECTION NAME IS:
+   SHELL SECTION DATA SUMMARY:
+    Number of Layers    =      1
+    Total Thickness     =     0.500000
+
+  Layer      Thickness   MatID   Ori. Angle  Num Intg. Pts
+
+      1        0.5000     1        0.0000     5
+
+    Shell Section is offset to MID surface of Shell
+
+    Section Solution Controls
+    User Transverse Shear Stiffness (11)=  0.0000
+                                    (22)=  0.0000
+                                    (12)=  0.0000
+    Added Mass Per Unit Area            =  0.0000
+    Hourglass Scale Factor; Membrane    =  1.0000
+                            Bending     =  1.0000
+    Drill Stiffness Scale Factor        =  1.0000
+
+   SECTION ID NUMBER:             2
+   SHELL SECTION TYPE:
+   SHELL SECTION NAME IS:
+   SHELL SECTION DATA SUMMARY:
+    Number of Layers    =      1
+    Total Thickness     =     0.500000
+
+  Layer      Thickness   MatID   Ori. Angle  Num Intg. Pts
+
+      1        0.5000     2        0.0000     5
+
+    Shell Section is offset to MID surface of Shell
+
+    Section Solution Controls
+    User Transverse Shear Stiffness (11)=  0.0000
+                                    (22)=  0.0000
+                                    (12)=  0.0000
+    Added Mass Per Unit Area            =  0.0000
+    Hourglass Scale Factor; Membrane    =  1.0000
+                            Bending     =  1.0000
+    Drill Stiffness Scale Factor        =  1.0000
+
+   SECTION ID NUMBER:           3
+   PIPE SECTION NAME IS:
+   PIPE SECTION DATA SUMMARY:
+    Outside Diameter     =  4.9563
+    Thickness            = 0.50000
+    Area                 =  6.9946
+    Iyy                  =  17.559
+    Torsion Constant     =  35.118
+    Shear Correction-yy  = 0.50995
+
+   SECTION ID NUMBER:           4
+   PIPE SECTION NAME IS:
+   PIPE SECTION DATA SUMMARY:
+    Outside Diameter     =  8.1394
+    Thickness            = 0.50000
+    Area                 =  11.991
+    Iyy                  =  87.735
+    Torsion Constant     =  175.47
+    Shear Correction-yy  = 0.50305
+</pre></div>
+</div>
+</section>
+<section id="define-geometry">
+<h2>Define Geometry<a class="headerlink" href="#define-geometry" title="Permalink to this heading">#</a></h2>
+<p>Set up the nodes and create the elements through the nodes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate nodes and elements for PIPE288.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Create element for steel(inside) tube cross-section.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">secnum</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Create element for aluminum(outside) tube cross-section.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">secnum</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Activate the global cylindrical coordinate system.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Generate nodes and elements for SOLID185.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.9781692</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.9781692</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">102</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">2.4781692</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">103</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.5697185</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">104</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">4.0697185</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">105</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">1.9781692</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">106</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">2.4781692</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">107</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.5697185</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">108</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">4.0697185</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Generate 2nd set of nodes to form a theta degree slice.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">ngen</span><span class="p">(</span><span class="n">itime</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">inc</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">node1</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">node2</span><span class="o">=</span><span class="mi">108</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">theta</span></a><span class="p">)</span>
+
+<span class="c1"># Rotate nodal coordinate systems into the active system.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nrotat</span><span class="p">(</span><span class="n">node1</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">node2</span><span class="o">=</span><span class="mi">118</span><span class="p">,</span> <span class="n">ninc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Create elements for Inside (Steel) tube.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">101</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span> <span class="mi">106</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">115</span><span class="p">)</span>
+
+<span class="c1"># Create elements for Outside (Aluminum) tube</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">103</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">113</span><span class="p">,</span> <span class="mi">107</span><span class="p">,</span> <span class="mi">108</span><span class="p">,</span> <span class="mi">118</span><span class="p">,</span> <span class="mi">117</span><span class="p">)</span>
+
+<span class="c1"># Generate nodes.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">2.2281692</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">203</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">2.2281692</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">202</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.8197185</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">204</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">3.8197185</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Generate nodes to form a theta degree slice</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">ngen</span><span class="p">(</span><span class="n">itime</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">inc</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">node1</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span> <span class="n">node2</span><span class="o">=</span><span class="mi">204</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">theta</span></a><span class="p">)</span>
+
+<span class="c1"># Create element for Steel(Inside) tube cross-section.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">secnum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">203</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">207</span><span class="p">)</span>
+
+<span class="c1"># Create element for Aluminum(Outside) tube cross-section.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">secnum</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">204</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">208</span><span class="p">)</span>
+
+<span class="c1"># Plot element model to demonstrate the axisymmetric element model.</span>
+<a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cpos</span></a> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mf">19.67899462804619</span><span class="p">,</span> <span class="mf">17.856836088414664</span><span class="p">,</span> <span class="mf">22.644135378046194</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">2.03485925</span><span class="p">,</span> <span class="mf">0.21270071036846988</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cpos</span></a><span class="o">=</span><a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cpos</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_vm-007-plastic_compression_of_a_pipe_assembly_002.png" srcset="../../../_images/sphx_glr_vm-007-plastic_compression_of_a_pipe_assembly_002.png" alt="vm 007 plastic compression of a pipe assembly" class = "sphx-glr-single-img"/></section>
+<section id="define-boundary-conditions">
+<h2>Define Boundary Conditions<a class="headerlink" href="#define-boundary-conditions" title="Permalink to this heading">#</a></h2>
+<p>Application of boundary conditions (BC) for simplified  axisymmetric model.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply constraints to the PIPE288 model.</span>
+<span class="c1"># Fix all DOFs for bottom end of PIPE288.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+
+<span class="c1"># Allow only UZ DOF at top end of the PIPE288.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="s2">&quot;UX&quot;</span><span class="p">,</span> <span class="n">lab2</span><span class="o">=</span><span class="s2">&quot;UY&quot;</span><span class="p">,</span> <span class="n">lab3</span><span class="o">=</span><span class="s2">&quot;ROTX&quot;</span><span class="p">,</span> <span class="n">lab4</span><span class="o">=</span><span class="s2">&quot;ROTY&quot;</span><span class="p">,</span> <span class="n">lab5</span><span class="o">=</span><span class="s2">&quot;ROTZ&quot;</span><span class="p">)</span>
+
+<span class="c1"># Apply constraints to SOLID185 and SHELL181 models&quot;</span>
+<span class="c1"># Couple nodes at boundary in RADIAL direction for SOLID185.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">nset</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="s2">&quot;UX&quot;</span><span class="p">,</span> <span class="n">node1</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">node2</span><span class="o">=</span><span class="mi">111</span><span class="p">,</span> <span class="n">node3</span><span class="o">=</span><span class="mi">105</span><span class="p">,</span> <span class="n">node4</span><span class="o">=</span><span class="mi">115</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cpsgen</span><span class="p">(</span><span class="n">itime</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">nset1</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Couple nodes at boundary in RADIAL direction for the SHELL181.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="s2">&quot;UX&quot;</span><span class="p">,</span> <span class="n">node1</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span> <span class="n">node2</span><span class="o">=</span><span class="mi">205</span><span class="p">,</span> <span class="n">node3</span><span class="o">=</span><span class="mi">203</span><span class="p">,</span> <span class="n">node4</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cpsgen</span><span class="p">(</span><span class="n">itime</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nset1</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Couple nodes at boundary in ROTY dir for SHELL181.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="s2">&quot;ROTY&quot;</span><span class="p">,</span> <span class="n">node1</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span> <span class="n">node2</span><span class="o">=</span><span class="mi">205</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cpsgen</span><span class="p">(</span><span class="n">itime</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">nset1</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># Select only nodes in SOLID185 and SHELL181 models.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="n">type_</span><span class="o">=</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="s2">&quot;NODE&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">212</span><span class="p">)</span>
+
+<span class="c1"># Select only nodes at theta = 0 from the selected set.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Apply symmetry boundary conditions.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">dsym</span><span class="p">(</span><span class="s2">&quot;SYMM&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Select only nodes in SOLID185 and SHELL181 models.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="n">type_</span><span class="o">=</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="s2">&quot;NODE&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">212</span><span class="p">)</span>
+
+<span class="c1"># elect nodes at theta from the selected set.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">theta</span></a><span class="p">)</span>
+
+<span class="c1"># Apply symmetry boundary conditions.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">dsym</span><span class="p">(</span><span class="s2">&quot;SYMM&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Select all nodes and RESELECT only nodes at Z = 0.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Constrain bottom nodes in Z direction.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;UZ&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Select all nodes.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="n">mute</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="solve">
+<h2>Solve<a class="headerlink" href="#solve" title="Permalink to this heading">#</a></h2>
+<p>Enter solution mode and solve the system.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start solution procedure.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>
+
+<span class="c1"># Define solution function.</span>
+<span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">deflect</span><span class="p">):</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="n">lab</span><span class="o">=</span><span class="s2">&quot;UZ&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">deflect</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+
+<span class="c1"># Run each load step to reproduce needed deflection subsequently.</span>
+<span class="c1"># Load Step 1</span>
+<span class="n">solution</span><span class="p">(</span><span class="n">deflect</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">defl_ls1</span></a><span class="p">)</span>
+
+<span class="c1"># Load Step 2</span>
+<span class="n">solution</span><span class="p">(</span><span class="n">deflect</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">defl_ls2</span></a><span class="p">)</span>
+
+<span class="c1"># Load Step 3</span>
+<span class="n">solution</span><span class="p">(</span><span class="n">deflect</span><span class="o">=</span><a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">defl_ls3</span></a><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="n">mute</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="post-processing">
+<h2>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this heading">#</a></h2>
+<p>Enter post-processing.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter the post-processing routine.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">(</span><span class="n">mute</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-loads">
+<h2>Getting loads<a class="headerlink" href="#getting-loads" title="Permalink to this heading">#</a></h2>
+<p>Set up the function to get load values of each load step of the simplified
+axisymmetric model and convert it to the full model.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getload</span><span class="p">():</span>
+
+    <span class="c1"># Select the nodes in the PIPE288 element model.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="n">type_</span><span class="o">=</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="s2">&quot;NODE&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Sum the nodal force contributions of elements.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">fsum</span><span class="p">()</span>
+
+    <span class="c1"># Extrapolation of the force results in the full 360 (deg) model.</span>
+    <span class="n">load_288</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s2">&quot;FSUM&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;ITEM&quot;</span><span class="p">,</span> <span class="s2">&quot;FZ&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Select the nodes in the SOLID185 element model.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="n">type_</span><span class="o">=</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="s2">&quot;NODE&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">118</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">fsum</span><span class="p">()</span>
+
+    <span class="c1"># Get the force value of the simplified model.</span>
+    <span class="n">load_185_theta</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s2">&quot;FSUM&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;ITEM&quot;</span><span class="p">,</span> <span class="s2">&quot;FZ&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Extrapolation of the force results in the full 360 (deg) model.</span>
+    <span class="n">load_185</span> <span class="o">=</span> <span class="n">load_185_theta</span> <span class="o">*</span> <span class="mi">360</span> <span class="o">/</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">theta</span></a>
+
+    <span class="c1"># Select the nodes in the SHELL181 element model.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;NODE&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">212</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Sum the nodal force contributions of elements.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">fsum</span><span class="p">()</span>
+
+    <span class="c1"># Get the force value of the simplified model.</span>
+    <span class="n">load_181_theta</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s2">&quot;FSUM&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;ITEM&quot;</span><span class="p">,</span> <span class="s2">&quot;FZ&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Extrapolation of the force results in the full 360 (deg) model.</span>
+    <span class="n">load_181</span> <span class="o">=</span> <span class="n">load_181_theta</span> <span class="o">*</span> <span class="mi">360</span> <span class="o">/</span> <a href="https://docs.python.org/dev/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">theta</span></a>
+
+    <span class="c1"># Return load results of each element model.</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">load_288</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">load_185</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">load_181</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-loads-for-each-load-step">
+<h2>Getting Loads For Each Load Step<a class="headerlink" href="#getting-loads-for-each-load-step" title="Permalink to this heading">#</a></h2>
+<p>Obtain the loads of the model using <code class="xref py py-func docutils literal notranslate"><span class="pre">getload()</span></code> function.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Activate Load Step 1 and extract load data.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pipe288_ls1</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">solid185_ls1</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">shell181_ls1</span></a> <span class="o">=</span> <span class="n">getload</span><span class="p">()</span>
+
+<span class="c1"># Activate Load Step 2 and extract load data.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pipe288_ls2</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">solid185_ls2</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">shell181_ls2</span></a> <span class="o">=</span> <span class="n">getload</span><span class="p">()</span>
+
+<span class="c1"># Activate Load Step 3 and extract load data.</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pipe288_ls3</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">solid185_ls3</span></a><span class="p">,</span> <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">shell181_ls3</span></a> <span class="o">=</span> <span class="n">getload</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="check-results">
+<h2>Check Results<a class="headerlink" href="#check-results" title="Permalink to this heading">#</a></h2>
+<p>Finally we have the results of the loads for the simplified axisymmetric model,
+which can be compared with expected target values for models with <code class="docutils literal notranslate"><span class="pre">PIPE288</span></code>,
+<code class="docutils literal notranslate"><span class="pre">SOLID185</span></code>, and <code class="docutils literal notranslate"><span class="pre">SHELL181</span></code> elements. Loads expected for each load step are:</p>
+<ul class="simple">
+<li><p>1st Load Step with deflection <span class="math notranslate nohighlight">\(\delta = 0.032 (in)\)</span> has <span class="math notranslate nohighlight">\(load_1 = 1024400\,(lb)\)</span>.</p></li>
+<li><p>2nd Load Step with deflection <span class="math notranslate nohighlight">\(\delta = 0.05 (in)\)</span> has <span class="math notranslate nohighlight">\(load_2 = 1262000\,(lb)\)</span>.</p></li>
+<li><p>3rd Load Step with deflection <span class="math notranslate nohighlight">\(\delta = 0.1 (in)\)</span> has <span class="math notranslate nohighlight">\(load_3 = 1262000\,(lb)\)</span>.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_res</span></a> <span class="o">=</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.asarray.html#numpy.asarray" title="numpy.asarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">asarray</span></a><span class="p">(</span>
+    <span class="p">[</span><span class="mi">1024400</span><span class="p">,</span> <span class="mi">1262000</span><span class="p">,</span> <span class="mi">1262000</span><span class="p">,</span> <span class="mi">1024400</span><span class="p">,</span> <span class="mi">1262000</span><span class="p">,</span> <span class="mi">1262000</span><span class="p">,</span> <span class="mi">1024400</span><span class="p">,</span> <span class="mi">1262000</span><span class="p">,</span> <span class="mi">1262000</span><span class="p">]</span>
+<span class="p">)</span>
+
+<a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">simulation_res</span></a> <span class="o">=</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.asarray.html#numpy.asarray" title="numpy.asarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">asarray</span></a><span class="p">(</span>
+    <span class="p">[</span>
+        <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pipe288_ls1</span></a><span class="p">,</span>
+        <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pipe288_ls2</span></a><span class="p">,</span>
+        <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">pipe288_ls2</span></a><span class="p">,</span>
+        <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">solid185_ls1</span></a><span class="p">,</span>
+        <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">solid185_ls2</span></a><span class="p">,</span>
+        <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">solid185_ls3</span></a><span class="p">,</span>
+        <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">shell181_ls1</span></a><span class="p">,</span>
+        <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">shell181_ls2</span></a><span class="p">,</span>
+        <a href="https://docs.python.org/dev/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">shell181_ls3</span></a><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">main_columns</span></a> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Target&quot;</span><span class="p">:</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_res</span></a><span class="p">,</span>
+    <span class="s2">&quot;Mechanical APDL&quot;</span><span class="p">:</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">simulation_res</span></a><span class="p">,</span>
+    <span class="s2">&quot;Ratio&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">divide</span></a><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">simulation_res</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">target_res</span></a><span class="p">)),</span>
+<span class="p">}</span>
+
+<a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">row_tuple</span></a> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;PIPE288&quot;</span><span class="p">,</span> <span class="s2">&quot;Load, lb for Deflection = 0.032 in&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;PIPE288&quot;</span><span class="p">,</span> <span class="s2">&quot;Load, lb for Deflection = 0.05 in&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;PIPE288&quot;</span><span class="p">,</span> <span class="s2">&quot;Load, lb for Deflection = 0.1 in&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;SOLID185&quot;</span><span class="p">,</span> <span class="s2">&quot;Load, lb for Deflection = 0.032 in&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;SOLID185&quot;</span><span class="p">,</span> <span class="s2">&quot;Load, lb for Deflection = 0.05 in&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;SOLID185&quot;</span><span class="p">,</span> <span class="s2">&quot;Load, lb for Deflection = 0.1 in&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;SHELL181&quot;</span><span class="p">,</span> <span class="s2">&quot;Load, lb for Deflection = 0.032 in&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;SHELL181&quot;</span><span class="p">,</span> <span class="s2">&quot;Load, lb for Deflection = 0.05 in&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;SHELL181&quot;</span><span class="p">,</span> <span class="s2">&quot;Load, lb for Deflection = 0.1 in&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+
+<a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">index_names</span></a> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Element Type&quot;</span><span class="p">,</span> <span class="s2">&quot;Load Step&quot;</span><span class="p">]</span>
+<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.core.indexes.multi.MultiIndex" class="sphx-glr-backref-module-pandas-core-indexes-multi sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">row_indexing</span></a> <span class="o">=</span> <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.MultiIndex.from_tuples.html#pandas.MultiIndex.from_tuples" title="pandas.MultiIndex.from_tuples" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-method"><span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span></a><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">row_tuple</span></a><span class="p">)</span>
+<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.core.frame.DataFrame" class="sphx-glr-backref-module-pandas-core-frame sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">df</span></a> <span class="o">=</span> <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.core.frame.DataFrame" class="sphx-glr-backref-module-pandas-core-frame sphx-glr-backref-type-py-class"><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span></a><span class="p">(</span><a href="https://docs.python.org/dev/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">main_columns</span></a><span class="p">,</span> <span class="n">index</span><span class="o">=</span><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.core.indexes.multi.MultiIndex" class="sphx-glr-backref-module-pandas-core-indexes-multi sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">row_indexing</span></a><span class="p">)</span>
+
+<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.style.html#pandas.DataFrame.style" title="pandas.DataFrame.style" class="sphx-glr-backref-module-pandas sphx-glr-backref-type-py-property"><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_caption</span></a><span class="p">(</span><span class="s2">&quot;Results Comparison&quot;</span><span class="p">,)</span><span class="o">.</span><span class="n">set_table_styles</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;selector&quot;</span><span class="p">:</span> <span class="s2">&quot;th.col_heading&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;props&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;background-color&quot;</span><span class="p">,</span> <span class="s2">&quot;#FFEFD5&quot;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;border&quot;</span><span class="p">,</span> <span class="s2">&quot;0.5px solid black&quot;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;font-style&quot;</span><span class="p">,</span> <span class="s2">&quot;italic&quot;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;text-align&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">),</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;selector&quot;</span><span class="p">:</span> <span class="s2">&quot;th.row_heading&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;props&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;background-color&quot;</span><span class="p">,</span> <span class="s2">&quot;#FFEFD5&quot;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;border&quot;</span><span class="p">,</span> <span class="s2">&quot;0.5px solid black&quot;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;font-style&quot;</span><span class="p">,</span> <span class="s2">&quot;italic&quot;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;text-align&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">),</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;selector&quot;</span><span class="p">:</span> <span class="s2">&quot;td:hover&quot;</span><span class="p">,</span> <span class="s2">&quot;props&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="s2">&quot;background-color&quot;</span><span class="p">,</span> <span class="s2">&quot;#FFF8DC&quot;</span><span class="p">)]},</span>
+        <span class="p">{</span><span class="s2">&quot;selector&quot;</span><span class="p">:</span> <span class="s2">&quot;th&quot;</span><span class="p">,</span> <span class="s2">&quot;props&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="s2">&quot;max-width&quot;</span><span class="p">,</span> <span class="s2">&quot;120px&quot;</span><span class="p">)]},</span>
+        <span class="p">{</span><span class="s2">&quot;selector&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;props&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="s2">&quot;border&quot;</span><span class="p">,</span> <span class="s2">&quot;0.5px solid black&quot;</span><span class="p">)]},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;selector&quot;</span><span class="p">:</span> <span class="s2">&quot;caption&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;props&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;font-style&quot;</span><span class="p">,</span> <span class="s2">&quot;italic&quot;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;font-size&quot;</span><span class="p">,</span> <span class="s2">&quot;24px&quot;</span><span class="p">),</span>
+                <span class="p">(</span><span class="s2">&quot;text-align&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">),</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+    <span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span>
+    <span class="o">**</span><span class="p">{</span>
+        <span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;#FFFAFA&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;border-color&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;border-width&quot;</span><span class="p">:</span> <span class="s2">&quot;0.5px&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;border-style&quot;</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="s2">&quot;</span><span class="si">{:.3f}</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<style type="text/css">
+#T_2b382 th.col_heading {
+  background-color: #FFEFD5;
+  color: black;
+  border: 0.5px solid black;
+  font-style: italic;
+  text-align: center;
+}
+#T_2b382 th.row_heading {
+  background-color: #FFEFD5;
+  color: black;
+  border: 0.5px solid black;
+  font-style: italic;
+  text-align: center;
+}
+#T_2b382 td:hover {
+  background-color: #FFF8DC;
+}
+#T_2b382 th {
+  max-width: 120px;
+}
+#T_2b382  {
+  border: 0.5px solid black;
+}
+#T_2b382 caption {
+  color: black;
+  font-style: italic;
+  font-size: 24px;
+  text-align: center;
+}
+#T_2b382_row0_col0, #T_2b382_row0_col1, #T_2b382_row0_col2, #T_2b382_row1_col0, #T_2b382_row1_col1, #T_2b382_row1_col2, #T_2b382_row2_col0, #T_2b382_row2_col1, #T_2b382_row2_col2, #T_2b382_row3_col0, #T_2b382_row3_col1, #T_2b382_row3_col2, #T_2b382_row4_col0, #T_2b382_row4_col1, #T_2b382_row4_col2, #T_2b382_row5_col0, #T_2b382_row5_col1, #T_2b382_row5_col2, #T_2b382_row6_col0, #T_2b382_row6_col1, #T_2b382_row6_col2, #T_2b382_row7_col0, #T_2b382_row7_col1, #T_2b382_row7_col2, #T_2b382_row8_col0, #T_2b382_row8_col1, #T_2b382_row8_col2 {
+  background-color: #FFFAFA;
+  color: black;
+  border-color: black;
+  border-width: 0.5px;
+  border-style: solid;
+  text-align: center;
+}
+</style>
+<table id="T_2b382">
+  <caption>Results Comparison</caption>
+  <thead>
+    <tr>
+      <th class="blank" >&nbsp;</th>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_2b382_level0_col0" class="col_heading level0 col0" >Target</th>
+      <th id="T_2b382_level0_col1" class="col_heading level0 col1" >Mechanical APDL</th>
+      <th id="T_2b382_level0_col2" class="col_heading level0 col2" >Ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_2b382_level0_row0" class="row_heading level0 row0" rowspan="3">PIPE288</th>
+      <th id="T_2b382_level1_row0" class="row_heading level1 row0" >Load, lb for Deflection = 0.032 in</th>
+      <td id="T_2b382_row0_col0" class="data row0 col0" >1024400.000</td>
+      <td id="T_2b382_row0_col1" class="data row0 col1" >1024400.000</td>
+      <td id="T_2b382_row0_col2" class="data row0 col2" >1.000</td>
+    </tr>
+    <tr>
+      <th id="T_2b382_level1_row1" class="row_heading level1 row1" >Load, lb for Deflection = 0.05 in</th>
+      <td id="T_2b382_row1_col0" class="data row1 col0" >1262000.000</td>
+      <td id="T_2b382_row1_col1" class="data row1 col1" >1262000.000</td>
+      <td id="T_2b382_row1_col2" class="data row1 col2" >1.000</td>
+    </tr>
+    <tr>
+      <th id="T_2b382_level1_row2" class="row_heading level1 row2" >Load, lb for Deflection = 0.1 in</th>
+      <td id="T_2b382_row2_col0" class="data row2 col0" >1262000.000</td>
+      <td id="T_2b382_row2_col1" class="data row2 col1" >1262000.000</td>
+      <td id="T_2b382_row2_col2" class="data row2 col2" >1.000</td>
+    </tr>
+    <tr>
+      <th id="T_2b382_level0_row3" class="row_heading level0 row3" rowspan="3">SOLID185</th>
+      <th id="T_2b382_level1_row3" class="row_heading level1 row3" >Load, lb for Deflection = 0.032 in</th>
+      <td id="T_2b382_row3_col0" class="data row3 col0" >1024400.000</td>
+      <td id="T_2b382_row3_col1" class="data row3 col1" >1022529.000</td>
+      <td id="T_2b382_row3_col2" class="data row3 col2" >0.998</td>
+    </tr>
+    <tr>
+      <th id="T_2b382_level1_row4" class="row_heading level1 row4" >Load, lb for Deflection = 0.05 in</th>
+      <td id="T_2b382_row4_col0" class="data row4 col0" >1262000.000</td>
+      <td id="T_2b382_row4_col1" class="data row4 col1" >1259695.000</td>
+      <td id="T_2b382_row4_col2" class="data row4 col2" >0.998</td>
+    </tr>
+    <tr>
+      <th id="T_2b382_level1_row5" class="row_heading level1 row5" >Load, lb for Deflection = 0.1 in</th>
+      <td id="T_2b382_row5_col0" class="data row5 col0" >1262000.000</td>
+      <td id="T_2b382_row5_col1" class="data row5 col1" >1259695.000</td>
+      <td id="T_2b382_row5_col2" class="data row5 col2" >0.998</td>
+    </tr>
+    <tr>
+      <th id="T_2b382_level0_row6" class="row_heading level0 row6" rowspan="3">SHELL181</th>
+      <th id="T_2b382_level1_row6" class="row_heading level1 row6" >Load, lb for Deflection = 0.032 in</th>
+      <td id="T_2b382_row6_col0" class="data row6 col0" >1024400.000</td>
+      <td id="T_2b382_row6_col1" class="data row6 col1" >1023932.000</td>
+      <td id="T_2b382_row6_col2" class="data row6 col2" >1.000</td>
+    </tr>
+    <tr>
+      <th id="T_2b382_level1_row7" class="row_heading level1 row7" >Load, lb for Deflection = 0.05 in</th>
+      <td id="T_2b382_row7_col0" class="data row7 col0" >1262000.000</td>
+      <td id="T_2b382_row7_col1" class="data row7 col1" >1261654.000</td>
+      <td id="T_2b382_row7_col2" class="data row7 col2" >1.000</td>
+    </tr>
+    <tr>
+      <th id="T_2b382_level1_row8" class="row_heading level1 row8" >Load, lb for Deflection = 0.1 in</th>
+      <td id="T_2b382_row8_col0" class="data row8 col0" >1262000.000</td>
+      <td id="T_2b382_row8_col1" class="data row8 col1" >1261423.000</td>
+      <td id="T_2b382_row8_col2" class="data row8 col2" >1.000</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<br />
+<br /><p>stop mapdl</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.921 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-06-verif-manual-vm-007-plastic-compression-of-a-pipe-assembly-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/ca47a76043c981995a74854db8e72c4c/vm-007-plastic_compression_of_a_pipe_assembly.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">vm-007-plastic_compression_of_a_pipe_assembly.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/f99f6d1761a9d8b2c8d57ce9b718ce09/vm-007-plastic_compression_of_a_pipe_assembly.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">vm-007-plastic_compression_of_a_pipe_assembly.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-mapdl">
+   Start MAPDL
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-processing">
+   Pre-Processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parameterization">
+   Parameterization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-element-type">
+   Define Element Type
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-material">
+   Define Material
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot-stress-strain-curve">
+   Plot Stress - Strain Curve
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-section">
+   Define Section
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-geometry">
+   Define Geometry
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-boundary-conditions">
+   Define Boundary Conditions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solve">
+   Solve
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing">
+   Post-processing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-loads">
+   Getting loads
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-loads-for-each-load-step">
+   Getting Loads For Each Load Step
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#check-results">
+   Check Results
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../../_sources/examples/gallery_examples/06-verif-manual/vm-007-plastic_compression_of_a_pipe_assembly.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

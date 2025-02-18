@@ -1,0 +1,6 @@
+max\_num
+========
+
+.. currentmodule:: ansys.mapdl.core.database.elems
+
+.. autoproperty:: DbElems.max_num

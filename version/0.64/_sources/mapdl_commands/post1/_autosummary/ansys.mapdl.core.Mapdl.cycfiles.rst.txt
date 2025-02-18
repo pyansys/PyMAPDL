@@ -1,0 +1,6 @@
+﻿cycfiles
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.cycfiles

@@ -1,0 +1,6 @@
+nodal\_plastic\_strain\_intensity
+=================================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.nodal_plastic_strain_intensity

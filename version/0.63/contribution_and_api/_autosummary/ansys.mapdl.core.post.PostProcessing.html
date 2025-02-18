@@ -1,0 +1,955 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>PostProcessing &#8212; PyMAPDL</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    
+        <link href="../../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contribution_and_api/_autosummary/ansys.mapdl.core.post.PostProcessing';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.63';
+        </script>
+    <link rel="shortcut icon" href="../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="element_displacement" href="ansys.mapdl.core.post.PostProcessing.element_displacement.html" />
+    <link rel="prev" title="Post-Processing" href="../post.html" />
+<link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/contribution_and_api/_autosummary/ansys.mapdl.core.post.PostProcessing.html" />
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      <!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+    
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../learning/index.html">
+                        Learning PyMAPDL
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../troubleshoot/index.html">
+                        Troubleshooting
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Contributing and API
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.63  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../../index.html">PyMAPDL</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Contributing and API</a> » </li>
+          <li class="nav-item nav-item-2"><a href="../post.html" accesskey="U">Post-Processing</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">PostProcessing</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../learning/index.html">
+                        Learning PyMAPDL
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../troubleshoot/index.html">
+                        Troubleshooting
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Contributing and API
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.63  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">Commands Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helper.html">Helper Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inline.html">Inline Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mapdl.html">Mapdl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../math.html">MapdlMath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mesh.html">Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../plotting.html">Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pool.html">Local MAPDL Pool</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../post.html">Post-Processing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">PostProcessing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.element_displacement.html">element_displacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.element_stress.html">element_stress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.element_temperature.html">element_temperature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.element_values.html">element_values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_component_stress.html">nodal_component_stress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_contact_friction_stress.html">nodal_contact_friction_stress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_displacement.html">nodal_displacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_elastic_component_strain.html">nodal_elastic_component_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_elastic_eqv_strain.html">nodal_elastic_eqv_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_elastic_principal_strain.html">nodal_elastic_principal_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_elastic_strain_intensity.html">nodal_elastic_strain_intensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_eqv_stress.html">nodal_eqv_stress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_plastic_component_strain.html">nodal_plastic_component_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_plastic_eqv_strain.html">nodal_plastic_eqv_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_plastic_principal_strain.html">nodal_plastic_principal_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_plastic_strain_intensity.html">nodal_plastic_strain_intensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_pressure.html">nodal_pressure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_principal_stress.html">nodal_principal_stress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_rotation.html">nodal_rotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_stress_intensity.html">nodal_stress_intensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_temperature.html">nodal_temperature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_thermal_component_strain.html">nodal_thermal_component_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_thermal_eqv_strain.html">nodal_thermal_eqv_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_thermal_principal_strain.html">nodal_thermal_principal_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_thermal_strain_intensity.html">nodal_thermal_strain_intensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_total_component_strain.html">nodal_total_component_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_total_eqv_strain.html">nodal_total_eqv_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_total_principal_strain.html">nodal_total_principal_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_total_strain_intensity.html">nodal_total_strain_intensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_values.html">nodal_values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_voltage.html">nodal_voltage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_element_displacement.html">plot_element_displacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_element_stress.html">plot_element_stress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_element_temperature.html">plot_element_temperature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_element_values.html">plot_element_values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_component_stress.html">plot_nodal_component_stress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_contact_friction_stress.html">plot_nodal_contact_friction_stress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_displacement.html">plot_nodal_displacement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_component_strain.html">plot_nodal_elastic_component_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_eqv_strain.html">plot_nodal_elastic_eqv_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_principal_strain.html">plot_nodal_elastic_principal_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_strain_intensity.html">plot_nodal_elastic_strain_intensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_eqv_stress.html">plot_nodal_eqv_stress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_component_strain.html">plot_nodal_plastic_component_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_eqv_strain.html">plot_nodal_plastic_eqv_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_principal_strain.html">plot_nodal_plastic_principal_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_strain_intensity.html">plot_nodal_plastic_strain_intensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_pressure.html">plot_nodal_pressure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_principal_stress.html">plot_nodal_principal_stress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_rotation.html">plot_nodal_rotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_stress_intensity.html">plot_nodal_stress_intensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_temperature.html">plot_nodal_temperature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_component_strain.html">plot_nodal_thermal_component_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_eqv_strain.html">plot_nodal_thermal_eqv_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_principal_strain.html">plot_nodal_thermal_principal_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_strain_intensity.html">plot_nodal_thermal_strain_intensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_component_strain.html">plot_nodal_total_component_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_eqv_strain.html">plot_nodal_total_eqv_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_principal_strain.html">plot_nodal_total_principal_strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_strain_intensity.html">plot_nodal_total_strain_intensity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_values.html">plot_nodal_values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_voltage.html">plot_nodal_voltage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.filename.html">filename</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.freq.html">freq</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.load_step.html">load_step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nsets.html">nsets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.selected_elements.html">selected_elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.selected_nodes.html">selected_nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.sub_step.html">sub_step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.time.html">time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.time_values.html">time_values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../solution.html">Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../xpl.html">Database Explorer</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="postprocessing">
+<h1>PostProcessing<a class="headerlink" href="#postprocessing" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ansys.mapdl.core.post.PostProcessing">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.mapdl.core.post.</span></span><span class="sig-name descname"><span class="pre">PostProcessing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.mapdl.core.post.PostProcessing" title="Permalink to this definition">#</a></dt>
+<dd><p>Post-processing using an active MAPDL session</p>
+<p class="rubric">Examples</p>
+<p>Get all the time values after loading POST1.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">time_values</span>
+<span class="go">[75.00054133588232,</span>
+<span class="go"> 75.00081189985094,</span>
+<span class="go"> 75.00121680412036,</span>
+<span class="go"> 75.00574491751847,</span>
+<span class="go"> 75.03939292229019,</span>
+<span class="go"> 75.20949687626468]</span>
+</pre></div>
+</div>
+<p>Return the number of data sets in the result file.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">nsets</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<p>Plot the thermal equivalent strain for the second result.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">plot_nodal_thermal_eqv_strain</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Nodal rotation in all dimensions for current result.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">nodal_rotation</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
+<span class="go">array([[0., 0., 0.],</span>
+<span class="go">       [0., 0., 0.],</span>
+<span class="go">       [0., 0., 0.],</span>
+<span class="go">       ...,</span>
+<span class="go">       [0., 0., 0.],</span>
+<span class="go">       [0., 0., 0.],</span>
+<span class="go">       [0., 0., 0.]])</span>
+</pre></div>
+</div>
+<p>Nodes corresponding to the nodal rotations.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">nnum_all</span>
+<span class="go">array([   1,    2,    3, ..., 7215, 7216, 7217], dtype=int32)</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.element_displacement.html#ansys.mapdl.core.post.PostProcessing.element_displacement" title="ansys.mapdl.core.post.PostProcessing.element_displacement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.element_displacement</span></code></a>([...])</p></td>
+<td><p>Return element displacement.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.element_stress.html#ansys.mapdl.core.post.PostProcessing.element_stress" title="ansys.mapdl.core.post.PostProcessing.element_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.element_stress</span></code></a>(component[, ...])</p></td>
+<td><p>Return element component or principal stress.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.element_temperature.html#ansys.mapdl.core.post.PostProcessing.element_temperature" title="ansys.mapdl.core.post.PostProcessing.element_temperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.element_temperature</span></code></a>([option])</p></td>
+<td><p>Return element temperature.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.element_values.html#ansys.mapdl.core.post.PostProcessing.element_values" title="ansys.mapdl.core.post.PostProcessing.element_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.element_values</span></code></a>(item[, comp, ...])</p></td>
+<td><p>Compute the element-wise values for a given item and component.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_component_stress.html#ansys.mapdl.core.post.PostProcessing.nodal_component_stress" title="ansys.mapdl.core.post.PostProcessing.nodal_component_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_component_stress</span></code></a>(component)</p></td>
+<td><p>Nodal component stress.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_contact_friction_stress.html#ansys.mapdl.core.post.PostProcessing.nodal_contact_friction_stress" title="ansys.mapdl.core.post.PostProcessing.nodal_contact_friction_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_contact_friction_stress</span></code></a>()</p></td>
+<td><p>Nodal contact friction stress of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_displacement.html#ansys.mapdl.core.post.PostProcessing.nodal_displacement" title="ansys.mapdl.core.post.PostProcessing.nodal_displacement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_displacement</span></code></a>([component])</p></td>
+<td><p>Nodal X, Y, or Z structural displacement.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_elastic_component_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_elastic_component_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_elastic_component_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_elastic_component_strain</span></code></a>(...)</p></td>
+<td><p>Elastic nodal component strain</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_elastic_eqv_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_elastic_eqv_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_elastic_eqv_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_elastic_eqv_strain</span></code></a>()</p></td>
+<td><p>The elastic nodal equivalent strain of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_elastic_principal_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_elastic_principal_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_elastic_principal_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_elastic_principal_strain</span></code></a>(...)</p></td>
+<td><p>Nodal elastic principal elastic strain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_elastic_strain_intensity.html#ansys.mapdl.core.post.PostProcessing.nodal_elastic_strain_intensity" title="ansys.mapdl.core.post.PostProcessing.nodal_elastic_strain_intensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_elastic_strain_intensity</span></code></a>()</p></td>
+<td><p>The elastic nodal strain intensity of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_eqv_stress.html#ansys.mapdl.core.post.PostProcessing.nodal_eqv_stress" title="ansys.mapdl.core.post.PostProcessing.nodal_eqv_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_eqv_stress</span></code></a>()</p></td>
+<td><p>The nodal equivalent stress of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_plastic_component_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_plastic_component_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_plastic_component_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_plastic_component_strain</span></code></a>(...)</p></td>
+<td><p>Plastic nodal component strain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_plastic_eqv_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_plastic_eqv_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_plastic_eqv_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_plastic_eqv_strain</span></code></a>()</p></td>
+<td><p>The plastic nodal equivalent strain of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_plastic_principal_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_plastic_principal_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_plastic_principal_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_plastic_principal_strain</span></code></a>(...)</p></td>
+<td><p>Nodal plastic principal plastic strain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_plastic_strain_intensity.html#ansys.mapdl.core.post.PostProcessing.nodal_plastic_strain_intensity" title="ansys.mapdl.core.post.PostProcessing.nodal_plastic_strain_intensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_plastic_strain_intensity</span></code></a>()</p></td>
+<td><p>The plastic nodal strain intensity of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_pressure.html#ansys.mapdl.core.post.PostProcessing.nodal_pressure" title="ansys.mapdl.core.post.PostProcessing.nodal_pressure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_pressure</span></code></a>()</p></td>
+<td><p>The nodal pressure of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_principal_stress.html#ansys.mapdl.core.post.PostProcessing.nodal_principal_stress" title="ansys.mapdl.core.post.PostProcessing.nodal_principal_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_principal_stress</span></code></a>(component)</p></td>
+<td><p>Nodal principal stress.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_rotation.html#ansys.mapdl.core.post.PostProcessing.nodal_rotation" title="ansys.mapdl.core.post.PostProcessing.nodal_rotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_rotation</span></code></a>([component])</p></td>
+<td><p>Nodal X, Y, or Z structural rotation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_stress_intensity.html#ansys.mapdl.core.post.PostProcessing.nodal_stress_intensity" title="ansys.mapdl.core.post.PostProcessing.nodal_stress_intensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_stress_intensity</span></code></a>()</p></td>
+<td><p>The nodal stress intensity of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_temperature.html#ansys.mapdl.core.post.PostProcessing.nodal_temperature" title="ansys.mapdl.core.post.PostProcessing.nodal_temperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_temperature</span></code></a>()</p></td>
+<td><p>The nodal temperature of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_thermal_component_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_thermal_component_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_thermal_component_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_thermal_component_strain</span></code></a>(...)</p></td>
+<td><p>Thermal nodal component strain</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_thermal_eqv_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_thermal_eqv_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_thermal_eqv_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_thermal_eqv_strain</span></code></a>()</p></td>
+<td><p>The thermal nodal equivalent strain of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_thermal_principal_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_thermal_principal_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_thermal_principal_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_thermal_principal_strain</span></code></a>(...)</p></td>
+<td><p>Nodal thermal principal thermal strain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_thermal_strain_intensity.html#ansys.mapdl.core.post.PostProcessing.nodal_thermal_strain_intensity" title="ansys.mapdl.core.post.PostProcessing.nodal_thermal_strain_intensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_thermal_strain_intensity</span></code></a>()</p></td>
+<td><p>The thermal nodal strain intensity of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_total_component_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_total_component_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_total_component_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_total_component_strain</span></code></a>(...)</p></td>
+<td><p>Total nodal component strain</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_total_eqv_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_total_eqv_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_total_eqv_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_total_eqv_strain</span></code></a>()</p></td>
+<td><p>The total nodal equivalent strain of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_total_principal_strain.html#ansys.mapdl.core.post.PostProcessing.nodal_total_principal_strain" title="ansys.mapdl.core.post.PostProcessing.nodal_total_principal_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_total_principal_strain</span></code></a>(...)</p></td>
+<td><p>Total nodal principal total strain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_total_strain_intensity.html#ansys.mapdl.core.post.PostProcessing.nodal_total_strain_intensity" title="ansys.mapdl.core.post.PostProcessing.nodal_total_strain_intensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_total_strain_intensity</span></code></a>()</p></td>
+<td><p>The total nodal strain intensity of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_values.html#ansys.mapdl.core.post.PostProcessing.nodal_values" title="ansys.mapdl.core.post.PostProcessing.nodal_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_values</span></code></a>(item[, comp])</p></td>
+<td><p>Obtain the nodal values for a given item and component.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nodal_voltage.html#ansys.mapdl.core.post.PostProcessing.nodal_voltage" title="ansys.mapdl.core.post.PostProcessing.nodal_voltage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nodal_voltage</span></code></a>()</p></td>
+<td><p>The nodal voltage of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_element_displacement.html#ansys.mapdl.core.post.PostProcessing.plot_element_displacement" title="ansys.mapdl.core.post.PostProcessing.plot_element_displacement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_element_displacement</span></code></a>([...])</p></td>
+<td><p>Plot element displacement.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_element_stress.html#ansys.mapdl.core.post.PostProcessing.plot_element_stress" title="ansys.mapdl.core.post.PostProcessing.plot_element_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_element_stress</span></code></a>(component)</p></td>
+<td><p>Plot element component or principal stress.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_element_temperature.html#ansys.mapdl.core.post.PostProcessing.plot_element_temperature" title="ansys.mapdl.core.post.PostProcessing.plot_element_temperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_element_temperature</span></code></a>([...])</p></td>
+<td><p>Plot element temperature.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_element_values.html#ansys.mapdl.core.post.PostProcessing.plot_element_values" title="ansys.mapdl.core.post.PostProcessing.plot_element_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_element_values</span></code></a>(item, comp)</p></td>
+<td><p>Plot element values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_component_stress.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_component_stress" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_component_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_component_stress</span></code></a>(...)</p></td>
+<td><p>Plot nodal component stress.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_contact_friction_stress.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_contact_friction_stress" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_contact_friction_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_contact_friction_stress</span></code></a>([...])</p></td>
+<td><p>Plot the nodal contact friction stress of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_displacement.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_displacement" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_displacement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_displacement</span></code></a>([...])</p></td>
+<td><p>Plot nodal displacement</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_component_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_component_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_component_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_elastic_component_strain</span></code></a>(...)</p></td>
+<td><p>Plot nodal elastic component strain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_eqv_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_eqv_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_eqv_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_elastic_eqv_strain</span></code></a>([...])</p></td>
+<td><p>Plot the elastic nodal equivalent strain of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_principal_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_principal_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_principal_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_elastic_principal_strain</span></code></a>(...)</p></td>
+<td><p>Plot elastic nodal principal strain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_strain_intensity.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_strain_intensity" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_elastic_strain_intensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_elastic_strain_intensity</span></code></a>([...])</p></td>
+<td><p>Plot the elastic nodal strain intensity of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_eqv_stress.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_eqv_stress" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_eqv_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_eqv_stress</span></code></a>([...])</p></td>
+<td><p>Plot nodal equivalent stress of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_component_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_component_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_component_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_plastic_component_strain</span></code></a>(...)</p></td>
+<td><p>Plot nodal plastic component strain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_eqv_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_eqv_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_eqv_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_plastic_eqv_strain</span></code></a>([...])</p></td>
+<td><p>Plot the plastic nodal equivalent strain of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_principal_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_principal_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_principal_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_plastic_principal_strain</span></code></a>(...)</p></td>
+<td><p>Plot plastic nodal principal strain.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_strain_intensity.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_strain_intensity" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_plastic_strain_intensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_plastic_strain_intensity</span></code></a>([...])</p></td>
+<td><p>Plot the plastic nodal strain intensity of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_pressure.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_pressure" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_pressure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_pressure</span></code></a>([...])</p></td>
+<td><p>Plot nodal pressure of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_principal_stress.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_principal_stress" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_principal_stress"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_principal_stress</span></code></a>(...)</p></td>
+<td><p>Plot nodal principal stress.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_rotation.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_rotation" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_rotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_rotation</span></code></a>(component)</p></td>
+<td><p>Plot nodal rotation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_stress_intensity.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_stress_intensity" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_stress_intensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_stress_intensity</span></code></a>([...])</p></td>
+<td><p>Plot the nodal stress intensity of the current result.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_temperature.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_temperature" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_temperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_temperature</span></code></a>([...])</p></td>
+<td><p>Plot nodal temperature of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_component_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_component_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_component_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_thermal_component_strain</span></code></a>(...)</p></td>
+<td><p>Plot nodal thermal component strain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_eqv_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_eqv_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_eqv_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_thermal_eqv_strain</span></code></a>([...])</p></td>
+<td><p>Plot the thermal nodal equivalent strain of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_principal_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_principal_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_principal_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_thermal_principal_strain</span></code></a>(...)</p></td>
+<td><p>Plot thermal nodal principal strain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_strain_intensity.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_strain_intensity" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_thermal_strain_intensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_thermal_strain_intensity</span></code></a>([...])</p></td>
+<td><p>Plot the thermal nodal strain intensity of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_component_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_total_component_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_component_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_total_component_strain</span></code></a>(...)</p></td>
+<td><p>Plot nodal total component starin.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_eqv_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_total_eqv_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_eqv_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_total_eqv_strain</span></code></a>([...])</p></td>
+<td><p>Plot the total nodal equivalent strain of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_principal_strain.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_total_principal_strain" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_principal_strain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_total_principal_strain</span></code></a>(...)</p></td>
+<td><p>Plot total nodal principal strain.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_strain_intensity.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_total_strain_intensity" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_total_strain_intensity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_total_strain_intensity</span></code></a>([...])</p></td>
+<td><p>Plot the total nodal strain intensity of the current result.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_values.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_values" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_values</span></code></a>(item, comp)</p></td>
+<td><p>Plot nodal values</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.plot_nodal_voltage.html#ansys.mapdl.core.post.PostProcessing.plot_nodal_voltage" title="ansys.mapdl.core.post.PostProcessing.plot_nodal_voltage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.plot_nodal_voltage</span></code></a>([...])</p></td>
+<td><p>Plot nodal voltage of the current result.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.filename.html#ansys.mapdl.core.post.PostProcessing.filename" title="ansys.mapdl.core.post.PostProcessing.filename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.filename</span></code></a></p></td>
+<td><p>Return the current result file name without extension.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.freq.html#ansys.mapdl.core.post.PostProcessing.freq" title="ansys.mapdl.core.post.PostProcessing.freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.freq</span></code></a></p></td>
+<td><p>Freqneyc associated with current result in the database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.load_step.html#ansys.mapdl.core.post.PostProcessing.load_step" title="ansys.mapdl.core.post.PostProcessing.load_step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.load_step</span></code></a></p></td>
+<td><p>Current load step number</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.nsets.html#ansys.mapdl.core.post.PostProcessing.nsets" title="ansys.mapdl.core.post.PostProcessing.nsets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.nsets</span></code></a></p></td>
+<td><p>Number of data sets on result file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.selected_elements.html#ansys.mapdl.core.post.PostProcessing.selected_elements" title="ansys.mapdl.core.post.PostProcessing.selected_elements"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.selected_elements</span></code></a></p></td>
+<td><p>Mask of the selected elements.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.selected_nodes.html#ansys.mapdl.core.post.PostProcessing.selected_nodes" title="ansys.mapdl.core.post.PostProcessing.selected_nodes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.selected_nodes</span></code></a></p></td>
+<td><p>Mask of the selected nodes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.sub_step.html#ansys.mapdl.core.post.PostProcessing.sub_step" title="ansys.mapdl.core.post.PostProcessing.sub_step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.sub_step</span></code></a></p></td>
+<td><p>Current sub step number</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.time.html#ansys.mapdl.core.post.PostProcessing.time" title="ansys.mapdl.core.post.PostProcessing.time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.time</span></code></a></p></td>
+<td><p>Time associated with current result in the database.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="ansys.mapdl.core.post.PostProcessing.time_values.html#ansys.mapdl.core.post.PostProcessing.time_values" title="ansys.mapdl.core.post.PostProcessing.time_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessing.time_values</span></code></a></p></td>
+<td><p>Return an array of the time values for all result sets.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/contribution_and_api/_autosummary/ansys.mapdl.core.post.PostProcessing.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+﻿rmndisp
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.rmndisp

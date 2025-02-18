@@ -1,0 +1,6 @@
+﻿nstore
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.nstore

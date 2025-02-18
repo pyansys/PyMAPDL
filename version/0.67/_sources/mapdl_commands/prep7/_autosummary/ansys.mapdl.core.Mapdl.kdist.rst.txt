@@ -1,0 +1,6 @@
+﻿kdist
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.kdist

@@ -1,0 +1,951 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Plotting and Mesh Access &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css?v=18fd1f76" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+ 
+<link href="../../../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../../../_static/documentation_options.js?v=1511083c"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/00-mapdl-examples/geometry';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.67';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Structural Analysis of a Lathe Cutter" href="lathe_cutter.html" />
+    <link rel="prev" title="Thermal-structural analysis of exhaust manifold" href="exhaust_manifold_thermal_stress.html" />
+<link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/gallery_examples/00-mapdl-examples/geometry.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+ 
+<!-- Include the MeiliSearch CSS stylesheet only if theme present -->
+<link href="../../../_static/css/meilisearch.css" rel="stylesheet" />
+
+<!-- Create a search bar form with a text input and a dropdown selector for the search index -->
+<form
+  class="bd-search d-flex align-items-center"
+  action="../../../search.html"
+  method="get"
+>
+  <input
+    type="search"
+    placeholder="Search"
+    class="form-control"
+    id="search-bar-input"
+    autofocus
+  />
+  <span class="search-button__kbd-shortcut"
+    ><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span
+  >
+  <style>
+    .bd-search .search-button__kbd-shortcut {
+      right: 33%;
+    }
+  </style>
+  
+  <select id="indexUidSelector" class="index-select">
+    
+    <option value="pymapdl-v0-67">PyMAPDL</option>
+    
+  </select>
+  
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <!-- Include the MeiliSearch JavaScript library for the search bar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    
+  <script>
+    var HOST_URL = "https://backend.search.pyansys.com/";
+    var API_KEY = "9fbccc76c147935ce2b562a9ee0c6669276987572dc1f22491cea72e9e99f35d";
+    var indexUid = "pymapdl-v0-67";
+  </script>
+
+  <script src="../../../_static/js/meilisearch_theme_wrap.js"></script>
+</form>
+</div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Full examples using PyMAPDL</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2d_magnetostatic_solenoid-BodyFlux_Averaging.html">Analysis of a 2D magnetostatic solenoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2d_plate_with_a_hole.html">MAPDL 2D Plane Stress Concentration Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2d_pressure_vessel.html">2D Pressure Vessel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyMAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acoustic_analysis.html">3D Acoustic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_dpf_example.html">Basic DPF-Core Usage with PyMAPDL</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="bracket_static.html">Static analysis of a corner bracket</a></li>
+<li class="toctree-l2"><a class="reference internal" href="composite_dcb.html">Static simulation of double cantilever beam test via cohesive elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contact_elements.html">Contact Element Example</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cyclic_analysis.html">Cyclic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cyclic_static.html">Static Cyclic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exhaust_manifold_thermal_stress.html">Thermal-structural analysis of exhaust manifold</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Plotting and Mesh Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lathe_cutter.html">Structural Analysis of a Lathe Cutter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modal_beam.html">MAPDL modal beam analysis example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_operations.html">Path Operations within pyMAPDL and MAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pressure_vessel.html">Pressure Vessel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slashmap_cfx_mapping.html">CFX pressure data mapping to structural blade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../01-geometry/index.html">Geometry examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-tips-n-tricks/index.html">Miscellaneous examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-general-fea/index.html">Academic finite element examples</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/verif-manual/index.html">Verification Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/technology_showcase_examples/index.html">Technology Showcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/index.html">Extended examples</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+      
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+      
+    <li class="breadcrumb-item">
+      <a
+        href="../../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i
+      ></a>
+    </li> 
+    <li class="breadcrumb-item">
+      <a href="../../index.html" class="nav-link">Examples</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">Full examples using PyMAPDL</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Plotting and Mesh Access</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-gallery-examples-00-mapdl-examples-geometry-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="plotting-and-mesh-access">
+<span id="ref-3d-bracket-example"></span><span id="sphx-glr-examples-gallery-examples-00-mapdl-examples-geometry-py"></span><h1>Plotting and Mesh Access<a class="headerlink" href="#plotting-and-mesh-access" title="Link to this heading">#</a></h1>
+<p>PyMAPDL can load basic IGES geometry for analysis.</p>
+<p>This example demonstrates loading basic geometry into MAPDL for
+analysis and demonstrates how to use the built-in Python specific
+plotting functionality.</p>
+<p>This example also demonstrates some of the more advanced features of
+PyMAPDL including direct mesh access through VTK.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">ansys.mapdl</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">pymapdl</span>
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pymapdl</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="load-geometry">
+<h2>Load Geometry<a class="headerlink" href="#load-geometry" title="Link to this heading">#</a></h2>
+<p>Here we download a simple example bracket IGES file and load it into
+MAPDL.  Since <code class="docutils literal notranslate"><span class="pre">igesin</span></code> must be in the AUX15 process</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># note that this method just returns a file path</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bracket_file</span></a> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_bracket</span><span class="p">()</span>
+
+<span class="c1"># load the bracket and then print out the geometry</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">aux15</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">igesin</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bracket_file</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">geometry</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>MAPDL Selected Geometry
+Keypoints:  188
+Lines:      185
+Areas:      73
+Volumes:    1
+</pre></div>
+</div>
+</section>
+<section id="plotting">
+<h2>Plotting<a class="headerlink" href="#plotting" title="Link to this heading">#</a></h2>
+<p>PyMAPDL uses VTK and pyvista as a plotting backend to enable
+remotable (with 2021R1 and newer) interactive plotting.  The common
+plotting methods (<code class="docutils literal notranslate"><span class="pre">kplot</span></code>, <code class="docutils literal notranslate"><span class="pre">lplot</span></code>, <code class="docutils literal notranslate"><span class="pre">aplot</span></code>, <code class="docutils literal notranslate"><span class="pre">eplot</span></code>, etc.)
+all have compatible commands that use the
+<a class="reference internal" href="../../../api/_autosummary/ansys.mapdl.core.plotting.general_plotter.html#ansys.mapdl.core.plotting.general_plotter" title="ansys.mapdl.core.plotting.general_plotter"><code class="xref py py-func docutils literal notranslate"><span class="pre">ansys.mapdl.core.plotting.general_plotter()</span></code></a> function.  You can
+configure this method with a variety of keyword arguments.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">lplot</span><span class="p">(</span>
+    <span class="n">show_line_numbering</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">background</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="n">line_width</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
+    <span class="n">show_axes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">show_bounds</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xz&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_geometry_001.png" srcset="../../../_images/sphx_glr_geometry_001.png" alt="geometry" class = "sphx-glr-single-img"/><p>You can also configure a theme to enable consistent plotting across
+multiple plots.  These theme parameters override any unset keyword
+arguments.  For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_theme</span> <span class="o">=</span> <a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.plotting.themes.Theme.html#pyvista.plotting.themes.Theme" title="pyvista.plotting.themes.Theme" class="sphx-glr-backref-module-pyvista-plotting-themes sphx-glr-backref-type-py-class"><span class="n">pymapdl</span><span class="o">.</span><span class="n">MapdlTheme</span></a><span class="p">()</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.plotting.themes.Theme.background.html#pyvista.plotting.themes.Theme.background" title="pyvista.plotting.themes.Theme.background" class="sphx-glr-backref-module-pyvista-plotting-themes sphx-glr-backref-type-py-property"><span class="n">my_theme</span><span class="o">.</span><span class="n">background</span></a> <span class="o">=</span> <span class="s2">&quot;white&quot;</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.plotting.themes.Theme.cmap.html#pyvista.plotting.themes.Theme.cmap" title="pyvista.plotting.themes.Theme.cmap" class="sphx-glr-backref-module-pyvista-plotting-themes sphx-glr-backref-type-py-property"><span class="n">my_theme</span><span class="o">.</span><span class="n">cmap</span></a> <span class="o">=</span> <span class="s2">&quot;jet&quot;</span>  <span class="c1"># colormap</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.plotting.themes.Theme.axes.html#pyvista.plotting.themes.Theme.axes" title="pyvista.plotting.themes.Theme.axes" class="sphx-glr-backref-module-pyvista-plotting-themes sphx-glr-backref-type-py-property"><span class="n">my_theme</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">show</span></a> <span class="o">=</span> <span class="kc">False</span>
+<a href="https://docs.pyvista.org/version/stable/api/plotting/_autosummary/pyvista.plotting.themes.Theme.show_scalar_bar.html#pyvista.plotting.themes.Theme.show_scalar_bar" title="pyvista.plotting.themes.Theme.show_scalar_bar" class="sphx-glr-backref-module-pyvista-plotting-themes sphx-glr-backref-type-py-property"><span class="n">my_theme</span><span class="o">.</span><span class="n">show_scalar_bar</span></a> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">aplot</span><span class="p">(</span><span class="n">theme</span><span class="o">=</span><span class="n">my_theme</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_geometry_002.png" srcset="../../../_images/sphx_glr_geometry_002.png" alt="geometry" class = "sphx-glr-single-img"/></section>
+<section id="accessesing-element-and-nodes-pythonically">
+<h2>Accessesing Element and Nodes Pythonically<a class="headerlink" href="#accessesing-element-and-nodes-pythonically" title="Link to this heading">#</a></h2>
+<p>PyMAPDL also supports element and nodal plotting using <code class="docutils literal notranslate"><span class="pre">eplot</span></code> and
+<code class="docutils literal notranslate"><span class="pre">nplot</span></code>.  First, mesh the bracket using SOLID187 elements.  These
+are well suited to this geometry and the static structural analyses.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the preprocessor, element type and size, and mesh the volume</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;SOLID187&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><span class="mf">0.075</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vmesh</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+
+<span class="c1"># print out the mesh characteristics</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ANSYS Mesh
+  Number of Nodes:              50686
+  Number of Elements:           32198
+  Number of Element Types:      1
+  Number of Node Components:    0
+  Number of Element Components: 0
+</pre></div>
+</div>
+<p>You can access the underlying finite element mesh as a VTK grid
+through the <code class="docutils literal notranslate"><span class="pre">mesh.grid</span></code> attribute.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">grid</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">grid</span></a>
+<a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">grid</span></a>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<table style='width: 100%;'><tr><th>Header</th><th>Data Arrays</th></tr><tr><td>
+<table style='width: 100%;'>
+<tr><th>UnstructuredGrid</th><th>Information</th></tr>
+<tr><td>N Cells</td><td>32198</td></tr>
+<tr><td>N Points</td><td>50686</td></tr>
+<tr><td>X Bounds</td><td>-1.181e+00, 1.181e+00</td></tr>
+<tr><td>Y Bounds</td><td>-2.362e-01, 0.000e+00</td></tr>
+<tr><td>Z Bounds</td><td>-2.394e+00, 2.509e+00</td></tr>
+<tr><td>N Arrays</td><td>10</td></tr>
+</table>
+
+</td><td>
+<table style='width: 100%;'>
+<tr><th>Name</th><th>Field</th><th>Type</th><th>N Comp</th><th>Min</th><th>Max</th></tr>
+<tr><td><b>ansys_node_num</b></td><td>Points</td><td>int32</td><td>1</td><td>1.000e+00</td><td>5.069e+04</td></tr>
+<tr><td>vtkOriginalPointIds</td><td>Points</td><td>int64</td><td>1</td><td>0.000e+00</td><td>5.068e+04</td></tr>
+<tr><td>origid</td><td>Points</td><td>int64</td><td>1</td><td>0.000e+00</td><td>5.068e+04</td></tr>
+<tr><td>VTKorigID</td><td>Points</td><td>int64</td><td>1</td><td>0.000e+00</td><td>5.068e+04</td></tr>
+<tr><td>ansys_elem_num</td><td>Cells</td><td>int32</td><td>1</td><td>1.000e+00</td><td>3.220e+04</td></tr>
+<tr><td>ansys_real_constant</td><td>Cells</td><td>int32</td><td>1</td><td>1.000e+00</td><td>1.000e+00</td></tr>
+<tr><td>ansys_material_type</td><td>Cells</td><td>int32</td><td>1</td><td>1.000e+00</td><td>1.000e+00</td></tr>
+<tr><td>ansys_etype</td><td>Cells</td><td>int32</td><td>1</td><td>1.000e+00</td><td>1.000e+00</td></tr>
+<tr><td>ansys_elem_type_num</td><td>Cells</td><td>int32</td><td>1</td><td>1.870e+02</td><td>1.870e+02</td></tr>
+<tr><td>vtkOriginalCellIds</td><td>Cells</td><td>int64</td><td>1</td><td>0.000e+00</td><td>3.220e+04</td></tr>
+</table>
+
+</td></tr> </table>
+</div>
+<br />
+<br /><p>This UnstructuredGrid contains a powerful API, including the ability
+to access the nodes, elements, original node numbers, all with the
+ability to plot the mesh and add new attributes and data to the
+grid.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.DataSet.points.html#pyvista.DataSet.points" title="pyvista.DataSet.points" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">grid</span><span class="o">.</span><span class="n">points</span></a>  <span class="c1"># same as mapdl.mesh.nodes</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>pyvista_ndarray([[-2.03111884e-01, -5.87401575e-02,  4.44426114e-04],
+                 [-2.03111884e-01,  0.00000000e+00,  4.44426114e-04],
+                 [-2.03111884e-01, -2.93700787e-02,  4.44426114e-04],
+                 ...,
+                 [-3.75851169e-01, -1.85457803e-01, -2.53642976e-01],
+                 [ 4.87955026e-02, -1.81666560e-01, -4.74114746e-01],
+                 [-5.38861990e-01, -1.81771018e-01, -7.19734818e-01]])
+</pre></div>
+</div>
+<p>cell representation in VTK format</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.cells.html#pyvista.UnstructuredGrid.cells" title="pyvista.UnstructuredGrid.cells" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">grid</span><span class="o">.</span><span class="n">cells</span></a>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>array([   10,  4237, 15212, ..., 35361, 36457, 35354])
+</pre></div>
+</div>
+<p>Obtain node numbers of the grid</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.DataSet.point_data.html#pyvista.DataSet.point_data" title="pyvista.DataSet.point_data" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">grid</span><span class="o">.</span><span class="n">point_data</span></a><span class="p">[</span><span class="s2">&quot;ansys_node_num&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>pyvista_ndarray([    1,     2,     3, ..., 50684, 50685, 50686],
+                dtype=int32)
+</pre></div>
+</div>
+<p>Save arbitrary data to the grid</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># must be sized to the number of points</span>
+<a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.DataSet.point_data.html#pyvista.DataSet.point_data" title="pyvista.DataSet.point_data" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">grid</span><span class="o">.</span><span class="n">point_data</span></a><span class="p">[</span><span class="s2">&quot;my_data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html#numpy.arange" title="numpy.arange" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.DataSet.n_points.html#pyvista.DataSet.n_points" title="pyvista.DataSet.n_points" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">grid</span><span class="o">.</span><span class="n">n_points</span></a><span class="p">)</span>
+<a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.DataSet.point_data.html#pyvista.DataSet.point_data" title="pyvista.DataSet.point_data" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">grid</span><span class="o">.</span><span class="n">point_data</span></a>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>pyvista DataSetAttributes
+Association     : POINT
+Active Scalars  : ansys_node_num
+Active Vectors  : None
+Active Texture  : None
+Active Normals  : None
+Contains arrays :
+    ansys_node_num          int32      (50686,)             SCALARS
+    vtkOriginalPointIds     int64      (50686,)
+    origid                  int64      (50686,)
+    VTKorigID               int64      (50686,)
+    my_data                 int64      (50686,)
+</pre></div>
+</div>
+<p>Plot this mesh with scalars of your choosing.  You can apply the
+same MapdlTheme when plotting as it’s compatible with the grid plotter.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># make interesting scalars</span>
+<a href="https://docs.pyvista.org/version/stable/api/utilities/_autosummary/pyvista.pyvista_ndarray.html#pyvista.pyvista_ndarray" title="pyvista.pyvista_ndarray" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scalars</span></a> <span class="o">=</span> <a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.DataSet.points.html#pyvista.DataSet.points" title="pyvista.DataSet.points" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-property"><span class="n">grid</span><span class="o">.</span><span class="n">points</span></a><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># z coordinates</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sbar_kwargs</span></a> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Z Coord&quot;</span><span class="p">}</span>
+<a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.DataSet.plot.html#pyvista.DataSet.plot" title="pyvista.DataSet.plot" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-method"><span class="n">grid</span><span class="o">.</span><span class="n">plot</span></a><span class="p">(</span>
+    <a href="https://docs.pyvista.org/version/stable/api/utilities/_autosummary/pyvista.pyvista_ndarray.html#pyvista.pyvista_ndarray" title="pyvista.pyvista_ndarray" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scalars</span></a><span class="o">=</span><a href="https://docs.pyvista.org/version/stable/api/utilities/_autosummary/pyvista.pyvista_ndarray.html#pyvista.pyvista_ndarray" title="pyvista.pyvista_ndarray" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">scalars</span></a><span class="p">,</span>
+    <span class="n">show_scalar_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">scalar_bar_args</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sbar_kwargs</span></a><span class="p">,</span>
+    <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">theme</span><span class="o">=</span><span class="n">my_theme</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_geometry_003.png" srcset="../../../_images/sphx_glr_geometry_003.png" alt="geometry" class = "sphx-glr-single-img"/><p>This grid can be also saved to disk in the compact cross-platform VTK
+format and loaded again with <code class="docutils literal notranslate"><span class="pre">pyvista</span></code> or ParaView.</p>
+<p>..code:: pycon</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><a href="https://docs.pyvista.org/version/stable/api/core/_autosummary/pyvista.UnstructuredGrid.html#pyvista.UnstructuredGrid" title="pyvista.UnstructuredGrid" class="sphx-glr-backref-module-pyvista sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">grid</span></a><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;my_mesh.vtk&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyvista</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imported_mesh</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;my_mesh.vtk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="stop-mapdl">
+<h2>Stop mapdl<a class="headerlink" href="#stop-mapdl" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 56.106 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-00-mapdl-examples-geometry-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/30ec1efc958c3f568c33b94d47ed4d88/geometry.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">geometry.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/f7b27fb6abfd2c3a5b9f11ae31625f44/geometry.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">geometry.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-geometry">Load Geometry</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessesing-element-and-nodes-pythonically">Accessesing Element and Nodes Pythonically</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-mapdl">Stop mapdl</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/examples/gallery_examples/00-mapdl-examples/geometry.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.12.2. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

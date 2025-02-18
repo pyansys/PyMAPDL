@@ -1,0 +1,6 @@
+show\_scalar\_bar
+=================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.show_scalar_bar

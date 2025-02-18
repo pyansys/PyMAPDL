@@ -1,0 +1,960 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MAPDL and Docker &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css?v=18fd1f76" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+ 
+<link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../_static/documentation_options.js?v=1511083c"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/docker';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.67';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PyMAPDL and MacOS" href="macos.html" />
+    <link rel="prev" title="Standard installation" href="running_mapdl.html" />
+<link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/getting_started/docker.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+ 
+<!-- Include the MeiliSearch CSS stylesheet only if theme present -->
+<link href="../_static/css/meilisearch.css" rel="stylesheet" />
+
+<!-- Create a search bar form with a text input and a dropdown selector for the search index -->
+<form
+  class="bd-search d-flex align-items-center"
+  action="../search.html"
+  method="get"
+>
+  <input
+    type="search"
+    placeholder="Search"
+    class="form-control"
+    id="search-bar-input"
+    autofocus
+  />
+  <span class="search-button__kbd-shortcut"
+    ><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span
+  >
+  <style>
+    .bd-search .search-button__kbd-shortcut {
+      right: 33%;
+    }
+  </style>
+  
+  <select id="indexUidSelector" class="index-select">
+    
+    <option value="pymapdl-v0-67">PyMAPDL</option>
+    
+  </select>
+  
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <!-- Include the MeiliSearch JavaScript library for the search bar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    
+  <script>
+    var HOST_URL = "https://backend.search.pyansys.com/";
+    var API_KEY = "9fbccc76c147935ce2b562a9ee0c6669276987572dc1f22491cea72e9e99f35d";
+    var indexUid = "pymapdl-v0-67";
+  </script>
+
+  <script src="../_static/js/meilisearch_theme_wrap.js"></script>
+</form>
+</div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Learning PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versioning.html">Versions and interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_mapdl.html">Standard installation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MAPDL and Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macos.html">PyMAPDL and MacOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsl.html">Windows Subsystem for Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_julia.html">Julia and PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribution.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_container_link.html">Create your own MAPDL docker container</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="devcontainer_link.html">Develop on a container</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+      
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+      
+    <li class="breadcrumb-item">
+      <a
+        href="../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i
+      ></a>
+    </li> 
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">Getting started</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">MAPDL and Docker</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="mapdl-and-docker">
+<span id="pymapdl-docker"></span><h1>MAPDL and Docker<a class="headerlink" href="#mapdl-and-docker" title="Link to this heading">#</a></h1>
+<p>You can run MAPDL within a Docker container on any OS and
+connect to it via PyMAPDL.</p>
+<p>There are several advantages to running MAPDL
+in a containerized environment such as Docker (or Singularity):</p>
+<ul class="simple">
+<li><p>Consistent environment regardless of the host OS</p></li>
+<li><p>Portability and ease of install</p></li>
+<li><p>Large-scale cluster deployment using Kubernetes</p></li>
+<li><p>Genuine app isolation through containerization</p></li>
+</ul>
+<p>When running MAPDL in a Docker container, you use your local Python installation to
+connect to this instance.</p>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
+<p>You must have access to a Docker image with MAPDL in it.
+For more information on how to create your own Docker image,
+see <a class="reference internal" href="make_container_link.html#ref-make-container"><span class="std std-ref">Create your own MAPDL docker container</span></a>.</p>
+<p>Once you have created and uploaded your Docker image to a registry,
+you can start to pull and use the image on other devices.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>MAPDL Docker images are not allowed to be shared in
+public or free-to-access repositories or registries.
+Doing so violates Ansys policy.</p>
+</div>
+<section id="configure-docker-to-access-a-private-github-registry">
+<h3>Configure Docker to access a private GitHub registry<a class="headerlink" href="#configure-docker-to-access-a-private-github-registry" title="Link to this heading">#</a></h3>
+<p>If you have created a Docker image and uploaded it to a GitHub
+private repository, you must authorize your Docker installation
+to access this private package by using a personal access
+token.</p>
+<p>For information on creating a GitHub personal access token with
+<code class="docutils literal notranslate"><span class="pre">packages</span> <span class="pre">read</span></code> permissions, see GitHub’s <a class="reference external" href="https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token">Creating a personal access token</a>.</p>
+<p>Save that token to a file with this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="n">MY_GITHUB_TOKEN_WITH_PACKAGE_READ_PERMISSION</span> <span class="o">&gt;</span> <span class="n">GH_TOKEN</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>This lets you send the token to Docker without leaving the token value
+in your history. Next, authorize Docker to access this repository
+with code like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GH_USERNAME=&lt;my-github-username&gt;
+cat GH_TOKEN.txt | docker login ghcr.io -u $GH_USERNAME --password-stdin
+</pre></div>
+</div>
+</section>
+</section>
+<section id="run-an-mapdl-docker-image">
+<span id="run-an-mapdl-image"></span><h2>Run an MAPDL Docker image<a class="headerlink" href="#run-an-mapdl-docker-image" title="Link to this heading">#</a></h2>
+<p>You can now launch MAPDL from Docker using the command line, a
+<a class="reference internal" href="#run-an-mapdl-image-using-docker-compose">docker compose file</a>,
+or a script that gather the commands given to the command line.</p>
+<p>Your Docker image should have a valid MAPDL license configuration.
+The easiest way is to have an environment variable, <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">ANSYSLMD_LICENSE_FILE</span></code>,
+pointing to a valid license server. This environment variable can be already
+included in the Docker image. However, this is not recommended because it could
+expose the license server if the Docker image is leaked.
+The recommended approach is to set that environment variable when running the
+container.</p>
+<p>To instantiate an MAPDL Docker container from an image hosted at <code class="docutils literal notranslate"><span class="pre">ghcr.io/myuser/myrepo/mymapdldockerimage</span></code>,
+use code like in the following examples.</p>
+<p><strong>On Linux</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">ANSYSLMD_LICENSE_FILE</span><span class="o">=</span><span class="m">1055</span>@MY_LICENSE_SERVER_IP
+<span class="nv">LOCAL_MAPDL_PORT</span><span class="o">=</span><span class="m">50053</span>
+<span class="nv">MAPDL_DOCKER_REGISTRY_URL</span><span class="o">=</span>ghcr.io/myuser/myrepo/mymapdldockerimage
+docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">ANSYSLMD_LICENSE_FILE</span><span class="o">=</span><span class="nv">$ANSYSLMD_LICENSE_FILE</span><span class="w"> </span>--restart<span class="w"> </span>always<span class="w"> </span>--name<span class="w"> </span>mapdl<span class="w"> </span>-p<span class="w"> </span><span class="nv">$LOCAL_MAPDL_PORT</span>:50052<span class="w"> </span><span class="nv">$MAPDL_DOCKER_REGISTRY_URL</span><span class="w"> </span>-smp<span class="w"> </span>&gt;<span class="w"> </span>log.txt
+</pre></div>
+</div>
+<p><strong>On Windows</strong></p>
+<div class="highlight-pwsh-session notranslate"><div class="highlight"><pre><span></span><span class="go">$env:ANSYSLMD_LICENSE_FILE=&quot;1055@MY_LICENSE_SERVER_IP&quot;</span>
+<span class="go">$env:LOCAL_MAPDL_PORT=50053</span>
+<span class="go">$env:MAPDL_DOCKER_REGISTRY_URL=&quot;ghcr.io/myuser/myrepo/mymapdldockerimage&quot;</span>
+
+<span class="go">docker run -e ANSYSLMD_LICENSE_FILE=$env:ANSYSLMD_LICENSE_FILE --restart always --name mapdl -p $env:LOCAL_MAPDL_PORT`:50052   $env:MAPDL_DOCKER_REGISTRY_URL -smp</span>
+</pre></div>
+</div>
+<p>The first time you instantiate the container, Docker logins into the registry and
+pulls the required image. This can take some time, depending on the size of the image.</p>
+<p>To rerun it, you should restart the container with this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>start<span class="w"> </span>mapdl
+</pre></div>
+</div>
+<p>Or you can delete the container and run it again using these commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>mapdl
+
+docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">ANSYSLMD_LICENSE_FILE</span><span class="o">=</span><span class="nv">$ANSYSLMD_LICENSE_FILE</span><span class="w"> </span>--restart<span class="w"> </span>always<span class="w"> </span>--name<span class="w"> </span>mapdl<span class="w"> </span>-p<span class="w"> </span><span class="nv">$LOCAL_MAPDL_PORT</span>:50052<span class="w">   </span><span class="nv">$MAPDL_DOCKER_REGISTRY_URL</span><span class="w"> </span>-smp<span class="w"> </span>&gt;<span class="w"> </span>log.txt
+</pre></div>
+</div>
+<p>You can append the Docker flag <code class="docutils literal notranslate"><span class="pre">--rm</span></code> to automatically clean up the container
+when it exits.</p>
+<p>The preceding commands create a log file (<code class="docutils literal notranslate"><span class="pre">log.txt</span></code>) in your current directory location.
+However, you can remove <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">log.txt</span></code> if you don’t want to create this file. In this case,
+the command output is redirected to the console, which is kept blocked until the Docker
+image exits. You can detach the console from the Docker container output by appending
+<code class="docutils literal notranslate"><span class="pre">-d</span></code> to the <a class="reference external" href="https://docs.docker.com/engine/reference/run/">docker run</a> command. (Always add this before the Docker
+image URL.)</p>
+<p>If you don’t want to block the console, the best approach is to pipe the output to a file
+as mentioned earlier so that you can inspect the output of that file.</p>
+<p>Notice that the MAPDL Docker image gRPC port (<code class="docutils literal notranslate"><span class="pre">50052</span></code>) is being mapped to a
+different host port (<code class="docutils literal notranslate"><span class="pre">50053</span></code>) to avoid port conflicts with local
+MAPDL instances running on the host or other Docker images.
+You could additionally launch more Docker containers in different ports if
+you want to run multiple simulations at the same time.</p>
+<p>The <a class="reference internal" href="../user_guide/pool.html#ref-pymapdl-pool"><span class="std std-ref">Create a pool of MAPDL instances</span></a> module does not
+work when you are connecting to a remote MAPDL Docker image.
+It also does not work when connected to Docker containers.
+If you decide to launch multiple MAPDL instances, you must manage these
+instances yourself.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ensure that port <code class="docutils literal notranslate"><span class="pre">50053</span></code> is open in your local firewall.</p>
+</div>
+<p>You can provide additional MAPDL command line parameters to MAPDL by simply
+appending them to the end of the command.</p>
+<p>For example, you can increase the number of processors (up to the
+number available on the host machine) with the <code class="docutils literal notranslate"><span class="pre">-np</span></code> switch:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">ANSYSLMD_LICENSE_FILE</span><span class="o">=</span><span class="nv">$ANSYSLMD_LICENSE_FILE</span><span class="w"> </span>--restart<span class="w"> </span>always<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>mapdl<span class="w"> </span>-p<span class="w"> </span><span class="nv">$LOCAL_MAPDL_PORT</span>:50052<span class="w"> </span><span class="nv">$MAPDL_DOCKER_REGISTRY_URL</span><span class="w"> </span>-smp<span class="w"> </span>-np<span class="w"> </span><span class="m">8</span><span class="w"> </span>&gt;<span class="w"> </span>log.txt
+</pre></div>
+</div>
+<p>For additional command line arguments, see the <em>Notes</em> section in the
+description for the <code class="xref py py-func docutils literal notranslate"><span class="pre">launch_mapdl()</span></code>
+function.</p>
+<p>You can use a script file (batch <code class="docutils literal notranslate"><span class="pre">'.bat'</span></code> or PowerShell <code class="docutils literal notranslate"><span class="pre">'.ps'</span></code>)
+to run the preceding commands all at once.</p>
+<p>Once you have launched MAPDL, you should see the following content
+in your console (or the output file):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Start</span> <span class="n">GRPC</span> <span class="n">Server</span>
+
+<span class="c1">##############################</span>
+<span class="c1">### START GRPC SERVER      ###</span>
+<span class="c1">##############################</span>
+
+<span class="n">Server</span> <span class="n">Executable</span>   <span class="p">:</span> <span class="n">MapdlGrpc</span> <span class="n">Server</span>
+<span class="n">Server</span> <span class="n">listening</span> <span class="n">on</span> <span class="p">:</span> <span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">50052</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Notice that the port specified in the console is the internal Docker container port.
+This port has been mapped to the value specified for the <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LOCAL_MAPDL_PORT</span></code>
+environment variable.</p>
+</div>
+<section id="using-docker-compose-to-launch-mapdl">
+<span id="run-an-mapdl-image-using-docker-compose"></span><h3>Using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> to launch MAPDL<a class="headerlink" href="#using-docker-compose-to-launch-mapdl" title="Link to this heading">#</a></h3>
+<p>You can also use the <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> command to launch MAPDL configured in
+a <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> file.
+This is useful if you want to load an already configured environment, or
+if you want to launch multiple instances of MAPDL or services.</p>
+<p>For your convenience, the <a class="reference external" href="https://github.com/ansys/pymapdl/blob/main/docker">docker</a> directory
+contains configured <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> files that you can
+use.</p>
+<p>Using the <a class="reference external" href="https://github.com/ansys/pymapdl/blob/main/docker/docker-compose.yml">docker-compose.yml</a> file is recommended.
+This is the <em>base</em> configuration file for launching an instance of MAPDL that you can connect
+to remotely.</p>
+</section>
+</section>
+<section id="connect-to-the-mapdl-container-from-python">
+<span id="pymapdl-connect-to-mapdl-container"></span><h2>Connect to the MAPDL container from Python<a class="headerlink" href="#connect-to-the-mapdl-container-from-python" title="Link to this heading">#</a></h2>
+<p>You can connect to an MAPDL instance as indicated in <a class="reference internal" href="running_mapdl.html#connect-grpc-madpl-session"><span class="std std-ref">Connect to a gRPC MAPDL session</span></a>.
+You do not need to specify an IP address because Docker maps the ports to the local host.</p>
+</section>
+<section id="additional-considerations">
+<h2>Additional considerations<a class="headerlink" href="#additional-considerations" title="Link to this heading">#</a></h2>
+<section id="use-restart-policy-with-mapdl-products">
+<h3>Use <code class="docutils literal notranslate"><span class="pre">--restart</span></code> policy with MAPDL products<a class="headerlink" href="#use-restart-policy-with-mapdl-products" title="Link to this heading">#</a></h3>
+<p>By default, MAPDL creates a <code class="docutils literal notranslate"><span class="pre">LOCK</span></code> file in the working directory when it starts,
+and it deletes this file if it exits normally. The file is used to avoid overwriting files
+such as database (DB) files or result (RST) files when starting MAPDL after an
+abnormal termination.</p>
+<p>Because of this behavior, when using the Docker <code class="docutils literal notranslate"><span class="pre">--restart</span></code> flag in the <a class="reference external" href="https://docs.docker.com/engine/reference/run/">docker run</a>
+command, you might enter into an infinite loop after crashing if you specify the Docker image to
+reboot after an abnormal termination.
+When there is an abnormal termination (MAPDL crashes), the <code class="file docutils literal notranslate"><span class="pre">LOCK</span></code> file is kept on the
+working directory. Since MAPDL has exited, the container also exits.</p>
+<p>This triggers the Docker <code class="docutils literal notranslate"><span class="pre">restart</span></code> policy, which attempts to restart MAPDL container and
+the MAPDL process with it.
+But because of the presence of the <code class="docutils literal notranslate"><span class="pre">LOCK</span></code> file, MAPDL exits in an attempt to not overwrite
+the files from the previous crash.
+This is the start of an infinite loop, where Docker keeps restarting the MAPDL container and
+MAPDL keeps exiting to avoid overwrite the previous files.</p>
+<p>In such cases, you should not use the <code class="docutils literal notranslate"><span class="pre">--restart</span></code> option. If you really need to use
+this option, you can avoid MAPDL checks and create the <code class="docutils literal notranslate"><span class="pre">LOCK</span></code> file by starting
+the process with the <code class="docutils literal notranslate"><span class="pre">ANSYS_LOCK</span></code> environment variable set to <code class="docutils literal notranslate"><span class="pre">&quot;OFF&quot;</span></code>.</p>
+<p>This code shows how to do this in your <a class="reference external" href="https://docs.docker.com/engine/reference/run/">docker run</a> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--restart<span class="w"> </span>always<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">ANSYSLMD_LICENSE_FILE</span><span class="o">=</span><span class="m">1055</span>@<span class="nv">$LICENSE_SERVER</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">ANSYS_LOCK</span><span class="o">=</span><span class="s2">&quot;OFF&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-p<span class="w"> </span><span class="m">50052</span>:50052<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nv">$IMAGE</span>
+</pre></div>
+</div>
+</section>
+<section id="get-useful-files-after-abnormal-termination">
+<h3>Get useful files after abnormal termination<a class="headerlink" href="#get-useful-files-after-abnormal-termination" title="Link to this heading">#</a></h3>
+<p>In some cases, the MAPDL container might crash after the MAPDL process experiences an
+abnormal termination. In these cases, you can retrieve log files and output files using the
+tools that Docker provides.</p>
+<p>First, get the Docker container name:</p>
+<div class="highlight-pwsh-session notranslate"><div class="highlight"><pre><span></span><span class="go">PS docker ps -a</span>
+<span class="go">CONTAINER ID   IMAGE                                   COMMAND                  CREATED          STATUS          PORTS                      NAMES</span>
+<span class="go">c14560bff70f   my.registry/myuser/mypackage/mapdl   &quot;/ansys_inc/ansys/bi…&quot;   9 seconds ago    Exited(137)    0.0.0.0:50053-&gt;50052/tcp   mapdl</span>
+</pre></div>
+</div>
+<p>Then use the <code class="docutils literal notranslate"><span class="pre">name</span></code> in this command:</p>
+<div class="highlight-pwsh-session notranslate"><div class="highlight"><pre><span></span><span class="go">PS docker exec -it mapdl /bin/bash</span>
+</pre></div>
+</div>
+<p>This command executes the command shell (<code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code>) of the container and attaches your current terminal to it (interactive <code class="docutils literal notranslate"><span class="pre">-it</span></code>).</p>
+<div class="highlight-pwsh-session notranslate"><div class="highlight"><pre><span></span><span class="gp">PS C:\Users\user&gt; </span><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">mapdl</span> <span class="p">/</span><span class="n">bin</span><span class="p">/</span><span class="n">bash</span>
+<span class="go">[root@c14560bff70f /]#</span>
+</pre></div>
+</div>
+<p>Now you can enter commands inside the Docker container and navigate inside it.</p>
+<div class="highlight-pwsh-session notranslate"><div class="highlight"><pre><span></span><span class="gp">PS C:\Users\user&gt; </span><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">mapdl</span> <span class="p">/</span><span class="n">bin</span><span class="p">/</span><span class="n">bash</span>
+<span class="go">[root@c14560bff70f /]# ls</span>
+<span class="go">anaconda-post.log  cleanup-ansys-c14560bff70f-709.sh  file0.err   file1.err  file1.page  file2.out   file3.log   home   media  proc  sbin  tmp</span>
+<span class="go">ansys_inc          dev                                file0.log   file1.log  file2.err   file2.page  file3.out   lib    mnt    root  srv   usr</span>
+<span class="go">bin                etc                                file0.page  file1.out  file2.log   file3.err   file3.page  lib64  opt    run   sys   var</span>
+</pre></div>
+</div>
+<p>You can then take note of the files you want to retrieve. For example, you would likely want to retrieve the error and output files (<code class="docutils literal notranslate"><span class="pre">file*.err</span></code> and <code class="docutils literal notranslate"><span class="pre">file*.out</span></code>).</p>
+<p>Exit the container terminal using the <code class="docutils literal notranslate"><span class="pre">exit</span></code> command:</p>
+<div class="highlight-pwsh-session notranslate"><div class="highlight"><pre><span></span><span class="go">[root@c14560bff70f /]# exit</span>
+<span class="go">exit</span>
+<span class="gp gp-VirtualEnv">(base)</span> <span class="gp">PS C:\Users\user&gt;</span>
+</pre></div>
+</div>
+<p>You can then copy the noted files using the <a class="reference external" href="https://docs.docker.com/engine/reference/commandline/cp/">docker cp</a> command:</p>
+<div class="highlight-pwsh-session notranslate"><div class="highlight"><pre><span></span><span class="go">docker cp mapdl:/file0.err .</span>
+</pre></div>
+</div>
+<p>This command copies the files in the current directory. You can specify a different destination using
+the second argument.</p>
+<p>If you want to retrieve multiple files, the most efficient approach is to get back inside the Docker container:</p>
+<div class="highlight-pwsh-session notranslate"><div class="highlight"><pre><span></span><span class="gp">PS C:\Users\user&gt; </span><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">mapdl</span> <span class="p">/</span><span class="n">bin</span><span class="p">/</span><span class="n">bash</span>
+<span class="go">[root@c14560bff70f /]#</span>
+</pre></div>
+</div>
+<p>Create a folder where you are going to copy all the desired files:</p>
+<div class="highlight-pwsh-session notranslate"><div class="highlight"><pre><span></span><span class="go">[root@c14560bff70f /]# mkdir -p /mapdl_logs</span>
+<span class="go">[root@c14560bff70f /]# cp -f /file*.out /mapdl_logs</span>
+<span class="go">[root@c14560bff70f /]# cp -f /file*.err /mapdl_logs</span>
+<span class="go">[root@c14560bff70f /]# ls mapdl_logs/</span>
+<span class="go">file0.err  file1.err  file1.out  file2.err  file2.out  file3.err  file3.out</span>
+</pre></div>
+</div>
+<p>Then copy the entire folder content at once:</p>
+<div class="highlight-pwsh-session notranslate"><div class="highlight"><pre><span></span><span class="go">docker cp mapdl:/mapdl_logs/. .</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-docker-to-access-a-private-github-registry">Configure Docker to access a private GitHub registry</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-an-mapdl-docker-image">Run an MAPDL Docker image</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-docker-compose-to-launch-mapdl">Using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> to launch MAPDL</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-the-mapdl-container-from-python">Connect to the MAPDL container from Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-considerations">Additional considerations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-restart-policy-with-mapdl-products">Use <code class="docutils literal notranslate"><span class="pre">--restart</span></code> policy with MAPDL products</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-useful-files-after-abnormal-termination">Get useful files after abnormal termination</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/getting_started/docker.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.12.2. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

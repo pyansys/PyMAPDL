@@ -1,0 +1,6 @@
+selected\_nodes
+===============
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. autoproperty:: PostProcessing.selected_nodes

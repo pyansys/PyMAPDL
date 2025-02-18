@@ -1,0 +1,6 @@
+﻿cbmx
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.cbmx

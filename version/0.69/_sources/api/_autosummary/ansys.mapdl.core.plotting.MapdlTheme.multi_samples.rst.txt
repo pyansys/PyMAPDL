@@ -1,0 +1,6 @@
+multi\_samples
+==============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.multi_samples

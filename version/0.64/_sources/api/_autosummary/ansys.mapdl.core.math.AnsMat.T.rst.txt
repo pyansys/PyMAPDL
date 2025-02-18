@@ -1,0 +1,6 @@
+T
+=
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. autoproperty:: AnsMat.T

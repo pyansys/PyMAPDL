@@ -1,0 +1,76 @@
+﻿LegacyGeometry
+==============
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. autoclass:: LegacyGeometry
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      LegacyGeometry.area_select
+      
+      
+      LegacyGeometry.areas
+      
+      
+      LegacyGeometry.generate_surface
+      
+      
+      LegacyGeometry.get_areas
+      
+      
+      LegacyGeometry.get_elements_per_area
+      
+      
+      LegacyGeometry.get_keypoints
+      
+      
+      LegacyGeometry.get_lines
+      
+      
+      LegacyGeometry.get_volumes
+      
+      
+      LegacyGeometry.keypoint_select
+      
+      
+      LegacyGeometry.keypoints
+      
+      
+      LegacyGeometry.line_select
+      
+      
+      LegacyGeometry.lines
+      
+      
+      LegacyGeometry.volume_select
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      LegacyGeometry.anum
+      LegacyGeometry.knum
+      LegacyGeometry.lnum
+      LegacyGeometry.n_area
+      LegacyGeometry.n_keypoint
+      LegacyGeometry.n_line
+      LegacyGeometry.n_volu
+      LegacyGeometry.vnum
+      LegacyGeometry.volumes
+   
+   

@@ -1,0 +1,6 @@
+﻿find\_ansys
+===========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autofunction:: find_ansys

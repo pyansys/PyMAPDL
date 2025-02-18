@@ -1,0 +1,6 @@
+﻿vdot
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.vdot

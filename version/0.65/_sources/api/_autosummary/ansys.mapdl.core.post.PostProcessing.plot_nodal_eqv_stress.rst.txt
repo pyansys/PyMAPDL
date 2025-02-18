@@ -1,0 +1,6 @@
+plot\_nodal\_eqv\_stress
+========================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.plot_nodal_eqv_stress

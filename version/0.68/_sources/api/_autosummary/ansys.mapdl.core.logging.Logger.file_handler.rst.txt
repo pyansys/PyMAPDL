@@ -1,0 +1,6 @@
+file\_handler
+=============
+
+.. currentmodule:: ansys.mapdl.core.logging
+
+.. autoattribute:: Logger.file_handler

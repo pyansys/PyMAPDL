@@ -1,0 +1,6 @@
+mx\_creep\_rat
+==============
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.mx_creep_rat

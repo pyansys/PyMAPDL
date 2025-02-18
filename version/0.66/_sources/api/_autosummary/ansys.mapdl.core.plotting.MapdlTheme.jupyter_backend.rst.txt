@@ -1,0 +1,6 @@
+jupyter\_backend
+================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.jupyter_backend

@@ -1,0 +1,6 @@
+n\_volu
+=======
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. autoproperty:: LegacyGeometry.n_volu

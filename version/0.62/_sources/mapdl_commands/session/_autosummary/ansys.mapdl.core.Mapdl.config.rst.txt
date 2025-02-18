@@ -1,0 +1,6 @@
+﻿config
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.config

@@ -1,0 +1,6 @@
+opened
+======
+
+.. currentmodule:: ansys.mapdl.core.xpl
+
+.. autoproperty:: ansXpl.opened

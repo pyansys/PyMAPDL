@@ -1,0 +1,6 @@
+is\_initialized
+===============
+
+.. currentmodule:: ansys.mapdl.core.pool
+
+.. automethod:: MapdlPool.is_initialized

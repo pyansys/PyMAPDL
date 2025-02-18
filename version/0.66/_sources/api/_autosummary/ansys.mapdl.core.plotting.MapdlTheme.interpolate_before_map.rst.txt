@@ -1,0 +1,6 @@
+interpolate\_before\_map
+========================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.interpolate_before_map

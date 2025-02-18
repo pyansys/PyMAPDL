@@ -1,0 +1,6 @@
+﻿slashfdele
+==========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.slashfdele

@@ -1,0 +1,6 @@
+﻿vext
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.vext

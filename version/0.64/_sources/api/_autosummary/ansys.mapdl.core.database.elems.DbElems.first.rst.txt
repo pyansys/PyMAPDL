@@ -1,0 +1,6 @@
+first
+=====
+
+.. currentmodule:: ansys.mapdl.core.database.elems
+
+.. automethod:: DbElems.first

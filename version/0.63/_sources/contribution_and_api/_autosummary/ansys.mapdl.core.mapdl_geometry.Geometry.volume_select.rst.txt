@@ -1,0 +1,6 @@
+volume\_select
+==============
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. automethod:: Geometry.volume_select

@@ -1,0 +1,6 @@
+﻿sbclist
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sbclist

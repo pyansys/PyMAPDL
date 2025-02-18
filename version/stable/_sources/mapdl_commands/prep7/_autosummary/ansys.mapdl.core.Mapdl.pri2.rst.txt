@@ -1,0 +1,6 @@
+﻿pri2
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.pri2

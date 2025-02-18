@@ -1,0 +1,6 @@
+default\_entity\_warning
+========================
+
+.. currentmodule:: ansys.mapdl.core.component
+
+.. autoproperty:: ComponentManager.default_entity_warning

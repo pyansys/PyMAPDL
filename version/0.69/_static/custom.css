@@ -1,0 +1,47 @@
+@import url("default.css");
+
+.red-text {
+    color: red;
+}
+
+.green-text {
+    color: green;
+}
+
+.blue-text {
+    color: blue;
+}
+
+.yellow-text {
+    color: yellow;
+}
+
+.bd-header{
+    box-shadow: 0 0rem 0rem 0 rgb(255,172,0); /* var(--pst-color-shadow); */
+}
+
+/* anything related to the light theme */
+html[data-theme="light"] {
+    /* whatever you want to change */
+    background: rgb(245, 245, 245);
+    --pst-color-on-background: rgb(35, 35, 35);
+    --pst-color-background: rgb(245, 245, 245);
+    --sd-color-card-border-hover: rgb(255,172,0);
+    
+    .sd-shadow-sm {
+        box-shadow: 0 0rem 0rem rgba(250, 250, 250, 0.6) !important
+    }
+}
+
+/* anything related to the dark theme */
+html[data-theme="dark"] {
+    /* whatever you want to change */
+    background: rgb(35, 35, 35);
+    --pst-color-on-background: rgb(35, 35, 35);
+    --pst-color-background: rgb(35, 35, 35);
+    --sd-color-card-border-hover: rgb(255,172,0);
+
+    .sd-shadow-sm {
+        box-shadow: 0 0rem 0rem rgba(250, 250, 250, 0.6) !important
+    }
+}

@@ -1,0 +1,6 @@
+﻿edis
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edis

@@ -1,0 +1,3080 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Dynamic simulation of a printed circuit board assembly &#8212; PyMAPDL</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    
+        <link href="../../../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/technology_showcase_examples/techdemo-20/20-example-technology-showcase-dynamic-simulation-PCB';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.62';
+        </script>
+    <link rel="shortcut icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Friction Stir Welding (FSW) Simulation" href="../techdemo-28/ex_28-tecfricstir.html" />
+    <link rel="prev" title="Brake Squeal Analysis" href="../techdemo-1/ex_0-tecbrakesqueal.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="None">
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/technology_showcase_examples/techdemo-20/20-example-technology-showcase-dynamic-simulation-PCB.html" />
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      <!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+    
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.62  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../../../index.html">PyMAPDL</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Examples</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Dynamic simulation of a printed circuit board assembly</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.62  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/2d_plate_with_a_hole.html">MAPDL 2D Plane Stress Concentration Analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/2d_pressure_vessel.html">2D Pressure Vessel</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/3d_plate_thermal.html">Basic Thermal Analysis with pyMAPDL</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/contact_elements.html">Contact Element Example</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/geometry.html">Plotting and Mesh Access</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/lathe_cutter.html">Structural Analysis of a Lathe Cutter</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/path_operations.html">Path Operations within pyMAPDL and MAPDL</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/pressure_vessel.html">Pressure Vessel</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/pyvista_mesh.html">PyVista Mesh Integration</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/00-mapdl-examples/transient_thermal.html">Example Thermal Transient Analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/01-apdlmath-examples/basic_operations.html">PyMAPDL APDLMath Basic Operations</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/01-apdlmath-examples/eigen_solve.html">Using APDLMath to solve Eigenproblems</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/01-apdlmath-examples/explore_mapdl_files.html">Binary MAPDL File Explorer</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/01-apdlmath-examples/mapdl_vs_scipy.html">Compute Eigenvalues using MAPDL or SciPy</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/01-apdlmath-examples/scipy_sparse_matrix.html">APDLMath Sparse Matrices and SciPy Sparse Matrices</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/01-apdlmath-examples/solve_dense_matrix.html">Use APDLMath to Solve a Dense Matrix Linear System</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/01-apdlmath-examples/solve_sparse_matrix.html">Performing Sparse Factorization and Solve Operations</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/01-apdlmath-examples/use_numpy_arrays.html">Manipulate APDLMath vectors or dense matrices as NumPy Arrays</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/02-geometry/00-keypoints.html">Keypoints</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/02-geometry/01-lines.html">Lines</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/02-geometry/02-areas.html">Areas</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/02-geometry/03-volumes.html">Volumes</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/02-geometry/04-primitives.html">Primitives</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/03-tips-n-tricks/00-example-template.html">Adding a New Gallery Example</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/03-tips-n-tricks/01-smoothing-element-size-transitions.html">MAPDL Element Size Transition Example</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/03-tips-n-tricks/03-using_inline_functions_and_Query.html">Using Inline Functions (Query)</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/03-tips-n-tricks/04-rotational-displacement.html">Generating and Extracting Rotational Displacement</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/04-general-fea/00-how_finite_element_works.html">Build a Finite Element</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/06-verif-manual/vm-001-statically_indeterminate_reaction_force_analysis.html">Statically Indeterminate Reaction Force Analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/06-verif-manual/vm-002-beam_stresses_and_deflections.html">Beam Stresses and Deflections</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/06-verif-manual/vm-003-thermally_loaded_support_structure.html">Thermally Loaded Support Structure</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/06-verif-manual/vm-004-deflection_of_a_hinged_support.html">Deflection of a Hinged Support</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/06-verif-manual/vm-005-laterally_loaded_tapered_support_structure.html">Statically Indeterminate Reaction Force Analysis</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/06-verif-manual/vm-006-pinched_cylinder.html">Pinched Cylinder</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/06-verif-manual/vm-007-plastic_compression_of_a_pipe_assembly.html">Plastic Compression of a Pipe Assembly</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/06-verif-manual/vm-008-parametric_calculation.html">Parametric Calculation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/06-verif-manual/vm-009-large_lateral_deflection_of_unequal_stiffness_springs.html">Large Lateral Deflection of Unequal Stiffness Springs</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../gallery_examples/06-verif-manual/vm-010-bending_of_a_t-shaped_beam.html">Bending of a Tee-Shaped Beam</a></li>
+</ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../techdemo-1/ex_0-tecbrakesqueal.html">Brake Squeal Analysis</a></li>
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Dynamic simulation of a printed circuit board assembly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../techdemo-28/ex_28-tecfricstir.html">Friction Stir Welding (FSW) Simulation</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://pyansys.github.io/ml-rl-cartpole/ml-rl-notebook.html">Cart-Pole Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/ex_01-gmsh_example/ex_01-gmsh_example.html">Gmsh Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/Python_UPF/python_upf_examples.html">UPF in PyMAPDL</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-examples-technology-showcase-examples-techdemo-20-example-technology-showcase-dynamic-simulation-pcb-py"><span class="std std-ref">here</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="dynamic-simulation-of-a-printed-circuit-board-assembly">
+<span id="tech-demo-20"></span><span id="ref-dynamic-simulation-printed-circuit-board"></span><span id="sphx-glr-examples-examples-technology-showcase-examples-techdemo-20-example-technology-showcase-dynamic-simulation-pcb-py"></span><h1>Dynamic simulation of a printed circuit board assembly<a class="headerlink" href="#dynamic-simulation-of-a-printed-circuit-board-assembly" title="Permalink to this headline">#</a></h1>
+<p>This examples shows how to use PyMAPDL to import an existing FE model and to
+run a modal and PSD analysis. PyDPF modules are also used for post-processing.</p>
+<p>This example is inspired from the model and analysis defined in Chapter 20 of
+the Mechanical APDL Technology Showcase Manual.</p>
+<section id="additional-packages-used">
+<h2>Additional Packages Used<a class="headerlink" href="#additional-packages-used" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://matplotlib.org">Matplotlib</a> is used for plotting purposes.</p></li>
+</ul>
+</section>
+<section id="starting-mapdl-as-a-service-and-importing-an-external-model">
+<h2>Starting MAPDL as a service and importing an external model<a class="headerlink" href="#starting-mapdl-as-a-service-and-importing-an-external-model" title="Permalink to this headline">#</a></h2>
+<p>The original FE model is given in the Ansys Mechanical APDL Technology
+Showcase Manual.  The .cdb contains a FE model of a single circuit board. The
+model is meshed with SOLID186, SHELL181 and BEAM188 elements. All components
+of the PCB model is assigned with linear elastic isotropic materials. Bonded
+and flexible surface-to-surface contact pairs are used to define the contact
+between the IC packages and the circuit board.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core.examples</span> <span class="kn">import</span> <span class="n">download_tech_demo_data</span>
+
+<span class="c1"># start MAPDL as a service</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="p">)</span>
+
+<span class="c1"># read model of single circuit board</span>
+<span class="c1"># download the cdb file</span>
+<span class="n">pcb_mesh_file</span> <span class="o">=</span> <span class="n">download_tech_demo_data</span><span class="p">(</span><span class="s2">&quot;td-20&quot;</span><span class="p">,</span> <span class="s2">&quot;pcb_mesh_file.cdb&quot;</span><span class="p">)</span>
+
+<span class="c1"># enter preprocessor and read in cdb</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cdread</span><span class="p">(</span><span class="s2">&quot;COMB&quot;</span><span class="p">,</span> <span class="n">pcb_mesh_file</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span><span class="n">background</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_001.png" srcset="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_001.png" alt="20 example technology showcase dynamic simulation PCB" class = "sphx-glr-single-img"/><p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Product:             Ansys Mechanical Enterprise
+MAPDL Version:       21.2
+ansys.mapdl Version: 0.62.dev0
+
+
+&#39;ALSO SELECT ALL COMPONENTS&#39;
+</pre></div>
+</div>
+</section>
+<section id="creating-the-complete-layered-model">
+<h2>Creating the complete layered model<a class="headerlink" href="#creating-the-complete-layered-model" title="Permalink to this headline">#</a></h2>
+<p>The original model will be duplicated to create a layered PCB of three layers
+that are binded together.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># duplicate single PCB to get three layers</span>
+<span class="c1"># get the maximum node number for the single layers PCB in the input file</span>
+<span class="n">max_nodenum</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;max_nodenum&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">)</span>
+
+<span class="c1"># generate additional PCBs offset by 20 mm in the -y direction</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">egen</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_nodenum</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">dy</span><span class="o">=-</span><span class="mi">20</span><span class="p">)</span>
+
+
+<span class="c1"># bind the three layers together</span>
+<span class="c1"># select components of interest</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;N_JOINT_BOARD&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;N_JOINT_LEGS&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;N_BASE&quot;</span><span class="p">)</span>
+
+<span class="c1"># get number of currently selected nodes</span>
+<span class="n">nb_selected_nodes</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">n_node</span>
+<span class="n">current_node</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">queries</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">queries</span>
+
+<span class="c1"># also select similar nodes for copies of the single PCB</span>
+<span class="c1"># and couple all dofs at the interface</span>
+<span class="k">for</span> <span class="n">node_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nb_selected_nodes</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">current_node</span> <span class="o">=</span> <span class="n">queries</span><span class="o">.</span><span class="n">ndnext</span><span class="p">(</span><span class="n">current_node</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">current_node</span> <span class="o">+</span> <span class="n">max_nodenum</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">current_node</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">max_nodenum</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cpintf</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+
+<span class="c1"># define fixed support boundary condition</span>
+<span class="c1"># get max coupled set number</span>
+<span class="n">cp_max</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;cp_max&quot;</span><span class="p">,</span> <span class="s2">&quot;cp&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">)</span>
+
+<span class="c1"># unselect nodes scoped in CP equations</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;cp&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;cp_max&quot;</span><span class="p">)</span>
+
+<span class="c1"># create named selection for base excitation</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cm</span><span class="p">(</span><span class="s2">&quot;n_base_excite&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">)</span>
+
+<span class="c1"># fix displacement for base excitation nodes</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>
+
+<span class="c1"># select all and plot the model using MAPDL&#39;s plotter and VTK&#39;s</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">graphics</span><span class="p">(</span><span class="s2">&quot;power&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">triad</span><span class="p">(</span><span class="s2">&quot;rbot&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pnum</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">number</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">hbc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;on&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pbc</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span><span class="n">vtk</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_002.png" srcset="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_002.png" alt="20 example technology showcase dynamic simulation PCB" class = "sphx-glr-single-img"/><img src="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_003.png" srcset="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_003.png" alt="20 example technology showcase dynamic simulation PCB" class = "sphx-glr-single-img"/></section>
+<section id="run-modal-analysis">
+<h2>Run modal analysis<a class="headerlink" href="#run-modal-analysis" title="Permalink to this headline">#</a></h2>
+<p>A modal analysis is run using Block Lanzos.
+Only 10 modes are extracted for the sake of run times, but using a higher
+number of nodes is recommended (suggestion: 300 modes).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># enter solution processor and define analysis settings</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s2">&quot;modal&quot;</span><span class="p">)</span>
+<span class="c1"># set number of modes to extract</span>
+<span class="c1"># using a higher number of modes is recommended</span>
+<span class="n">nb_modes</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># use Block Lanzos to extract specified number of modes</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">modopt</span><span class="p">(</span><span class="s2">&quot;lanb&quot;</span><span class="p">,</span> <span class="n">nb_modes</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mxpand</span><span class="p">(</span><span class="n">nb_modes</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*** NOTE ***                            CP =       1.641   TIME= 19:31:10
+ The automatic domain decomposition logic has selected the MESH domain
+ decomposition method with 2 processes per solution.
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** NOTE ***                            CP =       1.672   TIME= 19:31:10
+ There is no title defined for this analysis.
+
+ *** NOTE ***                            CP =       1.672   TIME= 19:31:10
+ To view 3-D mode shapes of beam or pipe elements, expand the modes with
+ element results calculation active via the MXPAND command&#39;s
+ Elcalc=YES.
+
+ *** WARNING ***                         CP =       1.672   TIME= 19:31:10
+ Previous testing revealed that 3 of the 26046 selected elements violate
+ shape warning limits.  To review warning messages, please see the
+ output or error file, or issue the CHECK command.
+
+ *** NOTE ***                            CP =       1.672   TIME= 19:31:10
+ The model data was checked and warning messages were found.
+  Please review output or errors file (
+ C:\Users\gayuso\AppData\Local\Temp\ansys_huwgqkdmck\file0.err ) for
+ these warning messages.
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+                ---GIVE SUGGESTIONS ONLY---
+
+ ELEMENT TYPE         1 IS BEAM188 . KEYOPT(3) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         1 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         2 IS BEAM188 . KEYOPT(3) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         2 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         3 IS BEAM188 . KEYOPT(3) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         3 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         4 IS BEAM188 . KEYOPT(3) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         4 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         5 IS BEAM188 . KEYOPT(3) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         5 IS BEAM188 . KEYOPT(15) IS ALREADY SET AS SUGGESTED.
+
+ ELEMENT TYPE         6 IS SHELL181. IT IS ASSOCIATED WITH ELASTOPLASTIC
+ MATERIALS ONLY. KEYOPT(8)=2 IS SUGGESTED AND KEYOPT(3)=2 IS SUGGESTED FOR
+ HIGHER ACCURACY OF MEMBRANE STRESSES; OTHERWISE, KEYOPT(3)=0 IS SUGGESTED.
+
+ ELEMENT TYPE         6 HAS KEYOPT(3)=2. FOR THE SPECIFIED ANALYSIS TYPE, LUMPED MASS
+ MATRIX OPTION (LUMPM, ON) IS SUGGESTED.
+
+ ELEMENT TYPE         7 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE         8 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE         9 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        10 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        11 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        12 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        13 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        14 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        15 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        16 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        17 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        18 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        19 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        20 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+ ELEMENT TYPE        21 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED.
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2021 R2          21.2     ***
+ DISTRIBUTED Ansys Mechanical Enterprise
+
+ 00000000  VERSION=WINDOWS x64   19:31:10  APR 11, 2022 CP=      1.672
+
+
+
+
+
+                       S O L U T I O N   O P T I O N S
+
+   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D
+   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   ROTX ROTY ROTZ
+   ANALYSIS TYPE . . . . . . . . . . . . . . . . .MODAL
+      EXTRACTION METHOD. . . . . . . . . . . . . .BLOCK LANCZOS
+   NUMBER OF MODES TO EXTRACT. . . . . . . . . . .    10
+   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
+   NUMBER OF MODES TO EXPAND . . . . . . . . . . .    10
+   ELEMENT RESULTS CALCULATION . . . . . . . . . .OFF
+
+ *** NOTE ***                            CP =       1.672   TIME= 19:31:10
+ SHELL181 and SHELL281 will not support real constant input at a future
+ release.  Please move to section input.
+
+ *** NOTE ***                            CP =       1.672   TIME= 19:31:10
+ The conditions for direct assembly have been met.  No .emat or .erot
+ files will be produced.
+
+ *** NOTE ***                            CP =       1.703   TIME= 19:31:10
+ Internal nodes from 43998 to 44297 are created.
+ 300 internal nodes are used for quadratic and/or cubic options of
+ BEAM188, PIPE288, and/or SHELL208.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 22 and contact element type 22 has been set up.  The
+ companion pair has real constant set ID 23.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.0609
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 23362 and target element 23450.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 23 and contact element type 22 has been set up.  The
+ companion pair has real constant set ID 22.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.6035
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 23389 and target element 23348.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 24 and contact element type 24 has been set up.  The
+ companion pair has real constant set ID 25.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.7893
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.065814104E-14 was detected between contact
+ element 23534 and target element 23703.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 25 and contact element type 24 has been set up.  The
+ companion pair has real constant set ID 24.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.6670
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 23619 and target element 23500.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 26 and contact element type 26 has been set up.  The
+ companion pair has real constant set ID 27.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.4344
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 23799 and target element 23840.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 27 and contact element type 26 has been set up.  The
+ companion pair has real constant set ID 26.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.2769
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 8.437694987E-15 was detected between contact
+ element 23816 and target element 23774.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 28 and contact element type 28 has been set up.  The
+ companion pair has real constant set ID 29.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.2044
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.065814104E-14 was detected between contact
+ element 23925 and target element 24048.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 29 and contact element type 28 has been set up.  The
+ companion pair has real constant set ID 28.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.8833
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 7.993605777E-15 was detected between contact
+ element 24004 and target element 23917.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 30 and contact element type 30 has been set up.  The
+ companion pair has real constant set ID 31.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.6992
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.33226763E-14 was detected between contact
+ element 24136 and target element 24168.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 31 and contact element type 30 has been set up.  The
+ companion pair has real constant set ID 30.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.7212
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.065814104E-14 was detected between contact
+ element 24143 and target element 24111.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 32 and contact element type 32 has been set up.  The
+ companion pair has real constant set ID 33.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.1818
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 2.131628207E-14 was detected between contact
+ element 24242 and target element 24365.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 33 and contact element type 32 has been set up.  The
+ companion pair has real constant set ID 32.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.7511
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 24279 and target element 24217.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 34 and contact element type 34 has been set up.  The
+ companion pair has real constant set ID 35.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.2093
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 24457 and target element 24613.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 35 and contact element type 34 has been set up.  The
+ companion pair has real constant set ID 34.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.7849
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.065814104E-14 was detected between contact
+ element 24514 and target element 24456.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 36 and contact element type 36 has been set up.  The
+ companion pair has real constant set ID 37.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.8622
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.421085472E-14 was detected between contact
+ element 24670 and target element 24765.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 37 and contact element type 36 has been set up.  The
+ companion pair has real constant set ID 36.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.7993
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 24705 and target element 24663.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 38 and contact element type 38 has been set up.  The
+ companion pair has real constant set ID 39.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.2658
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 9.769962617E-15 was detected between contact
+ element 24836 and target element 24926.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 39 and contact element type 38 has been set up.  The
+ companion pair has real constant set ID 38.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.8514
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 8.881784197E-15 was detected between contact
+ element 24879 and target element 24787.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 40 and contact element type 40 has been set up.  The
+ companion pair has real constant set ID 41.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.8593
+ Average contact pair depth                    4.0000
+ Pinball region factor PINB                    1.0000
+ The resulting pinball region                  4.0000
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ One of the contact searching regions contains at least 63 target
+ elements.  You may reduce the pinball radius.
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.421085472E-14 was detected between contact
+ element 24979 and target element 25077.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 41 and contact element type 40 has been set up.  The
+ companion pair has real constant set ID 40.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                1.8845
+ Average contact pair depth                    2.5000
+ Pinball region factor PINB                    1.0000
+ The resulting pinball region                  2.5000
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.065814104E-14 was detected between contact
+ element 25011 and target element 24931.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 42 and contact element type 42 has been set up.  The
+ companion pair has real constant set ID 43.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.2391
+ Average contact pair depth                    4.0000
+ Pinball region factor PINB                    1.0000
+ The resulting pinball region                  4.0000
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 8.881784197E-15 was detected between contact
+ element 25172 and target element 25232.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 43 and contact element type 42 has been set up.  The
+ companion pair has real constant set ID 42.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.4761
+ Average contact pair depth                    2.5000
+ Pinball region factor PINB                    1.0000
+ The resulting pinball region                  2.5000
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 25184 and target element 25127.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 44 and contact element type 44 has been set up.  The
+ companion pair has real constant set ID 45.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.3552
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.421085472E-14 was detected between contact
+ element 25356 and target element 25570.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 45 and contact element type 44 has been set up.  The
+ companion pair has real constant set ID 44.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.7967
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.065814104E-14 was detected between contact
+ element 25446 and target element 25239.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 46 and contact element type 46 has been set up.  The
+ companion pair has real constant set ID 47.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.1237
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.421085472E-14 was detected between contact
+ element 25628 and target element 25709.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 47 and contact element type 46 has been set up.  The
+ companion pair has real constant set ID 46.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.5685
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 25639 and target element 25608.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 48 and contact element type 48 has been set up.  The
+ companion pair has real constant set ID 49.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.0637
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.421085472E-14 was detected between contact
+ element 25779 and target element 25820.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 49 and contact element type 48 has been set up.  The
+ companion pair has real constant set ID 48.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.8027
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.421085472E-14 was detected between contact
+ element 25787 and target element 25736.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 50 and contact element type 50 has been set up.  The
+ companion pair has real constant set ID 51.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.2471
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 1.33226763E-14 was detected between contact
+ element 25924 and target element 26035.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 51 and contact element type 50 has been set up.  The
+ companion pair has real constant set ID 50.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.6964
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       2.719   TIME= 19:31:11
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 25939 and target element 25890.
+ ****************************************
+
+
+
+
+ *** NOTE ***                            CP =       2.750   TIME= 19:31:11
+ Internal nodes from 43998 to 44297 are created.
+ 300 internal nodes are used for quadratic and/or cubic options of
+ BEAM188, PIPE288, and/or SHELL208.
+
+
+
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+
+  ...Number of elements: 26046
+  ...Number of nodes:    44197
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.001
+
+
+                      L O A D   S T E P   O P T I O N S
+
+   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1
+   THERMAL STRAINS INCLUDED IN THE LOAD VECTOR . .   YES
+   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT
+   DATABASE OUTPUT CONTROLS. . . . . . . . . . . .ALL DATA WRITTEN
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 22 and contact element type 22 has been set up.  The
+ companion pair has real constant set ID 23.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.0609
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 23362 and target element 23450.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 23 and contact element type 22 has been set up.  The
+ companion pair has real constant set ID 22.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.6035
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 23389 and target element 23348.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 24 and contact element type 24 has been set up.  The
+ companion pair has real constant set ID 25.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.7893
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 1.065814104E-14 was detected between contact
+ element 23534 and target element 23703.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 25 and contact element type 24 has been set up.  The
+ companion pair has real constant set ID 24.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.6670
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 23619 and target element 23500.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 32 and contact element type 32 has been set up.  The
+ companion pair has real constant set ID 33.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.1818
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 2.131628207E-14 was detected between contact
+ element 24242 and target element 24365.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 33 and contact element type 32 has been set up.  The
+ companion pair has real constant set ID 32.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.7511
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 24279 and target element 24217.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 38 and contact element type 38 has been set up.  The
+ companion pair has real constant set ID 39.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.2658
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 9.769962617E-15 was detected between contact
+ element 24836 and target element 24926.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 39 and contact element type 38 has been set up.  The
+ companion pair has real constant set ID 38.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.8514
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 8.881784197E-15 was detected between contact
+ element 24879 and target element 24787.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 40 and contact element type 40 has been set up.  The
+ companion pair has real constant set ID 41.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                2.8593
+ Average contact pair depth                    4.0000
+ Pinball region factor PINB                    1.0000
+ The resulting pinball region                  4.0000
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ One of the contact searching regions contains at least 63 target
+ elements.  You may reduce the pinball radius.
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 1.421085472E-14 was detected between contact
+ element 24979 and target element 25077.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 41 and contact element type 40 has been set up.  The
+ companion pair has real constant set ID 40.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                1.8845
+ Average contact pair depth                    2.5000
+ Pinball region factor PINB                    1.0000
+ The resulting pinball region                  2.5000
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 1.065814104E-14 was detected between contact
+ element 25011 and target element 24931.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 48 and contact element type 48 has been set up.  The
+ companion pair has real constant set ID 49.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.0637
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 1.421085472E-14 was detected between contact
+ element 25779 and target element 25820.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 49 and contact element type 48 has been set up.  The
+ companion pair has real constant set ID 48.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.8027
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 1.421085472E-14 was detected between contact
+ element 25787 and target element 25736.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 50 and contact element type 50 has been set up.  The
+ companion pair has real constant set ID 51.  Both pairs should have
+ the same behavior.
+ ANSYS will keep the current pair and deactivate its companion pair,
+ resulting in asymmetric contact.
+ Shell edge - solid surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Default influence distance FTOLN will be used.
+ Average contact surface length                3.2471
+ Average contact pair depth                    4.0000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 1.33226763E-14 was detected between contact
+ element 25924 and target element 26035.
+ ****************************************
+
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Symmetric Deformable- deformable contact pair identified by real
+ constant set 51 and contact element type 50 has been set up.  The
+ companion pair has real constant set ID 50.  Both pairs should have
+ the same behavior.
+ ANSYS will deactivate the current pair and keep its companion pair,
+ resulting in asymmetric contact.
+ Auto surface constraint is built
+ Contact algorithm: MPC based approach
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Contact related postprocess items (ETABLE, pressure ...) are not
+ available.
+ Contact detection at: nodal point (normal to target surface)
+ MPC will be built internally to handle bonded contact.
+ Average contact surface length                2.6964
+ Average contact pair depth                    2.5000
+ User defined pinball region PINB             0.86250
+ Default target edge extension factor TOLS     10.000
+ Initial penetration/gap is excluded.
+ Bonded contact (always) is defined.
+
+ *** NOTE ***                            CP =       3.625   TIME= 19:31:12
+ Max.  Initial penetration 7.105427358E-15 was detected between contact
+ element 25939 and target element 25890.
+ ****************************************
+
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.25166E-03    0.0000        0.0000     |     0.0000       0.34581E-01   0.50068E-02
+         0.0000       0.25166E-03    0.0000     |   -0.34581E-01    0.0000       0.25711E-01
+         0.0000        0.0000       0.25166E-03 |   -0.50068E-02  -0.25711E-01    0.0000
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |     6.4515       0.51185       -3.5215
+                                                |    0.51185        9.6801       0.68875
+                                                |    -3.5215       0.68875        3.5678
+
+   TOTAL MASS = 0.25166E-03
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    102.17       -19.895        137.41
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+         1.5999       0.32438E-03   0.11573E-01
+        0.32438E-03    2.3014       0.74412E-03
+        0.11573E-01   0.74412E-03   0.84133
+
+   PRINCIPAL INERTIAS =    1.6001        2.3014       0.84115
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 1.000,-0.000, 0.015) ( 0.000, 1.000, 0.001) (-0.015,-0.001, 1.000)
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.326079E-05
+     2  0.326079E-05
+     3  0.326079E-05
+     4  0.326079E-05
+     5  0.326079E-05
+     6  0.159600E-03
+     7  0.429027E-05
+     8  0.777647E-05
+     9  0.197978E-05
+    10  0.735761E-05
+    11  0.186775E-05
+    12  0.704400E-05
+    13  0.696150E-05
+    14  0.368481E-05
+    15  0.459882E-05
+    16  0.330798E-05
+    17  0.197978E-05
+    18  0.111823E-04
+    19  0.391721E-05
+    20  0.411780E-05
+    21  0.568872E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 11792803.9 at element 17387.
+ Minimum = 528.07874 at element 3660.
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1        60  BEAM188       0.000   0.000000
+        2        60  BEAM188       0.000   0.000000
+        3        60  BEAM188       0.000   0.000000
+        4        60  BEAM188       0.000   0.000000
+        5        60  BEAM188       0.000   0.000000
+        6     13038  SHELL181      0.625   0.000048
+        7       252  SOLID186      0.016   0.000062
+        8       432  SOLID186      0.031   0.000072
+        9       168  SOLID186      0.047   0.000279
+       10       396  SOLID186      0.062   0.000158
+       11       108  SOLID186      0.016   0.000145
+       12       384  SOLID186      0.062   0.000163
+       13       384  SOLID186      0.062   0.000163
+       14       210  SOLID186      0.047   0.000223
+       15       270  SOLID186      0.016   0.000058
+       16       408  SOLID186      0.031   0.000077
+       17       150  SOLID186      0.000   0.000000
+       18       588  SOLID186      0.047   0.000080
+       19       240  SOLID186      0.016   0.000065
+       20       216  SOLID186      0.062   0.000289
+       21       324  SOLID186      0.031   0.000096
+       22       228  CONTA174      0.016   0.000069
+       23       228  TARGE170      0.000   0.000000
+       24       435  CONTA174      0.031   0.000072
+       25       435  TARGE170      0.000   0.000000
+       26       156  CONTA174      0.016   0.000100
+       27       156  TARGE170      0.000   0.000000
+       28       354  CONTA174      0.016   0.000044
+       29       354  TARGE170      0.000   0.000000
+       30       108  CONTA174      0.000   0.000000
+       31       108  TARGE170      0.000   0.000000
+       32       348  CONTA174      0.016   0.000045
+       33       348  TARGE170      0.000   0.000000
+       34       342  CONTA174      0.000   0.000000
+       35       342  TARGE170      0.000   0.000000
+       36       204  CONTA174      0.000   0.000000
+       37       204  TARGE170      0.000   0.000000
+       38       234  CONTA174      0.000   0.000000
+       39       234  TARGE170      0.000   0.000000
+       40       300  CONTA174      0.016   0.000052
+       41       300  TARGE170      0.000   0.000000
+       42       159  CONTA174      0.000   0.000000
+       43       159  TARGE170      0.000   0.000000
+       44       519  CONTA174      0.047   0.000090
+       45       519  TARGE170      0.016   0.000030
+       46       210  CONTA174      0.016   0.000074
+       47       210  TARGE170      0.000   0.000000
+       48       204  CONTA174      0.000   0.000000
+       49       204  TARGE170      0.000   0.000000
+       50       288  CONTA174      0.000   0.000000
+       51       288  TARGE170      0.000   0.000000
+ Time at end of element matrix formulation CP = 4.671875.
+
+  BLOCK LANCZOS CALCULATION OF UP TO    10 EIGENVECTORS.
+  NUMBER OF EQUATIONS              =       159678
+  MAXIMUM WAVEFRONT                =          708
+  MAXIMUM MODES STORED             =           10
+  MINIMUM EIGENVALUE               =  0.00000E+00
+  MAXIMUM EIGENVALUE               =  0.10000E+31
+
+
+ *** NOTE ***                            CP =       8.656   TIME= 19:31:18
+ The initial memory allocation (-m) has been exceeded.
+  Supplemental memory allocations are being used.
+
+  Local memory allocated for solver              =    470.292 MB
+  Local memory required for in-core solution     =    448.291 MB
+  Local memory required for out-of-core solution =    208.135 MB
+
+  Total memory allocated for solver              =    851.493 MB
+  Total memory required for in-core solution     =    811.685 MB
+  Total memory required for out-of-core solution =    378.173 MB
+
+ *** NOTE ***                            CP =       8.656   TIME= 19:31:18
+ The Distributed Sparse Matrix Solver used by the Block Lanczos
+ eigensolver is currently running in the in-core memory mode.  This
+ memory mode uses the most amount of memory in order to avoid using the
+ hard drive as much as possible, which most often results in the
+ fastest solution time.  This mode is recommended if enough physical
+ memory is present to accommodate all of the solver data.
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2021 R2          21.2     ***
+ DISTRIBUTED Ansys Mechanical Enterprise
+
+ 00000000  VERSION=WINDOWS x64   19:31:20  APR 11, 2022 CP=     10.781
+
+
+
+
+
+ *** FREQUENCIES FROM BLOCK LANCZOS ITERATION ***
+
+  MODE    FREQUENCY (HERTZ)
+
+
+    1     21.68428280230
+    2     21.69024198077
+    3     21.69131650666
+    4     33.82973502589
+    5     33.83798485758
+    6     33.83938717337
+    7     37.06064330146
+    8     37.07091158772
+    9     37.07187102168
+   10     43.83753554036
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2021 R2          21.2     ***
+ DISTRIBUTED Ansys Mechanical Enterprise
+
+ 00000000  VERSION=WINDOWS x64   19:31:20  APR 11, 2022 CP=     10.938
+
+
+
+
+
+
+
+          ***** PARTICIPATION FACTOR CALCULATION *****  X  DIRECTION
+                                                                                  CUMULATIVE     RATIO EFF.MASS
+  MODE   FREQUENCY       PERIOD      PARTIC.FACTOR     RATIO    EFFECTIVE MASS   MASS FRACTION   TO TOTAL MASS
+     1     21.6843       0.46116E-01   0.13337E-03    1.000000    0.177881E-07    0.312579        0.706832E-04
+     2     21.6902       0.46104E-01   0.58730E-04    0.440351    0.344927E-08    0.373191        0.137061E-04
+     3     21.6913       0.46101E-01   0.87053E-04    0.652706    0.757817E-08    0.506358        0.301129E-04
+     4     33.8297       0.29560E-01  -0.85976E-04    0.644632    0.739184E-08    0.636250        0.293725E-04
+     5     33.8380       0.29553E-01  -0.38997E-04    0.292392    0.152076E-08    0.662973        0.604293E-05
+     6     33.8394       0.29551E-01  -0.57555E-04    0.431539    0.331259E-08    0.721184        0.131630E-04
+     7     37.0606       0.26983E-01   0.25886E-04    0.194086    0.670065E-09    0.732958        0.266259E-05
+     8     37.0709       0.26975E-01   0.14838E-04    0.111256    0.220178E-09    0.736827        0.874909E-06
+     9     37.0719       0.26975E-01   0.18637E-04    0.139738    0.347343E-09    0.742931        0.138021E-05
+    10     43.8375       0.22812E-01  -0.12095E-03    0.906870    0.146291E-07     1.00000        0.581308E-04
+ -----------------------------------------------------------------------------------------------------------------
+   sum                                                            0.569074E-07                    0.226129E-03
+ -----------------------------------------------------------------------------------------------------------------
+
+
+
+          ***** PARTICIPATION FACTOR CALCULATION *****  Y  DIRECTION
+                                                                                  CUMULATIVE     RATIO EFF.MASS
+  MODE   FREQUENCY       PERIOD      PARTIC.FACTOR     RATIO    EFFECTIVE MASS   MASS FRACTION   TO TOTAL MASS
+     1     21.6843       0.46116E-01   0.73666E-02    1.000000    0.542664E-04    0.343547        0.215635
+     2     21.6902       0.46104E-01   0.33431E-02    0.453826    0.111766E-04    0.414303        0.444117E-01
+     3     21.6913       0.46101E-01   0.50476E-02    0.685209    0.254787E-04    0.575602        0.101243
+     4     33.8297       0.29560E-01   0.18755E-02    0.254589    0.351732E-05    0.597869        0.139765E-01
+     5     33.8380       0.29553E-01   0.89959E-03    0.122118    0.809258E-06    0.602992        0.321569E-02
+     6     33.8394       0.29551E-01   0.13665E-02    0.185497    0.186726E-05    0.614814        0.741981E-02
+     7     37.0606       0.26983E-01   0.31196E-02    0.423480    0.973187E-05    0.676423        0.386709E-01
+     8     37.0709       0.26975E-01   0.19657E-02    0.266836    0.386383E-05    0.700884        0.153535E-01
+     9     37.0719       0.26975E-01   0.28496E-02    0.386823    0.811999E-05    0.752290        0.322659E-01
+    10     43.8375       0.22812E-01   0.62552E-02    0.849139    0.391281E-04     1.00000        0.155481
+ -----------------------------------------------------------------------------------------------------------------
+   sum                                                            0.157959E-03                    0.627673
+ -----------------------------------------------------------------------------------------------------------------
+
+
+
+          ***** PARTICIPATION FACTOR CALCULATION *****  Z  DIRECTION
+                                                                                  CUMULATIVE     RATIO EFF.MASS
+  MODE   FREQUENCY       PERIOD      PARTIC.FACTOR     RATIO    EFFECTIVE MASS   MASS FRACTION   TO TOTAL MASS
+     1     21.6843       0.46116E-01  -0.19752E-05    0.023957    0.390136E-11    0.276278E-03    0.155026E-07
+     2     21.6902       0.46104E-01  -0.13045E-05    0.015822    0.170176E-11    0.396790E-03    0.676218E-08
+     3     21.6913       0.46101E-01  -0.25987E-05    0.031519    0.675314E-11    0.875019E-03    0.268345E-07
+     4     33.8297       0.29560E-01  -0.60916E-04    0.738845    0.371071E-08    0.263652        0.147450E-04
+     5     33.8380       0.29553E-01  -0.30181E-04    0.366070    0.910916E-09    0.328160        0.361965E-05
+     6     33.8394       0.29551E-01  -0.49330E-04    0.598325    0.243346E-08    0.500487        0.966969E-05
+     7     37.0606       0.26983E-01   0.12143E-04    0.147286    0.147459E-09    0.510930        0.585948E-06
+     8     37.0709       0.26975E-01   0.67274E-05    0.081597    0.452579E-10    0.514135        0.179838E-06
+     9     37.0719       0.26975E-01   0.79651E-05    0.096609    0.634435E-10    0.518628        0.252101E-06
+    10     43.8375       0.22812E-01   0.82447E-04    1.000000    0.679752E-08     1.00000        0.270109E-04
+ -----------------------------------------------------------------------------------------------------------------
+   sum                                                            0.141211E-07                    0.561122E-04
+ -----------------------------------------------------------------------------------------------------------------
+
+
+
+          ***** PARTICIPATION FACTOR CALCULATION *****ROTX DIRECTION
+                                                                                  CUMULATIVE     RATIO EFF.MASS
+  MODE   FREQUENCY       PERIOD      PARTIC.FACTOR     RATIO    EFFECTIVE MASS   MASS FRACTION   TO TOTAL MASS
+     1     21.6843       0.46116E-01   -1.0941        1.000000     1.19712        0.282791        0.185559
+     2     21.6902       0.46104E-01  -0.49643        0.453718    0.246440        0.341006        0.381991E-01
+     3     21.6913       0.46101E-01  -0.74956        0.685070    0.561836        0.473726        0.870866E-01
+     4     33.8297       0.29560E-01  -0.91221        0.833733    0.832132        0.670296        0.128984
+     5     33.8380       0.29553E-01  -0.43610        0.398583    0.190185        0.715223        0.294794E-01
+     6     33.8394       0.29551E-01  -0.66259        0.605584    0.439023        0.818931        0.680502E-01
+     7     37.0606       0.26983E-01  -0.43459        0.397204    0.188871        0.863547        0.292757E-01
+     8     37.0709       0.26975E-01  -0.27377        0.250213    0.749480E-01    0.881252        0.116172E-01
+     9     37.0719       0.26975E-01  -0.39680        0.362658    0.157447        0.918445        0.244048E-01
+    10     43.8375       0.22812E-01  -0.58757        0.537023    0.345243         1.00000        0.535139E-01
+ -----------------------------------------------------------------------------------------------------------------
+   sum                                                             4.23325                        0.656169
+ -----------------------------------------------------------------------------------------------------------------
+
+
+
+          ***** PARTICIPATION FACTOR CALCULATION *****ROTY DIRECTION
+                                                                                  CUMULATIVE     RATIO EFF.MASS
+  MODE   FREQUENCY       PERIOD      PARTIC.FACTOR     RATIO    EFFECTIVE MASS   MASS FRACTION   TO TOTAL MASS
+     1     21.6843       0.46116E-01   0.18704E-01    0.627437    0.349826E-03    0.233000        0.361386E-04
+     2     21.6902       0.46104E-01   0.82795E-02    0.277746    0.685502E-04    0.278658        0.708153E-05
+     3     21.6913       0.46101E-01   0.12340E-01    0.413962    0.152277E-03    0.380081        0.157308E-04
+     4     33.8297       0.29560E-01  -0.52401E-02    0.175786    0.274589E-04    0.398370        0.283663E-05
+     5     33.8380       0.29553E-01  -0.21221E-02    0.071189    0.450333E-05    0.401370        0.465213E-06
+     6     33.8394       0.29551E-01  -0.26739E-02    0.089698    0.714953E-05    0.406132        0.738577E-06
+     7     37.0606       0.26983E-01   0.12926E-02    0.043363    0.167090E-05    0.407244        0.172611E-06
+     8     37.0709       0.26975E-01   0.73521E-03    0.024663    0.540527E-06    0.407604        0.558388E-07
+     9     37.0719       0.26975E-01   0.89887E-03    0.030154    0.807971E-06    0.408143        0.834668E-07
+    10     43.8375       0.22812E-01  -0.29810E-01    1.000000    0.888614E-03     1.00000        0.917976E-04
+ -----------------------------------------------------------------------------------------------------------------
+   sum                                                            0.150140E-02                    0.155101E-03
+ -----------------------------------------------------------------------------------------------------------------
+
+
+
+          ***** PARTICIPATION FACTOR CALCULATION *****ROTZ DIRECTION
+                                                                                  CUMULATIVE     RATIO EFF.MASS
+  MODE   FREQUENCY       PERIOD      PARTIC.FACTOR     RATIO    EFFECTIVE MASS   MASS FRACTION   TO TOTAL MASS
+     1     21.6843       0.46116E-01   0.38768        0.418447    0.150298        0.941155E-01    0.421268E-01
+     2     21.6902       0.46104E-01   0.17775        0.191858    0.315959E-01    0.113901        0.885597E-02
+     3     21.6913       0.46101E-01   0.26826        0.289550    0.719650E-01    0.158965        0.201709E-01
+     4     33.8297       0.29560E-01   0.36987        0.399221    0.136804        0.244630        0.383445E-01
+     5     33.8380       0.29553E-01   0.17635        0.190342    0.310986E-01    0.264104        0.871658E-02
+     6     33.8394       0.29551E-01   0.26789        0.289152    0.717670E-01    0.309044        0.201154E-01
+     7     37.0606       0.26983E-01   0.33130        0.357593    0.109762        0.377775        0.307648E-01
+     8     37.0709       0.26975E-01   0.20886        0.225431    0.436217E-01    0.405091        0.122266E-01
+     9     37.0719       0.26975E-01   0.30278        0.326807    0.916758E-01    0.462498        0.256957E-01
+    10     43.8375       0.22812E-01   0.92648        1.000000    0.858367         1.00000        0.240590
+ -----------------------------------------------------------------------------------------------------------------
+   sum                                                             1.59695                        0.447608
+ -----------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+ *** NOTE ***                            CP =      10.938   TIME= 19:31:20
+ The modes requested are mass normalized (Nrmkey on MODOPT).  However,
+ the modal masses and kinetic energies below are calculated with unit
+ normalized modes.
+
+        ***** MODAL MASSES, KINETIC ENERGIES, AND TRANSLATIONAL EFFECTIVE MASSES SUMMARY *****
+
+                                                                         EFFECTIVE MASS
+  MODE  FREQUENCY   MODAL MASS     KENE      |      X-DIR      RATIO%   Y-DIR      RATIO%   Z-DIR      RATIO%
+     1   21.68      0.9470E-05  0.8789E-01   |    0.1779E-07    0.01  0.5427E-04   21.56  0.3901E-11    0.00
+     2   21.69      0.9779E-05  0.9081E-01   |    0.3449E-08    0.00  0.1118E-04    4.44  0.1702E-11    0.00
+     3   21.69      0.7728E-05  0.7178E-01   |    0.7578E-08    0.00  0.2548E-04   10.12  0.6753E-11    0.00
+     4   33.83      0.2795E-04  0.6314       |    0.7392E-08    0.00  0.3517E-05    1.40  0.3711E-08    0.00
+     5   33.84      0.2850E-04  0.6441       |    0.1521E-08    0.00  0.8093E-06    0.32  0.9109E-09    0.00
+     6   33.84      0.2333E-04  0.5274       |    0.3313E-08    0.00  0.1867E-05    0.74  0.2433E-08    0.00
+     7   37.06      0.1111E-04  0.3012       |    0.6701E-09    0.00  0.9732E-05    3.87  0.1475E-09    0.00
+     8   37.07      0.1103E-04  0.2991       |    0.2202E-09    0.00  0.3864E-05    1.54  0.4526E-10    0.00
+     9   37.07      0.1007E-04  0.2732       |    0.3473E-09    0.00  0.8120E-05    3.23  0.6344E-10    0.00
+    10   43.84      0.5791E-05  0.2197       |    0.1463E-07    0.01  0.3913E-04   15.55  0.6798E-08    0.00
+ --------------------------------------------------------------------------------------------------------------
+   sum                                       |    0.5691E-07    0.02  0.1580E-03   62.77  0.1412E-07    0.01
+ --------------------------------------------------------------------------------------------------------------
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+       38.000 MB WRITTEN ON ELEMENT SAVED DATA FILE: file0.esav
+       83.375 MB WRITTEN ON ASSEMBLED MATRIX FILE: file0.full
+       12.438 MB WRITTEN ON MODAL MATRIX FILE: file0.mode
+       14.375 MB WRITTEN ON RESULTS FILE: file0.rst
+</pre></div>
+</div>
+</section>
+<section id="post-processing-the-modal-results">
+<h2>Post-processing the modal results<a class="headerlink" href="#post-processing-the-modal-results" title="Permalink to this headline">#</a></h2>
+<p>This sections illustrates different methods to post-process the results of the
+modal analysis : PyMAPDL method, PyMAPDL result reader, PyDPF-Post
+and PyDPF-Core. All methods lead to the same result and are just given as an
+example of how each module can be used.
+The methods using DPF modules are commented in the code due to CI/CD issues
+but will run locally if uncommented.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># using MAPDL methods</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">plnsol</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+
+<span class="c1"># using PyMAPDL result reader</span>
+<span class="n">mapdl_result</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">result</span>
+<span class="n">mapdl_result</span><span class="o">.</span><span class="n">plot_nodal_displacement</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Using DPF-Post</span>
+
+<span class="c1"># from ansys.dpf import post</span>
+<span class="c1"># solution_path = &#39;file.rst&#39;</span>
+<span class="c1"># solution = post.load_solution(solution_path)</span>
+<span class="c1"># print(solution)</span>
+<span class="c1"># displacement = solution.displacement(time_scoping=1)</span>
+<span class="c1"># total_deformation = displacement.norm</span>
+<span class="c1"># total_deformation.plot_contour(show_edges=True)</span>
+
+<span class="c1"># Using DPF-Core</span>
+
+<span class="c1"># from ansys.dpf import core</span>
+<span class="c1"># model = core.Model(solution_path)</span>
+<span class="c1"># results = model.results</span>
+<span class="c1"># print(results)</span>
+<span class="c1"># displacements = results.displacement()</span>
+<span class="c1"># total_def = core.operators.math.norm_fc(displacements)</span>
+<span class="c1"># total_def_container = total_def.outputs.fields_container()</span>
+<span class="c1"># mesh = model.metadata.meshed_region</span>
+<span class="c1"># mesh.plot(total_def_container.get_field_by_time_id(1))</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_004.png" srcset="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_004.png" alt="20 example technology showcase dynamic simulation PCB" class = "sphx-glr-single-img"/><img src="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_005.png" srcset="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_005.png" alt="20 example technology showcase dynamic simulation PCB" class = "sphx-glr-single-img"/></section>
+<section id="run-psd-analysis">
+<h2>Run PSD analysis<a class="headerlink" href="#run-psd-analysis" title="Permalink to this headline">#</a></h2>
+<p>The response spectrum analysis is defined, solved and post-processed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># define PSD analysis with input spectrum</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s2">&quot;spectr&quot;</span><span class="p">)</span>
+
+<span class="c1"># power spectral density</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">spopt</span><span class="p">(</span><span class="s2">&quot;psd&quot;</span><span class="p">)</span>
+
+<span class="c1"># use input table 1 with acceleration spectrum in terms of acceleration due to gravity</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdunit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;accg&quot;</span><span class="p">,</span> <span class="mf">9.81</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># define the frequency points in the input table 1</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdfrq</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">70.71678</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">700</span><span class="p">,</span> <span class="mi">900</span><span class="p">)</span>
+
+<span class="c1"># define the PSD values in the input table 1</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdval</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># set the damping ratio as 5%</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">dmprat</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="c1"># apply base excitation on the set of nodes N_BASE_EXCITE in the y-direction from table 1</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;N_BASE_EXCITE&quot;</span><span class="p">,</span> <span class="s2">&quot;uy&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># calculate the participation factor for PSD with base excitation from input table 1</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">pfact</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;base&quot;</span><span class="p">)</span>
+
+<span class="c1"># write the displacent solution relative to the base excitation to the results file from the PSD analysis</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdres</span><span class="p">(</span><span class="s2">&quot;disp&quot;</span><span class="p">,</span> <span class="s2">&quot;rel&quot;</span><span class="p">)</span>
+
+<span class="c1"># write the absolute velocity solution to the results file from the PSD analysis</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdres</span><span class="p">(</span><span class="s2">&quot;velo&quot;</span><span class="p">,</span> <span class="s2">&quot;abs&quot;</span><span class="p">)</span>
+
+<span class="c1"># write the absolute acceleration solution to the results file from the PSD analysis</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdres</span><span class="p">(</span><span class="s2">&quot;acel&quot;</span><span class="p">,</span> <span class="s2">&quot;abs&quot;</span><span class="p">)</span>
+
+<span class="c1"># combine only those modes whose significance level exceeds 0.0001</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">psdcom</span><span class="p">()</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*** NOTE ***                            CP =      16.641   TIME= 19:31:26
+ The automatic domain decomposition logic has selected the MESH domain
+ decomposition method with 2 processes per solution.
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ Time at start of random vibration closed-form solution CP= 16.640625.
+
+
+ FREQUENCIES USED FOR RANDOM VIBRATION SOLUTION
+
+  MODE   FREQUENCY
+
+     1    21.6843
+     2    21.6902
+     3    21.6913
+     4    33.8297
+     5    33.8380
+     6    33.8394
+     7    37.0606
+     8    37.0709
+     9    37.0719
+    10    43.8375
+
+ PERFORM INTEGRATION FOR DISPLACEMENT-TYPE QUANTITIES
+
+ PERFORM INTEGRATION FOR VELOCITY-TYPE QUANTITIES
+
+ PERFORM INTEGRATION FOR ACCELERATION-TYPE QUANTITIES
+
+ Modal covariance matrix computed CP= 16.640625.
+
+ Quasi-static modal covariance matrix computed CP= 16.640625.
+
+ Covariant-modal covariance matrix computed CP= 16.640625.
+
+ Psd file file0.psd created.  CP= 16.640625.
+
+ Time at start of random vibration mode combinations CP= 16.640625.
+
+  BASE EXCITATION PROBLEM
+
+
+ ***** SUMMARY OF TERMS INCLUDED IN MODE COMBINATIONS *****
+            (MODAL COVARIANCE MATRIX TERMS ONLY)
+
+             *** DISPLACEMENT-TYPE QUANTITY ***
+
+           MAXIMUM TERM = 0.73456E-04
+
+             MODE  MODE   COVARIANCE    COVARIANCE
+               I     J       TERM         RATIO
+
+               1       1    0.73456E-04    1.0000
+               2       1    0.33327E-04   0.45370
+               2       2    0.15120E-04   0.20584
+               3       1    0.50316E-04   0.68498
+               3       2    0.22828E-04   0.31078
+               3       3    0.34466E-04   0.46920
+               4       1    0.64485E-05   0.87787E-01
+               4       2    0.29267E-05   0.39843E-01
+               4       3    0.44189E-05   0.60158E-01
+               4       4    0.26183E-05   0.35644E-01
+               5       1    0.30932E-05   0.42109E-01
+               5       2    0.14039E-05   0.19112E-01
+               5       3    0.21196E-05   0.28856E-01
+               5       4    0.12558E-05   0.17096E-01
+               5       5    0.60234E-06   0.82001E-02
+               6       1    0.46985E-05   0.63964E-01
+               6       2    0.21325E-05   0.29031E-01
+               6       3    0.32198E-05   0.43833E-01
+               6       4    0.19076E-05   0.25969E-01
+               6       5    0.91495E-06   0.12456E-01
+               6       6    0.13898E-05   0.18920E-01
+               7       1    0.10933E-04   0.14884
+               7       2    0.49619E-05   0.67549E-01
+               7       3    0.74918E-05   0.10199
+               7       4    0.37206E-05   0.50651E-01
+               7       5    0.17855E-05   0.24307E-01
+               7       6    0.27124E-05   0.36925E-01
+               7       7    0.71392E-05   0.97190E-01
+               8       1    0.68895E-05   0.93791E-01
+               8       2    0.31268E-05   0.42567E-01
+               8       3    0.47210E-05   0.64270E-01
+               8       4    0.23433E-05   0.31900E-01
+               8       5    0.11245E-05   0.15309E-01
+               8       6    0.17083E-05   0.23256E-01
+               8       7    0.44986E-05   0.61241E-01
+               8       8    0.28346E-05   0.38590E-01
+               9       1    0.99875E-05   0.13597
+               9       2    0.45329E-05   0.61708E-01
+               9       3    0.68440E-05   0.93171E-01
+               9       4    0.33968E-05   0.46243E-01
+               9       5    0.16301E-05   0.22192E-01
+               9       6    0.24763E-05   0.33712E-01
+               9       7    0.65214E-05   0.88780E-01
+               9       8    0.41093E-05   0.55942E-01
+               9       9    0.59571E-05   0.81098E-01
+              10       1    0.23871E-04   0.32496
+              10       2    0.10834E-04   0.14748
+              10       3    0.16357E-04   0.22268
+              10       4    0.70587E-05   0.96095E-01
+              10       5    0.33864E-05   0.46101E-01
+              10       6    0.51441E-05   0.70030E-01
+              10       7    0.12750E-04   0.17358
+              10       8    0.80366E-05   0.10941
+              10       9    0.11651E-04   0.15861
+              10      10    0.36571E-04   0.49786
+
+              *** VELOCITY-TYPE QUANTITY ***
+
+           MAXIMUM TERM =  15.547
+
+             MODE  MODE   COVARIANCE    COVARIANCE
+               I     J       TERM         RATIO
+
+               1       1     15.547        1.0000
+               2       1     7.0557       0.45383
+               2       2     3.2021       0.20596
+               3       1     10.653       0.68521
+               3       2     4.8347       0.31097
+               3       3     7.2996       0.46952
+               4       1     3.8958       0.25058
+               4       2     1.7681       0.11372
+               4       3     2.6695       0.17171
+               4       4     1.0786       0.69377E-01
+               5       1     1.8688       0.12020
+               5       2    0.84811       0.54551E-01
+               5       3     1.2805       0.82365E-01
+               5       4    0.51739       0.33279E-01
+               5       5    0.24818       0.15963E-01
+               6       1     2.8387       0.18259
+               6       2     1.2883       0.82864E-01
+               6       3     1.9451       0.12511
+               6       4    0.78592       0.50551E-01
+               6       5    0.37699       0.24249E-01
+               6       6    0.57266       0.36834E-01
+               7       1     6.5885       0.42378
+               7       2     2.9901       0.19233
+               7       3     4.5146       0.29039
+               7       4     1.7955       0.11549
+               7       5    0.86132       0.55401E-01
+               7       6     1.3084       0.84155E-01
+               7       7     3.0886       0.19866
+               8       1     4.1517       0.26704
+               8       2     1.8842       0.12119
+               8       3     2.8448       0.18298
+               8       4     1.1314       0.72770E-01
+               8       5    0.54272       0.34908E-01
+               8       6    0.82441       0.53027E-01
+               8       7     1.9463       0.12519
+               8       8     1.2264       0.78885E-01
+               9       1     6.0186       0.38712
+               9       2     2.7315       0.17569
+               9       3     4.1241       0.26527
+               9       4     1.6401       0.10549
+               9       5    0.78677       0.50606E-01
+               9       6     1.1951       0.76872E-01
+               9       7     2.8215       0.18148
+               9       8     1.7779       0.11436
+               9       9     2.5774       0.16578
+              10       1     13.822       0.88902
+              10       2     6.2727       0.40347
+              10       3     9.4709       0.60918
+              10       4     3.7285       0.23982
+              10       5     1.7885       0.11504
+              10       6     2.7168       0.17475
+              10       7     6.3657       0.40945
+              10       8     4.0114       0.25802
+              10       9     5.8153       0.37404
+              10      10     14.121       0.90826
+
+             *** ACCELERATION-TYPE QUANTITY ***
+
+           MAXIMUM TERM = 0.36471E+08
+
+             MODE  MODE   COVARIANCE    COVARIANCE
+               I     J       TERM         RATIO
+
+               1       1    0.36471E+08    1.0000
+               2       1    0.16552E+08   0.45383
+               2       2    0.75116E+07   0.20596
+               3       1    0.24990E+08   0.68521
+               3       2    0.11341E+08   0.31097
+               3       3    0.17124E+08   0.46952
+               4       1    0.93868E+07   0.25738
+               4       2    0.42600E+07   0.11680
+               4       3    0.64320E+07   0.17636
+               4       4    0.24200E+07   0.66353E-01
+               5       1    0.45026E+07   0.12346
+               5       2    0.20434E+07   0.56028E-01
+               5       3    0.30852E+07   0.84593E-01
+               5       4    0.11608E+07   0.31827E-01
+               5       5    0.55679E+06   0.15267E-01
+               6       1    0.68394E+07   0.18753
+               6       2    0.31039E+07   0.85106E-01
+               6       3    0.46865E+07   0.12850
+               6       4    0.17632E+07   0.48346E-01
+               6       5    0.84577E+06   0.23190E-01
+               6       6    0.12847E+07   0.35226E-01
+               7       1    0.15678E+08   0.42987
+               7       2    0.71150E+07   0.19509
+               7       3    0.10743E+08   0.29455
+               7       4    0.40413E+07   0.11081
+               7       5    0.19385E+07   0.53152E-01
+               7       6    0.29446E+07   0.80738E-01
+               7       7    0.67544E+07   0.18520
+               8       1    0.98787E+07   0.27086
+               8       2    0.44832E+07   0.12293
+               8       3    0.67690E+07   0.18560
+               8       4    0.25465E+07   0.69822E-01
+               8       5    0.12215E+07   0.33491E-01
+               8       6    0.18554E+07   0.50874E-01
+               8       7    0.42560E+07   0.11670
+               8       8    0.26818E+07   0.73531E-01
+               9       1    0.14321E+08   0.39266
+               9       2    0.64992E+07   0.17820
+               9       3    0.98129E+07   0.26906
+               9       4    0.36916E+07   0.10122
+               9       5    0.17707E+07   0.48552E-01
+               9       6    0.26898E+07   0.73750E-01
+               9       7    0.61698E+07   0.16917
+               9       8    0.38877E+07   0.10660
+               9       9    0.56359E+07   0.15453
+              10       1    0.31765E+08   0.87095
+              10       2    0.14416E+08   0.39526
+              10       3    0.21766E+08   0.59679
+              10       4    0.81902E+07   0.22457
+              10       5    0.39286E+07   0.10772
+              10       6    0.59676E+07   0.16362
+              10       7    0.13688E+08   0.37532
+              10       8    0.86252E+07   0.23649
+              10       9    0.12504E+08   0.34284
+              10      10    0.27823E+08   0.76287
+
+
+ ***** SUMMARY OF OUTPUT QUANTITIES COMPUTED *****
+           AND WRITTEN ON RESULTS FILE
+
+     DISPLACEMENT-TYPE QUANTITIES COMPUTED
+      AND WRITTEN ON RESULTS FILE AS LOAD STEP  3
+      VALUES ARE RELATIVE TO BASE
+
+      THESE ARE STATISTICAL QUANTITIES WHICH
+      CANNOT BE COMBINED OR TRANSFORMED IN ANY
+      VECTORIAL SENSE
+
+
+     VELOCITY-TYPE QUANTITIES COMPUTED
+      AND WRITTEN ON RESULTS FILE AS LOAD STEP  4
+      VALUES ARE ABSOLUTE
+
+      THESE ARE STATISTICAL QUANTITIES WHICH
+      CANNOT BE COMBINED OR TRANSFORMED IN ANY
+      VECTORIAL SENSE
+
+
+     ACCELERATION-TYPE QUANTITIES COMPUTED
+      AND WRITTEN ON RESULTS FILE AS LOAD STEP  5
+      VALUES ARE ABSOLUTE
+
+      THESE ARE STATISTICAL QUANTITIES WHICH
+      CANNOT BE COMBINED OR TRANSFORMED IN ANY
+      VECTORIAL SENSE
+</pre></div>
+</div>
+</section>
+<section id="post-process-psd-analysis">
+<h2>Post-process PSD analysis<a class="headerlink" href="#post-process-psd-analysis" title="Permalink to this headline">#</a></h2>
+<p>The response spectrum analysis is post-processed. First, the standard
+MAPDL POST1 postprocessor is used. Then, the MAPDL time-history
+POST26 postprocessor is used to generate the response power spectral
+density.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The graph generated through POST26 is exported as a picture in the working
+directory. Finally, the results from POST26 are saved to Python variables
+to be plotted in the Python environment with the use of Matplotlib
+library.</p>
+</div>
+</section>
+<section id="post-process-psd-analysis-in-post1">
+<h2>Post-process PSD analysis in POST1<a class="headerlink" href="#post-process-psd-analysis-in-post1" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">plnsol</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;last&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">plnsol</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_006.png" srcset="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_006.png" alt="20 example technology showcase dynamic simulation PCB" class = "sphx-glr-single-img"/></section>
+<section id="post-process-psd-analysis-in-post26-time-history-post-processing">
+<h2>Post-process PSD analysis in POST26 (time-history post-processing)<a class="headerlink" href="#post-process-psd-analysis-in-post26-time-history-post-processing" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post26</span><span class="p">()</span>
+
+<span class="c1"># allow storage for 200 variables</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">numvar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;MY_MONITOR&quot;</span><span class="p">)</span>
+<span class="n">monitored_node</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">queries</span><span class="o">.</span><span class="n">ndnext</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="s2">&quot;psd&quot;</span><span class="p">)</span>
+
+<span class="c1"># store the psd analysis u_y data for the node MYMONITOR as the reference no 2</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsol</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">monitored_node</span><span class="p">,</span> <span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+<span class="c1"># compute the response power spectral density for displacement associated with variable 2</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">rpsd</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">&quot;png&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot the variable 3</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">plvar</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># print the variable 3</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prvar</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># x-axis is set for Log X scale</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">gropt</span><span class="p">(</span><span class="s2">&quot;logx&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># y-axis is set for Log X scale</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">gropt</span><span class="p">(</span><span class="s2">&quot;logy&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># plot the variable 3</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">plvar</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">&quot;close&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="post-process-psd-analysis-using-matplotlib">
+<h2>Post-process PSD analysis using Matplotlib<a class="headerlink" href="#post-process-psd-analysis-using-matplotlib" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># store MAPDL results to python variables</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">dim</span><span class="p">(</span><span class="s2">&quot;frequencies&quot;</span><span class="p">,</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">dim</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">,</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span> <span class="mi">4000</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vget</span><span class="p">(</span><span class="s2">&quot;frequencies(1)&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vget</span><span class="p">(</span><span class="s2">&quot;response(1)&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">frequencies</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;frequencies&quot;</span><span class="p">]</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="s2">&quot;response&quot;</span><span class="p">]</span>
+
+<span class="c1"># use Matplotlib to create graph</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Frequencies&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Response power spectral density&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_007.png" srcset="../../../_images/sphx_glr_20-example-technology-showcase-dynamic-simulation-PCB_007.png" alt="20 example technology showcase dynamic simulation PCB" class = "sphx-glr-single-img"/><p>Exit MAPDL</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  31.963 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-examples-technology-showcase-examples-techdemo-20-example-technology-showcase-dynamic-simulation-pcb-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/636101f11816c933a1b9372d69d077ec/20-example-technology-showcase-dynamic-simulation-PCB.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">20-example-technology-showcase-dynamic-simulation-PCB.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/7b57d97d0d27c387266dec3df831ca3a/20-example-technology-showcase-dynamic-simulation-PCB.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">20-example-technology-showcase-dynamic-simulation-PCB.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-packages-used">
+   Additional Packages Used
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#starting-mapdl-as-a-service-and-importing-an-external-model">
+   Starting MAPDL as a service and importing an external model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-the-complete-layered-model">
+   Creating the complete layered model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-modal-analysis">
+   Run modal analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-processing-the-modal-results">
+   Post-processing the modal results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#run-psd-analysis">
+   Run PSD analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-process-psd-analysis">
+   Post-process PSD analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-process-psd-analysis-in-post1">
+   Post-process PSD analysis in POST1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-process-psd-analysis-in-post26-time-history-post-processing">
+   Post-process PSD analysis in POST26 (time-history post-processing)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#post-process-psd-analysis-using-matplotlib">
+   Post-process PSD analysis using Matplotlib
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../../_sources/examples/technology_showcase_examples/techdemo-20/20-example-technology-showcase-dynamic-simulation-PCB.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

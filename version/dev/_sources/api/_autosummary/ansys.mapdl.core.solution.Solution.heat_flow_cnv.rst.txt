@@ -1,0 +1,6 @@
+heat\_flow\_cnv
+===============
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.heat_flow_cnv

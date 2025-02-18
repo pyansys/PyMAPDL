@@ -1,0 +1,6 @@
+﻿save\_selection
+===============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.save_selection

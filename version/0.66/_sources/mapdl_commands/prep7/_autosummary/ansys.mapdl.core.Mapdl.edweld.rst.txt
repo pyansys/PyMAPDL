@@ -1,0 +1,6 @@
+﻿edweld
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.edweld

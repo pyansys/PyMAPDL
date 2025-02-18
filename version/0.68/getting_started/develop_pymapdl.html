@@ -1,0 +1,1164 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Develop code &#8212; PyMAPDL</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css?v=e7c4c341" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=91007d66" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../_static/documentation_options.js?v=a98ddb9b"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/develop_pymapdl';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.15.4';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.68';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Develop on containers" href="devcontainer.html" />
+    <link rel="prev" title="Write documentation" href="write_documentation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/getting_started/develop_pymapdl.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://docs.pyansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pyansys_logo_transparent_black.png" class="logo__image only-light" alt="PyMAPDL - Home"/>
+    <script>document.write(`<img src="../_static/pyansys_logo_transparent_white.png" class="logo__image only-dark" alt="PyMAPDL - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../changelog.html">
+    Release notes
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-2"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-2"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-2"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-2">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar" id="search-bar">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+         aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+         autocapitalize="off" spellcheck="false"/>
+  <span class="search-button__kbd-shortcut">
+    <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+  </span>
+</form>
+<!-- Search results container -->
+<div id="results" class="results" style="display: none;" tabindex="0">
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../user_guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+    MAPDL commands
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../changelog.html">
+    Release notes
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="pst-version-switcher-button-3"
+      type="button"
+      class="version-switcher__button btn btn-sm dropdown-toggle"
+      data-bs-toggle="dropdown"
+      aria-haspopup="listbox"
+      aria-controls="pst-version-switcher-list-3"
+      aria-label="Version switcher list"
+    >
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="pst-version-switcher-list-3"
+      class="version-switcher__menu dropdown-menu list-group-flush py-0"
+      role="listbox" aria-labelledby="pst-version-switcher-button-3">
+      <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa fa-wrench fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="project.html">PyMAPDL project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_mapdl.html">Install MAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_pymapdl.html">Install PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="launcher.html">Launch PyMAPDL</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Learning PyMAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently asked questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versioning.html">Versions and interfaces</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contribute</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="contribution.html">Contributing</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="write_documentation.html">Write documentation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Develop code</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="devcontainer.html">Develop on containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_container.html">Create your own MAPDL docker container</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="docker.html">MAPDL and Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macos.html">PyMAPDL and MacOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wsl.html">Windows Subsystem for Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_julia.html">Julia and PyMAPDL</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">Getting started</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="contribution.html" class="nav-link">Contributing</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">Develop code</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="develop-code">
+<span id="developing-pymapdl"></span><h1>Develop code<a class="headerlink" href="#develop-code" title="Link to this heading">#</a></h1>
+<p>You can help improve PyMAPDL by fixing a bug or developing a new feature.
+To do either, you must set up the repository on your local machine as per the
+explanations in the following sections.</p>
+<section id="clone-the-pymapdl-repository">
+<h2>Clone the PyMAPDL repository<a class="headerlink" href="#clone-the-pymapdl-repository" title="Link to this heading">#</a></h2>
+<p>Before cloning the PyMAPDL repository, you must install a version control system such as Git.
+You can this run this code to clone the latest development version of PyMAPDL:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/ansys/pymapdl</span>
+<span class="go">cd pymapdl</span>
+</pre></div>
+</div>
+</section>
+<section id="create-a-python-virtual-environment">
+<h2>Create a Python virtual environment<a class="headerlink" href="#create-a-python-virtual-environment" title="Link to this heading">#</a></h2>
+<p>To avoid dependency conflicts and more easily manage upgrades, you should install PyMAPDL in its own virtual environment. For detailed information on how to install Python and create a virtual environment, see
+<a class="reference external" href="https://dev.docs.pyansys.com/how-to/setting-up.html">Setting up your development environment</a>.</p>
+</section>
+<section id="install-pymapdl-in-development-mode">
+<h2>Install PyMAPDL in development mode<a class="headerlink" href="#install-pymapdl-in-development-mode" title="Link to this heading">#</a></h2>
+<p>Install the latest version of PyMAPDL in development mode with these commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd pymapdl</span>
+<span class="go">pip install pip -U</span>
+<span class="go">pip install -e .</span>
+</pre></div>
+</div>
+<p>If you are going to do testing, you must install the testing dependencies with this command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install -e &#39;.[tests]&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="develop-pymapdl">
+<h2>Develop PyMAPDL<a class="headerlink" href="#develop-pymapdl" title="Link to this heading">#</a></h2>
+<blockquote class="epigraph">
+<div><p><em>Now it is time to develop PyMAPDL!</em></p>
+</div></blockquote>
+<p>Developing code in a repository, particularly when using version control systems
+like Git, involves a set of essential guidelines to ensure efficient
+collaboration, code management, and tracking changes. Here are the main
+guidelines for developing code in a repository:</p>
+<ol class="arabic">
+<li><p><strong>Use branches</strong>: Create branches for different features, bug fixes, or
+experiments. This keeps changes isolated and facilitates parallel
+development. The CI/CD checks that the branch name is compliant. For example,
+the branch name must start with a prefix and a backslash.
+The allowed prefixes are:</p>
+<ul class="simple">
+<li><p><cite>fix/</cite> - Bug fixes.</p></li>
+<li><p><cite>feat/</cite> - Changes that introduce a new feature or significant addition.</p></li>
+<li><p><cite>maint/</cite> - General maintenance of the repository. For instance, improving the CI/CD workflows.</p></li>
+<li><p><cite>docs/</cite> - Improves documentation and examples.</p></li>
+<li><p><cite>no-ci/</cite> - (Not applicable to PyMAPDL) In some repositories, branches with this prefix do not trigger CI/CD.</p></li>
+<li><p><cite>test/</cite> - Improvements or changes to testing.</p></li>
+<li><p><cite>testing/</cite> - For testing and debugging. It should not be used for branches that are going to be merged to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+<li><p><cite>release/</cite> - Contains the released versions changes.</p></li>
+<li><p><cite>dependabot/</cite> - Created by Dependabot.</p></li>
+<li><p><cite>junk/</cite> - Other purposes. It should not be used for branches that are going to be merged to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Write descriptive commit messages</strong>: Provide clear and concise commit
+messages that explain the purpose and context of the changes. Follow a
+consistent style.</p>
+<ul class="simple">
+<li><p><cite>fix:</cite> - Bug fixes.</p></li>
+<li><p><cite>feat:</cite> - Changes that introduce a new feature or significant addition.</p></li>
+<li><p><cite>docs:</cite> - Changes pertaining only to documentation.</p></li>
+<li><p><cite>style:</cite> - Changes that do not affect the meaning of the code (such as white space, formatting, and missing semicolons).</p></li>
+<li><p><cite>refactor:</cite> - A code change that neither fixes a bug nor adds a feature.</p></li>
+<li><p><cite>perf:</cite> - A code change that improves performance.</p></li>
+<li><p><cite>test:</cite> - Improvements or changes to testing.</p></li>
+<li><p><cite>build:</cite> - Changes that affect the build system or external dependencies (such as to <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">make</span></code>).</p></li>
+<li><p><cite>ci:</cite> - Changes to the CI/CD configuration files and scripts.</p></li>
+<li><p><cite>chore:</cite> - Other changes that don’t modify the code (such as releasing and versioning).</p></li>
+<li><p><cite>revert:</cite> - Reverts a previous commit.</p></li>
+</ul>
+</li>
+<li><p><strong>Commit frequently</strong>: Make small, meaningful commits frequently. Avoid
+making a large number of unrelated changes in a single commit.</p></li>
+<li><p><strong>Pull before you push</strong>: Always update your local branch with the latest
+changes from the remote repository before pushing your own changes to avoid
+conflicts.</p></li>
+<li><p><strong>Use pull requests (PRs)</strong>: Use PRs to submit your changes for review.
+This allows for discussion and validation before merging into the main branch.
+Pull requests must follow the same convention as the commit messages.
+The following prefixes are allowed in the pull request names:</p>
+<ul class="simple">
+<li><p><cite>fix:</cite> - Bug fixes.</p></li>
+<li><p><cite>feat:</cite> - Changes that introduce a new feature or significant addition.</p></li>
+<li><p><cite>docs:</cite> - Changes pertaining only to documentation.</p></li>
+<li><p><cite>style:</cite> - Changes that do not affect the meaning of the code (such as white space, formatting, and missing semicolons).</p></li>
+<li><p><cite>refactor:</cite> - A code change that neither fixes a bug nor adds a feature.</p></li>
+<li><p><cite>perf:</cite> - A code change that improves performance.</p></li>
+<li><p><cite>test:</cite> - Improvements or changes to testing.</p></li>
+<li><p><cite>build:</cite> - Changes that affect the build system or external dependencies (such as to <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">make</span></code>).</p></li>
+<li><p><cite>ci:</cite> - Changes to the CI/CD configuration files and scripts.</p></li>
+<li><p><cite>chore:</cite> - Other changes that don’t modify the code (such as releasing and versioning).</p></li>
+<li><p><cite>revert:</cite> - Reverts a previous pull request.</p></li>
+</ul>
+<p>The pull requests can also be labeled for easier repository maintenance.
+The CI/CD automatically labels each pull request based on the pull requests prefix and
+the modified files, but you can also add extra labels as long as they are already defined
+in the repository.</p>
+</li>
+<li><p><strong>Write good documentation</strong>: Maintain clear and up-to-date documentation for your
+contribution or changes, including comments in code, and relevant project
+documentation in rST or Markdown files.
+If you implement a new feature or change the behaviour of the library in any way,
+remember to mention it somewhere in the documentation (rST files in <code class="file docutils literal notranslate"><span class="pre">docsource</span></code> directory)
+Follow the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/">numpydoc</a> convention for documenting code.</p></li>
+<li><p><strong>Test your changes</strong>: Thoroughly test your changes to ensure that they work
+as expected. If applicable, create or update the unit tests that run on the
+continuous integration/continuous deployment (CI/CD) pipelines to catch issues early
+and ensure reliable deployments. For more information, see <a class="reference internal" href="#unit-testing">Unit testing</a>.</p></li>
+<li><p><strong>Respect code style and standards</strong>: Follow code style
+guidelines and adhere to coding standards specific to your language or
+framework.</p></li>
+<li><p><strong>Collaborate and communicate</strong>: Communicate with team members, provide
+updates on your progress, and resolve any conflicts promptly.</p></li>
+<li><p><strong>Ask for help</strong>: To ensure code quality, identify issues, and share knowledge,
+ask PyMAPDL developers to assist you and review your code.
+If you need help or guidance, mention <code class="docutils literal notranslate"><span class="pre">&#64;ansys/pymapdl-maintainers</span></code> in a comment
+so they they are notified.</p></li>
+</ol>
+<p>By following these guidelines, you can ensure smooth and organized code
+development within a repository, fostering collaboration, code quality, and feature enhancement.</p>
+</section>
+<section id="unit-testing">
+<span id="ref-unit-testing-contributing"></span><h2>Unit testing<a class="headerlink" href="#unit-testing" title="Link to this heading">#</a></h2>
+<p>Unit tests validate the software by testing that the logic implemented inside a
+certain method, class, or module is working as expected. They should be as
+atomic and independent as possible.</p>
+<p>Unit testing is highly important. The tests verify that code changes are
+consistent with other parts of the code and verify that these changes are
+implemented properly.</p>
+<p>In the PyMAPDL repository, <a class="reference external" href="https://docs.pytest.org/en/7.2.x/">pytest</a> is used to run tests and the
+unit tests are in the <a class="reference external" href="https://github.com/ansys/pymapdl/tree/main/tests">tests</a> directory in this repository,
+along with integration tests. The difference between a unit test and an
+integration test is that the latter tests several units of the code to ensure
+that they all work together.</p>
+<p>To run all the unit tests use the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">mapdl@machine:~/pymapdl$ </span>pytest
+</pre></div>
+</div>
+<p>If you are running on a <strong>Linux machine without display</strong>, you must install <code class="docutils literal notranslate"><span class="pre">xvfb</span></code> OS
+library and run the preceding command with the <code class="docutils literal notranslate"><span class="pre">xvfb-run</span></code> command as prefix.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">mapdl@machine:~/pymapdl$ </span>xvfb-run<span class="w"> </span>pytest
+</pre></div>
+</div>
+<p>In case you want to run only a certain subset of tests, you can use the <code class="docutils literal notranslate"><span class="pre">-k</span></code> argument
+to filter the tests using booleans:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">mapdl@machine:~/pymapdl$ </span>pytest<span class="w"> </span>-k<span class="w"> </span><span class="s2">&quot;test_nlist_to_array or test_string_with_literal&quot;</span>
+<span class="go">==================================================== test session starts ====================================================</span>
+<span class="go">platform darwin -- Python 3.10.13, pytest-7.4.3, pluggy-1.3.0</span>
+<span class="go">rootdir: /Users/german.ayuso/pymapdl</span>
+<span class="go">configfile: pyproject.toml</span>
+<span class="go">testpaths: tests</span>
+<span class="go">plugins: timeout-2.2.0, cov-4.1.0, sphinx-0.5.0, rerunfailures-13.0, anyio-4.1.0, pytest_pyvista-0.1.9</span>
+<span class="go">collected 1468 items / 1466 deselected / 4 skipped / 2 selected</span>
+
+<span class="go">tests/test_commands.py ..                                                                                             [100%]</span>
+
+<span class="go">=============================================== PyMAPDL Pytest short summary ================================================</span>
+<span class="go">======================================= 2 passed, 4 skipped, 1466 deselected in 2.27s =======================================</span>
+</pre></div>
+</div>
+<section id="creation-of-a-unit-test">
+<h3>Creation of a unit test<a class="headerlink" href="#creation-of-a-unit-test" title="Link to this heading">#</a></h3>
+<p>The name of a <code class="docutils literal notranslate"><span class="pre">pytest</span></code> file must be in the form <code class="docutils literal notranslate"><span class="pre">test_XXX.py</span></code>, where <code class="docutils literal notranslate"><span class="pre">XXX</span></code>
+is either the function, method, or class that you are testing or some other explicative
+name. In the command line, you can use the <code class="docutils literal notranslate"><span class="pre">-k</span></code> argument to filter the tests to run.
+For more information, see <a class="reference external" href="https://docs.pytest.org/en/7.2.x/how-to/usage.html#specifying-which-tests-to-run">pytest usage</a>.</p>
+<p>Here are some guidelines for creating good unit tests:</p>
+<ul class="simple">
+<li><p>Assign long and descriptive names to tests.</p></li>
+<li><p>Use the <a class="reference external" href="https://github.com/codecov">Codecov</a> tool to ensure that all implemented code is tested.</p></li>
+<li><p>Check that tests return the same results each time.</p></li>
+<li><p>Verify that tests are independent.</p></li>
+<li><p>Write tests that verify only one part of the code at a time.</p></li>
+<li><p>Make tests as short and fast as possible.</p></li>
+</ul>
+<p><a class="reference external" href="https://stackoverflow.com/questions/61400/what-makes-a-good-unit-test">What makes a good unit test?</a>
+is an exhaustive list of tips for creating good unit tests.</p>
+<p>Most PyMAPDL tests require a connection to a running instance of
+MAPDL, which makes them integration tests. If your test
+requires a running MAPDL instance, you can use the PyMAPDL
+<a class="reference external" href="https://github.com/ansys/pymapdl/blob/fb5fb8b6201253f1bd56bdabee60a29abee8c7d8/tests/conftest.py#L254">mapdl</a> method in your function signature.
+It is executed upstream of each test and not within all tests.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_my_new_feature</span><span class="p">(</span><span class="n">mapdl</span><span class="p">):</span>  <span class="c1"># pass the &#39;mapdl&#39; fixture as an argument.</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+    <span class="c1"># .... more code</span>
+
+    <span class="k">return</span> <span class="kc">True</span>  <span class="c1"># if everything goes ok until here</span>
+</pre></div>
+</div>
+<p>If you do not have MAPDL installed locally but still want to run the
+unit testing, you must set up the following environment variables.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="key1" for="sd-tab-item-0">
+Windows</label><div class="sd-tab-content docutils">
+<div class="highlight-pwsh-session notranslate"><div class="highlight"><pre><span></span><span class="go">SET PYMAPDL_START_INSTANCE=False</span>
+<span class="go">SET PYMAPDL_PORT=&lt;MAPDL Port&gt; (default 50052)</span>
+<span class="go">SET PYMAPDL_IP=&lt;MAPDL IP&gt; (default 127.0.0.1)</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" data-sync-group="tab" data-sync-id="key1" for="sd-tab-item-1">
+Linux</label><div class="sd-tab-content docutils">
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">export PYMAPDL_START_INSTANCE=False</span>
+<span class="go">export PYMAPDL_PORT=&lt;MAPDL Port&gt; (default 50052)</span>
+<span class="go">export PYMAPDL_IP=&lt;MAPDL IP&gt; (default 127.0.0.1)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>These environment variables tell PyMAPDL to attempt to connect to the existing
+MAPDL service by default when the <code class="docutils literal notranslate"><span class="pre">launch_mapdl</span></code> function is used.</p>
+<p>Additionally, you can use the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYMAPDL_MAPDL_EXEC</span></code> and <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYMAPDL_MAPDL_VERSION</span></code>
+environment variables to specify the MAPDL executable path and the version to launch (if
+multiple versions of MAPDL are installed).</p>
+</section>
+<section id="continuous-integration-and-continuous-deployment">
+<h3>Continuous integration and continuous deployment<a class="headerlink" href="#continuous-integration-and-continuous-deployment" title="Link to this heading">#</a></h3>
+<p>Unit tests and integration tests are part of continuous integration (CI).
+The automation of testing, monitoring, and deployment of newly added
+code allows continuous deployment (CD) throughout the app lifecycle,
+providing a comprehensive CI/CD approach.</p>
+<a class="only-dark reference internal image-reference" href="../_images/cicd_dark_theme.png"><img alt="../_images/cicd_dark_theme.png" class="only-dark" src="../_images/cicd_dark_theme.png" style="width: 300pt;" />
+</a>
+<a class="only-light reference internal image-reference" href="../_images/cicd_light_theme.png"><img alt="../_images/cicd_light_theme.png" class="only-light" src="../_images/cicd_light_theme.png" style="width: 300pt;" />
+</a>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://github.com/ansys/pymapdl/blob/main/tests/test_component.py">test_component.py</a> file contains
+the unit tests and integration tests for the
+<a class="reference internal" href="../api/_autosummary/ansys.mapdl.core.component.ComponentManager.html#ansys.mapdl.core.component.ComponentManager" title="ansys.mapdl.core.component.ComponentManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComponentManager</span></code></a> class.
+These tests are just some of the many in the <a class="reference external" href="https://github.com/ansys/pymapdl/tree/main/tests">test directory</a>.</p>
+<p>Here are some examples of how you use <code class="docutils literal notranslate"><span class="pre">pytest</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
+
+
+<span class="c1"># &#39;cube_geom_and_mesh&#39; is another fixture defined in &#39;conftest.py&#39;</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;function&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">basic_components</span><span class="p">(</span><span class="n">mapdl</span><span class="p">,</span> <span class="n">cube_geom_and_mesh</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Given a model in &#39;cube_geom_and_mesh&#39;, define some components to work with later.&quot;&quot;&quot;</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="s2">&quot;mycomp1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;NODE&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="s2">&quot;mycomp2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;KP&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;mycomp1&quot;</span><span class="p">)</span>
+    <span class="n">mapdl</span><span class="o">.</span><span class="n">cmsel</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;mycomp2&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_dunder_methods_keys</span><span class="p">(</span><span class="n">mapdl</span><span class="p">,</span> <span class="n">basic_components</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="p">[</span><span class="s2">&quot;MYCOMP1&quot;</span><span class="p">,</span> <span class="s2">&quot;MYCOMP2&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">list</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">names</span><span class="p">())</span>
+
+
+<span class="k">def</span> <span class="nf">test_dunder_methods_types</span><span class="p">(</span><span class="n">mapdl</span><span class="p">,</span> <span class="n">basic_components</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="p">[</span><span class="s2">&quot;NODE&quot;</span><span class="p">,</span> <span class="s2">&quot;KP&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">list</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">types</span><span class="p">())</span>
+
+
+<span class="k">def</span> <span class="nf">test_dunder_methods_items</span><span class="p">(</span><span class="n">mapdl</span><span class="p">,</span> <span class="n">basic_components</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="p">[(</span><span class="s2">&quot;MYCOMP1&quot;</span><span class="p">,</span> <span class="s2">&quot;NODE&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;MYCOMP2&quot;</span><span class="p">,</span> <span class="s2">&quot;KP&quot;</span><span class="p">)]</span> <span class="o">==</span> <span class="nb">list</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>For further <code class="docutils literal notranslate"><span class="pre">pytest</span></code> configuration details, see the <a class="reference external" href="https://docs.pytest.org/en/7.2.x/">pytest documentation</a>.</p>
+</section>
+</section>
+<section id="code-coverage">
+<h2>Code coverage<a class="headerlink" href="#code-coverage" title="Link to this heading">#</a></h2>
+<p>To verify that all code is properly tested, you must ensure that every piece of
+code is used (covered) in at least one unit test. In this repository, the
+<a class="reference external" href="https://github.com/codecov">Codecov</a> tool generates a coverage report of the committed code.
+It indicates how merging a pull request would impact coverage.
+The generation of this report is one of the checks that must run successfully
+to merge code changes.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/codecov_increase.png"><img alt="../_images/codecov_increase.png" src="../_images/codecov_increase.png" style="width: 400pt;" />
+</a>
+</figure>
+<section id="coverage-example">
+<h3>Coverage example<a class="headerlink" href="#coverage-example" title="Link to this heading">#</a></h3>
+<p>To show how the coverage works, assume that you have
+this library:</p>
+<p><strong>Awesome library</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_report_colors</span><span class="p">(</span><span class="n">theme</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">theme</span> <span class="o">==</span> <span class="s2">&quot;weather&quot;</span><span class="p">:</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;grey&quot;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">theme</span> <span class="o">==</span> <span class="s2">&quot;traffic&quot;</span><span class="p">:</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;yellow&quot;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">colors</span>
+</pre></div>
+</div>
+<p><strong>Tests</strong></p>
+<p>You can opt to run the tests with this configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_get_report_colors</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">get_report_colors</span><span class="p">(</span><span class="s2">&quot;weather&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;grey&quot;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">get_report_colors</span><span class="p">(</span><span class="s2">&quot;traffic&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;yellow&quot;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">get_report_colors</span><span class="p">(</span><span class="s2">&quot;other&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Or, if a method is a bit more complex, you can split the case in different tests:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_get_report_colors_weather</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">get_report_colors</span><span class="p">(</span><span class="s2">&quot;weather&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;grey&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">test_get_report_colors_traffic</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">get_report_colors</span><span class="p">(</span><span class="s2">&quot;traffic&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;yellow&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">test_get_report_colors_other</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">get_report_colors</span><span class="p">(</span><span class="s2">&quot;other&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>While the code coverage in either case is 100% for the function, the second case is
+more useful for debugging the function.</p>
+<p>You can also use <a class="reference external" href="https://docs.pytest.org/en/7.3.x/how-to/parametrize.html">parametrize (pytest.mark.parametrize)</a> to
+make the code more readable, and easier to reuse.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span>
+    <span class="s2">&quot;theme,output&quot;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="s2">&quot;weather&quot;</span><span class="p">,</span> <span class="s2">&quot;traffic&quot;</span><span class="p">,</span> <span class="s2">&quot;other&quot;</span><span class="p">],</span>
+        <span class="p">[</span>
+            <span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;grey&quot;</span><span class="p">][</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="s2">&quot;yellow&quot;</span><span class="p">][</span>
+                <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span>
+            <span class="p">]</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_get_report_color</span><span class="p">(</span><span class="n">theme</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">get_report_colors</span><span class="p">(</span><span class="n">theme</span><span class="p">)</span> <span class="o">==</span> <span class="n">output</span>
+</pre></div>
+</div>
+<p>For further explanations, see the <a class="reference external" href="https://docs.pytest.org/en/7.2.x/">pytest documentation</a> .</p>
+</section>
+</section>
+<section id="code-style">
+<h2>Code style<a class="headerlink" href="#code-style" title="Link to this heading">#</a></h2>
+<p>PyMAPDL follows the PEP8 standard as outlined in the <a class="reference external" href="https://dev.docs.pyansys.com">PyAnsys Development Guide</a> and implements style checking using
+<a class="reference external" href="https://pre-commit.com/">pre-commit</a>.</p>
+<p>To ensure your code meets minimum code styling standards, run these commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">mapdl@machine:~/pymapdl$ </span>pip<span class="w"> </span>install<span class="w"> </span>pre-commit
+<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">mapdl@machine:~/pymapdl$ </span>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files
+</pre></div>
+</div>
+<p>You can also install this as a pre-commit hook by running this command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">mapdl@machine:~/pymapdl$ </span>pre-commit<span class="w"> </span>install
+</pre></div>
+</div>
+<p>Since you have installed <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> as a hook, <code class="docutils literal notranslate"><span class="pre">git</span></code> automatically
+runs these hooks before committing, failing if it find any
+format issues and making or proposing the necessary changes
+to the commit.
+If this happens, you might need to run commit and edit these
+changes several times before commit successfully.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">mapdl@machine:~/pymapdl$ </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;my commit&quot;</span>
+<span class="go">[INFO] Stashing unstaged files to /home/mapdl/.cache/pre-commit/patch1704703895-16914.</span>
+<span class="go">Add License Headers......................................................Passed</span>
+<span class="go">isort....................................................................Passed</span>
+<span class="go">numpydoc-validation......................................................Passed</span>
+<span class="go">black....................................................................Passed</span>
+<span class="go">blacken-docs.............................................................Failed</span>
+<span class="go">- hook id: blacken-docs</span>
+<span class="go">- exit code: 1</span>
+<span class="go">- files were modified by this hook</span>
+
+<span class="go">doc/source/getting_started/develop_pymapdl.rst: Rewriting...</span>
+</pre></div>
+</div>
+<p>This way, it’s not possible for you to push code that fails the style checks. For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">mapdl@machine:~/pymapdl$ </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;my commit&quot;</span>
+<span class="go">[WARNING] Unstaged files detected.</span>
+<span class="go">[INFO] Stashing unstaged files to /home/mapdl/.cache/pre-commit/patch1704703895-16914.</span>
+<span class="go">Add License Headers..................................(no files to check)Skipped</span>
+<span class="go">isort................................................(no files to check)Skipped</span>
+<span class="go">numpydoc-validation..................................(no files to check)Skipped</span>
+<span class="go">black................................................(no files to check)Skipped</span>
+<span class="go">blacken-docs.............................................................Passed</span>
+<span class="go">flake8...............................................(no files to check)Skipped</span>
+<span class="go">codespell................................................................Passed</span>
+<span class="go">check for merge conflicts................................................Passed</span>
+<span class="go">debug statements (python)............................(no files to check)Skipped</span>
+<span class="go">Validate GitHub Workflows............................(no files to check)Skipped</span>
+<span class="go">[INFO] Restored changes from /home/mapdl/.cache/pre-commit/patch1704703895-16914.</span>
+<span class="go">[ci/mybranch cXXXXXXX] my commit</span>
+<span class="go">1 file changed, 25 insertions(+)</span>
+<span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">mapdl@machine:~/pymapdl$</span>
+</pre></div>
+</div>
+<p>First time you run <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> (using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> or <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code>), the command
+might take a bit of time (2-3 minutes) to download the specified hooks and install them.
+After that first time, analysing your commits should take seconds.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> hooks can also be updated, added or removed. For more information, visit
+<a class="reference external" href="https://pre-commit.com/">pre-commit</a> website.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-the-pymapdl-repository">Clone the PyMAPDL repository</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-python-virtual-environment">Create a Python virtual environment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-pymapdl-in-development-mode">Install PyMAPDL in development mode</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#develop-pymapdl">Develop PyMAPDL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-testing">Unit testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-of-a-unit-test">Creation of a unit test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-integration-and-continuous-deployment">Continuous integration and continuous deployment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-coverage">Code coverage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coverage-example">Coverage example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-style">Code style</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/getting_started/develop_pymapdl.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+
+
+
+
+
+
+
+<script>
+var theme_static_search = JSON.parse('{"ignoreLocation": "False", "keys": ["title", "text"], "shouldSort": "True", "threshold": 0.5, "useExtendedSearch": "True"}');
+var theme_limit = "10";
+var min_chars_for_search = "1";
+var searchPath = "../_static/search.json";
+
+</script>
+
+<script src="../_static/js/fuse_search.js"></script>
+<script src="../_static/js/fuse_extension.js"></script>
+<footer class="bd-footer" font-size="4px">
+  <div class="bd-footer__inner bd-page-width">
+    <div class="footer-items__start">
+      <div class="footer-item">
+        <p class="copyright">
+          PyMAPDL 0.68.6 © Copyright (c) 2024 ANSYS, Inc. All rights reserved.
+          <br>
+        </p>
+      </div>
+    </div>
+    <div class="footer-items__end">
+      <div class="footer-item">
+        <p class="theme-version">
+          Built with the
+          <a href="https://sphinxdocs.ansys.com/version/stable/index.html">Ansys Sphinx Theme</a>
+          1.1.2. and
+           <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.0.
+          on <span id="date"></span>
+        </p>
+        <script>
+          var options = { day: "numeric", month: "long", year: "numeric" };
+          var lastModifiedDate = new Date(document.lastModified);
+          var date = lastModifiedDate.toLocaleDateString("en-US", options);
+          document.getElementById("date").innerHTML = date;
+        </script>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

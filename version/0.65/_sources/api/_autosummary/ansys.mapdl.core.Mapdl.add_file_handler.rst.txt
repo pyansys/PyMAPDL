@@ -1,0 +1,6 @@
+﻿add\_file\_handler
+==================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.add_file_handler

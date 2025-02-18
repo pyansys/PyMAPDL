@@ -1,0 +1,6 @@
+﻿nkpt
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.nkpt

@@ -1,0 +1,6 @@
+﻿config\_values
+==============
+
+.. currentmodule:: ansys.mapdl.core.misc
+
+.. autoproperty:: Information.config_values

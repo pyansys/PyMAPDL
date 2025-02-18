@@ -1,0 +1,6 @@
+﻿convert\_apdl\_block
+====================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autofunction:: convert_apdl_block

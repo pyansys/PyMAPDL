@@ -1,0 +1,6 @@
+﻿ddoption
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ddoption

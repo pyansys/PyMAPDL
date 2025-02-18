@@ -1,0 +1,6 @@
+show\_vertices
+==============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.show_vertices

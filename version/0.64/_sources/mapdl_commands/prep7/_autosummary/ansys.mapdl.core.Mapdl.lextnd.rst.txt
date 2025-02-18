@@ -1,0 +1,6 @@
+﻿lextnd
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.lextnd

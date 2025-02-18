@@ -1,0 +1,6 @@
+﻿list\_error\_file
+=================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.list_error_file

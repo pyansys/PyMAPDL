@@ -1,0 +1,6 @@
+﻿is\_console
+===========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.is_console

@@ -1,0 +1,6 @@
+backend
+=======
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlPlotter.backend

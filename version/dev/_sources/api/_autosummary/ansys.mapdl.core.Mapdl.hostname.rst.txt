@@ -1,0 +1,6 @@
+﻿hostname
+========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.hostname

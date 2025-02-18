@@ -1,0 +1,6 @@
+﻿physics
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.physics

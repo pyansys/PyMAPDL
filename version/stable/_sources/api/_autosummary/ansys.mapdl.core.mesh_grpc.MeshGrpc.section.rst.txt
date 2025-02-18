@@ -1,0 +1,6 @@
+section
+=======
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoproperty:: MeshGrpc.section

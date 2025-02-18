@@ -1,0 +1,6 @@
+decent\_parm
+============
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.decent_parm

@@ -1,0 +1,6 @@
+below\_range\_color
+===================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.below_range_color

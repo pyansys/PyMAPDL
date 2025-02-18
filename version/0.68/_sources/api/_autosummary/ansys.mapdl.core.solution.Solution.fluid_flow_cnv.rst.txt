@@ -1,0 +1,6 @@
+fluid\_flow\_cnv
+================
+
+.. currentmodule:: ansys.mapdl.core.solution
+
+.. autoproperty:: Solution.fluid_flow_cnv

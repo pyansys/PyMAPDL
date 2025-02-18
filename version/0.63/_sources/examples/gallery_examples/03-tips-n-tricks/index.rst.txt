@@ -1,0 +1,96 @@
+
+
+.. _sphx_glr_examples_gallery_examples_03-tips-n-tricks:
+
+Miscellaneous Examples
+======================
+These examples demonstrate miscellaneous tips and tricks for using PyMAPDL.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This block comment should be included at the top of any new example. Each example should have a...">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/03-tips-n-tricks/images/thumb/sphx_glr_00-example-template_thumb.png
+    :alt: Adding a New Gallery Example
+
+  :ref:`sphx_glr_examples_gallery_examples_03-tips-n-tricks_00-example-template.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Adding a New Gallery Example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="There are many cases in which you will want to control the density of the mesh nearby a region ...">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/03-tips-n-tricks/images/thumb/sphx_glr_01-smoothing-element-size-transitions_thumb.png
+    :alt: MAPDL Element Size Transition Example
+
+  :ref:`sphx_glr_examples_gallery_examples_03-tips-n-tricks_01-smoothing-element-size-transitions.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">MAPDL Element Size Transition Example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Inline functions like UX have been implemented in PyMAPDL as methods on the mapdl.inline_functi...">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/03-tips-n-tricks/images/thumb/sphx_glr_03-using_inline_functions_and_Query_thumb.png
+    :alt: Using Inline Functions (Query)
+
+  :ref:`sphx_glr_examples_gallery_examples_03-tips-n-tricks_03-using_inline_functions_and_Query.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Using Inline Functions (Query)</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Not all element types have rotational degrees of freedom, but generally, &quot;shell&quot; ones do. In th...">
+
+.. only:: html
+
+  .. image:: /examples/gallery_examples/03-tips-n-tricks/images/thumb/sphx_glr_04-rotational-displacement_thumb.png
+    :alt: Generating and Extracting Rotational Displacement
+
+  :ref:`sphx_glr_examples_gallery_examples_03-tips-n-tricks_04-rotational-displacement.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Generating and Extracting Rotational Displacement</div>
+    </div>
+
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/gallery_examples/03-tips-n-tricks/00-example-template
+   /examples/gallery_examples/03-tips-n-tricks/01-smoothing-element-size-transitions
+   /examples/gallery_examples/03-tips-n-tricks/03-using_inline_functions_and_Query
+   /examples/gallery_examples/03-tips-n-tricks/04-rotational-displacement
+

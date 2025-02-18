@@ -1,0 +1,6 @@
+﻿fssect
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.fssect

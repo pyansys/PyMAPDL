@@ -1,0 +1,6 @@
+logo\_file
+==========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.logo_file

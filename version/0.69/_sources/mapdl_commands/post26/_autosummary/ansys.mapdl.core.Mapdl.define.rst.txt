@@ -1,0 +1,6 @@
+﻿define
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.define

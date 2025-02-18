@@ -1,0 +1,6 @@
+norm
+====
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. automethod:: AnsVec.norm

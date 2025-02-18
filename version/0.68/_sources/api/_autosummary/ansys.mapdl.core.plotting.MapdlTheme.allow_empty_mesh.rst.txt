@@ -1,0 +1,6 @@
+allow\_empty\_mesh
+==================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.allow_empty_mesh

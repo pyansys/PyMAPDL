@@ -1,0 +1,6 @@
+﻿psdfrq
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.psdfrq

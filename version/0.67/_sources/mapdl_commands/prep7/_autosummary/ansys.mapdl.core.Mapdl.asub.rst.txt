@@ -1,0 +1,6 @@
+﻿asub
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.asub

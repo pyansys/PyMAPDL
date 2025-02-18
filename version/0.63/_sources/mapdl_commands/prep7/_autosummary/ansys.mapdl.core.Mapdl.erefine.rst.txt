@@ -1,0 +1,6 @@
+﻿erefine
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.erefine

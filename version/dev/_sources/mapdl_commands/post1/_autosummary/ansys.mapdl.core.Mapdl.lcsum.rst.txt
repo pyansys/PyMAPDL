@@ -1,0 +1,6 @@
+﻿lcsum
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.lcsum

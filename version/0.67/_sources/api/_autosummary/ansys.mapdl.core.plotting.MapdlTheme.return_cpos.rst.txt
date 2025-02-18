@@ -1,0 +1,6 @@
+return\_cpos
+============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.return_cpos

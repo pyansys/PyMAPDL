@@ -1,0 +1,1219 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3D Acoustic Analysis &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/ansys_sphinx_theme.css?v=18fd1f76" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+ 
+<link href="../../../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script src="../../../_static/documentation_options.js?v=1511083c"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/thebelab-helper.js"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/gallery_examples/00-mapdl-examples/acoustic_analysis';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.14.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.67';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner = false;
+        </script>
+    <link rel="icon" href="../../../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Basic DPF-Core Usage with PyMAPDL" href="basic_dpf_example.html" />
+    <link rel="prev" title="Basic Thermal Analysis with pyMAPDL" href="3d_plate_thermal.html" />
+<link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/examples/gallery_examples/00-mapdl-examples/acoustic_analysis.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+ 
+<!-- Include the MeiliSearch CSS stylesheet only if theme present -->
+<link href="../../../_static/css/meilisearch.css" rel="stylesheet" />
+
+<!-- Create a search bar form with a text input and a dropdown selector for the search index -->
+<form
+  class="bd-search d-flex align-items-center"
+  action="../../../search.html"
+  method="get"
+>
+  <input
+    type="search"
+    placeholder="Search"
+    class="form-control"
+    id="search-bar-input"
+    autofocus
+  />
+  <span class="search-button__kbd-shortcut"
+    ><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span
+  >
+  <style>
+    .bd-search .search-button__kbd-shortcut {
+      right: 33%;
+    }
+  </style>
+  
+  <select id="indexUidSelector" class="index-select">
+    
+    <option value="pymapdl-v0-67">PyMAPDL</option>
+    
+  </select>
+  
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <!-- Include the MeiliSearch JavaScript library for the search bar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+    
+  <script>
+    var HOST_URL = "https://backend.search.pyansys.com/";
+    var API_KEY = "9fbccc76c147935ce2b562a9ee0c6669276987572dc1f22491cea72e9e99f35d";
+    var indexUid = "pymapdl-v0-67";
+  </script>
+
+  <script src="../../../_static/js/meilisearch_theme_wrap.js"></script>
+</form>
+</div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../api/index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../../index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button id="versionswitcherbutton" type="button" role="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="listbox" aria-controls="versionswitcherlist" aria-label="Version switcher list">
+      Choose version  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div id="versionswitcherlist" class="version-switcher__menu dropdown-menu list-group-flush py-0" role="listbox" aria-labelledby="versionswitcherbutton">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Support</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Contribute</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Full examples using PyMAPDL</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="2d_magnetostatic_solenoid-BodyFlux_Averaging.html">Analysis of a 2D magnetostatic solenoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2d_plate_with_a_hole.html">MAPDL 2D Plane Stress Concentration Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2d_pressure_vessel.html">2D Pressure Vessel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_notch.html">3D Stress Concentration Analysis for a Notched Plate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3d_plate_thermal.html">Basic Thermal Analysis with pyMAPDL</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3D Acoustic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_dpf_example.html">Basic DPF-Core Usage with PyMAPDL</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="bracket_static.html">Static analysis of a corner bracket</a></li>
+<li class="toctree-l2"><a class="reference internal" href="composite_dcb.html">Static simulation of double cantilever beam test via cohesive elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contact_elements.html">Contact Element Example</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="cyclic_analysis.html">Cyclic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cyclic_static.html">Static Cyclic Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exhaust_manifold_thermal_stress.html">Thermal-structural analysis of exhaust manifold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">Plotting and Mesh Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lathe_cutter.html">Structural Analysis of a Lathe Cutter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl_3d_beam.html">MAPDL 3D Beam Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapdl_beam.html">MAPDL 2D Beam Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modal_beam.html">MAPDL modal beam analysis example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_operations.html">Path Operations within pyMAPDL and MAPDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pressure_vessel.html">Pressure Vessel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyvista_mesh.html">PyVista Mesh Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slashmap_cfx_mapping.html">CFX pressure data mapping to structural blade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transient_thermal.html">Example Thermal Transient Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../01-geometry/index.html">Geometry examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-tips-n-tricks/index.html">Miscellaneous examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-general-fea/index.html">Academic finite element examples</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/verif-manual/index.html">Verification Manual</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://examples.mapdl.docs.pyansys.com/technology_showcase_examples/index.html">Technology Showcases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../extended_examples/index.html">Extended examples</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+      
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+      
+    <li class="breadcrumb-item">
+      <a
+        href="../../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i
+      ></a>
+    </li> 
+    <li class="breadcrumb-item">
+      <a href="../../index.html" class="nav-link">Examples</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">Full examples using PyMAPDL</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page">3D Acoustic Analysis</li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-gallery-examples-00-mapdl-examples-acoustic-analysis-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code</p>
+</div>
+<section class="sphx-glr-example-title" id="d-acoustic-analysis">
+<span id="acoustic-analysis-example"></span><span id="sphx-glr-examples-gallery-examples-00-mapdl-examples-acoustic-analysis-py"></span><h1>3D Acoustic Analysis<a class="headerlink" href="#d-acoustic-analysis" title="Link to this heading">#</a></h1>
+<p>This example shows how to perform an acoustic analysis using PyMAPDL and <code class="docutils literal notranslate"><span class="pre">FLUID</span></code> elements.</p>
+<section id="launch-pymapdl">
+<h2>Launch PyMAPDL<a class="headerlink" href="#launch-pymapdl" title="Link to this heading">#</a></h2>
+<p>Launch PyMAPDL and load <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">units</span><span class="p">(</span><span class="s2">&quot;SI&quot;</span><span class="p">)</span>  <span class="c1"># SI - International system (m, kg, s, K).</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SI UNITS SPECIFIED FOR INTERNAL
+  LENGTH        (l)  = METER (M)
+  MASS          (M)  = KILOGRAM (KG)
+  TIME          (t)  = SECOND (SEC)
+  TEMPERATURE   (T)  = KELVIN (K)
+  TOFFSET            = 0.0 KELVIN
+  CHARGE        (Q)  = COULOMB
+  FORCE         (f)  = NEWTON (N) (KG-M/SEC2)
+  HEAT               = JOULE (N-M)
+
+  PRESSURE           = PASCAL (NEWTON/M**2)
+  ENERGY        (W)  = JOULE (N-M)
+  POWER         (P)  = WATT (N-M/SEC)
+  CURRENT       (i)  = AMPERE (COULOMBS/SEC)
+  CAPACITANCE   (C)  = FARAD
+  INDUCTANCE    (L)  = HENRY
+  MAGNETIC FLUX      = WEBER
+  RESISTANCE    (R)  = OHM
+  ELECTRIC POTENTIAL = VOLT
+
+ INPUT  UNITS ARE ALSO SET TO SI
+</pre></div>
+</div>
+</section>
+<section id="element-and-material-properties">
+<h2>Element and Material Properties<a class="headerlink" href="#element-and-material-properties" title="Link to this heading">#</a></h2>
+<p>Define the <code class="docutils literal notranslate"><span class="pre">FLUID30</span></code> and <code class="docutils literal notranslate"><span class="pre">FLUID130</span></code> element types.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;FLUID30&quot;</span><span class="p">,</span> <span class="n">kop1</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="c1"># Define the material properties</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;SONC&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1500</span><span class="p">)</span>  <span class="c1"># sonc in m/s</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;DENS&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># Density in kg/m3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">mplist</span><span class="p">())</span>
+
+
+<span class="c1"># Define the real const</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;1e-6&quot;</span><span class="p">)</span>  <span class="c1"># Reference pressure for R set 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">rlist</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>LIST MATERIALS        1 TO        1 BY        1
+  PROPERTY= ALL
+
+ MATERIAL NUMBER        1
+
+      TEMP        DENS
+                1000.000
+
+      TEMP        SONC
+                1500.000
+*** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE 2023 R1          23.1     ***
+ Ansys Mechanical Enterprise
+ 00000000  VERSION=LINUX x64     13:19:12  OCT 11, 2023 CP=     43.990
+
+
+
+
+
+ LIST REAL SETS        1 TO        1 BY        1
+
+ REAL CONSTANT SET        1  ITEMS   1 TO   6
+   0.10000E-05   0.0000       0.0000       0.0000       0.0000       0.0000
+</pre></div>
+</div>
+</section>
+<section id="geometry-definition">
+<h2>Geometry Definition<a class="headerlink" href="#geometry-definition" title="Link to this heading">#</a></h2>
+<p>Create a simple sphere.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">vnum</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">sphere</span><span class="p">(</span><span class="n">rad1</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rad2</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vsbw</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vplot</span><span class="p">(</span><span class="n">show_area_numbering</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="sphx-glr-horizontal">
+<li><img src="../../../_images/sphx_glr_acoustic_analysis_001.png" srcset="../../../_images/sphx_glr_acoustic_analysis_001.png" alt="acoustic analysis" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../../_images/sphx_glr_acoustic_analysis_002.png" srcset="../../../_images/sphx_glr_acoustic_analysis_002.png" alt="acoustic analysis" class = "sphx-glr-multi-img"/></li>
+<li><img src="../../../_images/sphx_glr_acoustic_analysis_003.png" srcset="../../../_images/sphx_glr_acoustic_analysis_003.png" alt="acoustic analysis" class = "sphx-glr-multi-img"/></li>
+</ul>
+</section>
+<section id="geometry-meshing">
+<h2>Geometry Meshing<a class="headerlink" href="#geometry-meshing" title="Link to this heading">#</a></h2>
+<p>First select the material and elements.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">itype</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">nset</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">mat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">mshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;3D&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>PRODUCE ALL TETRAHEDRAL ELEMENTS IN 3D.
+
+ *** WARNING ***                         CP =      45.349   TIME= 13:19:14
+ Structural elements without mid nodes usually produce much more
+ accurate results in quad or brick shape.
+</pre></div>
+</div>
+<p>Then choose the element size and perform the mesh.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">vmesh</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">eplot</span><span class="p">(</span><span class="n">show_node_numbering</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_acoustic_analysis_004.png" srcset="../../../_images/sphx_glr_acoustic_analysis_004.png" alt="acoustic analysis" class = "sphx-glr-single-img"/></section>
+<section id="boundary-conditions">
+<h2>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading">#</a></h2>
+<p>Add surface boundary condition to the nodes using <a class="reference internal" href="../../../mapdl_commands/solution/_autosummary/ansys.mapdl.core.Mapdl.sf.html#ansys.mapdl.core.Mapdl.sf" title="ansys.mapdl.core.Mapdl.sf"><code class="xref py py-func docutils literal notranslate"><span class="pre">Mapdl.sf()</span></code></a>
+and the option <code class="docutils literal notranslate"><span class="pre">SHLD</span></code> for <em>Surface normal velocity or acceleration</em>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">asel</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;loc&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsla</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;SHLD&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>SELECT ALL ENTITIES OF TYPE= ALL  AND BELOW
+</pre></div>
+</div>
+</section>
+<section id="solve-the-model">
+<h2>Solve the model<a class="headerlink" href="#solve-the-model" title="Link to this heading">#</a></h2>
+<p>Using <a class="reference internal" href="../../../mapdl_commands/solution/_autosummary/ansys.mapdl.core.Mapdl.solve.html#ansys.mapdl.core.Mapdl.solve" title="ansys.mapdl.core.Mapdl.solve"><code class="xref py py-func docutils literal notranslate"><span class="pre">Mapdl.solve()</span></code></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/SOLU&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">harfrq</span><span class="p">(</span><span class="n">freqb</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">freqe</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">autots</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">nsubst</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">kbc</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">outres</span><span class="p">(</span><span class="s2">&quot;erase&quot;</span><span class="p">)</span>  <span class="c1"># Save less data in order to reduce the size of .rst file</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">outres</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span>  <span class="c1"># NOTE that other output like stresses is not saved</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">outres</span><span class="p">(</span><span class="s2">&quot;nsol&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>  <span class="c1"># Save pressure and displacement</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">outres</span><span class="p">(</span><span class="s2">&quot;fgrad&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>  <span class="c1"># Save velocities</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">outres</span><span class="p">(</span><span class="s2">&quot;misc&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">)</span>  <span class="c1"># For post processing calculations</span>
+
+<span class="n">mapdl</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*** NOTE ***                            CP =      46.023   TIME= 13:19:15
+ The automatic domain decomposition logic has selected the FREQ domain
+ decomposition method with 1 processes per frequency solution.
+
+ *****  MAPDL SOLVE    COMMAND  *****
+
+
+
+   D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+
+ ...Number of frequency solutions:  40
+ ...Decompose to 2 frequency domains (with 1 processes per domain)
+
+
+ *** NOTE ***                            CP =      46.083   TIME= 13:19:15
+ There is no title defined for this analysis.
+
+ *** MAPDL - ENGINEERING ANALYSIS SYSTEM  RELEASE 2023 R1          23.1     ***
+ Ansys Mechanical Enterprise
+ 00000000  VERSION=LINUX x64     13:19:15  OCT 11, 2023 CP=     46.090
+
+
+
+
+
+                       S O L U T I O N   O P T I O N S
+
+   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D
+   DEGREES OF FREEDOM. . . . . . UX   UY   UZ   PRES
+   ANALYSIS TYPE . . . . . . . . . . . . . . . . .HARMONIC
+      SOLUTION METHOD. . . . . . . . . . . . . . .AUTO
+   COMPLEX DISPLACEMENT PRINT OPTION . . . . . . .REAL AND IMAGINARY
+   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC
+
+ *** WARNING ***                         CP =      46.092   TIME= 13:19:15
+ No constraints have been defined using the D command.
+
+ *** WARNING ***                         CP =      46.093   TIME= 13:19:15
+ Load amplitudes will be ramped over the frequency range.  Use the KBC,1
+ command to use a step change.
+
+ *** NOTE ***                            CP =      46.094   TIME= 13:19:15
+ The step data was checked and warning messages were found.
+  Please review output or errors file ( /file0.err ) for these warning
+ messages.
+
+ *** NOTE ***                            CP =      46.094   TIME= 13:19:15
+ The Solution Control Option is only valid for single field structural,
+ single field thermal, single field diffusion, coupled
+ thermal-diffusion analyses and coupled-field analyses with structural
+ degrees of freedom.  The SOLCONTROL,ON command (if present) has been
+ de-activated.
+
+                      L O A D   S T E P   O P T I O N S
+
+   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1
+   FREQUENCY RANGE . . . . . . . . . . . . . . . .  200.00     TO   1000.0
+   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .    40
+   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .   YES
+   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT
+   DATABASE OUTPUT CONTROLS
+      ITEM     FREQUENCY   COMPONENT
+       ALL       NONE
+      NSOL        ALL
+      FGRA        ALL
+      MISC        ALL
+
+   AUTO SELECTION OF VT FOR FREQUENCY SWEEP. . . .YES
+
+ *** WARNING ***                         CP =      46.169   TIME= 13:19:15
+ No constraints have been defined using the D command.
+
+ *** WARNING ***                         CP =      46.170   TIME= 13:19:15
+ Load amplitudes will be ramped over the frequency range.  Use the KBC,1
+ command to use a step change.
+
+
+
+            **** CENTER OF MASS, MASS, AND MASS MOMENTS OF INERTIA ****
+
+  CALCULATIONS ASSUME ELEMENT MASS AT ELEMENT CENTROID
+
+  TOTAL MASS =   3583.5
+
+                           MOM. OF INERTIA         MOM. OF INERTIA
+  CENTER OF MASS            ABOUT ORIGIN        ABOUT CENTER OF MASS
+
+  XC = -0.48377E-03      IXX =    1530.          IXX =    1530.
+  YC = -0.24119E-03      IYY =    1535.          IYY =    1535.
+  ZC = -0.47659E-04      IZZ =    1526.          IZZ =    1526.
+                         IXY =   0.1218          IXY =   0.1222
+                         IYZ =   0.6319          IYZ =   0.6320
+                         IZX =   0.6068          IZX =   0.6069
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1   3583.49
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 0.221163386 at element 250.
+ Minimum = 4.117025805E-02 at element 106.
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      1606  FLUID30       0.143   0.000089
+ Time at end of element matrix formulation CP = 46.3266296.
+
+
+
+
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      1606  FLUID30       0.074   0.000046
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      1606  FLUID30       0.010   0.000006
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.  FREQUENCY=   220.000
+ *** LOAD STEP     1   SUBSTEP     2  COMPLETED.  FREQUENCY=   240.000
+ *** LOAD STEP     1   SUBSTEP     3  COMPLETED.  FREQUENCY=   260.000
+ *** LOAD STEP     1   SUBSTEP     4  COMPLETED.  FREQUENCY=   280.000
+ *** LOAD STEP     1   SUBSTEP     5  COMPLETED.  FREQUENCY=   300.000
+ *** LOAD STEP     1   SUBSTEP     6  COMPLETED.  FREQUENCY=   320.000
+ *** LOAD STEP     1   SUBSTEP     7  COMPLETED.  FREQUENCY=   340.000
+ *** LOAD STEP     1   SUBSTEP     8  COMPLETED.  FREQUENCY=   360.000
+ *** LOAD STEP     1   SUBSTEP     9  COMPLETED.  FREQUENCY=   380.000
+ *** LOAD STEP     1   SUBSTEP    10  COMPLETED.  FREQUENCY=   400.000
+ *** LOAD STEP     1   SUBSTEP    11  COMPLETED.  FREQUENCY=   420.000
+ *** LOAD STEP     1   SUBSTEP    12  COMPLETED.  FREQUENCY=   440.000
+ *** LOAD STEP     1   SUBSTEP    13  COMPLETED.  FREQUENCY=   460.000
+ *** LOAD STEP     1   SUBSTEP    14  COMPLETED.  FREQUENCY=   480.000
+ *** LOAD STEP     1   SUBSTEP    15  COMPLETED.  FREQUENCY=   500.000
+ *** LOAD STEP     1   SUBSTEP    16  COMPLETED.  FREQUENCY=   520.000
+ *** LOAD STEP     1   SUBSTEP    17  COMPLETED.  FREQUENCY=   540.000
+ *** LOAD STEP     1   SUBSTEP    18  COMPLETED.  FREQUENCY=   560.000
+ *** LOAD STEP     1   SUBSTEP    19  COMPLETED.  FREQUENCY=   580.000
+ *** LOAD STEP     1   SUBSTEP    20  COMPLETED.  FREQUENCY=   600.000
+ *** LOAD STEP     1   SUBSTEP    21  COMPLETED.  FREQUENCY=   620.000
+ *** LOAD STEP     1   SUBSTEP    22  COMPLETED.  FREQUENCY=   640.000
+ *** LOAD STEP     1   SUBSTEP    23  COMPLETED.  FREQUENCY=   660.000
+ *** LOAD STEP     1   SUBSTEP    24  COMPLETED.  FREQUENCY=   680.000
+ *** LOAD STEP     1   SUBSTEP    25  COMPLETED.  FREQUENCY=   700.000
+ *** LOAD STEP     1   SUBSTEP    26  COMPLETED.  FREQUENCY=   720.000
+ *** LOAD STEP     1   SUBSTEP    27  COMPLETED.  FREQUENCY=   740.000
+ *** LOAD STEP     1   SUBSTEP    28  COMPLETED.  FREQUENCY=   760.000
+ *** LOAD STEP     1   SUBSTEP    29  COMPLETED.  FREQUENCY=   780.000
+ *** LOAD STEP     1   SUBSTEP    30  COMPLETED.  FREQUENCY=   800.000
+ *** LOAD STEP     1   SUBSTEP    31  COMPLETED.  FREQUENCY=   820.000
+ *** LOAD STEP     1   SUBSTEP    32  COMPLETED.  FREQUENCY=   840.000
+ *** LOAD STEP     1   SUBSTEP    33  COMPLETED.  FREQUENCY=   860.000
+ *** LOAD STEP     1   SUBSTEP    34  COMPLETED.  FREQUENCY=   880.000
+ *** LOAD STEP     1   SUBSTEP    35  COMPLETED.  FREQUENCY=   900.000
+ *** LOAD STEP     1   SUBSTEP    36  COMPLETED.  FREQUENCY=   920.000
+ *** LOAD STEP     1   SUBSTEP    37  COMPLETED.  FREQUENCY=   940.000
+ *** LOAD STEP     1   SUBSTEP    38  COMPLETED.  FREQUENCY=   960.000
+ *** LOAD STEP     1   SUBSTEP    39  COMPLETED.  FREQUENCY=   980.000
+ *** LOAD STEP     1   SUBSTEP    40  COMPLETED.  FREQUENCY=   1000.00
+
+
+ *** MAPDL BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+       20.625 MB WRITTEN ON ELEMENT MATRIX FILE: file0.emat
+        1.188 MB WRITTEN ON ELEMENT SAVED DATA FILE: file0.esav
+        0.312 MB WRITTEN ON ASSEMBLED MATRIX FILE: file0.full
+       17.688 MB WRITTEN ON RESULTS FILE: file0.rst
+</pre></div>
+</div>
+</section>
+<section id="post1-time-step-results">
+<h2>Post1: Time step results<a class="headerlink" href="#post1-time-step-results" title="Link to this heading">#</a></h2>
+<p>Listing the results</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post1</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapdl</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;LIST&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>*****  INDEX OF DATA SETS ON RESULTS FILE  *****
+
+   SET   TIME/FREQ    LOAD STEP   SUBSTEP  CUMULATIVE
+     1  220.00             1         1         1
+     2  220.00             1         1         1
+     3  240.00             1         2         2
+     4  240.00             1         2         2
+     5  260.00             1         3         3
+     6  260.00             1         3         3
+     7  280.00             1         4         4
+     8  280.00             1         4         4
+     9  300.00             1         5         5
+    10  300.00             1         5         5
+    11  320.00             1         6         6
+    12  320.00             1         6         6
+    13  340.00             1         7         7
+    14  340.00             1         7         7
+    15  360.00             1         8         8
+    16  360.00             1         8         8
+    17  380.00             1         9         9
+    18  380.00             1         9         9
+    19  400.00             1        10        10
+    20  400.00             1        10        10
+    21  420.00             1        11        11
+    22  420.00             1        11        11
+    23  440.00             1        12        12
+    24  440.00             1        12        12
+    25  460.00             1        13        13
+    26  460.00             1        13        13
+    27  480.00             1        14        14
+    28  480.00             1        14        14
+    29  500.00             1        15        15
+    30  500.00             1        15        15
+    31  520.00             1        16        16
+    32  520.00             1        16        16
+    33  540.00             1        17        17
+    34  540.00             1        17        17
+    35  560.00             1        18        18
+    36  560.00             1        18        18
+    37  580.00             1        19        19
+    38  580.00             1        19        19
+    39  600.00             1        20        20
+    40  600.00             1        20        20
+    41  620.00             1        21        21
+    42  620.00             1        21        21
+    43  640.00             1        22        22
+    44  640.00             1        22        22
+    45  660.00             1        23        23
+    46  660.00             1        23        23
+    47  680.00             1        24        24
+    48  680.00             1        24        24
+    49  700.00             1        25        25
+    50  700.00             1        25        25
+    51  720.00             1        26        26
+    52  720.00             1        26        26
+    53  740.00             1        27        27
+    54  740.00             1        27        27
+    55  760.00             1        28        28
+    56  760.00             1        28        28
+    57  780.00             1        29        29
+    58  780.00             1        29        29
+    59  800.00             1        30        30
+    60  800.00             1        30        30
+    61  820.00             1        31        31
+    62  820.00             1        31        31
+    63  840.00             1        32        32
+    64  840.00             1        32        32
+    65  860.00             1        33        33
+    66  860.00             1        33        33
+    67  880.00             1        34        34
+    68  880.00             1        34        34
+    69  900.00             1        35        35
+    70  900.00             1        35        35
+    71  920.00             1        36        36
+    72  920.00             1        36        36
+    73  940.00             1        37        37
+    74  940.00             1        37        37
+    75  960.00             1        38        38
+    76  960.00             1        38        38
+    77  980.00             1        39        39
+    78  980.00             1        39        39
+    79  1000.0             1        40        40
+    80  1000.0             1        40        40
+</pre></div>
+</div>
+</section>
+<section id="post26-time-dependent-results">
+<h2>Post26: Time dependent results<a class="headerlink" href="#post26-time-dependent-results" title="Link to this heading">#</a></h2>
+<p>Getting results for specific nodes</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">post26</span><span class="p">()</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">freqs</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">post_processing</span><span class="o">.</span><span class="n">time_values</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+<a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">node</span></a> <span class="o">=</span> <span class="mi">276</span>
+
+<span class="c1"># Getting results</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">node_pressure</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">nsol</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">node</span></a><span class="p">,</span> <span class="s2">&quot;spl&quot;</span><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">node_sound_pressure_level</span></a> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">nsol</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">node</span></a><span class="p">,</span> <span class="s2">&quot;SPLA&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plotting</span>
+<a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="matplotlib.pyplot.subplots" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span></a><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">freqs</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">node_pressure</span></a><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Frequencies (Hz)&quot;</span><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Sound pressure level (Pa)&quot;</span><span class="p">)</span>
+
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">freqs</span></a><span class="p">,</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">node_sound_pressure_level</span></a><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Nodal Sound Pressure&quot;</span><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Frequencies (Hz)&quot;</span><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;A-weighted sound</span><span class="se">\n</span><span class="s2">pressure level (dBA)&quot;</span><span class="p">)</span>
+
+<a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.suptitle" title="matplotlib.figure.Figure.suptitle" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span></a><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><a href="https://docs.python.org/3/library/functions.html#int" title="builtins.int" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">node</span></a><span class="si">}</span><span class="s2"> Results&quot;</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.tight_layout" title="matplotlib.figure.Figure.tight_layout" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span></a><span class="p">()</span>
+<a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.show" title="matplotlib.figure.Figure.show" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../../_images/sphx_glr_acoustic_analysis_005.png" srcset="../../../_images/sphx_glr_acoustic_analysis_005.png" alt="Node 276 Results" class = "sphx-glr-single-img"/><p>Stop MAPDL</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 8.519 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-examples-00-mapdl-examples-acoustic-analysis-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/2855b69d9b05029aa22cf5e1ccf4e476/acoustic_analysis.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">acoustic_analysis.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../../_downloads/687e82fbc60649e26afae751b79a095e/acoustic_analysis.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">acoustic_analysis.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-pymapdl">Launch PyMAPDL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#element-and-material-properties">Element and Material Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometry-definition">Geometry Definition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geometry-meshing">Geometry Meshing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-conditions">Boundary Conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-model">Solve the model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post1-time-step-results">Post1: Time step results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post26-time-dependent-results">Post26: Time dependent results</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item"> 
+<div class="tocsection editthispage">
+  <a href="https://github.com/ansys/pymapdl/edit/main/doc/source/examples/gallery_examples/00-mapdl-examples/acoustic_analysis.rst">
+    <i class="fa-solid fa-pencil"></i>
+       Edit
+    on GitHub  
+  </a>
+</div>
+
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.12.2. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

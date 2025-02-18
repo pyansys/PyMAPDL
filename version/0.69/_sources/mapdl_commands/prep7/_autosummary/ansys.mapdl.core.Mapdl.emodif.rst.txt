@@ -1,0 +1,6 @@
+﻿emodif
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.emodif

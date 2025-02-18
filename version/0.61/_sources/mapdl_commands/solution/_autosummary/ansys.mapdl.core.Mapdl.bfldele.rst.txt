@@ -1,0 +1,6 @@
+﻿bfldele
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.bfldele

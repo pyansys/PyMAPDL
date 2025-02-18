@@ -1,0 +1,6 @@
+﻿shade
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.shade

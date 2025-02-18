@@ -1,0 +1,964 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mapdl module &#8212; PyMAPDL</title>
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css?v=068850c2" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+ 
+<link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=77059071"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JQJKPV6ZVB"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JQJKPV6ZVB');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/mapdl';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.65';
+        </script>
+    <link rel="icon" href="../_static/ansys-favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="add_file_handler" href="_autosummary/ansys.mapdl.core.Mapdl.add_file_handler.html" />
+    <link rel="prev" title="std_out_handler" href="_autosummary/ansys.mapdl.core.logging.Logger.std_out_handler.html" />
+<link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/api/mapdl.html" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container"><!-- Debugging: html_theme_options =  -->
+
+<!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+   
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.65  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(
+      (text) => (document.getElementById("announcement_msg").innerHTML = text),
+    )
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>   <div class="container-xl">
+  <div class="row">
+    <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+    <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul> 
+<li class="nav-item nav-item-additional-breadcrumb">
+  <a href="https://docs.pyansys.com/">PyAnsys</a> » 
+</li>
+ 
+<li class="nav-item nav-item-0">
+  <a href="../index.html">PyMAPDL</a> » 
+</li>
+ 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API reference</a> » </li>
+        <li class="nav-item nav-item-this"><a href=""><code class="docutils literal notranslate"><span class="pre">Mapdl</span></code> module</a></li> 
+      </ul>
+    </div></div>
+  </div>
+</div>
+ 
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      0.65  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl/discussions" title="Support" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-comment fa-fw"></i></span>
+            <label class="sr-only">Support</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://mapdl.docs.pyansys.com/version/dev/getting_started/contribution.html" title="Contribute" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa fa-wrench"></i></span>
+            <label class="sr-only">Contribute</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Commands output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helper.html">Helper functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline.html">Inline functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="krylov.html"><code class="docutils literal notranslate"><span class="pre">KrylovSolver</span></code> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="launcher.html">Launcher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">Mapdl</span></code> module</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.add_file_handler.html">add_file_handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.chain_commands.html">chain_commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.directory.html">directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.get.html">get</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.get_array.html">get_array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.get_value.html">get_value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ignore_errors.html">ignore_errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.jobname.html">jobname</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.last_response.html">last_response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.load_table.html">load_table</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.mesh.html">mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.modal_analysis.html">modal_analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.non_interactive.html">non_interactive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.open_apdl_log.html">open_apdl_log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.open_gui.html">open_gui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.parameters.html">parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.result.html">result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.run.html">run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.run_multiline.html">run_multiline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.input_strings.html">input_strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.set_log_level.html">set_log_level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.version.html">version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.plotting.ALLOWED_TARGETS.html">ALLOWED_TARGETS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.plotting.BCS.html">BCS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.download.html">download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.list_error_file.html">list_error_file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.list_files.html">list_files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.math.html">math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.mute.html">mute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.upload.html">upload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.product.html">product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.mapdl_version.html">mapdl_version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.pymapdl_version.html">pymapdl_version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.products.html">products</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.preprocessing_capabilities.html">preprocessing_capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.aux_capabilities.html">aux_capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.solution_options.html">solution_options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.post_capabilities.html">post_capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.title.html">title</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.titles.html">titles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.stitles.html">stitles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.units.html">units</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.scratch_memory_status.html">scratch_memory_status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.database_status.html">database_status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.config_values.html">config_values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.global_status.html">global_status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.job_information.html">job_information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.model_information.html">model_information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.boundary_condition_information.html">boundary_condition_information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.routine_information.html">routine_information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.solution_options_configuration.html">solution_options_configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.load_step_options.html">load_step_options</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="math.html"><code class="docutils literal notranslate"><span class="pre">MapdlMath</span></code> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pool.html">Local MAPDL pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post.html"><code class="docutils literal notranslate"><span class="pre">PostProcessing</span></code> class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solution.html">Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xpl.html">Database explorer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_example.html">Building an example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unit_testing.html">Unit Testing</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="mapdl-module">
+<span id="ref-mapdl-api"></span><h1><code class="docutils literal notranslate"><span class="pre">Mapdl</span></code> module<a class="headerlink" href="#mapdl-module" title="Permalink to this heading">#</a></h1>
+<section id="mapdl-methods-and-attributes">
+<h2><code class="docutils literal notranslate"><span class="pre">Mapdl</span></code> methods and attributes<a class="headerlink" href="#mapdl-methods-and-attributes" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ansys.mapdl.core.mapdl._MapdlCore">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.mapdl.core.mapdl.</span></span><span class="sig-name descname"><span class="pre">_MapdlCore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loglevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DEBUG'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_vtk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_apdl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_com</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">start_parm</span></span></em><span class="sig-paren">)</span><a class="reference external" href="http://github.com/pyansys/pymapdl/blob/release/0.65/src/ansys/mapdl/core/_commands/inq_func.py#L1095-L1150"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ansys.mapdl.core.mapdl._MapdlCore" title="Permalink to this definition">#</a></dt>
+<dd><p>Contains methods in common between all Mapdl subclasses</p>
+</dd></dl>
+
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.add_file_handler.html#ansys.mapdl.core.Mapdl.add_file_handler" title="ansys.mapdl.core.Mapdl.add_file_handler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.add_file_handler</span></code></a>(filepath[, append, level])</p></td>
+<td><p>Add a file handler to the mapdl log.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.chain_commands.html#ansys.mapdl.core.Mapdl.chain_commands" title="ansys.mapdl.core.Mapdl.chain_commands"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.chain_commands</span></code></a></p></td>
+<td><p>Chain several mapdl commands.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.directory.html#ansys.mapdl.core.Mapdl.directory" title="ansys.mapdl.core.Mapdl.directory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.directory</span></code></a></p></td>
+<td><p>Current MAPDL directory.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.get.html#ansys.mapdl.core.Mapdl.get" title="ansys.mapdl.core.Mapdl.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.get</span></code></a>([par, entity, entnum, item1, ...])</p></td>
+<td><p>Retrieves a value and stores it as a scalar parameter or part of an array parameter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.get_array.html#ansys.mapdl.core.Mapdl.get_array" title="ansys.mapdl.core.Mapdl.get_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.get_array</span></code></a>([entity, entnum, item1, ...])</p></td>
+<td><p>Uses the <code class="docutils literal notranslate"><span class="pre">*VGET</span></code> command to Return an array from ANSYS as a Python array.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.get_value.html#ansys.mapdl.core.Mapdl.get_value" title="ansys.mapdl.core.Mapdl.get_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.get_value</span></code></a>([entity, entnum, item1, ...])</p></td>
+<td><p>Runs the MAPDL GET command and returns a Python value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.ignore_errors.html#ansys.mapdl.core.Mapdl.ignore_errors" title="ansys.mapdl.core.Mapdl.ignore_errors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.ignore_errors</span></code></a></p></td>
+<td><p>Invalid commands will be ignored rather than exceptions</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.jobname.html#ansys.mapdl.core.Mapdl.jobname" title="ansys.mapdl.core.Mapdl.jobname"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.jobname</span></code></a></p></td>
+<td><p>MAPDL job name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.last_response.html#ansys.mapdl.core.Mapdl.last_response" title="ansys.mapdl.core.Mapdl.last_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.last_response</span></code></a></p></td>
+<td><p>Returns the last response from MAPDL.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.load_table.html#ansys.mapdl.core.Mapdl.load_table" title="ansys.mapdl.core.Mapdl.load_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.load_table</span></code></a>(name, array[, var1, var2, ...])</p></td>
+<td><p>Load a table from Python to into MAPDL.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.mesh.html#ansys.mapdl.core.Mapdl.mesh" title="ansys.mapdl.core.Mapdl.mesh"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.mesh</span></code></a></p></td>
+<td><p>Mesh information.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.modal_analysis.html#ansys.mapdl.core.Mapdl.modal_analysis" title="ansys.mapdl.core.Mapdl.modal_analysis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.modal_analysis</span></code></a>([method, nmode, freqb, ...])</p></td>
+<td><p>Run a modal with basic settings analysis</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.non_interactive.html#ansys.mapdl.core.Mapdl.non_interactive" title="ansys.mapdl.core.Mapdl.non_interactive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.non_interactive</span></code></a></p></td>
+<td><p>Non-interactive context manager.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.open_apdl_log.html#ansys.mapdl.core.Mapdl.open_apdl_log" title="ansys.mapdl.core.Mapdl.open_apdl_log"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.open_apdl_log</span></code></a>(filename[, mode])</p></td>
+<td><p>Start writing all APDL commands to an MAPDL input file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.open_gui.html#ansys.mapdl.core.Mapdl.open_gui" title="ansys.mapdl.core.Mapdl.open_gui"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.open_gui</span></code></a>([include_result, inplace])</p></td>
+<td><p>Save the existing database and open it up in the MAPDL GUI.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.parameters.html#ansys.mapdl.core.Mapdl.parameters" title="ansys.mapdl.core.Mapdl.parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.parameters</span></code></a></p></td>
+<td><p>Collection of MAPDL parameters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.result.html#ansys.mapdl.core.Mapdl.result" title="ansys.mapdl.core.Mapdl.result"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.result</span></code></a></p></td>
+<td><p>Binary interface to the result file using <code class="xref py py-class docutils literal notranslate"><span class="pre">ansys.mapdl.reader.rst.Result</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.run.html#ansys.mapdl.core.Mapdl.run" title="ansys.mapdl.core.Mapdl.run"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.run</span></code></a>(command[, write_to_log, mute])</p></td>
+<td><p>Run single APDL command.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.run_multiline.html#ansys.mapdl.core.Mapdl.run_multiline" title="ansys.mapdl.core.Mapdl.run_multiline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.run_multiline</span></code></a>(commands)</p></td>
+<td><p>Run several commands as a single block :rtype: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.input_strings.html#ansys.mapdl.core.Mapdl.input_strings" title="ansys.mapdl.core.Mapdl.input_strings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.input_strings</span></code></a>(commands)</p></td>
+<td><p>Run several commands as a single block.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.set_log_level.html#ansys.mapdl.core.Mapdl.set_log_level" title="ansys.mapdl.core.Mapdl.set_log_level"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.set_log_level</span></code></a>(loglevel)</p></td>
+<td><p>Sets log level</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.version.html#ansys.mapdl.core.Mapdl.version" title="ansys.mapdl.core.Mapdl.version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mapdl.version</span></code></a></p></td>
+<td><p>MAPDL build version.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Permalink to this heading">#</a></h2>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.plotting.ALLOWED_TARGETS.html#ansys.mapdl.core.plotting.ALLOWED_TARGETS" title="ansys.mapdl.core.plotting.ALLOWED_TARGETS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.ALLOWED_TARGETS</span></code></a></p></td>
+<td><p>Built-in mutable sequence.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.plotting.BCS.html#ansys.mapdl.core.plotting.BCS" title="ansys.mapdl.core.plotting.BCS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plotting.BCS</span></code></a></p></td>
+<td><p>Built-in mutable sequence.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mapdl-grpc-mapdlgrpc-methods">
+<h2><code class="docutils literal notranslate"><span class="pre">mapdl_grpc.MapdlGrpc</span></code> methods<a class="headerlink" href="#mapdl-grpc-mapdlgrpc-methods" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ansys.mapdl.core.mapdl_grpc.MapdlGrpc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.mapdl.core.mapdl_grpc.</span></span><span class="sig-name descname"><span class="pre">MapdlGrpc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loglevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'WARNING'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cleanup_on_exit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_apdl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_no_abort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_temp_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_temp_dir_on_exit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_com</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote_instance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">start_parm</span></span></em><span class="sig-paren">)</span><a class="reference external" href="http://github.com/pyansys/pymapdl/blob/release/0.65/src/ansys/mapdl/core/mapdl_grpc.py#L1095-L1150"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ansys.mapdl.core.mapdl_grpc.MapdlGrpc" title="Permalink to this definition">#</a></dt>
+<dd><p>This class connects to a GRPC MAPDL server and allows commands
+to be passed to a persistent session.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>ip</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>IP address to connect to the server.  The default is ‘localhost’.</p>
+</dd>
+<dt><strong>port</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="docutils literal notranslate"><span class="pre">int</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>Port to connect to the MAPDL server.  The default is <code class="docutils literal notranslate"><span class="pre">50052</span></code>.</p>
+</dd>
+<dt><strong>timeout</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>Maximum allowable time to connect to the MAPDL server.</p>
+</dd>
+<dt><strong>loglevel</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>Sets which messages are printed to the console.  Default
+‘INFO’ prints out all ANSYS messages, ‘WARNING` prints only
+messages containing ANSYS warnings, and ‘ERROR’ prints only
+error messages.</p>
+</dd>
+<dt><strong>cleanup_on_exit</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.11)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>Exit MAPDL when Python exits or when this instance is garbage
+collected.</p>
+</dd>
+<dt><strong>set_no_abort</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.11)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>Sets MAPDL to not abort at the first error within /BATCH mode.
+The default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+<dt><strong>remove_temp_dir</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.11)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>When this parameter is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the MAPDL working directory will be
+deleted when MAPDL is exited provided that it is within the temporary
+user directory. The default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt><strong>log_file</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.11)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>Copy the log to a file called <cite>logs.log</cite> located where the
+python script is executed. The default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</dd>
+<dt><strong>print_com</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.11)"><span class="xref std std-ref">bool</span></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>Print the command <code class="docutils literal notranslate"><span class="pre">/COM</span></code> arguments to the standard output.
+The default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt><strong>channel</strong><span class="classifier"><a class="reference external" href="https://grpc.github.io/grpc/python/grpc.html#grpc.Channel" title="(in gRPC Python v1.56.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grpc.Channel</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">optional</span></code></span></dt><dd><p>gRPC channel to use for the connection. Can be used as an
+alternative to the <code class="docutils literal notranslate"><span class="pre">ip</span></code> and <code class="docutils literal notranslate"><span class="pre">port</span></code> parameters.</p>
+</dd>
+<dt><strong>remote_instance</strong><span class="classifier"><a class="reference external" href="https://pypim.docs.pyansys.com/version/dev/api/_autosummary/ansys.platform.instancemanagement.Instance.html#ansys.platform.instancemanagement.Instance" title="(in ansys-platform-instancemanagement v1.2.dev0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ansys.platform.instancemanagement.Instance</span></code></a></span></dt><dd><p>The corresponding remote instance when MAPDL is launched through
+PyPIM. This instance will be deleted when calling
+<a class="reference internal" href="../mapdl_commands/session/_autosummary/ansys.mapdl.core.Mapdl.exit.html#ansys.mapdl.core.Mapdl.exit" title="ansys.mapdl.core.Mapdl.exit"><code class="xref py py-func docutils literal notranslate"><span class="pre">Mapdl.exit</span></code></a>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Connect to an instance of MAPDL already running on locally on the
+default port 50052.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.mapdl</span> <span class="kn">import</span> <span class="n">core</span> <span class="k">as</span> <span class="n">pymapdl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">pymapdl</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Connect to an instance of MAPDL running on the LAN on a default port.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">pymapdl</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="s1">&#39;192.168.1.101&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Connect to an instance of MAPDL running on the LAN on a non-default port.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">pymapdl</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="s1">&#39;192.168.1.101&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">60001</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you wish to customize the channel, you can also directly connect
+directly to gRPC channels. For example, if you wanted to create an insecure
+channel with a maximum message length of 8 MB.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">grpc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">channel</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">insecure_channel</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s1">&#39;127.0.0.1:50052&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+<span class="gp">... </span>        <span class="p">(</span><span class="s2">&quot;grpc.max_receive_message_length&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="o">*</span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">],</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">pymapdl</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.download.html#ansys.mapdl.core.mapdl_grpc.MapdlGrpc.download" title="ansys.mapdl.core.mapdl_grpc.MapdlGrpc.download"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mapdl_grpc.MapdlGrpc.download</span></code></a>(files[, ...])</p></td>
+<td><p>Download files from the gRPC instance workind directory</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.list_error_file.html#ansys.mapdl.core.mapdl_grpc.MapdlGrpc.list_error_file" title="ansys.mapdl.core.mapdl_grpc.MapdlGrpc.list_error_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mapdl_grpc.MapdlGrpc.list_error_file</span></code></a>()</p></td>
+<td><p>Listing of errors written in JOBNAME.err</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.list_files.html#ansys.mapdl.core.mapdl_grpc.MapdlGrpc.list_files" title="ansys.mapdl.core.mapdl_grpc.MapdlGrpc.list_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mapdl_grpc.MapdlGrpc.list_files</span></code></a>([refresh_cache])</p></td>
+<td><p>List the files in the working directory of MAPDL.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.math.html#ansys.mapdl.core.mapdl_grpc.MapdlGrpc.math" title="ansys.mapdl.core.mapdl_grpc.MapdlGrpc.math"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mapdl_grpc.MapdlGrpc.math</span></code></a></p></td>
+<td><p>APDL math interface</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.mute.html#ansys.mapdl.core.mapdl_grpc.MapdlGrpc.mute" title="ansys.mapdl.core.mapdl_grpc.MapdlGrpc.mute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mapdl_grpc.MapdlGrpc.mute</span></code></a></p></td>
+<td><p>Silence the response from all MAPDL functions unless explicitly set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.mapdl_grpc.MapdlGrpc.upload.html#ansys.mapdl.core.mapdl_grpc.MapdlGrpc.upload" title="ansys.mapdl.core.mapdl_grpc.MapdlGrpc.upload"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mapdl_grpc.MapdlGrpc.upload</span></code></a>(file_name[, ...])</p></td>
+<td><p>Upload a file to the grpc instance</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="information-class-attributes">
+<h2><code class="docutils literal notranslate"><span class="pre">Information</span></code> class attributes<a class="headerlink" href="#information-class-attributes" title="Permalink to this heading">#</a></h2>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.product.html#ansys.mapdl.core.misc.Information.product" title="ansys.mapdl.core.misc.Information.product"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.product</span></code></a></p></td>
+<td><p>Retrieve the product from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.mapdl_version.html#ansys.mapdl.core.misc.Information.mapdl_version" title="ansys.mapdl.core.misc.Information.mapdl_version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.mapdl_version</span></code></a></p></td>
+<td><p>Retrieve the MAPDL version from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.pymapdl_version.html#ansys.mapdl.core.misc.Information.pymapdl_version" title="ansys.mapdl.core.misc.Information.pymapdl_version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.pymapdl_version</span></code></a></p></td>
+<td><p>Retrieve the PyMAPDL version from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.products.html#ansys.mapdl.core.misc.Information.products" title="ansys.mapdl.core.misc.Information.products"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.products</span></code></a></p></td>
+<td><p>Retrieve the products from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.preprocessing_capabilities.html#ansys.mapdl.core.misc.Information.preprocessing_capabilities" title="ansys.mapdl.core.misc.Information.preprocessing_capabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.preprocessing_capabilities</span></code></a></p></td>
+<td><p>Retrieve the preprocessing capabilities from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.aux_capabilities.html#ansys.mapdl.core.misc.Information.aux_capabilities" title="ansys.mapdl.core.misc.Information.aux_capabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.aux_capabilities</span></code></a></p></td>
+<td><p>Retrieve the aux capabilities from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.solution_options.html#ansys.mapdl.core.misc.Information.solution_options" title="ansys.mapdl.core.misc.Information.solution_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.solution_options</span></code></a></p></td>
+<td><p>Retrieve the solution options from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.post_capabilities.html#ansys.mapdl.core.misc.Information.post_capabilities" title="ansys.mapdl.core.misc.Information.post_capabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.post_capabilities</span></code></a></p></td>
+<td><p>Retrieve the post capabilities from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.title.html#ansys.mapdl.core.misc.Information.title" title="ansys.mapdl.core.misc.Information.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.title</span></code></a></p></td>
+<td><p>Retrieve and set the title from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.titles.html#ansys.mapdl.core.misc.Information.titles" title="ansys.mapdl.core.misc.Information.titles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.titles</span></code></a></p></td>
+<td><p>Retrieve the titles from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.stitles.html#ansys.mapdl.core.misc.Information.stitles" title="ansys.mapdl.core.misc.Information.stitles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.stitles</span></code></a></p></td>
+<td><p>Retrieve or set the value for the MAPDL stitle (subtitles).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.units.html#ansys.mapdl.core.misc.Information.units" title="ansys.mapdl.core.misc.Information.units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.units</span></code></a></p></td>
+<td><p>Retrieve the units from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.scratch_memory_status.html#ansys.mapdl.core.misc.Information.scratch_memory_status" title="ansys.mapdl.core.misc.Information.scratch_memory_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.scratch_memory_status</span></code></a></p></td>
+<td><p>Retrieve the scratch memory status from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.database_status.html#ansys.mapdl.core.misc.Information.database_status" title="ansys.mapdl.core.misc.Information.database_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.database_status</span></code></a></p></td>
+<td><p>Retrieve the database status from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.config_values.html#ansys.mapdl.core.misc.Information.config_values" title="ansys.mapdl.core.misc.Information.config_values"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.config_values</span></code></a></p></td>
+<td><p>Retrieve the config values from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.global_status.html#ansys.mapdl.core.misc.Information.global_status" title="ansys.mapdl.core.misc.Information.global_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.global_status</span></code></a></p></td>
+<td><p>Retrieve the global status from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.job_information.html#ansys.mapdl.core.misc.Information.job_information" title="ansys.mapdl.core.misc.Information.job_information"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.job_information</span></code></a></p></td>
+<td><p>Retrieve the job information from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.model_information.html#ansys.mapdl.core.misc.Information.model_information" title="ansys.mapdl.core.misc.Information.model_information"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.model_information</span></code></a></p></td>
+<td><p>Retrieve the model information from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.boundary_condition_information.html#ansys.mapdl.core.misc.Information.boundary_condition_information" title="ansys.mapdl.core.misc.Information.boundary_condition_information"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.boundary_condition_information</span></code></a></p></td>
+<td><p>Retrieve the boundary condition information from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.routine_information.html#ansys.mapdl.core.misc.Information.routine_information" title="ansys.mapdl.core.misc.Information.routine_information"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.routine_information</span></code></a></p></td>
+<td><p>Retrieve the routine information from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.solution_options_configuration.html#ansys.mapdl.core.misc.Information.solution_options_configuration" title="ansys.mapdl.core.misc.Information.solution_options_configuration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.solution_options_configuration</span></code></a></p></td>
+<td><p>Retrieve the solution options configuration from the MAPDL instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.misc.Information.load_step_options.html#ansys.mapdl.core.misc.Information.load_step_options" title="ansys.mapdl.core.misc.Information.load_step_options"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Information.load_step_options</span></code></a></p></td>
+<td><p>Retrieve the load step options from the MAPDL instance.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapdl-methods-and-attributes"><code class="docutils literal notranslate"><span class="pre">Mapdl</span></code> methods and attributes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ansys.mapdl.core.mapdl._MapdlCore"><code class="docutils literal notranslate"><span class="pre">_MapdlCore</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constants">Constants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapdl-grpc-mapdlgrpc-methods"><code class="docutils literal notranslate"><span class="pre">mapdl_grpc.MapdlGrpc</span></code> methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ansys.mapdl.core.mapdl_grpc.MapdlGrpc"><code class="docutils literal notranslate"><span class="pre">MapdlGrpc</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#information-class-attributes"><code class="docutils literal notranslate"><span class="pre">Information</span></code> class attributes</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/pyansys/pymapdl/edit/main/doc/source/api/mapdl.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright (c) 2023 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.1.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  0.10.0. <br />Last updated on
+  <span id="date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var lastModifiedDate = new Date(document.lastModified);
+  var date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("date").innerHTML = date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

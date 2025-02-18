@@ -1,0 +1,6 @@
+enable\_camera\_orientation\_widget
+===================================
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.enable_camera_orientation_widget

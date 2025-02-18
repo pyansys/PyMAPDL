@@ -1,0 +1,6 @@
+setLevel
+========
+
+.. currentmodule:: ansys.mapdl.core.logging
+
+.. automethod:: Logger.setLevel

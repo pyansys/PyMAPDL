@@ -1,0 +1,6 @@
+type
+====
+
+.. currentmodule:: ansys.mapdl.core.component
+
+.. autoproperty:: Component.type

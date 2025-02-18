@@ -1,0 +1,6 @@
+volume\_mapper
+==============
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.volume_mapper

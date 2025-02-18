@@ -1,0 +1,41 @@
+﻿Parameters
+==========
+
+.. currentmodule:: ansys.mapdl.core.parameters
+
+.. autoclass:: Parameters
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Parameters.csys
+      Parameters.dsys
+      Parameters.esys
+      Parameters.material
+      Parameters.numcpu
+      Parameters.platform
+      Parameters.real
+      Parameters.revision
+      Parameters.routine
+      Parameters.rsys
+      Parameters.section
+      Parameters.type
+      Parameters.units
+   
+   

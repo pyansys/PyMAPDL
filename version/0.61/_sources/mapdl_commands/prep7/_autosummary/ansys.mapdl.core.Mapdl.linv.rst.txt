@@ -1,0 +1,6 @@
+﻿linv
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.linv

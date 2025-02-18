@@ -1,0 +1,6 @@
+freq
+====
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. autoproperty:: PostProcessing.freq

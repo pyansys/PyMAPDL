@@ -1,0 +1,6 @@
+﻿vglue
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.vglue

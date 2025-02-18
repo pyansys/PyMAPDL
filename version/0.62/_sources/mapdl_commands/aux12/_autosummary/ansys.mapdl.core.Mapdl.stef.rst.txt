@@ -1,0 +1,6 @@
+﻿stef
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.stef

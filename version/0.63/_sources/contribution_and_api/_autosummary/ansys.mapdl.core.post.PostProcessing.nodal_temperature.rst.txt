@@ -1,0 +1,6 @@
+nodal\_temperature
+==================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.nodal_temperature

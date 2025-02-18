@@ -1,0 +1,6 @@
+time
+====
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. autoproperty:: PostProcessing.time

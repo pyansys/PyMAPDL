@@ -1,0 +1,6 @@
+﻿larea
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.larea

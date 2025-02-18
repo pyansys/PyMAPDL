@@ -1,0 +1,6 @@
+opacity
+=======
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. autoproperty:: MapdlTheme.opacity

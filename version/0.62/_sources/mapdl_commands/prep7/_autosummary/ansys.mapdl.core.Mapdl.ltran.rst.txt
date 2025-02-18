@@ -1,0 +1,6 @@
+﻿ltran
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ltran

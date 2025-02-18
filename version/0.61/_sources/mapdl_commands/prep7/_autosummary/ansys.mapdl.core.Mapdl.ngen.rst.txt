@@ -1,0 +1,6 @@
+﻿ngen
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ngen

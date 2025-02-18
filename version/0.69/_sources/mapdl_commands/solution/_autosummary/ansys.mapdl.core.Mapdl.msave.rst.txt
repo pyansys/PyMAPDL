@@ -1,0 +1,6 @@
+﻿msave
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.msave

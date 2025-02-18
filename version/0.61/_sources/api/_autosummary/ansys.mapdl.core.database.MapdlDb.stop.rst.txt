@@ -1,0 +1,6 @@
+stop
+====
+
+.. currentmodule:: ansys.mapdl.core.database
+
+.. automethod:: MapdlDb.stop

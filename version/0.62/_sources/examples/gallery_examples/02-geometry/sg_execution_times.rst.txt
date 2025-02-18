@@ -1,0 +1,20 @@
+
+:orphan:
+
+.. _sphx_glr_examples_gallery_examples_02-geometry_sg_execution_times:
+
+Computation times
+=================
+**03:04.257** total execution time for **examples_gallery_examples_02-geometry** files:
+
++-----------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_02-geometry_03-volumes.py` (``03-volumes.py``)       | 02:38.089 | 0.0 MB |
++-----------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_02-geometry_04-primitives.py` (``04-primitives.py``) | 00:18.582 | 0.0 MB |
++-----------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_02-geometry_01-lines.py` (``01-lines.py``)           | 00:03.926 | 0.0 MB |
++-----------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_02-geometry_02-areas.py` (``02-areas.py``)           | 00:02.979 | 0.0 MB |
++-----------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_02-geometry_00-keypoints.py` (``00-keypoints.py``)   | 00:00.682 | 0.0 MB |
++-----------------------------------------------------------------------------------------------+-----------+--------+

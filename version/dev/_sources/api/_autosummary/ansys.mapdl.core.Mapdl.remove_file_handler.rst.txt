@@ -1,0 +1,6 @@
+﻿remove\_file\_handler
+=====================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.remove_file_handler

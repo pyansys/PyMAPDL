@@ -1,0 +1,6 @@
+tshape\_key
+===========
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoproperty:: MeshGrpc.tshape_key

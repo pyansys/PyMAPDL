@@ -1,0 +1,6 @@
+keypoint\_select
+================
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. automethod:: LegacyGeometry.keypoint_select

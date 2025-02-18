@@ -1,0 +1,6 @@
+﻿sumtype
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.sumtype

@@ -1,0 +1,13 @@
+
+:orphan:
+
+.. _sphx_glr_examples_gallery_examples_03-general-fea_sg_execution_times:
+
+
+Computation times
+=================
+**00:01.497** total execution time for **examples_gallery_examples_03-general-fea** files:
+
++------------------------------------------------------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_gallery_examples_03-general-fea_00-how_finite_element_works.py` (``00-how_finite_element_works.py``) | 00:01.497 | 0.0 MB |
++------------------------------------------------------------------------------------------------------------------------------+-----------+--------+

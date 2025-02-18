@@ -1,0 +1,6 @@
+vnum
+====
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. autoproperty:: Geometry.vnum

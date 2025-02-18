@@ -1,0 +1,6 @@
+﻿rcyc
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.rcyc

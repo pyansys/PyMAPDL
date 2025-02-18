@@ -1,0 +1,6 @@
+add\_handling\_uncaught\_expections
+===================================
+
+.. currentmodule:: ansys.mapdl.core.logging
+
+.. automethod:: Logger.add_handling_uncaught_expections

@@ -1,0 +1,6 @@
+nodal\_stress\_intensity
+========================
+
+.. currentmodule:: ansys.mapdl.core.post
+
+.. automethod:: PostProcessing.nodal_stress_intensity

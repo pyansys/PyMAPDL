@@ -1,0 +1,6 @@
+﻿nropt
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.nropt

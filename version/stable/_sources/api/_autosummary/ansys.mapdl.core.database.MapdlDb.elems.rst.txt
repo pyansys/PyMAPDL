@@ -1,0 +1,6 @@
+elems
+=====
+
+.. currentmodule:: ansys.mapdl.core.database
+
+.. autoproperty:: MapdlDb.elems

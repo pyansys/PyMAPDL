@@ -1,0 +1,6 @@
+get\_volumes
+============
+
+.. currentmodule:: ansys.mapdl.core.mapdl_geometry
+
+.. automethod:: Geometry.get_volumes

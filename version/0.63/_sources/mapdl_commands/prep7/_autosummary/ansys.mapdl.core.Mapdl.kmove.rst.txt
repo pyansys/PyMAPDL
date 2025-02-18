@@ -1,0 +1,6 @@
+﻿kmove
+=====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.kmove

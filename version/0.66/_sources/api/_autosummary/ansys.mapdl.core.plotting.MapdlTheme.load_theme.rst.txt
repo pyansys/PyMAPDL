@@ -1,0 +1,6 @@
+load\_theme
+===========
+
+.. currentmodule:: ansys.mapdl.core.plotting
+
+.. automethod:: MapdlTheme.load_theme

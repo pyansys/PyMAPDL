@@ -1,0 +1,35 @@
+﻿Component
+=========
+
+.. currentmodule:: ansys.mapdl.core.component
+
+.. autoclass:: Component
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      
+      
+      Component.count
+      
+      
+      Component.index
+      
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+      :toctree:
+   
+      Component.type
+   
+   

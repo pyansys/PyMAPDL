@@ -1,0 +1,6 @@
+﻿save\_ansys\_path
+=================
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autofunction:: save_ansys_path

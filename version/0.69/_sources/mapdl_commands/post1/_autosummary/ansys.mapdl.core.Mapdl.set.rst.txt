@@ -1,0 +1,6 @@
+﻿set
+===
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.set

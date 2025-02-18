@@ -1,0 +1,6 @@
+﻿mxpand
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.mxpand

@@ -1,0 +1,6 @@
+﻿fluread
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.fluread

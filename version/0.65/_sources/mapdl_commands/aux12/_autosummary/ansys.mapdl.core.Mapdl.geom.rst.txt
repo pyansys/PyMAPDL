@@ -1,0 +1,6 @@
+﻿geom
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.geom

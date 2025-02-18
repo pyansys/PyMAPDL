@@ -1,0 +1,6 @@
+﻿smin
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.smin

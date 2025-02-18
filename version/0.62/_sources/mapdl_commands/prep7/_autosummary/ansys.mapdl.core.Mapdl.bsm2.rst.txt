@@ -1,0 +1,6 @@
+﻿bsm2
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.bsm2

@@ -1,0 +1,6 @@
+﻿list\_error\_file
+=================
+
+.. currentmodule:: ansys.mapdl.core.mapdl_grpc
+
+.. automethod:: MapdlGrpc.list_error_file

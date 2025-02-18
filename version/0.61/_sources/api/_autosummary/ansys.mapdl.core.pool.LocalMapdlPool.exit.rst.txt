@@ -1,0 +1,6 @@
+exit
+====
+
+.. currentmodule:: ansys.mapdl.core.pool
+
+.. automethod:: LocalMapdlPool.exit

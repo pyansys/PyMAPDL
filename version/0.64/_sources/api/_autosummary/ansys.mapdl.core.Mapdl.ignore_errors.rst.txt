@@ -1,0 +1,6 @@
+﻿ignore\_errors
+==============
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.ignore_errors

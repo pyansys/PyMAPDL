@@ -1,0 +1,6 @@
+﻿rexport
+=======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.rexport

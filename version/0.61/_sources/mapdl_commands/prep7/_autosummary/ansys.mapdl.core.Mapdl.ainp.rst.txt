@@ -1,0 +1,6 @@
+﻿ainp
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.ainp

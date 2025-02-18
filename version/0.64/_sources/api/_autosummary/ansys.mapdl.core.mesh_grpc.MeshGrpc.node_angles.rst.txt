@@ -1,0 +1,6 @@
+node\_angles
+============
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoproperty:: MeshGrpc.node_angles

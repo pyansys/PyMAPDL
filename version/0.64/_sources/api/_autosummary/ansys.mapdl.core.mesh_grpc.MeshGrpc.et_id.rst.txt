@@ -1,0 +1,6 @@
+et\_id
+======
+
+.. currentmodule:: ansys.mapdl.core.mesh_grpc
+
+.. autoproperty:: MeshGrpc.et_id

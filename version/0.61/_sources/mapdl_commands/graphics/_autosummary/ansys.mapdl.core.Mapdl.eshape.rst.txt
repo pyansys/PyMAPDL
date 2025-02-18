@@ -1,0 +1,6 @@
+﻿eshape
+======
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.eshape

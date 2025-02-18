@@ -1,0 +1,764 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Inline Functions &#8212; PyMAPDL</title>
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=796348d33e8b1d947c94" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94">
+
+    
+        <link href="../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/js/table.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/inline';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://mapdl.docs.pyansys.com/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '0.61';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="node" href="_autosummary/ansys.mapdl.core.inline_functions.Query.node.html" />
+    <link rel="prev" title="close_all_local_instances" href="_autosummary/ansys.mapdl.core.close_all_local_instances.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="None">
+  <link rel="canonical" href="https://mapdl.docs.pyansys.com/version/stable/api/inline.html" />
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      <!-- Debugging: html_theme_options =  -->
+
+  <!-- If there is no MiliSearch enabled, use the PyData search -->
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+    
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fa-solid fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+        <div class="navbar-end-item navbar-persistent--container">
+          
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+        </div>
+      
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.61  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  
+    <div class="navbar-persistent--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-toggle="tooltip">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+    </div>
+  
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+    
+    <div id="announcement_msg"></div>
+<script>
+  fetch("announcement.html")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(text => document.getElementById("announcement_msg").innerHTML = text)
+    .catch((error) => console.error(`Fetch problem: ${error.message}`));
+</script>
+    
+
+    
+    <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../index.html">PyMAPDL</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API Reference</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Inline Functions</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../user_guide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../mapdl_commands/index.html">
+                        MAPDL Commands
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../examples/index.html">
+                        Examples
+                      </a>
+                    </li>
+                
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    More
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../contributing.html">
+                        Contributing
+                      </a>
+                    </li>
+                
+                </div>
+            </div>
+            
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        0.61  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pyansys/pymapdl" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-toggle="tooltip"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="commands.html">Commands Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helper.html">Helper Functions</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Inline Functions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.node.html">node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.kp.html">kp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.centrx.html">centrx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.centry.html">centry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.centrz.html">centrz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.kx.html">kx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.ky.html">ky</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.kz.html">kz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.nx.html">nx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.ny.html">ny</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.nz.html">nz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.ux.html">ux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.uy.html">uy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.uz.html">uz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.rotx.html">rotx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.roty.html">roty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.rotz.html">rotz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lx.html">lx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.ly.html">ly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lz.html">lz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lsx.html">lsx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lsy.html">lsy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lsz.html">lsz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.nsel.html">nsel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.ksel.html">ksel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lsel.html">lsel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.asel.html">asel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.esel.html">esel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.vsel.html">vsel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapdl.html">Mapdl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math.html">MapdlMath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mesh.html">Mesh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting.html">Plotting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pool.html">Local MAPDL Pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post.html">Post-Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solution.html">Solution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xpl.html">Database Explorer</a></li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+  
+  <div id="rtd-footer-container"></div>
+
+      </div>
+      <main id="main-content" class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="inline-functions">
+<span id="inline-functions-api"></span><h1>Inline Functions<a class="headerlink" href="#inline-functions" title="Permalink to this headline">#</a></h1>
+<p>These are wrapped versions of inline APDL functions that perform operations like finding the x-coordinate of a node
+given its number (<code class="docutils literal notranslate"><span class="pre">Query.nx</span></code>).</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ansys.mapdl.core.inline_functions.Query">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys.mapdl.core.inline_functions.</span></span><span class="sig-name descname"><span class="pre">Query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mapdl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys.mapdl.core.inline_functions.Query" title="Permalink to this definition">#</a></dt>
+<dd><p>Class containing all the inline functions of APDL.</p>
+<p>Most of the results of these methods are shortcuts for specific
+combinations of arguments supplied to <a class="reference internal" href="_autosummary/ansys.mapdl.core.Mapdl.get.html#ansys.mapdl.core.Mapdl.get" title="ansys.mapdl.core.Mapdl.get"><code class="xref py py-func docutils literal notranslate"><span class="pre">ansys.mapdl.core.Mapdl.get()</span></code></a>.</p>
+<p>Currently implemented functions:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">centrx(e)</span></code> - get the centroid x-coordinate of element <cite>e</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">centry(e)</span></code> - get the centroid y-coordinate of element <cite>e</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">centrz(e)</span></code> - get the centroid z-coordinate of element <cite>e</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nx(n)</span></code> - get the x-coordinate of node <cite>n</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ny(n)</span></code> - get the y-coordinate of node <cite>n</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nz(n)</span></code> - get the z-coordinate of node <cite>n</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kx(k)</span></code> - get the x-coordinate of keypoint <cite>k</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ky(k)</span></code> - get the y-coordinate of keypoint <cite>k</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kz(k)</span></code> - get the z-coordinate of keypoint <cite>k</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lx(n,</span> <span class="pre">lfrac)</span></code> - X-coordinate of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ly(n,</span> <span class="pre">lfrac)</span></code> - Y-coordinate of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lz(n,</span> <span class="pre">lfrac)</span></code> - Z-coordinate of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lsx(n,</span> <span class="pre">lfrac)</span></code> - X-slope of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lsy(n,</span> <span class="pre">lfrac)</span></code> - Y-slope of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lsz(n,</span> <span class="pre">lfrac)</span></code> - Z-slope of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ux(n)</span></code> - get the structural displacement at node <cite>n</cite> in x</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uy(n)</span></code> - get the structural displacement at node <cite>n</cite> in y</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uz(n)</span></code> - get the structural displacement at node <cite>n</cite> in z</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rotx(n)</span></code> - get the rotational displacement at node <cite>n</cite> in x</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">roty(n)</span></code> - get the rotational displacement at node <cite>n</cite> in y</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rotz(n)</span></code> - get the rotational displacement at node <cite>n</cite> in z</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nsel(n)</span></code> - get the selection status of node <cite>n</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ksel(k)</span></code> - get the selection status of keypoint <cite>k</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lsel(n)</span></code> - get the selection status of line <cite>n</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">asel(a)</span></code> - get the selection status of area <cite>a</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esel(n)</span></code> - get the selection status of element <cite>e</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vsel(v)</span></code> - get the selection status of volume <cite>v</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ndnext(n)</span></code> - get the next selected node with a number greater than <cite>n</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpnext(k)</span></code> - get the next selected keypoint with a number greater than <cite>k</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lsnext(n)</span></code> - get the next selected line with a number greater than <cite>n</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arnext(a)</span></code> - get the next selected area with a number greater than <cite>a</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elnext(e)</span></code> - get the next selected element with a number greater than <cite>e</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vlnext(v)</span></code> - get the next selected volume with a number greater than <cite>v</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nnear(n)</span></code> - get the selected node nearest node <cite>n</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">knear(k)</span></code> - get the selected keypoint nearest keypoint <cite>k</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enearn(n)</span></code> - get  the selected element nearest node <cite>n</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">node(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code> - get the node closest to coordinate (x, y, z)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kp(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code> - get the keypoint closest to coordinate (x, y, z)</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<p>In this example we construct a solid box and mesh it. Then we use
+the <code class="docutils literal notranslate"><span class="pre">Query</span></code> methods <code class="docutils literal notranslate"><span class="pre">nx</span></code>, <code class="docutils literal notranslate"><span class="pre">ny</span></code>, and <code class="docutils literal notranslate"><span class="pre">nz</span></code> to find the
+cartesian coordinates of the first node. We can access these
+through the <code class="docutils literal notranslate"><span class="pre">mapdl.queries</span></code> property.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys.mapdl.core</span> <span class="kn">import</span> <span class="n">launch_mapdl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">launch_mapdl</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;SOLID5&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">block</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">vmesh</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">queries</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">.</span><span class="n">nx</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">q</span><span class="o">.</span><span class="n">ny</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">q</span><span class="o">.</span><span class="n">nz</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">0.0 20.0 0.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.node.html#ansys.mapdl.core.inline_functions.Query.node" title="ansys.mapdl.core.inline_functions.Query.node"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.node</span></code></a>(x, y, z)</p></td>
+<td><p>Return node closest to coordinate <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.kp.html#ansys.mapdl.core.inline_functions.Query.kp" title="ansys.mapdl.core.inline_functions.Query.kp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.kp</span></code></a>(x, y, z)</p></td>
+<td><p>Return keypoint closest to coordinate <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.centrx.html#ansys.mapdl.core.inline_functions.Query.centrx" title="ansys.mapdl.core.inline_functions.Query.centrx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.centrx</span></code></a>(e)</p></td>
+<td><p>Return the x coordinate of the element centroid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.centry.html#ansys.mapdl.core.inline_functions.Query.centry" title="ansys.mapdl.core.inline_functions.Query.centry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.centry</span></code></a>(e)</p></td>
+<td><p>Return the y coordinate of the element centroid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.centrz.html#ansys.mapdl.core.inline_functions.Query.centrz" title="ansys.mapdl.core.inline_functions.Query.centrz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.centrz</span></code></a>(e)</p></td>
+<td><p>Return the z coordinate of the element centroid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.kx.html#ansys.mapdl.core.inline_functions.Query.kx" title="ansys.mapdl.core.inline_functions.Query.kx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.kx</span></code></a>(k)</p></td>
+<td><p>Return the x coordinate of a keypont.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.ky.html#ansys.mapdl.core.inline_functions.Query.ky" title="ansys.mapdl.core.inline_functions.Query.ky"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.ky</span></code></a>(k)</p></td>
+<td><p>Return the y coordinate of a keypont.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.kz.html#ansys.mapdl.core.inline_functions.Query.kz" title="ansys.mapdl.core.inline_functions.Query.kz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.kz</span></code></a>(k)</p></td>
+<td><p>Return the z coordinate of a keypont.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.nx.html#ansys.mapdl.core.inline_functions.Query.nx" title="ansys.mapdl.core.inline_functions.Query.nx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.nx</span></code></a>(n)</p></td>
+<td><p>Return the x coordinate of a node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.ny.html#ansys.mapdl.core.inline_functions.Query.ny" title="ansys.mapdl.core.inline_functions.Query.ny"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.ny</span></code></a>(n)</p></td>
+<td><p>Return the y coordinate of a node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.nz.html#ansys.mapdl.core.inline_functions.Query.nz" title="ansys.mapdl.core.inline_functions.Query.nz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.nz</span></code></a>(n)</p></td>
+<td><p>Return the z coordinate of a node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.ux.html#ansys.mapdl.core.inline_functions.Query.ux" title="ansys.mapdl.core.inline_functions.Query.ux"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.ux</span></code></a>(n)</p></td>
+<td><p>Returns x-component of structural displacement at a node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.uy.html#ansys.mapdl.core.inline_functions.Query.uy" title="ansys.mapdl.core.inline_functions.Query.uy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.uy</span></code></a>(n)</p></td>
+<td><p>Returns y-component of structural displacement at a node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.uz.html#ansys.mapdl.core.inline_functions.Query.uz" title="ansys.mapdl.core.inline_functions.Query.uz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.uz</span></code></a>(n)</p></td>
+<td><p>Returns z-component of structural displacement at a node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.rotx.html#ansys.mapdl.core.inline_functions.Query.rotx" title="ansys.mapdl.core.inline_functions.Query.rotx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.rotx</span></code></a>(n)</p></td>
+<td><p>Returns x-component of rotational displacement at a node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.roty.html#ansys.mapdl.core.inline_functions.Query.roty" title="ansys.mapdl.core.inline_functions.Query.roty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.roty</span></code></a>(n)</p></td>
+<td><p>Returns y-component of rotational displacement at a node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.rotz.html#ansys.mapdl.core.inline_functions.Query.rotz" title="ansys.mapdl.core.inline_functions.Query.rotz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.rotz</span></code></a>(n)</p></td>
+<td><p>Returns z-component of rotational displacement at a node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lx.html#ansys.mapdl.core.inline_functions.Query.lx" title="ansys.mapdl.core.inline_functions.Query.lx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.lx</span></code></a>(n, lfrac)</p></td>
+<td><p>X-coordinate of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.ly.html#ansys.mapdl.core.inline_functions.Query.ly" title="ansys.mapdl.core.inline_functions.Query.ly"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.ly</span></code></a>(n, lfrac)</p></td>
+<td><p>Y-coordinate of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lz.html#ansys.mapdl.core.inline_functions.Query.lz" title="ansys.mapdl.core.inline_functions.Query.lz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.lz</span></code></a>(n, lfrac)</p></td>
+<td><p>Z-coordinate of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lsx.html#ansys.mapdl.core.inline_functions.Query.lsx" title="ansys.mapdl.core.inline_functions.Query.lsx"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.lsx</span></code></a>(n, lfrac)</p></td>
+<td><p>X-slope of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lsy.html#ansys.mapdl.core.inline_functions.Query.lsy" title="ansys.mapdl.core.inline_functions.Query.lsy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.lsy</span></code></a>(n, lfrac)</p></td>
+<td><p>Y-slope of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lsz.html#ansys.mapdl.core.inline_functions.Query.lsz" title="ansys.mapdl.core.inline_functions.Query.lsz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.lsz</span></code></a>(n, lfrac)</p></td>
+<td><p>Z-slope of line <code class="docutils literal notranslate"><span class="pre">n</span></code> at length fraction <code class="docutils literal notranslate"><span class="pre">lfrac</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.nsel.html#ansys.mapdl.core.inline_functions.Query.nsel" title="ansys.mapdl.core.inline_functions.Query.nsel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.nsel</span></code></a>(n)</p></td>
+<td><p>Returns selection status of a node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.ksel.html#ansys.mapdl.core.inline_functions.Query.ksel" title="ansys.mapdl.core.inline_functions.Query.ksel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.ksel</span></code></a>(k)</p></td>
+<td><p>Returns selection status of a keypoint.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.lsel.html#ansys.mapdl.core.inline_functions.Query.lsel" title="ansys.mapdl.core.inline_functions.Query.lsel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.lsel</span></code></a>(n)</p></td>
+<td><p>Returns selection status of a line.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.asel.html#ansys.mapdl.core.inline_functions.Query.asel" title="ansys.mapdl.core.inline_functions.Query.asel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.asel</span></code></a>(a)</p></td>
+<td><p>Returns selection status of an area.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.esel.html#ansys.mapdl.core.inline_functions.Query.esel" title="ansys.mapdl.core.inline_functions.Query.esel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.esel</span></code></a>(e)</p></td>
+<td><p>Returns selection status of an element.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/ansys.mapdl.core.inline_functions.Query.vsel.html#ansys.mapdl.core.inline_functions.Query.vsel" title="ansys.mapdl.core.inline_functions.Query.vsel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Query.vsel</span></code></a>(v)</p></td>
+<td><p>Returns selection status of a volume.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+            </article>
+            
+            
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div id="searchbox"></div>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/api/inline.rst.txt">
+        <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=796348d33e8b1d947c94"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=796348d33e8b1d947c94"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; Copyright (c) 2023 ANSYS, Inc. All rights reserved.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="theme-version">
+    Built with the
+    <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">
+        PyData Sphinx Theme
+    </a>
+    0.12.0.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

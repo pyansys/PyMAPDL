@@ -1,0 +1,6 @@
+get\_vec
+========
+
+.. currentmodule:: ansys.mapdl.core.math
+
+.. automethod:: MapdlMath.get_vec

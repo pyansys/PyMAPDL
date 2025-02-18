@@ -1,0 +1,6 @@
+﻿vdgl
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.vdgl

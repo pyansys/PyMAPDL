@@ -1,0 +1,6 @@
+﻿m
+=
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.m

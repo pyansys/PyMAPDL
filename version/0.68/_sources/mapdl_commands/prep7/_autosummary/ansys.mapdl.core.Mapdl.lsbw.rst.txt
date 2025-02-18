@@ -1,0 +1,6 @@
+﻿lsbw
+====
+
+.. currentmodule:: ansys.mapdl.core
+
+.. automethod:: Mapdl.lsbw

@@ -1,0 +1,6 @@
+﻿directory
+=========
+
+.. currentmodule:: ansys.mapdl.core
+
+.. autoproperty:: Mapdl.directory
